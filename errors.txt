@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 9: invalid syntax
+    "images/mapa.png", loop = True)
+                             ^
+
+Ren'Py Version: Ren'Py 8.3.4.24120703
+Sat Apr 12 21:09:05 2025

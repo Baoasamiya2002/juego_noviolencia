@@ -1,0 +1,26 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/enum/nivel_violencia.rpy", line 1, in script
+    init python:
+  File "game/enum/nivel_violencia.rpy", line 2, in <module>
+    from enum import enum
+ImportError: cannot import name 'enum' from 'enum' (C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentación\renpy-8.3.4-sdk\lib\python3.9\enum.pyc)
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/enum/nivel_violencia.rpy", line 1, in script
+    init python:
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentación\renpy-8.3.4-sdk\renpy\ast.py", line 827, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentación\renpy-8.3.4-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/enum/nivel_violencia.rpy", line 2, in <module>
+    from enum import enum
+ImportError: cannot import name 'enum' from 'enum' (C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentación\renpy-8.3.4-sdk\lib\python3.9\enum.pyc)
+
+Windows-10-10.0.26100 AMD64
+Ren'Py 8.3.4.24120703
+prototipo1 1.0
+Thu Apr 10 21:26:58 2025
