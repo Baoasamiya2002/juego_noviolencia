@@ -26,7 +26,7 @@ define config.check_conflicting_properties = True
 ## Los colores del texto de la interfaz
 
 ## El color enfatizado usado en la interfaz para subrayar texto.
-define gui.accent_color = '#cc6600'
+define gui.accent_color = '#532a00'
 
 ## El color del botón de texto cuando no está seleccionado ni enfocado.
 define gui.idle_color = '#707070'
@@ -87,7 +87,7 @@ define gui.title_text_size = 100
 ## Menú principal y menús del juego ############################################
 
 ## Imágenes del menú principal y menús del juego.
-define gui.main_menu_background = "gui/main_menu.png"
+define gui.main_menu_background = Movie(play="images/fondo_inicio.webm")
 define gui.game_menu_background = "gui/game_menu.png"
 
 

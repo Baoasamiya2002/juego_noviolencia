@@ -6,9 +6,11 @@ define jugador = Character("[nombreJugador]")
 define pareja = Character("[nombrePareja]")
 
 #imagenes
-image fondo_inicio = "images/mapa.png"
-image mapa_aparicion = Movie(play="images/mapa.webm", loop = True)
-image mapa = Movie(play="images/mapa.webm", loop = True)
+image fondo_inicio = Movie(play="images/fondo_inicio.webm", loop = True)
+image aparicion_mapa = Movie(play="images/aparicion_mapa.webm", loop = False)
+image aparicion_mapa_2 = Movie(play="images/aparicion_mapa_2.webm", loop = False)
+image mapa = "images/mapa.png"
+image chapultepec = "images/chapultepec.png"
 image flor_s_s = "images/flor_s_s.png" #flor tuya sana y pareja sana
 image flor_s_m = "images/flor_s_m.png" #flor tuya sana y pareja marchita
 image flor_m_s = "images/flor_m_s.png" #flor tuya marchita y pareja sana
@@ -76,6 +78,10 @@ menu definirGeneroPareja:
 
 label eleccionCita:
     scene fondo_inicio
+    pause 0.5
+    $ renpy.movie_cutscene("images/aparicion_mapa.webm")
+    $ renpy.movie_cutscene("images/aparicion_mapa_2.webm")
+    show mapa
 
     "Ahora elige, ¿Dónde tendrás una cita?\nDa click en cualquier parte de la pantalla para minimizar este mensaje"
     jump citasMapa

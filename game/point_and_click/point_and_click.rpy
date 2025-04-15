@@ -47,7 +47,7 @@ define diss = {"screens" : Dissolve(0.15)} # this allows the textbox to be hidde
 # -- the None value - making the button visible at all times
 # The lists should end in _buttons
 define buttons = [
-    (("chapultepec"),(190, 0),"citaChapultepec", None),
+    (("chapultepec"),(0.312, 0.33),"citaChapultepec", None),
 ]
 
 # This label handles showing the screen to the player.
