@@ -28,7 +28,7 @@ init -3:
 screen show_buttons:
     for i in buttons:
         if (i[3] is None) or (eval(i[3])):
-            imagebutton idle "point_and_click/image/" + str(i[0]) + ".png" pos i[1] action Return(i[2])
+            imagebutton idle "point_and_click/image/" + str(i[0]) + ".webp" pos i[1] action Return(i[2])
 
 style pnc_image_button:
     anchor (0.5, 0.5)

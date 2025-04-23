@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 30: show statement expects a non-empty block.
-    show chapultepec:
-                     ^
+File "game/script.rpy", line 85: expected 'image_name_component' not found.
+    hide 
+         ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Tue Apr 15 12:44:17 2025
+Tue Apr 22 22:40:27 2025

@@ -37,7 +37,7 @@ define gui.about = _p("""
 ## Nombre breve del juego para ejecutables y directorios en la distribución.
 ## Debe contener solo carácteres ASCII, sin espacios, comas o puntos y coma.
 
-define build.name = "prototipo1"
+define build.name = "version_0"
 
 
 ## Sonidos y música ############################################################

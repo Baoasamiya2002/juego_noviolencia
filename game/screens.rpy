@@ -31,6 +31,7 @@ style button:
 style button_text is gui_text:
     properties gui.text_properties("button")
     yalign 0.5
+    xalign 0.5
 
 
 style label_text is gui_text:
@@ -286,48 +287,82 @@ style quick_button_text:
 
 screen navigation():
 
-    vbox:
-        style_prefix "navigation"
+    if renpy.get_screen("main_menu"):
+        vbox:
+            style_prefix "navigation"
 
-        xpos gui.navigation_xpos
-        yalign 0.5
+            xalign 0.5
+            yalign 0.5
 
-        spacing gui.navigation_spacing
+            spacing gui.navigation_spacing
 
-        if main_menu:
+            imagebutton:                
+                    idle "menu_gui/inicio.png"
+                    action Start()
 
-            textbutton _("Comenzar") action Start()
+            #textbutton _("Cargar") action ShowMenu("load")
 
-        else:
+            imagebutton:                
+                    idle "menu_gui/ajustes.png"
+                    action ShowMenu("preferences")
 
-            textbutton _("Historial") action ShowMenu("history")
+            imagebutton:                
+                    idle "menu_gui/informacion.png"
+                    action ShowMenu("about")
 
-            textbutton _("Guardar") action ShowMenu("save")
+            # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
-        textbutton _("Cargar") action ShowMenu("load")
+            #     ## La ayuda no es necesaria ni relevante en dispositivos móviles.
+            #     textbutton _("Ayuda") action ShowMenu("help")
 
-        textbutton _("Opciones") action ShowMenu("preferences")
+            # if renpy.variant("pc"):
 
-        if _in_replay:
+            #     ## El botón de salida está prohibido en iOS y no es necesario en
+            #     ## Android y Web.
+            #     textbutton _("Salir") action Quit(confirm=not main_menu)
+    else:
+        vbox:
+            style_prefix "navigation"
 
-            textbutton _("Finaliza repetición") action EndReplay(confirm=True)
+            xpos gui.navigation_xpos
+            yalign 0.5
 
-        elif not main_menu:
+            spacing gui.navigation_spacing
 
-            textbutton _("Menú principal") action MainMenu()
+            if main_menu:
 
-        textbutton _("Acerca de") action ShowMenu("about")
+                textbutton _("Comenzar") action Start()
 
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+            else:
 
-            ## La ayuda no es necesaria ni relevante en dispositivos móviles.
-            textbutton _("Ayuda") action ShowMenu("help")
+                textbutton _("Historial") action ShowMenu("history")
 
-        if renpy.variant("pc"):
+                textbutton _("Guardar") action ShowMenu("save")
 
-            ## El botón de salida está prohibido en iOS y no es necesario en
-            ## Android y Web.
-            textbutton _("Salir") action Quit(confirm=not main_menu)
+            textbutton _("Cargar") action ShowMenu("load")
+
+            textbutton _("Opciones") action ShowMenu("preferences")
+
+            if _in_replay:
+
+                textbutton _("Finaliza repetición") action EndReplay(confirm=True)
+
+            elif not main_menu:
+
+                textbutton _("Menú principal") action MainMenu()
+
+            textbutton _("Acerca de") action ShowMenu("about")
+
+            if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+                ## La ayuda no es necesaria ni relevante en dispositivos móviles.
+                textbutton _("Ayuda") action ShowMenu("help")
+
+            if renpy.variant("pc"):
+
+                ## El botón de salida está prohibido en iOS y no es necesario en
+                ## Android y Web.
+                textbutton _("Salir") action Quit(confirm=not main_menu)
 
 
 style navigation_button is gui_button
@@ -384,7 +419,7 @@ style main_menu_frame:
     xsize 560
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    #background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
