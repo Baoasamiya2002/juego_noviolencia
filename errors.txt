@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 85: expected 'image_name_component' not found.
-    hide 
-         ^
+File "game/script.rpy", line 57: end of line expected.
+    show text "{cps=20}Fixed Speed{/cps} {cps=*2}Double Speed{/cps}"""
+                                                                    ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Tue Apr 22 22:40:27 2025
+Mon Apr 28 22:22:57 2025

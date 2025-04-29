@@ -1,84 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/screens.rpy", line 398, in execute
-    screen main_menu():
-  File "game/screens.rpy", line 398, in execute
-    screen main_menu():
-  File "game/screens.rpy", line 411, in execute
-    use navigation
-  File "game/screens.rpy", line 288, in execute
-    screen navigation():
-  File "game/screens.rpy", line 288, in execute
-    screen navigation():
-  File "game/screens.rpy", line 290, in execute
-    if renpy.get_screen("main_menu"):
-  File "game/screens.rpy", line 291, in execute
-    vbox:
-  File "game/screens.rpy", line 299, in execute
-    if main_menu:
-  File "game/screens.rpy", line 302, in execute
-    imagebutton:
-Exception: Imagebutton does not have a idle image. (auto='menu_gui/inicio_%s.png').
+While compiling python block starting at line 16 of game/options.rpy.
+TypeError: eval() arg 1 must be a string, bytes or code object
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
-    python hide:
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 827, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
-    python hide:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
-    ui.interact()
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ui.py", line 301, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\core.py", line 2215, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\core.py", line 2745, in interact_core
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\displayable.py", line 434, in visit_all
-    d.visit_all(callback, seen)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\screen.py", line 480, in visit_all
-    callback(self)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\core.py", line 2745, in <lambda>
-    root_widget.visit_all(lambda d : d.per_interact())
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\screen.py", line 491, in per_interact
-    self.update()
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\screen.py", line 697, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 398, in execute
-    screen main_menu():
-  File "game/screens.rpy", line 398, in execute
-    screen main_menu():
-  File "game/screens.rpy", line 411, in execute
-    use navigation
-  File "game/screens.rpy", line 288, in execute
-    screen navigation():
-  File "game/screens.rpy", line 288, in execute
-    screen navigation():
-  File "game/screens.rpy", line 290, in execute
-    if renpy.get_screen("main_menu"):
-  File "game/screens.rpy", line 291, in execute
-    vbox:
-  File "game/screens.rpy", line 299, in execute
-    if main_menu:
-  File "game/screens.rpy", line 302, in execute
-    imagebutton:
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ui.py", line 975, in _imagebutton
-    idle = choice(idle, idle_image, "idle", required=True)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ui.py", line 969, in choice
-    raise Exception("Imagebutton does not have a %s image. (auto=%r)." % (name, auto))
-Exception: Imagebutton does not have a idle image. (auto='menu_gui/inicio_%s.png').
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\bootstrap.py", line 359, in bootstrap
+    renpy.main.main()
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\main.py", line 470, in main
+    renpy.game.script.load_script() # sets renpy.game.script.
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\script.py", line 359, in load_script
+    self.load_appropriate_file(".rpyc", [ "_ren.py", ".rpy" ], dir, fn, initcode)
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\script.py", line 957, in load_appropriate_file
+    self.finish_load(stmts, initcode, filename=lastfn) # type: ignore
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\script.py", line 602, in finish_load
+    node.early_execute()
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 2221, in early_execute
+    value = renpy.python.py_eval_bytecode(self.code.bytecode)
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\python.py", line 1202, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+TypeError: eval() arg 1 must be a string, bytes or code object
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.4.24120703
-version 0 1.0
-Tue Apr 22 22:13:27 2025
+ 
+Mon Apr 28 22:39:02 2025

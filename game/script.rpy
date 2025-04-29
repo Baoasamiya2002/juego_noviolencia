@@ -1,18 +1,37 @@
 ﻿init python:
     import random
 
+    def continuar_frame(t, st, at):
+        global frame_numero_formato
+        global frame_numero
+        global frame_numero_total
+
+        if frame_numero < frame_numero_total:
+            frame_numero += 1
+        
+        if frame_numero < 10:
+            frame_numero_formato = "00" + str(frame_numero)
+        elif frame_numero < 100:
+            frame_numero_formato = "0" + str(frame_numero)
+
 #personajes
 define jugador = Character("[nombreJugador]")
 define pareja = Character("[nombrePareja]")
 
 #imagenes
-image fondo_inicio = Movie(size=(2560,1600), play="images/fondo_inicio.mpg", loop = True)
-image aparicion_mapa = Movie(size=(2560,1600), play="images/aparicion_mapa.mpg", loop = False)
+image fondo_inicio = Movie(size=(2560,1600), play="images/fondo_inicio.webm", loop = True)
 image mapa = "images/mapa.webp"
+image chapultepec_fondo = "images/chapus fondo.png"
 image flor_s_s = "images/flor_s_s.png" #flor tuya sana y pareja sana
 image flor_s_m = "images/flor_s_m.png" #flor tuya sana y pareja marchita
 image flor_m_s = "images/flor_m_s.png" #flor tuya marchita y pareja sana
 image flor_m_m = "images/flor_m_m.png" #flor tuya marchita y pareja marchita
+image aparicion_mapa:
+        "images/aparicion_mapa/Mapa[frame_numero_formato].png"
+        0.05
+        function continuar_frame
+        repeat
+image caja_texto_grande = "images/caja_texto_grande.png"
 
 #variables
 default nombreJugador = ""
@@ -20,6 +39,26 @@ default nombrePareja = ""
 default generoJugador = ""
 default generoPareja = ""
 default parejaViolenta = bool(random.getrandbits(1))
+default frame_numero = 1
+default frame_numero_formato = "001"
+default frame_numero_total = 0
+  
+#intro
+label splashscreen:
+    scene fondo_inicio
+    $ frame_numero_total = 74
+    show aparicion_mapa
+    pause 5.0
+    show caja_texto_grande:
+        xalign .6
+    show text """{color=#ffffff}{size=+9}UAM Cuajimalpa. Donde los pasillos universitarios guardan secretos que nadie ve...
+    \nXimena y Carlos se conocieron en clase. Todo comenzó con una mirada, un dibujo, una canción compartida. Lo que parecía un noviazgo común se transforma cuando ciertas decisiones empiezan a romper la superficie.
+    \nUna ciudad. Tres escenarios. Un vínculo que puede florecer... o desmoronarse. Cada elección que tomes los acercará al amor o los empujará hacia el abismo.
+    \n{i}¿Estás listo para atravesar las capas de Latencia?{/i}{/size}
+    \n\n{size=+20}¡Da click o toca tu pantalla!{/size}{/color}""" with Dissolve(1.5)
+    pause 20.0
+    return
+
 
 #escena inicial
 label start:
@@ -76,14 +115,7 @@ menu definirGeneroPareja:
 
 label eleccionCita:
     scene fondo_inicio
-    pause 0.5    
-    show black with fade
-    show aparicion_mapa
-    pause 3.0
-    hide aparicion_mapa
-    hide black
     show mapa
-
     "Ahora elige, ¿Dónde tendrás una cita?\nDa click en cualquier parte de la pantalla para minimizar este mensaje"
     jump citasMapa
 

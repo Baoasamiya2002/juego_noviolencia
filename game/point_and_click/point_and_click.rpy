@@ -67,6 +67,7 @@ label citasMapa:
 # Labels within a point'n'click segment almost always end in a jump statement.
 
 label citaChapultepec:
+    scene chapultepec_fondo 
     "Tú y [nombrePareja] deciden ir al Bosque de Chapultepec"
     pareja "Oye [nombreJugador], la verdad me siento con un poco de ansiedad por lo difícil que es la escuela y todavía me siento triste por lo de mi abuelita..."
     menu:

@@ -13,7 +13,8 @@
 ##
 ## El _() que rodea la cadena de texto la señala como traducible.
 
-define config.name = _("version 0")
+define config.name = _("""Latencia.
+Me quiere o no me quiere, pero ¿Cómo quiero?""")
 
 
 ## Determina si el título dado más arriba se muestra en el menú principal.
@@ -24,7 +25,7 @@ define gui.show_name = True
 
 ## Versión del juego.
 
-define config.version = "1.0"
+define config.version = "Version 0"
 
 
 ## Texto situado en la pantalla 'Acerca de' del juego. Sitúa el texto entre
@@ -121,7 +122,7 @@ define config.window_hide_transition = Dissolve(.2)
 ## infinito; cualquier otro número indica el número de caracteres por segundo
 ## que se mostrarán.
 
-default preferences.text_cps = 0
+default preferences.text_cps = 80
 
 
 ## El retraso por defecto del auto-avance. Números más grandes indican esperas

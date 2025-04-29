@@ -331,7 +331,7 @@ screen navigation():
 
             if main_menu:
 
-                textbutton _("Comenzar") action Start()
+                textbutton _("Inicio") action Start()
 
             else:
 
@@ -341,7 +341,7 @@ screen navigation():
 
             textbutton _("Cargar") action ShowMenu("load")
 
-            textbutton _("Opciones") action ShowMenu("preferences")
+            textbutton _("Ajustes") action ShowMenu("preferences")
 
             if _in_replay:
 
@@ -351,7 +351,7 @@ screen navigation():
 
                 textbutton _("Menú principal") action MainMenu()
 
-            textbutton _("Acerca de") action ShowMenu("about")
+            textbutton _("Información") action ShowMenu("about")
 
             if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -585,7 +585,7 @@ screen about():
     ## Esta sentencia 'use' incluye la pantalla 'game_menu' dentro de esta. El
     ## elemento 'vbox' se incluye entonces dentro del 'viewport' al interno de
     ## la pantalla 'game_menu'.
-    use game_menu(_("Acerca de"), scroll="viewport"):
+    use game_menu(_("Información"), scroll="viewport"):
 
         style_prefix "about"
 
@@ -767,7 +767,7 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Opciones"), scroll="viewport"):
+    use game_menu(_("Ajustes"), scroll="viewport"):
 
         vbox:
 
