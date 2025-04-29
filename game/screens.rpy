@@ -249,13 +249,13 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Atrás") action Rollback()
+            #textbutton _("Atrás") action Rollback()
             textbutton _("Historial") action ShowMenu('history')
-            textbutton _("Saltar") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
+            #textbutton _("Saltar") action Skip() alternate Skip(fast=True, confirm=True)
+            #textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Guardar") action ShowMenu('save')
-            textbutton _("Guardar R.") action QuickSave()
-            textbutton _("Cargar R.") action QuickLoad()
+            #textbutton _("Guardar R.") action QuickSave()
+            #textbutton _("Cargar R.") action QuickLoad()
             textbutton _("Prefs.") action ShowMenu('preferences')
 
 
@@ -353,10 +353,10 @@ screen navigation():
 
             textbutton _("Información") action ShowMenu("about")
 
-            if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+            # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
-                ## La ayuda no es necesaria ni relevante en dispositivos móviles.
-                textbutton _("Ayuda") action ShowMenu("help")
+            #     ## La ayuda no es necesaria ni relevante en dispositivos móviles.
+            #     textbutton _("Ayuda") action ShowMenu("help")
 
             if renpy.variant("pc"):
 
