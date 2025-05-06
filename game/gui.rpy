@@ -32,7 +32,7 @@ define gui.accent_color = '#532a00'
 define gui.idle_color = '#707070'
 
 ## El color 'small' se usa para el texto pequeño, que necesita destacar más.
-define gui.idle_small_color = '#606060'
+define gui.idle_small_color = '#000000'
 
 ## El color usado en botones y barras que ganan foco.
 define gui.hover_color = '#cc6600'
@@ -66,7 +66,7 @@ define gui.name_text_font = "fonts/Silom.ttf"
 define gui.interface_text_font = "fonts/Silom.ttf"
 
 ## El tamaño normal del texto del diálogo.
-define gui.text_size = 44
+define gui.text_size = 54
 
 ## El tamaño de los nombres de los personajes
 define gui.name_text_size = 60
@@ -101,7 +101,7 @@ define gui.textbox_height = 370
 
 ## Colocación vertical de la caja de texto en la pantalla. 0.0 para la parte
 ## superior, 0.5 para el centro y 1.0 para la parte inferior.
-define gui.textbox_yalign = 1.0
+define gui.textbox_yalign = 0.97
 
 
 ## Colocación del nombre del personaje hablante, relativa a la caja de texto.
@@ -190,7 +190,7 @@ define gui.confirm_button_text_xalign = 0.5
 define gui.page_button_borders = Borders(20, 8, 20, 8)
 
 define gui.quick_button_borders = Borders(20, 8, 20, 0)
-define gui.quick_button_text_size = 28
+define gui.quick_button_text_size = 45
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
 

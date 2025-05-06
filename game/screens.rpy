@@ -249,14 +249,14 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            #textbutton _("Atrás") action Rollback()
+            textbutton _("Atrás") action Rollback()
             textbutton _("Historial") action ShowMenu('history')
             #textbutton _("Saltar") action Skip() alternate Skip(fast=True, confirm=True)
             #textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Guardar") action ShowMenu('save')
             #textbutton _("Guardar R.") action QuickSave()
             #textbutton _("Cargar R.") action QuickLoad()
-            textbutton _("Prefs.") action ShowMenu('preferences')
+            textbutton _("Ajustes") action ShowMenu('preferences')
 
 
 ## Este código asegura que la pantalla 'quick_menu' se muestra en el juego,
@@ -784,10 +784,10 @@ screen preferences():
 
                 vbox:
                     style_prefix "check"
-                    label _("Saltar")
-                    textbutton _("Texto no visto") action Preference("skip", "toggle")
-                    textbutton _("Tras elecciones") action Preference("after choices", "toggle")
-                    textbutton _("Transiciones") action InvertSelected(Preference("transitions", "toggle"))
+                    #label _("Saltar")
+                    # textbutton _("Texto no visto") action Preference("skip", "toggle")
+                    # textbutton _("Tras elecciones") action Preference("after choices", "toggle")
+                    # textbutton _("Transiciones") action InvertSelected(Preference("transitions", "toggle"))
 
                 ## Aquí se pueden añadir 'vboxes' adicionales del tipo
                 ## "radio_pref" o "check_pref" para nuevas preferencias.
@@ -804,9 +804,9 @@ screen preferences():
 
                     bar value Preference("text speed")
 
-                    label _("Veloc. autoavance")
+                    # label _("Veloc. autoavance")
 
-                    bar value Preference("auto-forward time")
+                    # bar value Preference("auto-forward time")
 
                 vbox:
 

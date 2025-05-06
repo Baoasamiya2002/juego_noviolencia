@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 57: end of line expected.
-    show text "{cps=20}Fixed Speed{/cps} {cps=*2}Double Speed{/cps}"""
-                                                                    ^
+File "game/point_and_click/point_and_click.rpy", line 79: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    jugador "(Observando a [nombrePareja])  Estás muy [palabraGenero]…"
+    ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Mon Apr 28 22:22:57 2025
+Tue Apr 29 22:42:31 2025

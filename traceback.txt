@@ -1,28 +1,27 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While compiling python block starting at line 16 of game/options.rpy.
-TypeError: eval() arg 1 must be a string, bytes or code object
+While running game code:
+  File "game/point_and_click/point_and_click.rpy", line 84, in script
+    $ renpy.scene(ximena_neutral if nombreJugador == "Ximena" else carlos_neutral)
+  File "game/point_and_click/point_and_click.rpy", line 84, in <module>
+    $ renpy.scene(ximena_neutral if nombreJugador == "Ximena" else carlos_neutral)
+NameError: name 'ximena_neutral' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\bootstrap.py", line 359, in bootstrap
-    renpy.main.main()
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\main.py", line 470, in main
-    renpy.game.script.load_script() # sets renpy.game.script.
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\script.py", line 359, in load_script
-    self.load_appropriate_file(".rpyc", [ "_ren.py", ".rpy" ], dir, fn, initcode)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\script.py", line 957, in load_appropriate_file
-    self.finish_load(stmts, initcode, filename=lastfn) # type: ignore
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\script.py", line 602, in finish_load
-    node.early_execute()
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 2221, in early_execute
-    value = renpy.python.py_eval_bytecode(self.code.bytecode)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\python.py", line 1202, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-TypeError: eval() arg 1 must be a string, bytes or code object
+  File "game/point_and_click/point_and_click.rpy", line 84, in script
+    $ renpy.scene(ximena_neutral if nombreJugador == "Ximena" else carlos_neutral)
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 827, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/point_and_click/point_and_click.rpy", line 84, in <module>
+    $ renpy.scene(ximena_neutral if nombreJugador == "Ximena" else carlos_neutral)
+NameError: name 'ximena_neutral' is not defined
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.4.24120703
- 
-Mon Apr 28 22:39:02 2025
+Latencia.
+Me quiere o no me quiere, pero ¿Cómo quiero? Version 0
+Tue Apr 29 20:58:30 2025

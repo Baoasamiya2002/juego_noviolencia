@@ -47,7 +47,9 @@ define diss = {"screens" : Dissolve(0.15)} # this allows the textbox to be hidde
 # -- the None value - making the button visible at all times
 # The lists should end in _buttons
 define buttons = [
-    (("chapultepec"),(0.312, 0.33),"citaChapultepec", None),
+    (("chapultepec"),(0.312, 0.27),"citaChapultepec", None),
+    (("zocalo"),(0.49, 0.21),"opcionNoDisponible", None),
+    (("casa"),(0.53, 0.47),"opcionNoDisponible", None)
 ]
 
 # This label handles showing the screen to the player.
@@ -68,82 +70,81 @@ label citasMapa:
 
 label citaChapultepec:
     scene chapultepec_fondo 
-    "Tú y [nombrePareja] deciden ir al Bosque de Chapultepec"
-    pareja "Oye [nombreJugador], la verdad me siento con un poco de ansiedad por lo difícil que es la escuela y todavía me siento triste por lo de mi abuelita..."
+    show chapultepec_primer_plano
+    narrador "Es domingo por la tarde. Ximena y Carlos caminan entre los árboles, disfrutando de un helado." 
+    $ palabraGenero = "pensativo" if nombrePareja == "Carlos" else "pensativa"
+    narrador "El ambiente es tranquilo, pero [nombrePareja] ha estado [palabraGenero]"
+    $ palabraGenero = "callada" if nombreJugador == "Carlos" else "callado"
+    $ renpy.show("ximena_triste" if nombrePareja  == "Ximena" else "carlos_triste")
+    jugador "(Observando a [nombrePareja])  Estás muy [palabraGenero]…"
+    pareja "(Suspira) Tengo la sensación de que nuestra comunicación está empeorando."
+    
     menu:
         "¿Tú respuesta?"
-        "Ay [nombrePareja], sólo te estás ahogando en un vaso de agua":
-            $ relacionFlags["flor_pareja"].append(NivelViolencia.INICIAL.value)
-            pareja "(llorando y gritando)\n¡Como tú tienes todo no me puedes entender!"
-            $ relacionFlags["flor_tuya"].append(NivelViolencia.INICIAL.value)
-            menu:
-                "¿Tú respuesta?"
-                "Ay ya, mejor me voy y cuando te tranquilices hablamos":
-                    $ relacionFlags["flor_pareja"][-1] = NivelViolencia.AUMENTO.value
-                    jump decisionViolenta
-                "Pues es que no te entiendo... pero quiero hacerlo":
-                    $ relacionFlags["flor_pareja"][-1] = NivelViolencia.DISMINUCION.value
-                    jump decisionMixta
-        "Este...\nNo entiendo lo que sientes, pero quiero que me cuentes más":
-            $ relacionFlags["flor_pareja"].append(NivelViolencia.NINGUNO.value)
-            if parejaViolenta:
-                pareja "Tú nunca me entiendes, mejor olvídalo"
-                $ relacionFlags["flor_tuya"].append(NivelViolencia.INICIAL.value)
-                jump decisionMixta
-            else:
-                pareja "Gracias, me siento mejor en tu compañía"
-                $ relacionFlags["flor_tuya"].append(NivelViolencia.NINGUNO.value)
-                jump decisionNoViolenta
+        "Abrirse más y preguntar qué puede hacer mejor" if not parejaViolenta:
+            $ renpy.show("ximena_neutral" if nombreJugador == "Ximena" else "carlos_neutral")
+            jugador "¿Hay algo que puedas decirme ahora que me ayude a entenderte más? Quiero ser una pareja que te escuche de verdad."
+            pareja "(Se relaja un poco)  Con que no me minimices cuando hablo. A veces solo quiero que me acompañes en lo que siento, sin que intentes corregirme."
+            jugador "Lo voy a intentar. Me importa cómo te sientes."
+            jump logro_aspersor
+        "Exigir que se deje de hablar del tema" if not parejaViolenta:
+            $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
+            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Estoy harto de que todo sea “hablar y hablar”."
+            $ palabraGenero = "incómoda" if nombrePareja == "Ximena" else "incómodo"
+            pareja "(Traga saliva, [palabraGenero])  Está bien…"
+            jump penalizacion_aspersor
+        "Reconocer el error del día anterior y proponer una charla honesta" if not parejaViolenta:
+            $ renpy.show("ximena_neutral" if nombreJugador == "Ximena" else "carlos_neutral")
+            jugador "Sé que lo que dije ayer no fue justo. Me cerré sin pensar cómo te haría sentir. ¿Te parece si hablamos de eso con calma ahora?"
+            pareja "Gracias por decirlo. Sí, me parece bien. Me gusta que podamos tener este tipo de conversaciones."
+            jump logro_aspersor        
+        "Insistir en que [nombrePareja] es el que causa los problemas" if parejaViolenta:
+            $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
+            jugador "La neta es que tú provocas todo esto. Siempre hay drama cuando estás tú. Si cambiaras un poco, todo sería más fácil."
+            pareja "(Baja la mirada, en silencio)  …"
+            jump penalizacion_aspersor
+        "Abrirse más y preguntar qué puede hacer mejor " if parejaViolenta:
+            $ renpy.show("ximena_neutral" if nombreJugador == "Ximena" else "carlos_neutral")
+            jugador "¿Hay algo que puedas decirme ahora que me ayude a entenderte más? Quiero ser una pareja que te escuche de verdad."
+            pareja "(Se relaja un poco)  Con que no me minimices cuando hablo. A veces solo quiero que me acompañes en lo que siento, sin que intentes corregirme."
+            jugador "Lo voy a intentar. Me importa cómo te sientes."
+            jump logro_aspersor   
+        "Exigir que deje de hablar del tema" if parejaViolenta:
+            $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
+            $ palabraGenero = "harta" if nombreJugador == "Ximena" else "harto"
+            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Estoy [palabraGenero] de que todo sea “hablar y hablar”."
+            $ palabraGenero = "incómoda" if nombrePareja == "Ximena" else "incómodo"
+            pareja "(Traga saliva, [palabraGenero])  Está bien…"
+            jump penalizacion_aspersor
 
-    # if parejaViolenta:
-    #     pareja "Ay [nombreJugador], sólo te estás ahogando en un vaso de agua"
-    #     jugador "(llorando)\n¡Como tú tienes todo no me puedes entender!"
-    #     $ relacionFlags["flor_tuya"].append(1)
-    #     jump decidirRespuestaChapultepec
-    # else:
-    #     # $ dialogo = "¡Que "
-    #     # if generoJugador == "F":
-    #     #     $ dialogo += "linda "
-    #     # if generoJugador == "M":
-    #     #     $ dialogo += "guapo "
-    #     # else:
-    #     #     $ dialogo += "linde "
-    #     # $ dialogo += "te vez! Le voy a dar like"
-    #     # pareja "[dialogo]"
-    #     pareja "Este...\nNo entiendo lo que sientes, pero quiero que me cuentes más"
-    #     $ relacionFlags["flor_tuya"].append(0)
-    #     jump decidirRespuestaChapultepec 
+label opcionNoDisponible:
+    narrador "Disculpa, esta cita todavía no está disponible.\nDa click o toca cualquier otra parte de la pantalla para poder volver a elegir"
+    jump eleccionCita
 
-# menu decidirRespuestaChapultepec:
-#     "¿Tú respuesta?" 
-#     "Tú nunca me entiendes, mejor olvídalo" if relacionFlags["flor_tuya"][-1] == 0:
-#         $ relacionFlags["flor_pareja"].append(1)
-#         jump decisionMixta
-#     "Gracias, me siento mejor en tu compañía" if relacionFlags["flor_tuya"][-1] == 0:
-#         $ relacionFlags["flor_pareja"].append(0)
-#         jump decisionNoViolenta
-#     "Tú nunca me entiendes, mejor olvídalo" if relacionFlags["flor_tuya"][-1] == 1:
-#         $ relacionFlags["flor_pareja"].append(1)
-#         jump decisionMixta
-#     "Gracias, me siento mejor en tu compañía" if relacionFlags["flor_tuya"][-1] == 1:
-#         $ relacionFlags["flor_pareja"].append(0)
-#         jump decisionNoViolenta
+label logro_aspersor:
+    show logro_aspersor:
+        xalign .05
+    narrador "Con tu respuesta reflejaste empatía. Obtuviste un aspersor de agua limpia para tu planta.\nDa click en el elemento para recogerlo y guardar."
+    jump planta_florece
 
-label decisionNoViolenta:
-    #show expression "flor_[relacionFlags.get('flor_tuya')]_[relacionFlags.get('flor_pareja')]":
-    #    yalign 0.5
-    "¡Obtuviste agua para tu planta!"
-    "También obtienes un logro por completar la primera cita"
+label penalizacion_aspersor:
+    show penalizacion_aspersor:
+        xalign .05
+    narrador "¡Oh no! La mejor opción hubiera sido hablarlo. Obtuviste un aspersor de agua sucia para tu planta. Da click en el elemento para recogerlo y guardar."
+    jump planta_marchita
+
+label planta_florece:
+    scene chapultepec_fondo
+    show planta_florece:
+        yalign .3
+        xalign .5
+    narrador "Tu flor ha comenzado a florecer."
     jump finalJuego
 
-label decisionViolenta:
-    #show expression "flor_[relacionFlags.get('flor_tuya')]_[relacionFlags.get('flor_pareja')]":
-    "Oh no, esto afectará a las plantas..."
-    "Aún así, obtienes un logro por completar la primera cita"
-    jump finalJuego
-
-label decisionMixta:
-    #show expression "flor_[relacionFlags.get('flor_tuya')]_[relacionFlags.get('flor_pareja')]":
-    "Aunque esto afectó a las plantas, pudiste darle un giro a la historia a través de la empatía"
-    "Obtienes un logro por completar la primera cita"
+label planta_marchita:
+    scene chapultepec_fondo
+    show planta_marchita:
+        yalign .3
+        xalign .5
+    narrador "Tu flor se siente un poco enferma."
     jump finalJuego
