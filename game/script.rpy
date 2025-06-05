@@ -1,24 +1,5 @@
 ﻿init python:
     import random
-    
-    def continuar_frame(t, st, at):
-        global frame_numero_formato
-        global frame_numero
-        global frame_numero_total
-        global loop
-
-        if frame_numero < frame_numero_total:
-            frame_numero += 1
-        else:
-            if loop:
-                frame_numero = 1
-        
-        if frame_numero < 10:
-            frame_numero_formato = "00" + str(frame_numero)
-        elif frame_numero < 100:
-            frame_numero_formato = "0" + str(frame_numero)
-        else:
-            frame_numero_formato = str(frame_numero)
 
 #personajes
 define jugador = Character("[nombreJugador]")
@@ -27,6 +8,7 @@ define narrador = Character("", window_background=Frame("images/caja_texto_instr
 
 #videos
 image fondo_inicio = Movie(size=(2560,1600), play="images/fondo_inicio.webm", loop = True)
+image aparicion_mapa = Movie(size=(2560,1600), play="images/mapa_aparicion.webm", loop = False, image="images/aparicion_mapa/Mapa074.png")
 image seleccion_personaje = Movie(size=(2560,1600), play="images/seleccion_personaje.webm", loop = False, image="images/seleccion_personaje.png")
 image ximena_neutral = Movie(size=(2560,1600), play="images/ximena neutral.webm", loop = False, image="images/ximena neutral.png")
 image carlos_neutral = Movie(size=(2560,1600), play="images/carlos neutral.webm", loop = False, image="images/carlos neutral.png")
@@ -47,13 +29,6 @@ image boton_seleccion_carlos = "images/boton_seleccion_carlos.png"
 image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
 image logro_aspersor = "images/logro_aspersor.png"
 image penalizacion_aspersor = "images/penalizacion_aspersor.png"
-
-#animaciones
-image aparicion_mapa:
-    "images/aparicion_mapa/Mapa[frame_numero_formato].png"
-    .05
-    function continuar_frame
-    repeat
 
 #variables
 default nombreJugador = ""
@@ -81,9 +56,10 @@ screen boton_eleccion_personaje():
 #intro
 label splashscreen:
     scene fondo_inicio
-    $ frame_numero_total = 74
     show aparicion_mapa
     pause 5.0
+    hide aparicion_mapa
+    show mapa
     show caja_texto_grande:
         xalign .6
     show text """{color=#ffffff}{size=+8}UAM Cuajimalpa. Donde los pasillos universitarios guardan secretos que nadie ve...
