@@ -89,7 +89,8 @@ label citaChapultepec:
             jump logro_aspersor
         "Exigir que se deje de hablar del tema" if not parejaViolenta:
             $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
-            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Estoy harto de que todo sea “hablar y hablar”."
+            $ palabraGenero = "harta" if nombrePareja == "Ximena" else "harto"
+            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Estoy [palabraGenero] de que todo sea “hablar y hablar”."
             $ palabraGenero = "incómoda" if nombrePareja == "Ximena" else "incómodo"
             pareja "(Traga saliva, [palabraGenero])  Está bien…"
             jump penalizacion_aspersor
@@ -103,7 +104,7 @@ label citaChapultepec:
             jugador "La neta es que tú provocas todo esto. Siempre hay drama cuando estás tú. Si cambiaras un poco, todo sería más fácil."
             pareja "(Baja la mirada, en silencio)  …"
             jump penalizacion_aspersor
-        "Abrirse más y preguntar qué puede hacer mejor " if parejaViolenta:
+        "Abrirse más y preguntar qué puede hacer mejor" if parejaViolenta:
             $ renpy.show("ximena_neutral" if nombreJugador == "Ximena" else "carlos_neutral")
             jugador "¿Hay algo que puedas decirme ahora que me ayude a entenderte más? Quiero ser una pareja que te escuche de verdad."
             pareja "(Se relaja un poco)  Con que no me minimices cuando hablo. A veces solo quiero que me acompañes en lo que siento, sin que intentes corregirme."

@@ -808,40 +808,40 @@ screen preferences():
 
                     # bar value Preference("auto-forward time")
 
-                vbox:
+                # vbox:
 
-                    if config.has_music:
-                        label _("Volumen música")
+                #     if config.has_music:
+                #         label _("Volumen música")
 
-                        hbox:
-                            bar value Preference("music volume")
+                #         hbox:
+                #             bar value Preference("music volume")
 
-                    if config.has_sound:
+                #     if config.has_sound:
 
-                        label _("Volumen sonido")
+                #         label _("Volumen sonido")
 
-                        hbox:
-                            bar value Preference("sound volume")
+                #         hbox:
+                #             bar value Preference("sound volume")
 
-                            if config.sample_sound:
-                                textbutton _("Prueba") action Play("sound", config.sample_sound)
+                #             if config.sample_sound:
+                #                 textbutton _("Prueba") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Volumen voz")
+                #     if config.has_voice:
+                #         label _("Volumen voz")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                #         hbox:
+                #             bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Prueba") action Play("voice", config.sample_voice)
+                #             if config.sample_voice:
+                #                 textbutton _("Prueba") action Play("voice", config.sample_voice)
 
-                    if config.has_music or config.has_sound or config.has_voice:
-                        null height gui.pref_spacing
+                #     if config.has_music or config.has_sound or config.has_voice:
+                #         null height gui.pref_spacing
 
-                        textbutton _("Silenciar todo"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
+                #         textbutton _("Silenciar todo"):
+                #             action Preference("all mute", "toggle")
+                #             style "mute_all_button"
 
 
 style pref_label is gui_label

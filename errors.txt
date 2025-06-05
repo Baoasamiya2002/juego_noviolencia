@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/point_and_click/point_and_click.rpy", line 79: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    jugador "(Observando a [nombrePareja])  Estás muy [palabraGenero]…"
-    ^
+File "game/gui.rpy", line 63: expected expression
+    define gui.text_font_button = 
+                                  ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Tue Apr 29 22:42:31 2025
+Thu Jun  5 14:01:36 2025

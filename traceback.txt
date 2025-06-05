@@ -1,27 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/point_and_click/point_and_click.rpy", line 84, in script
-    $ renpy.scene(ximena_neutral if nombreJugador == "Ximena" else carlos_neutral)
-  File "game/point_and_click/point_and_click.rpy", line 84, in <module>
-    $ renpy.scene(ximena_neutral if nombreJugador == "Ximena" else carlos_neutral)
-NameError: name 'ximena_neutral' is not defined
+  File "game/gui.rpy", line 212, in script
+    define gui.choice_button_text_font = gui.text_font_button
+  File "game/gui.rpy", line 212, in <module>
+    define gui.choice_button_text_font = gui.text_font_button
+AttributeError: 'StoreModule' object has no attribute 'text_font_button'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/point_and_click/point_and_click.rpy", line 84, in script
-    $ renpy.scene(ximena_neutral if nombreJugador == "Ximena" else carlos_neutral)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 827, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/point_and_click/point_and_click.rpy", line 84, in <module>
-    $ renpy.scene(ximena_neutral if nombreJugador == "Ximena" else carlos_neutral)
-NameError: name 'ximena_neutral' is not defined
+  File "game/gui.rpy", line 212, in script
+    define gui.choice_button_text_font = gui.text_font_button
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 2241, in execute
+    self.set()
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 2255, in set
+    value = renpy.python.py_eval_bytecode(self.code.bytecode)
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\python.py", line 1202, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/gui.rpy", line 212, in <module>
+    define gui.choice_button_text_font = gui.text_font_button
+AttributeError: 'StoreModule' object has no attribute 'text_font_button'
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.4.24120703
-Latencia.
-Me quiere o no me quiere, pero ¿Cómo quiero? Version 0
-Tue Apr 29 20:58:30 2025
+Latencia
+
+Me quiere o no me quiere, pero ¿Cómo quiero? 0.5
+Thu Jun  5 14:02:39 2025
