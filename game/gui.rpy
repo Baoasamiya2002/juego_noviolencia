@@ -32,7 +32,7 @@ define gui.accent_color = '#532a00'
 define gui.idle_color = '#707070'
 
 ## El color 'small' se usa para el texto pequeño, que necesita destacar más.
-define gui.idle_small_color = '#000000'
+define gui.idle_small_color = '#d4d4d4b2'
 
 ## El color usado en botones y barras que ganan foco.
 define gui.hover_color = '#cc6600'
@@ -101,7 +101,7 @@ define gui.textbox_height = 370
 
 ## Colocación vertical de la caja de texto en la pantalla. 0.0 para la parte
 ## superior, 0.5 para el centro y 1.0 para la parte inferior.
-define gui.textbox_yalign = 0.97
+define gui.textbox_yalign = 0.95
 
 
 ## Colocación del nombre del personaje hablante, relativa a la caja de texto.

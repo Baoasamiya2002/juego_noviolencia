@@ -89,8 +89,7 @@ label citaChapultepec:
             jump logro_aspersor
         "Exigir que se deje de hablar del tema" if not parejaViolenta:
             $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
-            $ palabraGenero = "harta" if nombrePareja == "Ximena" else "harto"
-            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Estoy [palabraGenero] de que todo sea “hablar y hablar”."
+            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Vamos a disfrutar el dia."
             $ palabraGenero = "incómoda" if nombrePareja == "Ximena" else "incómodo"
             pareja "(Traga saliva, [palabraGenero])  Está bien…"
             jump penalizacion_aspersor
@@ -112,8 +111,7 @@ label citaChapultepec:
             jump logro_aspersor   
         "Exigir que deje de hablar del tema" if parejaViolenta:
             $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
-            $ palabraGenero = "harta" if nombreJugador == "Ximena" else "harto"
-            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Estoy [palabraGenero] de que todo sea “hablar y hablar”."
+            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Vamos a disfrutar el dia."
             $ palabraGenero = "incómoda" if nombrePareja == "Ximena" else "incómodo"
             pareja "(Traga saliva, [palabraGenero])  Está bien…"
             jump penalizacion_aspersor
@@ -139,7 +137,7 @@ label planta_florece:
     show planta_florece:
         yalign .3
         xalign .5
-    narrador "Tu flor ha comenzado a florecer."
+    narrador "Tu planta ha comenzado a florecer."
     jump finalJuego
 
 label planta_marchita:
@@ -147,5 +145,5 @@ label planta_marchita:
     show planta_marchita:
         yalign .3
         xalign .5
-    narrador "Tu flor se siente un poco enferma."
+    narrador "Tu planta se siente un poco enferma."
     jump finalJuego

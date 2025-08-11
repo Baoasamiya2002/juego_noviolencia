@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 62: expected 'image_name_component' not found.
-    show
-        ^
+File "game/script.rpy", line 197: end of line expected.
+    hide image oncahui_zoomin = Movie(size=(2560,1600), play="images/Salida.webm", loop = False)
+                              ^
 
 Ren'Py Version: Ren'Py 8.3.7.25031702
-Thu Jun  5 14:36:56 2025
+Thu Jul  3 20:43:57 2025

@@ -5,6 +5,7 @@
 define jugador = Character("[nombreJugador]")
 define pareja = Character("[nombrePareja]")
 define narrador = Character("", window_background=Frame("images/caja_texto_instruccion.png", 1, 1), what_color="#ffffff")
+define oncahui = Character("Oncahui")
 
 #videos
 image fondo_inicio = Movie(size=(2560,1600), play="images/fondo_inicio.webm", loop = True)
@@ -16,6 +17,11 @@ image ximena_triste = Movie(size=(2560,1600), play="images/ximena triste.webm", 
 image carlos_triste = Movie(size=(2560,1600), play="images/carlos triste.webm", loop = False, image="images/carlos triste.png")
 image ximena_enojada = Movie(size=(2560,1600), play="images/ximena enojada.webm", loop = False, image="images/ximena enojada.png")
 image carlos_enojado = Movie(size=(2560,1600), play="images/carlos enojado.webm", loop = False, image="images/carlos enojado.png")
+#image oncahui_zoomout = Movie(size=(2560,1600), play="images/84ShYPezdrF1.webm", loop = False)
+#image oncahui_zoomin = Movie(size=(2560,1600), play="images/iAr2wFDRsQgo.webm", loop = False)
+image oncahui_zoomout = Movie(size=(2560,1600), play="images/Caminata uamito.webm", loop = False, image="uamito.png")
+image oncahui_zoomin = Movie(size=(2560,1600), play="images/Salida.webm", loop = False)
+image creditos = Movie(size=(2560,1600), play="images/creditos.webm", loop = False)
 
 #imagenes estaticas
 image mapa = "images/mapa.webp"
@@ -29,6 +35,8 @@ image boton_seleccion_carlos = "images/boton_seleccion_carlos.png"
 image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
 image logro_aspersor = "images/logro_aspersor.png"
 image penalizacion_aspersor = "images/penalizacion_aspersor.png"
+#image oncahui = "6.png"
+image oncahui = "uamito.png"
 
 #variables
 default nombreJugador = ""
@@ -117,4 +125,76 @@ label finalJuego:
     scene fondo_inicio
     narrador "¡Muchas gracias por jugar esta primera versión del juego!"
     narrador "Si tienes comentarios, por favor compartelos con nosotros y ayudanos a mejorar"
+    jump evaluacion
+
+label evaluacion:
+    window hide diss
+    scene black
+    show oncahui_zoomout with fade
+    #pause 3.0
+    #show oncahui
+    oncahui "¡Ya terminé el juego!"
+
+    menu:
+        oncahui "Y analizándolo, creo que el {b}videojuego{/b}…"
+        "Me gustó":
+            oncahui "Si, ¡se me hizo bueno!"
+        "Me fue indiferente":
+            oncahui "Si, estuvo ok."
+        "No me gustó":
+            oncahui "Si, ¡no estuvo bueno!"
+    
+    menu:
+        oncahui "Y en el caso de la {b}diversión{/b}, fue un juego… "
+        "Entretenido":
+            oncahui "La pasé bien jugándolo."
+        "Regular":
+            oncahui "Pudo ser más divertido."
+        "Aburrido":
+            oncahui "No pasó nada divertido..."
+    
+    menu:
+        oncahui "Además, la {b}dificultad{/b} del juego fue..."
+        "Fácil":
+            oncahui "Fue un juego fácil."
+        "Moderado":
+            oncahui "Fue un juego moderado."
+        "Difícil":
+            oncahui "Fue un juego difícil."
+
+    menu:
+        oncahui "Donde su {b}interfaz{/b} como menús, ventanas y botones me parecieron..."
+        "Entendibles":
+            oncahui "Le doy a su interfaz un 5 de 5 en claridad."
+        "Aceptables":
+            oncahui "Le doy a su interfaz un 3 de 5 en claridad."
+        "Confusos":
+            oncahui "Le doy a su interfaz un 0 de 5 en claridad."
+
+    menu:
+        oncahui "¡Ah! Otra cosa que recuerdo es el {b}lenguaje{/b} usado. El tono, palabras usadas y diálogos se me hicieron..."
+        "Adecuados":
+            oncahui "Noté que el guión fue apropiado."
+        "Irregulares":
+            oncahui "Noté que el guión tuvo cosas por mejorar."
+        "Inadecuados":
+            oncahui "Noté que el guión no era adecuado para mí."
+
+    menu:
+        oncahui "Además, honestamente, los {b}elementos visuales{/b} como ilustraciones y botones me parecieron..."
+        "Atractivos":
+            oncahui "¡Me gustó el estilo visual!"
+        "Mixtos":
+            oncahui "Varios elementos pudieron ser mejores."
+        "Inadecuados":
+            oncahui "No me gustaron..."
+
+    oncahui "Bueno, voy a terminar de ver los créditos del juego y apreciar el esfuerzo de todos los involucrados"
+    #hide oncahui    
+    hide oncahui_zoomout
+    show oncahui_zoomin
+    pause 9.0
+    hide oncahui_zoomin
+    show creditos with fade
+    pause 6.0
     return

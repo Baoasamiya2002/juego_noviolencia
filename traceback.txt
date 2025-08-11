@@ -1,30 +1,32 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/gui.rpy", line 212, in script
-    define gui.choice_button_text_font = gui.text_font_button
-  File "game/gui.rpy", line 212, in <module>
-    define gui.choice_button_text_font = gui.text_font_button
-AttributeError: 'StoreModule' object has no attribute 'text_font_button'
+  File "game/script.rpy", line 22, in script
+    image oncahui_zoomout = Movie(size=(2560,1600), play="images/Caminata uamito.mpg", loop = False, image="")
+  File "game/script.rpy", line 22, in <module>
+    image oncahui_zoomout = Movie(size=(2560,1600), play="images/Caminata uamito.mpg", loop = False, image="")
+Exception: An empty string cannot be used as a displayable.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/gui.rpy", line 212, in script
-    define gui.choice_button_text_font = gui.text_font_button
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 2241, in execute
-    self.set()
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 2255, in set
-    value = renpy.python.py_eval_bytecode(self.code.bytecode)
-  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\python.py", line 1202, in py_eval_bytecode
+  File "game/script.rpy", line 22, in script
+    image oncahui_zoomout = Movie(size=(2560,1600), play="images/Caminata uamito.mpg", loop = False, image="")
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\ast.py", line 933, in execute
+    img = renpy.python.py_eval_bytecode(self.code.bytecode)
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\python.py", line 1211, in py_eval_bytecode
     return eval(bytecode, globals, locals)
-  File "game/gui.rpy", line 212, in <module>
-    define gui.choice_button_text_font = gui.text_font_button
-AttributeError: 'StoreModule' object has no attribute 'text_font_button'
+  File "game/script.rpy", line 22, in <module>
+    image oncahui_zoomout = Movie(size=(2560,1600), play="images/Caminata uamito.mpg", loop = False, image="")
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\display\video.py", line 509, in __init__
+    self.image = renpy.easy.displayable_or_none(image)
+  File "C:\Users\puxka\OneDrive\Documentos\master\5o\ICR\Experimentacion\renpy-8.3.4-sdk\renpy\easy.py", line 71, in displayable_or_none
+    raise Exception("An empty string cannot be used as a displayable.")
+Exception: An empty string cannot be used as a displayable.
 
 Windows-10-10.0.26100 AMD64
-Ren'Py 8.3.4.24120703
+Ren'Py 8.3.7.25031702
 Latencia
 
 Me quiere o no me quiere, pero ¿Cómo quiero? 0.5
-Thu Jun  5 14:02:39 2025
+Thu Jul  3 20:13:37 2025
