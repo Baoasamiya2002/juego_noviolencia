@@ -17,8 +17,6 @@ image ximena_triste = Movie(size=(2560,1600), play="images/ximena triste.webm", 
 image carlos_triste = Movie(size=(2560,1600), play="images/carlos triste.webm", loop = False, image="images/carlos triste.png")
 image ximena_enojada = Movie(size=(2560,1600), play="images/ximena enojada.webm", loop = False, image="images/ximena enojada.png")
 image carlos_enojado = Movie(size=(2560,1600), play="images/carlos enojado.webm", loop = False, image="images/carlos enojado.png")
-#image oncahui_zoomout = Movie(size=(2560,1600), play="images/84ShYPezdrF1.webm", loop = False)
-#image oncahui_zoomin = Movie(size=(2560,1600), play="images/iAr2wFDRsQgo.webm", loop = False)
 image oncahui_zoomout = Movie(size=(2560,1600), play="images/Caminata uamito.webm", loop = False, image="uamito.png")
 image oncahui_zoomin = Movie(size=(2560,1600), play="images/Salida.webm", loop = False)
 image creditos = Movie(size=(2560,1600), play="images/creditos.webm", loop = False)
@@ -35,7 +33,6 @@ image boton_seleccion_carlos = "images/boton_seleccion_carlos.png"
 image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
 image logro_aspersor = "images/logro_aspersor.png"
 image penalizacion_aspersor = "images/penalizacion_aspersor.png"
-#image oncahui = "6.png"
 image oncahui = "uamito.png"
 
 #variables
