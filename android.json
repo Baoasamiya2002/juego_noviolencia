@@ -3,14 +3,14 @@
     "google_play_key": null,
     "google_play_salt": null,
     "heap_size": "3",
-    "icon_name": "latencia ver 0.5",
+    "icon_name": "latencia",
     "include_pil": false,
     "include_sqlite": false,
     "layout": null,
-    "name": "Latencia ver 0.5",
+    "name": "Latencia",
     "numeric_version": 1,
     "orientation": "sensorLandscape",
-    "package": "com.versioncero.es",
+    "package": "com.latencia.es",
     "permissions": [
         "VIBRATE",
         "INTERNET"
@@ -20,5 +20,5 @@
     "update_always": true,
     "update_icons": true,
     "update_keystores": true,
-    "version": "1.0"
+    "version": "1.0.0-alpha"
 }

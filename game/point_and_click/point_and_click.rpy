@@ -28,7 +28,9 @@ init -3:
 screen show_buttons:
     for i in buttons:
         if (i[3] is None) or (eval(i[3])):
-            imagebutton idle "point_and_click/image/" + str(i[0]) + ".webp" pos i[1] action Return(i[2])
+            imagebutton idle (
+                "point_and_click/image/" + str(i[0]) + ".webp"
+            ) pos i[1] action Return(i[2])
 
 style pnc_image_button:
     anchor (0.5, 0.5)
@@ -71,65 +73,131 @@ label citasMapa:
 label citaChapultepec:
     scene chapultepec_fondo 
     show chapultepec_primer_plano
-    narrador "Es domingo por la tarde. Ximena y Carlos caminan entre los árboles, disfrutando de un helado." 
-    $ palabraGenero = "pensativo" if nombrePareja == "Carlos" else "pensativa"
-    narrador "El ambiente es tranquilo, pero [nombrePareja] ha estado [palabraGenero]"
-    $ palabraGenero = "callada" if nombreJugador == "Carlos" else "callado"
-    $ renpy.show("ximena_triste" if nombrePareja  == "Ximena" else "carlos_triste")
-    jugador "(Observando a [nombrePareja])  Estás muy [palabraGenero]…"
-    pareja "(Suspira) Tengo la sensación de que nuestra comunicación está empeorando."
-    
+    narrador "Un domingo por la tarde, Ximena y Carlos decidieron salir a una 
+        cita." 
+    narrador "Caminaban entre los árboles, no habían tenido tiempo de salir, 
+        estaban en entregas finales y la carrera de cada uno comenzaba a ser 
+        cada vez más demandante."
+    jugador "Ay no amor. Hablé con mi equipo y quieren trabajar en la escuela. 
+        Ya les dije que es más fácil que cada quien llegue a su casa y luego 
+        ponernos a trabajar en línea."
+    pareja "Sí."
+    jugador "Y pues, salir de Santa Fe después de las 3 de la tarde y con 
+        lluvias es una sentencia de muerte, ¿sabes a qué horas voy a llegar a mi 
+        casa? Como a las 7."
+    pareja "Ajá..."
+    $ palabraGenero = "seria" if nombrePareja == "Ximena" else "serio"
+    jugador "¿Y tú qué tienes? Estás muy [palabraGenero]."
+    $ palabraGenero = "preocupada" if nombrePareja == "Ximena" else "preocupado"
+    pareja "No, nada, solo estoy un poco [palabraGenero] por mi entrega del lunes."
+    jugador "¿Sí? Pero a ti te sale todo a la primera… yo soy quien tiene que 
+        preocuparse, casi no le entiendo a la UEA."
+    pareja "Bueno, pero yo quiero preocuparme, ¿ok?"
+    jugador "No me gusta cuando me hablas así, tan cortante."
+    pareja "¿No será que más bien tú estás muy sensible?"
+    jugador "¿Ves? Te estoy diciendo que algo tienes."
+    pareja "Siempre quieres un pretexto para pelear."
+    jugador "No, de verdad que no, solo quiero saber."
+    pareja "Es que siento que eres muy absorbente, me hostigas."
+
     menu:
         "¿Tú respuesta?"
-        "Abrirse más y preguntar qué puede hacer mejor" if not parejaViolenta:
-            $ renpy.show("ximena_neutral" if nombreJugador == "Ximena" else "carlos_neutral")
-            jugador "¿Hay algo que puedas decirme ahora que me ayude a entenderte más? Quiero ser una pareja que te escuche de verdad."
-            pareja "(Se relaja un poco)  Con que no me minimices cuando hablo. A veces solo quiero que me acompañes en lo que siento, sin que intentes corregirme."
-            jugador "Lo voy a intentar. Me importa cómo te sientes."
-            jump logro_aspersor
-        "Exigir que se deje de hablar del tema" if not parejaViolenta:
-            $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
-            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Vamos a disfrutar el dia."
-            $ palabraGenero = "incómoda" if nombrePareja == "Ximena" else "incómodo"
-            pareja "(Traga saliva, [palabraGenero])  Está bien…"
-            jump penalizacion_aspersor
-        "Reconocer el error del día anterior y proponer una charla honesta" if not parejaViolenta:
-            $ renpy.show("ximena_neutral" if nombreJugador == "Ximena" else "carlos_neutral")
-            jugador "Sé que lo que dije ayer no fue justo. Me cerré sin pensar cómo te haría sentir. ¿Te parece si hablamos de eso con calma ahora?"
-            pareja "Gracias por decirlo. Sí, me parece bien. Me gusta que podamos tener este tipo de conversaciones."
-            jump logro_aspersor        
-        "Insistir en que [nombrePareja] es el que causa los problemas" if parejaViolenta:
-            $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
-            jugador "La neta es que tú provocas todo esto. Siempre hay drama cuando estás tú. Si cambiaras un poco, todo sería más fácil."
-            pareja "(Baja la mirada, en silencio)  …"
-            jump penalizacion_aspersor
-        "Abrirse más y preguntar qué puede hacer mejor" if parejaViolenta:
-            $ renpy.show("ximena_neutral" if nombreJugador == "Ximena" else "carlos_neutral")
-            jugador "¿Hay algo que puedas decirme ahora que me ayude a entenderte más? Quiero ser una pareja que te escuche de verdad."
-            pareja "(Se relaja un poco)  Con que no me minimices cuando hablo. A veces solo quiero que me acompañes en lo que siento, sin que intentes corregirme."
-            jugador "Lo voy a intentar. Me importa cómo te sientes."
-            jump logro_aspersor   
-        "Exigir que deje de hablar del tema" if parejaViolenta:
-            $ renpy.show("ximena_enojada" if nombreJugador == "Ximena" else "carlos_enojado")
-            jugador "Ya basta, [nombrePareja]. No quiero hablar de tus cosas ahorita. ¿Puedes dejarlo por un día? Vamos a disfrutar el dia."
-            $ palabraGenero = "incómoda" if nombrePareja == "Ximena" else "incómodo"
-            pareja "(Traga saliva, [palabraGenero])  Está bien…"
-            jump penalizacion_aspersor
+        "Qué confusión":
+            jugador "¿Cómo? No entiendo, si según yo estábamos bien."
+            pareja "Es que yo quiero estar bien, y tú empiezas a hacer preguntas 
+                para que haya una discusión. ¿Sabes? Tú eres el que empieza a 
+                sacar sus inseguridades."
+        "Alguien más le metió la idea":
+            jugador "¿Y eso de dónde lo sacas? Seguro tus amigos te volvieron a 
+                hablar mal de mí."
+            pareja "Al menos mis amigos me conocen mejor que tú, ¿ya viste que 
+                en lugar de preguntar por qué pienso eso, hiciste que todo se 
+                tratara sobre ti? Por eso siempre estoy mal contigo."
+        "¡Qué drama!":
+            jugador "Ay, siempre con tus dramas, la estábamos pasando bien, 
+                siempre haces algo para hacerme sentir mal."
+            pareja "Si quieres ya no te digo nada y cuando yo me vaya ni vas a 
+                saber porqué."
+
+    narrador "Hay un breve silencio entre Carlos y Ximena. Llevan tiempo 
+        intentando sacar la relación a flote a pesar de sus compromisos con la 
+        escuela, familia y amigos."
+    jugador "Mejor, ya vámonos."
+    pareja "¿Ves como tú eres la persona tóxica? No se puede hablar bien contigo."
+
+    menu:
+        "¿Tú respuesta?"
+        "No quiero pelear":
+            jugador "No quiero pelear, pero la verdad es que a veces siento 
+                inseguridad. He llegado a pensar que te sientes mejor con tus 
+                amigos que conmigo. Creo que te aburro o no sé..."
+            pareja "Pues sí, me aburres con tus dramas e inseguridades. Ya no 
+                puedo salir a gusto porque me vas a reclamar después."
+        "Me estoy incomodando":
+            jugador "Te digo que nos vayamos, ya no quiero estar aquí, todos nos 
+                están viendo discutir..."
+            pareja "Es tu culpa, si no hubieras preguntado nada, no me hubieras 
+                hecho enojar. Eres bien, pinche imprudente."
+        "Ya fue suficiente":
+            jugador "Ya no te voy a seguir el juego. Cuando quieras hablar bien, 
+                me mandas un mensaje."
+            jump retroalimentacion_c3
+
+    menu:
+        "¿Tú respuesta?"
+        "Disculparse":
+            jugador "Bueno, tienes razón, discúlpame. Ya no hay que hablar de 
+                eso, vamos a intentar pasarla bien."
+            jump retroalimentacion_c1
+        "Mantengo calma":
+            $ palabraGenero = (
+                "tranquila" if nombrePareja == "Ximena" else "tranquilo")
+            jugador "Haber cálmate, quería hablarlo porque es importante que 
+                sepas lo que siento, pero no llegamos a nada. Piénsalo y cuando 
+                estés [palabraGenero], lo hablamos."
+            jump retroalimentacion_c2
+        "Terminar cita":
+            jugador "¿Sabes qué? Ya echaste a perder la salida, mejor ya me voy."
+            jump retroalimentacion_c3
 
 label opcionNoDisponible:
-    narrador "Disculpa, esta cita todavía no está disponible.\nDa click o toca cualquier otra parte de la pantalla para poder volver a elegir"
+    narrador "Disculpa, esta cita todavía no está disponible.\nDa click o toca 
+        cualquier otra parte de la pantalla para poder volver a elegir"
     jump eleccionCita
+
+label retroalimentacion_c1:
+    narrador "¿Decidiste terminar la discusión porque de verdad quieres dejarlo 
+        pasar, o porque no quieres que tu pareja continúe molesta?" 
+    narrador "En una relación es importante sentirnos con la seguridad de 
+        manifestar nuestras inconformidades sin miedo a que nuestra pareja se 
+        moleste."
+    jump finalJuego
+
+label retroalimentacion_c2:
+    narrador "Decidiste postergar la discusión, manteniendo tu postura y 
+        planteando tus necesidades afectivas." 
+    narrador "Es importante siempre cuidar de nosotros y nuestras emociones, y 
+        establecer límites sobre lo que no vamos a permitir."
+    jump finalJuego
+
+label retroalimentacion_c3:
+    narrador "Planteaste tus límites, sin embargo, cortaste la discusión sin 
+        darle la oportunidad a la otra persona de expresar cómo se siente."
+    jump finalJuego
 
 label logro_aspersor:
     show logro_aspersor:
         xalign .05
-    narrador "Con tu respuesta reflejaste empatía. Obtuviste un aspersor de agua limpia para tu planta.\nDa click en el elemento para recogerlo y guardar."
+    narrador "Con tu respuesta reflejaste empatía. Obtuviste un aspersor de agua 
+        limpia para tu planta.\nDa click en el elemento para recogerlo y guardar."
     jump planta_florece
 
 label penalizacion_aspersor:
     show penalizacion_aspersor:
         xalign .05
-    narrador "¡Oh no! La mejor opción hubiera sido hablarlo. Obtuviste un aspersor de agua sucia para tu planta. Da click en el elemento para recogerlo y guardar."
+    narrador "¡Oh no! La mejor opción hubiera sido hablarlo. Obtuviste un 
+        aspersor de agua sucia para tu planta. Da click en el elemento para 
+        recogerlo y guardar."
     jump planta_marchita
 
 label planta_florece:

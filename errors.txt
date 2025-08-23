@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 197: end of line expected.
-    hide image oncahui_zoomin = Movie(size=(2560,1600), play="images/Salida.webm", loop = False)
-                              ^
+File "game/script.rpy", line 109: end of line expected.
+    narrador "Necesitas mantener viva a tu planta, de acuerdo a las desiciones
+                                                                                                                                                                ^
 
-Ren'Py Version: Ren'Py 8.3.7.25031702
-Thu Jul  3 20:43:57 2025
+Ren'Py Version: Ren'Py 8.4.1.25072401
+Fri Aug 22 17:59:13 2025
