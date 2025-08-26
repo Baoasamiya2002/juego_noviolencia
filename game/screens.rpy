@@ -389,10 +389,6 @@ screen main_menu():
 
     add gui.main_menu_background
 
-    ## Este marco vacío oscurece el menu principal.
-    frame:
-        style "main_menu_frame"
-
     ## La sentencia 'use' incluye otra pantalla dentro de esta. El contenido
     ## real del menú principal está en la pantalla de navegación.
     use navigation
@@ -409,17 +405,11 @@ screen main_menu():
                 style "main_menu_version"
 
 
-style main_menu_frame is empty
 style main_menu_vbox is vbox
 style main_menu_text is gui_text
 style main_menu_title is main_menu_text
 style main_menu_version is main_menu_text
 
-style main_menu_frame:
-    xsize 560
-    yfill True
-
-    #background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
@@ -1583,10 +1573,6 @@ style check_button:
 style nvl_window:
     variant "small"
     background "gui/phone/nvl.png"
-
-style main_menu_frame:
-    variant "small"
-    background "gui/phone/overlay/main_menu.png"
 
 style game_menu_outer_frame:
     variant "small"
