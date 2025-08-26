@@ -1,4 +1,4 @@
-{cps=20}{color=#ffffff}{size=+8}UAM Cuajimalpa.
+{cps=30}{fi=0-0.5}{color=#ffffff}{size=+8}UAM Cuajimalpa.
 Donde los pasillos universitarios guardan secretos que nadie ve...
 
 Ximena y Carlos se conocieron en clase.
@@ -14,4 +14,4 @@ Descubre a dónde pueden llevarte las elecciones que tomes.
 
 {i}¿Estás listo para atravesar las capas de Latencia?{/i}{/size}
 
-                           {size=+25}¡Da click o toca tu pantalla!{/size}{/color}{/cps}
+                           {size=+25}¡Da click o toca tu pantalla!{/size}{/color}{/fi}{/cps}

@@ -1,7 +1,7 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While processing text tag {tab=4} in "While processing text tag {tab=4} in '{cps=20}{color=#ffffff}{size=+8}UAM Cuajimalpa.\\nDonde los pasillos universitarios guardan secretos que nadie ve...\\n\\nXimena y Carlos se conocieron en clase.\\nTodo comenzó con una mirada en una clase, un like, un mensaje.\\nLo que parecía un noviazgo común se transforma cuando ciertas \\ndecisiones empiezan a romper la superficie.\\n\\nUna ciudad.\\nTres escenarios.\\nUn vínculo que puede florecer... o marchitarse.\\n\\nDescubre a dónde pueden llevarte las elecciones que tomes.\\n\\n{i}¿Estás listo para atravesar las capas de Latencia?{/i}{/size}\\n\\n{size=+25}{tab=4}¡Da click o toca tu pantalla!{/size}{/color}{/cps}'.:".:
-  File "game/script.rpy", line 90, in script
+While processing text tag {atl=-#,#,fade_in_text~1.0} in "While processing text tag {atl=-#,#,fade_in_text~1.0} in '{atl=-#,#,fade_in_text~1.0}atl text tag along with another atl text tag{/atl}\\n{cps=20}{color=#ffffff}{size=+8}UAM Cuajimalpa.\\nDonde los pasillos universitarios guardan secretos que nadie ve...\\n\\nXimena y Carlos se conocieron en clase.\\nTodo comenzó con una mirada en una clase, un like, un mensaje.\\nLo que parecía un noviazgo común se transforma cuando ciertas \\ndecisiones empiezan a romper la superficie.\\n\\nUna ciudad.\\nTres escenarios.\\nUn vínculo que puede florecer... o marchitarse.\\n\\nDescubre a dónde pueden llevarte las elecciones que tomes.\\n\\n{i}¿Estás listo para atravesar las capas de Latencia?{/i}{/size}\\n\\n                           {size=+25}¡Da click o toca tu pantalla!{/size}{/color}{/cps}'.:".:
+  File "game/script.rpy", line 92, in script
     pause
   File "renpy/display/render.pyx", line 487, in renpy.display.render.render_screen
   File "renpy/display/render.pyx", line 260, in renpy.display.render.render
@@ -18,14 +18,14 @@ While processing text tag {tab=4} in "While processing text tag {tab=4} in '{cps
   File "renpy/display/render.pyx", line 260, in renpy.display.render.render
   File "renpy/display/render.pyx", line 170, in renpy.display.render.render
   File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-Exception: Unknown text tag 'tab=4'
+Exception: Unknown text tag 'atl=-#,#,fade_in_text~1.0'
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 90, in script
+  File "game/script.rpy", line 92, in script
     pause
-  File "game/script.rpy", line 90, in script
+  File "game/script.rpy", line 92, in script
     pause
   File "renpy/display/render.pyx", line 487, in renpy.display.render.render_screen
   File "renpy/display/render.pyx", line 260, in renpy.display.render.render
@@ -49,14 +49,14 @@ Traceback (most recent call last):
   File "renpy/display/render.pyx", line 260, in renpy.display.render.render
   File "renpy/display/render.pyx", line 170, in renpy.display.render.render
   File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-Exception: Unknown text tag 'tab=4'
+Exception: Unknown text tag 'atl=-#,#,fade_in_text~1.0'
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
   File "renpy/common/00start.rpy", line 244, in script call
     call _splashscreen from _call_splashscreen_1
-  File "game/script.rpy", line 90, in script
+  File "game/script.rpy", line 92, in script
     pause
   File "renpy/ast.py", line 2231, in execute
     self.call("execute")
@@ -144,7 +144,7 @@ Traceback (most recent call last):
                       ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/text/text.py", line 1604, in segment
     raise Exception("Unknown text tag %r" % text)
-Exception: Unknown text tag 'tab=4'
+Exception: Unknown text tag 'atl=-#,#,fade_in_text~1.0'
 
 During handling of the above exception, another exception occurred:
 
@@ -163,11 +163,11 @@ Traceback (most recent call last):
     ~~~~~~~~~~~^^
   File "renpy/common/00start.rpy", line 244, in script call
     call _splashscreen from _call_splashscreen_1
-  File "game/script.rpy", line 90, in script
+  File "game/script.rpy", line 92, in script
     pause
   File "renpy/common/00start.rpy", line 244, in script call
     call _splashscreen from _call_splashscreen_1
-  File "game/script.rpy", line 90, in script
+  File "game/script.rpy", line 92, in script
     pause
   File "renpy/display/error.py", line 135, in report_exception
     renpy.game.invoke_in_new_context(
@@ -278,11 +278,11 @@ Traceback (most recent call last):
                       ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/text/text.py", line 1604, in segment
     raise Exception("Unknown text tag %r" % text)
-Exception: Unknown text tag 'tab=4'
+Exception: Unknown text tag 'atl=-#,#,fade_in_text~1.0'
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Fri Aug 22 12:27:37 2025
+Mon Aug 25 20:39:52 2025
