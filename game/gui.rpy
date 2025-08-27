@@ -32,7 +32,7 @@ define gui.accent_color = '#532a00'
 define gui.idle_color = '#707070'
 
 ## El color 'small' se usa para el texto pequeño, que necesita destacar más.
-define gui.idle_small_color = '#d4d4d4b2'
+define gui.idle_small_color = '#000000b2'
 
 ## El color usado en botones y barras que ganan foco.
 define gui.hover_color = '#cc6600'

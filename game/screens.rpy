@@ -250,13 +250,20 @@ screen quick_menu():
             yalign 1.0
 
             textbutton _("Atrás") action Rollback()
+
             textbutton _("Historial") action ShowMenu('history')
-            #textbutton _("Saltar") action Skip() alternate Skip(fast=True, confirm=True)
-            #textbutton _("Auto") action Preference("auto-forward", "toggle")
+
             textbutton _("Guardar") action ShowMenu('save')
-            #textbutton _("Guardar R.") action QuickSave()
-            #textbutton _("Cargar R.") action QuickLoad()
+
+            textbutton _("Cargar") action ShowMenu("load")
+
             textbutton _("Ajustes") action ShowMenu('preferences')
+
+            if not renpy.variant("ios") or renpy.variant("web"):
+
+                ## El botón de salida está prohibido en iOS y no es necesario en
+                ## Android y Web.
+                textbutton _("Salir") action Quit(confirm=not main_menu)
 
 
 ## Este código asegura que la pantalla 'quick_menu' se muestra en el juego,
@@ -310,24 +317,17 @@ screen navigation():
                     idle "menu_gui/informacion.png"
                     action ShowMenu("about")
 
-            # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+            if not renpy.variant("ios") or renpy.variant("web"):
 
-            #     ## La ayuda no es necesaria ni relevante en dispositivos móviles.
-            #     textbutton _("Ayuda") action ShowMenu("help")
-
-            # if renpy.variant("pc"):
-
-            #     ## El botón de salida está prohibido en iOS y no es necesario en
-            #     ## Android y Web.
-            #     textbutton _("Salir") action Quit(confirm=not main_menu)
+                ## El botón de salida está prohibido en iOS y no es necesario en
+                ## Web.
+                textbutton _("Salir") action Quit(confirm=not main_menu)
     else:
-        vbox:
-            style_prefix "navigation"
+        hbox:
+            style_prefix "quick"
 
-            xpos gui.navigation_xpos
-            yalign 0.5
-
-            spacing gui.navigation_spacing
+            xalign 0.78
+            yalign 1.0
 
             if main_menu:
 
@@ -335,34 +335,47 @@ screen navigation():
 
             else:
 
-                textbutton _("Historial") action ShowMenu("history")
+                textbutton _("Inicio") action MainMenu()
+                
+                textbutton _("Historial"):
+                    if renpy.get_screen("history"):
+                        action Return()
+                    else:
+                        action ShowMenu("history")
 
-                textbutton _("Guardar") action ShowMenu("save")
+                textbutton _("Guardar"):
+                    if renpy.get_screen("save"):
+                        action Return()
+                    else:
+                        action ShowMenu("save")
 
-            textbutton _("Cargar") action ShowMenu("load")
+            textbutton _("Cargar"):
+                if renpy.get_screen("load"):
+                    action Return()
+                else:
+                    action ShowMenu("load")
 
-            textbutton _("Ajustes") action ShowMenu("preferences")
+            textbutton _("Ajustes"):
+                if renpy.get_screen("preferences"):
+                    action Return()
+                else:
+                    action ShowMenu("preferences")
 
-            if _in_replay:
+            textbutton _("Más info"):
+                if renpy.get_screen("about"):
+                    action Return()
+                else:
+                    action ShowMenu("about")
 
-                textbutton _("Finaliza repetición") action EndReplay(confirm=True)
+            if not main_menu:
 
-            elif not main_menu:
+                textbutton _("Volver") action Return()
 
-                textbutton _("Menú principal") action MainMenu()
-
-            textbutton _("Información") action ShowMenu("about")
-
-            # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            #     ## La ayuda no es necesaria ni relevante en dispositivos móviles.
-            #     textbutton _("Ayuda") action ShowMenu("help")
-
-            if renpy.variant("pc"):
+            if not renpy.variant("ios") or renpy.variant("web"):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
                 ## Android y Web.
-                textbutton _("Salir") action Quit(confirm=not main_menu)
+                textbutton _("Salir") action Quit(confirm=True)
 
 
 style navigation_button is gui_button
@@ -441,11 +454,6 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
     style_prefix "game_menu"
 
-    if main_menu:
-        add gui.main_menu_background
-    else:
-        add gui.game_menu_background
-
     frame:
         style "game_menu_outer_frame"
 
@@ -497,11 +505,6 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
     use navigation
 
-    textbutton _("Volver"):
-        style "return_button"
-
-        action Return()
-
     label title
 
     if main_menu:
@@ -525,7 +528,8 @@ style game_menu_outer_frame:
     bottom_padding 60
     top_padding 240
 
-    background "gui/overlay/game_menu.png"
+    background "#ffffffcf"
+    #background "gui/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
     xsize 560
@@ -773,16 +777,16 @@ screen preferences():
                         textbutton _("Pantalla completa") action Preference("display", "fullscreen")
 
                 vbox:
-                    style_prefix "check"
-                    #label _("Saltar")
-                    # textbutton _("Texto no visto") action Preference("skip", "toggle")
-                    # textbutton _("Tras elecciones") action Preference("after choices", "toggle")
-                    # textbutton _("Transiciones") action InvertSelected(Preference("transitions", "toggle"))
+                    style_prefix "radio_button"
+                    label _("Font Override")
+                    textbutton _("Default") action Preference("font transform", None)
+                    textbutton _("DejaVu Sans") action Preference("font transform", "dejavusans")
+                    textbutton _("Opendyslexic") action Preference("font transform", "opendyslexic")
 
                 ## Aquí se pueden añadir 'vboxes' adicionales del tipo
                 ## "radio_pref" o "check_pref" para nuevas preferencias.
 
-            null height (4 * gui.pref_spacing)
+            null height (3 * gui.pref_spacing)
 
             hbox:
                 style_prefix "slider"
@@ -798,13 +802,13 @@ screen preferences():
 
                     # bar value Preference("auto-forward time")
 
-                # vbox:
+                vbox:
 
-                #     if config.has_music:
-                #         label _("Volumen música")
+                    if config.has_music:
+                        label _("Volumen música")
 
-                #         hbox:
-                #             bar value Preference("music volume")
+                        hbox:
+                            bar value Preference("music volume")
 
                 #     if config.has_sound:
 

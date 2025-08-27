@@ -1,4 +1,7 @@
-﻿#personajes
+﻿#init python:
+    #config.keymap['accessibility'] = []
+
+#personajes
 define jugador = Character("[nombreJugador]")
 define pareja = Character("[nombrePareja]")
 define narrador = Character(
