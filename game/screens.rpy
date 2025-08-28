@@ -255,7 +255,7 @@ screen quick_menu():
 
             textbutton _("Opciones") action ShowMenu('preferences')
 
-            if not renpy.variant("ios") or renpy.variant("web"):
+            if not (renpy.variant("ios") or renpy.variant("web")):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
                 ## Android y Web.
@@ -313,11 +313,11 @@ screen navigation():
                     idle "menu_gui/informacion.png"
                     action ShowMenu("about")
 
-            if not renpy.variant("ios") or renpy.variant("web"):
+            if not (renpy.variant("ios") or renpy.variant("web")):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
                 ## Web.
-                textbutton _("Salir") action Quit(confirm=not main_menu)
+                textbutton _("Salir") action Quit(confirm=True)
     else:
         hbox:
             style_prefix "quick"
@@ -369,7 +369,7 @@ screen navigation():
 
                 textbutton _("Volver") action Return()
 
-            if not renpy.variant("ios") or renpy.variant("web"):
+            if not (renpy.variant("ios") or renpy.variant("web")):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
                 ## Android y Web.
