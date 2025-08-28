@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 368: keyword argument 'action' appears more than once in a textbutton statement.
-    action ShowMenu("preferences") action ShowMenu("about")
-                                         ^
+File "game/screens.rpy", line 342: textbutton expects a non-empty block.
+    textbutton _("Cargar"):
+                           ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Wed Aug 27 17:41:31 2025
+Wed Aug 27 18:10:12 2025

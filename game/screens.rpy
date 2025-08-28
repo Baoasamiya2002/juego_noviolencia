@@ -253,11 +253,7 @@ screen quick_menu():
 
             textbutton _("Historial") action ShowMenu('history')
 
-            textbutton _("Guardar") action ShowMenu('save')
-
-            textbutton _("Cargar") action ShowMenu("load")
-
-            textbutton _("Ajustes") action ShowMenu('preferences')
+            textbutton _("Opciones") action ShowMenu('preferences')
 
             if not renpy.variant("ios") or renpy.variant("web"):
 
@@ -307,7 +303,7 @@ screen navigation():
                     idle "menu_gui/inicio.png"
                     action Start()
 
-            #textbutton _("Cargar") action ShowMenu("load")
+            textbutton _("Cargar") action ShowMenu("load")
 
             imagebutton:                
                     idle "menu_gui/ajustes.png"
@@ -326,7 +322,7 @@ screen navigation():
         hbox:
             style_prefix "quick"
 
-            xalign 0.78
+            xalign 0.5
             yalign 1.0
 
             if main_menu:
@@ -337,12 +333,6 @@ screen navigation():
 
                 textbutton _("Inicio") action MainMenu()
                 
-                textbutton _("Historial"):
-                    if renpy.get_screen("history"):
-                        action Return()
-                    else:
-                        action ShowMenu("history")
-
                 textbutton _("Guardar"):
                     if renpy.get_screen("save"):
                         action Return()
@@ -354,8 +344,16 @@ screen navigation():
                     action Return()
                 else:
                     action ShowMenu("load")
+                    
+            if not main_menu:
 
-            textbutton _("Ajustes"):
+                textbutton _("Historial"):
+                    if renpy.get_screen("history"):
+                        action Return()
+                    else:
+                        action ShowMenu("history")
+
+            textbutton _("Opciones"):
                 if renpy.get_screen("preferences"):
                     action Return()
                 else:
