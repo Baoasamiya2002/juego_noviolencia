@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 342: textbutton expects a non-empty block.
-    textbutton _("Cargar"):
-                           ^
+File "game/screens.rpy", line 390: expected 'simple_expression' not found.
+    background
+               ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Wed Aug 27 18:10:12 2025
+Thu Aug 28 19:53:15 2025

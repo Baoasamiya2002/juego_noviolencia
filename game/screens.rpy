@@ -386,6 +386,8 @@ style navigation_button:
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
 
+style selected_button:
+    background "#ff0000cf"
 
 ## Pantalla del menú principal #################################################
 ##
@@ -449,17 +451,13 @@ style main_menu_version:
 ## interior.
 
 screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
-
+    
     style_prefix "game_menu"
 
     frame:
         style "game_menu_outer_frame"
 
         hbox:
-
-            ## Reservar espacio para la sección de navegación.
-            frame:
-                style "game_menu_navigation_frame"
 
             frame:
                 style "game_menu_content_frame"
@@ -497,8 +495,16 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
                         transclude
 
-                else:
+                elif scroll == "config_viewport":
 
+
+                    viewport:
+                        scrollbars "vertical"
+                        mousewheel True
+                        viewport_yfill False
+                
+                else:
+                    
                     transclude
 
     use navigation
@@ -525,7 +531,9 @@ style return_button_text is navigation_button_text
 style game_menu_outer_frame:
     bottom_padding 60
     top_padding 240
-
+    left_padding 30
+    xfill True    
+    yfill True
     background "#ffffffcf"
     #background "gui/overlay/game_menu.png"
 
@@ -543,9 +551,6 @@ style game_menu_viewport:
 
 style game_menu_vscrollbar:
     unscrollable gui.unscrollable
-
-style game_menu_side:
-    spacing 20
 
 style game_menu_label:
     xpos 100
@@ -759,82 +764,112 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Ajustes"), scroll="viewport"):
-
+    use game_menu(_("Opciones"), scroll=("vpgrid" if gui.history_height else "viewport")):
+        
         vbox:
-
+            xsize 2375
+            null height (5 * gui.pref_spacing)
             hbox:
+                
                 box_wrap True
+                style_prefix "slider"
+                vbox:
 
-                if renpy.variant("pc") or renpy.variant("web"):
+                    xsize 720
 
-                    vbox:
-                        style_prefix "radio"
-                        label _("Pantalla")
-                        textbutton _("Ventana") action Preference("display", "window")
-                        textbutton _("Pantalla completa") action Preference("display", "fullscreen")
+                    label _("Velocidad del texto")
+
+                    bar value Preference("text speed") xsize 610
+
+                    label _("Kerning")
+                    
+                    bar value Preference("font kerning") yalign 0.5 xsize 610
+                
+                vbox:
+
+                    xsize 720
+
+                    label _("Tamaño")
+
+                    bar value Preference("font size") yalign 0.5 xsize 610
+
+                    label _("Espacio de linea")
+                    
+                    bar value Preference("font line spacing") yalign 0.5 xsize 610   
 
                 vbox:
-                    style_prefix "radio_button"
+                    
+                    xsize 480
+                    
+                    style_prefix "radio"
                     label _("Font Override")
+
                     textbutton _("Default") action Preference("font transform", None)
                     textbutton _("DejaVu Sans") action Preference("font transform", "dejavusans")
                     textbutton _("Opendyslexic") action Preference("font transform", "opendyslexic")
+                
+                vbox:
 
-                ## Aquí se pueden añadir 'vboxes' adicionales del tipo
-                ## "radio_pref" o "check_pref" para nuevas preferencias.
+                    style_prefix "radio"
+                    label _("High Contrast Text")
 
-            null height (3 * gui.pref_spacing)
+                    textbutton _("Enable") action Preference("high contrast text", "enable")
+                    textbutton _("Disable") action Preference("high contrast text", "disable")
 
+            null height (5 * gui.pref_spacing)
+            
             hbox:
                 style_prefix "slider"
                 box_wrap True
 
+                if (renpy.variant("pc") or renpy.variant("web")):
+                    vbox:   
+
+                        xsize 380
+
+                        style_prefix "radio"
+                        
+                        label _("Pantalla")
+                        
+                        textbutton _("Ventana") action Preference("display", "window")
+                        textbutton _("Pantalla completa") action Preference("display", "fullscreen")
+                
+                null width (1 * gui.pref_spacing)
+
                 vbox:
 
-                    label _("Veloc. texto")
+                    xsize 765
 
-                    bar value Preference("text speed")
-
-                    # label _("Veloc. autoavance")
-
-                    # bar value Preference("auto-forward time")
+                    label _("Volumen música")
+                    
+                    bar value Preference("music volume") xsize 610
 
                 vbox:
+                    xsize 470
+                    style_prefix "radio"
+                    label _("Self-Voicing")
 
-                    if config.has_music:
-                        label _("Volumen música")
+                    if renpy.variant("touch"):
+                        text _("Self-voicing support is limited when using a touch screen.")
 
-                        hbox:
-                            bar value Preference("music volume")
+                    textbutton _("Off") action Preference("self voicing", "disable")
+                    textbutton _("Text-to-speech") action Preference("self voicing", "enable")
+                    textbutton _("Clipboard") action Preference("clipboard voicing", "enable")
+                
+                vbox:
+                    xsize 660
+                    label _("Volumen  voz automática")
+                    
+                    bar value Preference("voice volume") yalign 0.5 xsize 650
 
-                #     if config.has_sound:
+            null height (5 * gui.pref_spacing)
 
-                #         label _("Volumen sonido")
-
-                #         hbox:
-                #             bar value Preference("sound volume")
-
-                #             if config.sample_sound:
-                #                 textbutton _("Prueba") action Play("sound", config.sample_sound)
-
-
-                #     if config.has_voice:
-                #         label _("Volumen voz")
-
-                #         hbox:
-                #             bar value Preference("voice volume")
-
-                #             if config.sample_voice:
-                #                 textbutton _("Prueba") action Play("voice", config.sample_voice)
-
-                #     if config.has_music or config.has_sound or config.has_voice:
-                #         null height gui.pref_spacing
-
-                #         textbutton _("Silenciar todo"):
-                #             action Preference("all mute", "toggle")
-                #             style "mute_all_button"
-
+            hbox:
+                style_prefix "quick"
+                xsize 950
+                xpos 1515
+                textbutton _("Regresar a configuración inicial") action [Preference("font kerning", 0.0), Preference("font line spacing", 1.0), Preference("font size", 1.0), Preference("high contrast text", "disable"), Preference("font transform", None), Preference("voice volume", 1.0), Preference("self voicing", "disable"), Preference("music volume", 1.0), Preference("text speed", 40)]
+                
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
