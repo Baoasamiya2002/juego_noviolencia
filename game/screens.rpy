@@ -249,17 +249,15 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Atrás") action Rollback()
-
-            textbutton _("Historial") action ShowMenu('history')
-
-            textbutton _("Opciones") action ShowMenu('preferences')
+            textbutton _("Atrás") action Rollback() size_group "menu"
+            textbutton _("Historial") action ShowMenu('history') size_group "menu"
+            textbutton _("Opciones") action ShowMenu('preferences') size_group "menu"
 
             if not (renpy.variant("ios") or renpy.variant("web")):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
-                ## Android y Web.
-                textbutton _("Salir") action Quit(confirm=not main_menu)
+                ## Web.
+                textbutton _("Salir") action Quit(confirm=not main_menu) size_group "menu"
 
 
 ## Este código asegura que la pantalla 'quick_menu' se muestra en el juego,
@@ -269,14 +267,20 @@ init python:
 
 default quick_menu = True
 
+#image testimg = Frame("gui/button/quick_idle_background.png")
+
 style quick_button is default
 style quick_button_text is button_text
 
 style quick_button:
     properties gui.button_properties("quick_button")
+    background "#ffffff"#"testimg" #"gui/button/quick_idle_background.png"#
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
+
+style quick_image_button:
+    xsize 400
 
 
 ################################################################################
@@ -319,61 +323,46 @@ screen navigation():
                 ## Web.
                 textbutton _("Salir") action Quit(confirm=True)
     else:
+
         hbox:
+
             style_prefix "quick"
 
             xalign 0.5
             yalign 1.0
+            
+            textbutton _("Inicio"):
 
-            if main_menu:
-
-                textbutton _("Inicio") action Start()
-
-            else:
-
-                textbutton _("Inicio") action MainMenu()
+                size_group "menu"
                 
-                textbutton _("Guardar"):
-                    if renpy.get_screen("save"):
-                        action Return()
-                    else:
-                        action ShowMenu("save")
-
-            textbutton _("Cargar"):
-                if renpy.get_screen("load"):
-                    action Return()
+                if main_menu:
+                
+                    action Start()
                 else:
-                    action ShowMenu("load")
-                    
+
+                    action MainMenu()
+
+            textbutton _("Cargar") action ShowMenu("load") size_group "menu"
+                
             if not main_menu:
+                
+                textbutton _("Guardar") action ShowMenu("save") size_group "menu"
+                textbutton _("Historial") action ShowMenu("history") size_group "menu"
 
-                textbutton _("Historial"):
-                    if renpy.get_screen("history"):
-                        action Return()
-                    else:
-                        action ShowMenu("history")
-
-            textbutton _("Opciones"):
-                if renpy.get_screen("preferences"):
-                    action Return()
-                else:
-                    action ShowMenu("preferences")
-
-            textbutton _("Más info"):
-                if renpy.get_screen("about"):
-                    action Return()
-                else:
-                    action ShowMenu("about")
+            textbutton _("Opciones") action ShowMenu("preferences") size_group "menu"
+            textbutton _("Más info") action ShowMenu("about") size_group "menu"
 
             if not main_menu:
 
-                textbutton _("Volver") action Return()
+                textbutton _("Volver") action Return() size_group "menu"
 
             if not (renpy.variant("ios") or renpy.variant("web")):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
-                ## Android y Web.
-                textbutton _("Salir") action Quit(confirm=True)
+                ## Web.
+                textbutton _("Salir") action Quit(confirm=True) size_group "menu"
+            
+            textbutton _("¡Terminar!") action Quit(confirm=not main_menu) size_group "menu"
 
 
 style navigation_button is gui_button
@@ -456,7 +445,7 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
     frame:
         style "game_menu_outer_frame"
-
+        
         hbox:
 
             frame:
@@ -545,6 +534,7 @@ style game_menu_content_frame:
     left_margin 80
     right_margin 40
     top_margin 20
+    ysize 1100
 
 style game_menu_viewport:
     xsize 1840
@@ -764,112 +754,157 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Opciones"), scroll=("vpgrid" if gui.history_height else "viewport")):
+    use game_menu(_("Opciones"), scroll=(
+        "vpgrid" if gui.history_height else "viewport")):
         
         vbox:
+            
             xsize 2375
-            null height (5 * gui.pref_spacing)
+            
             hbox:
                 
+                xfill True
                 box_wrap True
-                style_prefix "slider"
+
                 vbox:
 
-                    xsize 720
-
+                    style_prefix "slider"
                     label _("Velocidad del texto")
 
                     bar value Preference("text speed") xsize 610
 
-                    label _("Kerning")
-                    
-                    bar value Preference("font kerning") yalign 0.5 xsize 610
+                vbox:
+
+                    style_prefix "radio"
+                    label _("Tamaño")
+
+                    textbutton _("Por defecto") action Preference(
+                        "font size", 1.0)
+                    textbutton _("Grande") action Preference(
+                        "font size", 1.25)
+                    textbutton _("Extra grande") action Preference(
+                        "font size", 1.5) 
                 
                 vbox:
 
-                    xsize 720
-
-                    label _("Tamaño")
-
-                    bar value Preference("font size") yalign 0.5 xsize 610
-
-                    label _("Espacio de linea")
-                    
-                    bar value Preference("font line spacing") yalign 0.5 xsize 610   
-
-                vbox:
-                    
-                    xsize 480
-                    
                     style_prefix "radio"
                     label _("Font Override")
 
-                    textbutton _("Default") action Preference("font transform", None)
-                    textbutton _("DejaVu Sans") action Preference("font transform", "dejavusans")
-                    textbutton _("Opendyslexic") action Preference("font transform", "opendyslexic")
+                    textbutton _("Default") action Preference(
+                        "font transform", None)
+                    textbutton _("DejaVu Sans") action Preference(
+                        "font transform", "dejavusans")
+                    textbutton _("Opendyslexic") action Preference(
+                        "font transform", "opendyslexic")   
                 
                 vbox:
 
                     style_prefix "radio"
                     label _("High Contrast Text")
 
-                    textbutton _("Enable") action Preference("high contrast text", "enable")
-                    textbutton _("Disable") action Preference("high contrast text", "disable")
-
-            null height (5 * gui.pref_spacing)
-            
+                    textbutton _("Enable") action Preference(
+                        "high contrast text", "enable")
+                    textbutton _("Disable") action Preference(
+                        "high contrast text", "disable")
+                    
             hbox:
-                style_prefix "slider"
+                xfill True
                 box_wrap True
 
                 if (renpy.variant("pc") or renpy.variant("web")):
                     vbox:   
 
-                        xsize 380
-
                         style_prefix "radio"
                         
                         label _("Pantalla")
                         
-                        textbutton _("Ventana") action Preference("display", "window")
-                        textbutton _("Pantalla completa") action Preference("display", "fullscreen")
+                        textbutton _("Ventana") action Preference(
+                            "display", "window")
+                        textbutton _("Pantalla completa") action Preference(
+                            "display", "fullscreen")
                 
-                null width (1 * gui.pref_spacing)
-
                 vbox:
 
-                    xsize 765
-
+                    style_prefix "slider"
                     label _("Volumen música")
                     
                     bar value Preference("music volume") xsize 610
-
-                vbox:
-                    xsize 470
-                    style_prefix "radio"
-                    label _("Self-Voicing")
-
-                    if renpy.variant("touch"):
-                        text _("Self-voicing support is limited when using a touch screen.")
-
-                    textbutton _("Off") action Preference("self voicing", "disable")
-                    textbutton _("Text-to-speech") action Preference("self voicing", "enable")
-                    textbutton _("Clipboard") action Preference("clipboard voicing", "enable")
                 
                 vbox:
-                    xsize 660
+                    
+                    style_prefix "radio"
+                    label _("Espacio de línea")
+
+                    textbutton _("Reducido") action Preference(
+                        "font line spacing", 0.85)
+                    textbutton _("Por defecto") action Preference(
+                        "font line spacing", 1.0)
+                    textbutton _("Amplio") action Preference(
+                        "font line spacing", 1.25)
+
+                vbox:
+
+                    style_prefix "radio"
+                    label _("Kerning")
+
+                    textbutton _("Reducido") action Preference(
+                        "font kerning", -0.5)
+                    textbutton _("Por defecto") action Preference(
+                        "font kerning", 0.0)
+                    textbutton _("Amplio") action Preference(
+                        "font kerning", 0.75)
+                
+                if not (renpy.variant("pc") or renpy.variant("web")):
+
+                    vbox:
+                    
+                        style_prefix "radio"
+                            
+            hbox:
+
+                xfill True
+                box_wrap True
+
+                vbox:
+                    
+                    style_prefix "slider"
                     label _("Volumen  voz automática")
                     
-                    bar value Preference("voice volume") yalign 0.5 xsize 650
+                    bar value Preference("voice volume") xsize 610
+                    
+                vbox:
 
-            null height (5 * gui.pref_spacing)
+                    style_prefix "radio"
+                    xsize 425
+                    label _("Self-Voicing")
 
-            hbox:
-                style_prefix "quick"
-                xsize 950
-                xpos 1515
-                textbutton _("Regresar a configuración inicial") action [Preference("font kerning", 0.0), Preference("font line spacing", 1.0), Preference("font size", 1.0), Preference("high contrast text", "disable"), Preference("font transform", None), Preference("voice volume", 1.0), Preference("self voicing", "disable"), Preference("music volume", 1.0), Preference("text speed", 40)]
+                    textbutton _("Off") action Preference(
+                        "self voicing", "disable")
+                    textbutton _("Text-to-speech") action Preference(
+                        "self voicing", "enable")
+                    textbutton _("Clipboard") action Preference(
+                        "clipboard voicing", "enable")
                 
+                vbox:
+
+                    style_prefix "quick"
+                    xsize 930
+                    null height (4 * gui.pref_spacing)
+
+                    textbutton _("Regresar a configuración inicial") action [
+                        Preference("font kerning", 0.0), 
+                        Preference("font line spacing", 1.0), 
+                        Preference("font size", 1.0), 
+                        Preference("high contrast text", "disable"), 
+                        Preference("font transform", None), 
+                        Preference("voice volume", 1.0), 
+                        Preference("self voicing", "disable"), 
+                        Preference("music volume", 1.0), 
+                        Preference("text speed", 40)]
+
+                vbox:
+
+                    style_prefix "radio"
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -939,7 +974,7 @@ style slider_button_text:
     properties gui.text_properties("slider_button")
 
 style slider_vbox:
-    xsize 900
+    xsize 700
 
 
 ## Pantalla de historial #######################################################
@@ -1574,27 +1609,6 @@ style pref_vbox:
     variant "medium"
     xsize 900
 
-## Ya que puede carecer de ratón, se reempleza el menú rápido con una versión
-## con menos botones y más grandes, más fáciles de tocar.
-screen quick_menu():
-    variant "touch"
-
-    zorder 100
-
-    if quick_menu:
-
-        hbox:
-            style_prefix "quick"
-
-            xalign 0.5
-            yalign 1.0
-
-            textbutton _("Atrás") action Rollback()
-            textbutton _("Saltar") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Menú") action ShowMenu()
-
-
 style window:
     variant "small"
     background "gui/phone/textbox.png"
@@ -1613,7 +1627,8 @@ style nvl_window:
 
 style game_menu_outer_frame:
     variant "small"
-    background "gui/phone/overlay/game_menu.png"
+    background "#ffffffcf"
+    #background "gui/phone/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
     variant "small"
@@ -1625,7 +1640,7 @@ style game_menu_content_frame:
 
 style pref_vbox:
     variant "small"
-    xsize 800
+    #xsize 800
 
 style bar:
     variant "small"

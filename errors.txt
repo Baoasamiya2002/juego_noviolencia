@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 390: expected 'simple_expression' not found.
-    background
-               ^
+File "game/screens.rpy", line 891: 'vvbox' is not a keyword argument or valid child of the hbox statement.
+    vvbox:
+         ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Thu Aug 28 19:53:15 2025
+Thu Sep  4 14:44:37 2025

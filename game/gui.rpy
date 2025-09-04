@@ -60,10 +60,10 @@ define gui.interface_text_color = '#404040'
 define gui.text_font = "fonts/JosefinSans-Regular.ttf"
 
 ## El tipo de letra de los nombres de personajes
-define gui.name_text_font = "fonts/Silom.ttf"
+define gui.name_text_font = "fonts/LondrinaSolid-Regular.ttf"
 
 ## El tipo de letra del texto externo al juego.
-define gui.interface_text_font = "fonts/Silom.ttf"
+define gui.interface_text_font = "fonts/LondrinaSolid-Regular.ttf"
 
 ## El tamaño normal del texto del diálogo.
 define gui.text_size = 54
@@ -426,10 +426,10 @@ init python:
 
     ## Esto aumenta el tamaño de los bottones rápidos para facilitar su acceso
     ## en tablets y teléfonos.
-    @gui.variant
-    def touch():
+    # @gui.variant
+    # def touch():
 
-        gui.quick_button_borders = Borders(80, 28, 80, 0)
+    #     gui.quick_button_borders = Borders(80, 28, 80, 0)
 
     ## Esto cambia el tamaño y espaciado de varios elementos de la GUI para
     ## asegurar que sean fácilmente visibles en los teléfonos.
@@ -437,12 +437,12 @@ init python:
     def small():
 
         ## Tamaños de letra.
-        gui.text_size = 60
-        gui.name_text_size = 72
-        gui.notify_text_size = 50
-        gui.interface_text_size = 60
-        gui.button_text_size = 60
-        gui.label_text_size = 68
+        # gui.text_size = 60
+        # gui.name_text_size = 72
+        # gui.notify_text_size = 50
+        # gui.interface_text_size = 60
+        # gui.button_text_size = 60
+        # gui.label_text_size = 68
 
         ## Ajusta la colocación de la caja de texto.
         gui.textbox_height = 480
@@ -462,7 +462,7 @@ init python:
         gui.history_height = 380
         gui.history_text_width = 1380
 
-        gui.quick_button_text_size = 40
+        #gui.quick_button_text_size = 40
 
         ## Distribución de botones de archivo.
         gui.file_slot_cols = 2

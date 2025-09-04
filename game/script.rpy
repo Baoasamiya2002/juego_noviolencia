@@ -43,11 +43,12 @@ image oncahui_zoomin = Movie(
     size=(2560,1600), play="images/Salida.webm", loop = False)
 image creditos = Movie(
     size=(2560,1600), play="images/creditos.webm", loop = False)
+image cine_fondo = Movie(
+    size=(2560,1600), play="images/cine fondo.webm", loop = True)
 
 #imagenes estaticas
 image mapa = "images/mapa.webp"
 image chapultepec_fondo = "images/chapus fondo.png"
-image cine_fondo = "images/cine fondo.png"
 image flor_capullo = "images/capullo.png"
 image planta_florece = "images/planta_florece.png"
 image planta_marchita = "images/planta_marchita.png"
@@ -89,6 +90,7 @@ label splashscreen:
     pause 5.0
     hide aparicion_mapa
     show mapa
+    #show screen preferences
     show caja_texto_grande:
         xalign .6
     show text Text(texto_intro,slow=True)
@@ -116,16 +118,11 @@ label eleccionPersonaje:
     hide flor_capullo   
     narrador "Y ¡oh mira! Ximena y Carlos están en el cine, vamos a conocerlos." 
     show cine_fondo
-    narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a 
-        que empiece la película."
-    jugador "Ay amor, ¡como tenía ganas de venir al estreno de esta película! Y 
-        que bueno que alcanzamos entradas, porque ya casi no habían."
-    pareja "Como sabía que te hacía tanta ilusión venir, estuve pegado a la 
-        compu en la preventa. Lo único malo es que como hay tanta gente solo 
-        alcancé unas palomitas chicas..."
-    jugador "No te preocupes, siempre que yo tenga algo, lo podemos compartir… 
-        Me encanta estar contigo."
-    pareja " A mi también amor, me haces muy feliz."
+    narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a que empiece la película."
+    jugador "Ay amor, ¡gracias por los boletos! Seguro te costó un buen conseguirlos, escuché que había pocos."
+    pareja "Es que estuve pegado a la compu desde la preventa, sabía que tenías muchas ganas de verla. Lo único malo es que vino mucha gente y solo alcanzamos unas palomitas chicas..."
+    jugador "No te preocupes, me encanta compartir las palomitas y más si es contigo."
+    pareja "Gracias amor, me haces muy feliz Xime."
     hide cine_fondo
     show seleccion_personaje
     show screen boton_eleccion_personaje
