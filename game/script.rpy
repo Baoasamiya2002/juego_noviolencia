@@ -1,13 +1,13 @@
-﻿#init python:
-    #config.keymap['accessibility'] = []
-
-#personajes
-define jugador = Character("[nombreJugador]")
+﻿#personajes
+#define jugador = Character("[nombreJugador]")
 define pareja = Character("[nombrePareja]")
 define narrador = Character(
     "", what_color="#ffffff", 
     window_background=Frame("images/caja_texto_instruccion.png", 1, 1))
+define novia = Character("Ximena")
+define novio = Character("Carlos")
 define oncahui = Character("Oncahui")
+
 
 #videos
 image fondo_inicio = Movie(
@@ -49,21 +49,23 @@ image cine_fondo = Movie(
 #imagenes estaticas
 image mapa = "images/mapa.webp"
 image chapultepec_fondo = "images/chapus fondo.png"
-image flor_capullo = "images/capullo.png"
-image planta_florece = "images/planta_florece.png"
-image planta_marchita = "images/planta_marchita.png"
+image flor_capullo = "images/planta/capullo.png"
+image planta_florece = "images/planta/florece.png"
+image planta_marchita = "images/planta/marchita.png"
 image caja_texto_grande = "images/caja_texto_grande.png"
 image boton_seleccion_ximena = "images/boton_seleccion_ximena.png"
 image boton_seleccion_carlos = "images/boton_seleccion_carlos.png"
 image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
-image logro_aspersor = "images/logro_aspersor.png"
-image penalizacion_aspersor = "images/penalizacion_aspersor.png"
+image logro_aspersor = "images/coleccionables/logro_aspersor.png"
+image penalizacion_aspersor = "images/coleccionables/penalizacion_aspersor.png"
 image oncahui = "uamito.png"
 
 #variables
 default nombreJugador = "Ximena"
 default nombrePareja = "Carlos"
-default accionJugador = ""
+default coleccionables = []
+default jugador = Personaje(nombre="???")
+#default pareja = Personaje(nombre="???")
 
 #texto de introducción
 init python:
@@ -76,12 +78,12 @@ screen boton_eleccion_personaje():
         xalign .33
         yalign .15
         idle "boton_seleccion_ximena"
-        action Jump("seleccionXimena")
+        action Jump("seleccionNovia")
     imagebutton:
         xalign .61
         yalign .15
         idle "boton_seleccion_carlos"
-        action Jump("seleccionCarlos")
+        action Jump("seleccionNovio")
 
 #introducción
 label splashscreen:
@@ -104,39 +106,37 @@ label start:
     show mapa
     narrador "¡Bienvenide! Te explicaré cómo funciona el juego."
     narrador "Vas a tomar el papel de uno de los personajes que se te 
-        presentaron anteriormente, Ximena o Carlos."
+        presentaron anteriormente, [novia.name] o [novia.name]."
     narrador "En el mapa que puedes ver, eligirás un lugar y tener una cita"
     hide mapa
     show flor_capullo:
         yalign .3
         xalign .5
     narrador "Además, tienes una planta que representa el estado de su relación."
-    narrador "Necesitas mantener viva a tu planta, de acuerdo a las desiciones 
-        que tomes, podrás recolectar ítems que la ayuden a crecer o la marchiten."
+    narrador "Tus desiciones te darán objetos que la ayuden a crecer o la marchiten."
 
 label eleccionPersonaje:
     hide flor_capullo   
-    narrador "Y ¡oh mira! Ximena y Carlos están en el cine, vamos a conocerlos." 
+    narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a conocerlos." 
     show cine_fondo
-    narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a que empiece la película."
-    jugador "Ay amor, ¡gracias por los boletos! Seguro te costó un buen conseguirlos, escuché que había pocos."
-    pareja "Es que estuve pegado a la compu desde la preventa, sabía que tenías muchas ganas de verla. Lo único malo es que vino mucha gente y solo alcanzamos unas palomitas chicas..."
-    jugador "No te preocupes, me encanta compartir las palomitas y más si es contigo."
-    pareja "Gracias amor, me haces muy feliz Xime."
+    narrador "En el cine dentro de una sala, están [novia.name] y [novio.name] esperando a que empiece la película."
+    novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen conseguirlos, escuché que había pocos."
+    novio "Es que estuve pegado a la compu desde la preventa, sabía que tenías muchas ganas de verla. Lo único malo es que vino mucha gente y solo alcanzamos unas palomitas chicas..."
+    novia "No te preocupes, me encanta compartir las palomitas y más si es contigo."
+    novio "Gracias amor, me haces muy feliz Xime."
     hide cine_fondo
     show seleccion_personaje
     show screen boton_eleccion_personaje
     narrador "Ahora que los conoces, elige el personaje con el que quieres jugar."
 
-label seleccionXimena:
+label seleccionNovia:
     hide screen boton_eleccion_personaje
-    $ nombreJugador = "Ximena"
-    $ nombrePareja = "Carlos"
-    narrador "Haz seleccionado a Ximena"
+    $ jugador = Personaje(Character(novia.name), novia.name)
+    narrador "Haz seleccionado a [jugador.nombre]"
     hide seleccion_personaje
     jump eleccionCita
 
-label seleccionCarlos:
+label seleccionNovio:
     hide screen boton_eleccion_personaje
     $ nombreJugador = "Carlos"
     $ nombrePareja = "Ximena"

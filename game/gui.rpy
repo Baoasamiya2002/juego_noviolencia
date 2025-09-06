@@ -345,22 +345,22 @@ define config.history_length = 250
 
 ## Altura de una entrada de la pantalla de historial, o 'None' para altura
 ## variable a costa de rendimiento.
-define gui.history_height = 280
+define gui.history_height = 300
 
 ## Espacio adicional para añadir entre las entradas de la pantalla de historial.
 define gui.history_spacing = 0
 
 ## Posición, anchura y alineación de la etiqueta con el nombre del personaje
 ## hablante.
-define gui.history_name_xpos = 310
-define gui.history_name_ypos = 0
+define gui.history_name_xpos = 10
+define gui.history_name_ypos = -80
 define gui.history_name_width = 310
-define gui.history_name_xalign = 1.0
+define gui.history_name_xalign = 0.0
 
 ## Posición, anchura y alineación del texto del diálogo.
-define gui.history_text_xpos = 340
-define gui.history_text_ypos = 4
-define gui.history_text_width = 1480
+define gui.history_text_xpos = 160
+define gui.history_text_ypos = 0
+define gui.history_text_width = 1140
 define gui.history_text_xalign = 0.0
 
 

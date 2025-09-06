@@ -1,44 +1,25 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "game/point_and_click/point_and_click.rpy", line 84, in script
+    pareja "Sí."
+Exception: Sayer 'pareja' is not a function or string.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "renpy/common/00start.rpy", line 219, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 551, in script
-    python hide:
-  File "renpy/ast.py", line 1187, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1260, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/common/00keymap.rpy", line 551, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 565, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/loadsave.py", line 636, in load
-    log.unfreeze(roots, label="_after_load")
-    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/rollback.py", line 1145, in unfreeze
-    self.rollback(0, force=True, label=label, greedy=greedy, on_load=True)
-    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/rollback.py", line 950, in rollback
-    self.load_failed()
-    ~~~~~~~~~~~~~~~~^^
-  File "renpy/rollback.py", line 864, in load_failed
-    raise Exception(
-        "Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?"
-    )
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "game/point_and_click/point_and_click.rpy", line 84, in script
+    pareja "Sí."
+  File "renpy/ast.py", line 2915, in execute
+    Say.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "renpy/ast.py", line 968, in execute
+    raise Exception(f"Sayer {self.who!r} is not a function or string.")
+Exception: Sayer 'pareja' is not a function or string.
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Thu Sep  4 13:33:18 2025
+Fri Sep  5 18:16:56 2025

@@ -250,7 +250,7 @@ screen quick_menu():
             yalign 1.0
 
             textbutton _("Atrás") action Rollback() size_group "menu"
-            textbutton _("Historial") action ShowMenu('history') size_group "menu"
+            textbutton _("Progreso") action ShowMenu('history') size_group "menu"
             textbutton _("Opciones") action ShowMenu('preferences') size_group "menu"
 
             if not (renpy.variant("ios") or renpy.variant("web")):
@@ -347,7 +347,7 @@ screen navigation():
             if not main_menu:
                 
                 textbutton _("Guardar") action ShowMenu("save") size_group "menu"
-                textbutton _("Historial") action ShowMenu("history") size_group "menu"
+                textbutton _("Progreso") action ShowMenu("history") size_group "menu"
 
             textbutton _("Opciones") action ShowMenu("preferences") size_group "menu"
             textbutton _("Más info") action ShowMenu("about") size_group "menu"
@@ -439,16 +439,24 @@ style main_menu_version:
 ## pantalla con uno o más elementos, que son transcluídos (situados) en su
 ## interior.
 
-screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
+screen game_menu(title=None, scroll=None, yinitial=0.0, spacing=0):
     
     style_prefix "game_menu"
 
     frame:
-        style "game_menu_outer_frame"
+        
+        if title != None:
+
+            style "game_menu_outer_frame"
+        
+        else:
+
+            style "history_menu_outer_frame"
         
         hbox:
 
             frame:
+
                 style "game_menu_content_frame"
 
                 if scroll == "viewport":
@@ -496,12 +504,14 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
                     
                     transclude
 
-    use navigation
+    if title != None:
 
-    label title
+        use navigation
+    
+        label title
 
-    if main_menu:
-        key "game_menu" action ShowMenu("main_menu")
+        if main_menu:
+            key "game_menu" action ShowMenu("main_menu")
 
 
 style game_menu_outer_frame is empty
@@ -525,6 +535,11 @@ style game_menu_outer_frame:
     yfill True
     background "#ffffffcf"
     #background "gui/overlay/game_menu.png"
+
+style history_menu_outer_frame:
+    xfill True    
+    yfill True
+    background "#0015ff00"
 
 style game_menu_navigation_frame:
     xsize 560
@@ -871,7 +886,7 @@ screen preferences():
                     label _("Volumen  voz automática")
                     
                     bar value Preference("voice volume") xsize 610
-                    
+
                 vbox:
 
                     style_prefix "radio"
@@ -991,36 +1006,94 @@ screen history():
     ## Evita la predicción de esta pantalla, que podría ser demasiado grande.
     predict False
 
-    use game_menu(_("Historial"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0, spacing=gui.history_spacing):
+    use game_menu(_("Progreso")):
 
-        style_prefix "history"
+        hbox:
 
-        for h in _history_list:
+            vbox:
 
-            window:
+                hbox:
 
-                ## Esto distribuye los elementos apropiadamente si
-                ## 'history_height' es 'None'.
-                has fixed:
-                    yfit True
+                    vbox:
 
-                if h.who:
+                        label _("Planta de [jugador.nombre]")
+                        null height (4 * gui.pref_spacing)
+                        add "images/planta/[jugador.estadoPlanta].png" ysize 450
+                    vbox:
 
-                    label h.who:
-                        style "history_name"
-                        substitute False
+                        label _("Planta de [nombrePareja]")
+                        null height (4 * gui.pref_spacing)
+                        add "flor_capullo" ysize 450
+                hbox:
 
-                        ## Toma el color del texto 'who' de 'Character', si ha
-                        ## sido establecido.
-                        if "color" in h.who_args:
-                            text_color h.who_args["color"]
+                    vbox:
 
-                $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
-                text what:
-                    substitute False
+                        style_prefix "horizontal_scroll"
+                        label _("Coleccionables")
+                        
+                        hbox:
 
-        if not _history_list:
-            label _("El historial está vacío.")
+                            frame:
+
+                                viewport:
+                                    scrollbars "horizontal"
+                                    mousewheel True
+                                    draggable True
+
+                                    hbox:
+
+                                        if coleccionables:
+                                            for c in coleccionables:
+                                                add "images/coleccionables/[c].png" ysize 450
+                                        else:
+                                            vbox:
+                                                style "slider"
+
+                                            # add "images/logro_aspersor.png" ysize 400
+                                            # text "FileSaveName(slot)":
+                                            #     style "slot_name_text"
+                  
+            
+            vbox:
+
+                label _("Historial de diálogos")
+                
+                use game_menu(scroll=(
+                    "vpgrid" if gui.history_height else "viewport"), yinitial=1.0, 
+                    spacing=gui.history_spacing):
+
+                    style_prefix "history"
+
+                    for h in _history_list:
+
+                        window:
+
+                            ## Esto distribuye los elementos apropiadamente si
+                            ## 'history_height' es 'None'.
+                            has fixed:
+                                yfit True
+
+                            if h.who:
+                                
+                                label h.who:
+                                    style "history_name"
+                                    substitute False
+
+                                    ## Toma el color del texto 'who' de 'Character', si ha
+                                    ## sido establecido.
+                                    if "color" in h.who_args:
+                                        text_color h.who_args["color"]
+
+                            $ what = renpy.filter_text_tags(h.what, 
+                            allow=gui.history_allow_tags)
+                            text what:
+                                substitute False
+
+                    if not _history_list:
+                        label _("No se ha iniciado el juego.")
+
+
+                        
 
 
 ## Esto determina qué etiquetas se permiten en la pantalla de historial.
@@ -1040,6 +1113,8 @@ style history_label_text is gui_label_text
 style history_window:
     xfill True
     ysize gui.history_height
+    top_padding 50
+    background "#ffffff"
 
 style history_name:
     xpos gui.history_name_xpos
@@ -1059,12 +1134,23 @@ style history_text:
     min_width gui.history_text_width
     textalign gui.history_text_xalign
     layout ("subtitle" if gui.history_text_xalign else "tex")
+    font gui.text_font
 
 style history_label:
     xfill True
 
 style history_label_text:
     xalign 0.5
+
+style horizontal_scroll_vbox:
+    xsize 860
+    ysize 575
+    
+style horizontal_scroll_frame:
+    background "#ff000000"
+    
+    
+
 
 
 ## Pantalla de ayuda ###########################################################
@@ -1680,7 +1766,7 @@ style vslider:
 
 style slider_vbox:
     variant "small"
-    xsize None
+    xsize 700
 
 style slider_slider:
     variant "small"

@@ -78,11 +78,11 @@ label citaChapultepec:
     narrador "Caminaban entre los árboles, no habían tenido tiempo de salir, 
         estaban en entregas finales y la carrera de cada uno comenzaba a ser 
         cada vez más demandante."
-    jugador "Ay no amor. Hablé con mi equipo y quieren trabajar en la escuela. 
+    jugador.personaje "Ay no amor. Hablé con mi equipo y quieren trabajar en la escuela. 
         Ya les dije que es más fácil que cada quien llegue a su casa y luego 
         ponernos a trabajar en línea."
     pareja "Sí."
-    jugador "Y pues, salir de Santa Fe después de las 3 de la tarde y con 
+    jugador.personaje "Y pues, salir de Santa Fe después de las 3 de la tarde y con 
         lluvias es una sentencia de muerte, ¿sabes a qué horas voy a llegar a mi 
         casa? Como a las 7."
     pareja "Ajá..."

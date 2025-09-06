@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 891: 'vvbox' is not a keyword argument or valid child of the hbox statement.
-    vvbox:
-         ^
+File "game/class/Person.rpy", line 3: parameter without a default follows parameter with a default
+    def __init__(self, personaje=None, nombre):
+                                           ^^^^^^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Thu Sep  4 14:44:37 2025
+Fri Sep  5 18:13:22 2025
