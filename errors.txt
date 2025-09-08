@@ -2,11 +2,9 @@
 errors listed below, and try again.
 
 
-The label violencia_celar_1 is defined twice, at File "game/point_and_click/point_and_click.rpy", line 573:
-label violencia_celar_1:
-and File "game/point_and_click/point_and_click.rpy", line 607:
-label violencia_celar_1:
-
+File "game/screens.rpy", line 297: 'play' is not a keyword argument or valid child of the screen statement.
+    play music musica_fondo loop
+        ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Sat Sep  6 21:12:04 2025
+Mon Sep  8 14:19:38 2025

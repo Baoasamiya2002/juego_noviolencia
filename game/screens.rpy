@@ -906,7 +906,7 @@ screen preferences():
                     xsize 930
                     null height (4 * gui.pref_spacing)
 
-                    textbutton _("Regresar a configuración inicial") action [
+                    textbutton _("Progreso") action [
                         Preference("font kerning", 0.0), 
                         Preference("font line spacing", 1.0), 
                         Preference("font size", 1.0), 

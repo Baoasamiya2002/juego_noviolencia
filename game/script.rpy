@@ -98,6 +98,7 @@ screen boton_eleccion_personaje():
 #introducción
 label splashscreen:
 
+    play music musica_fondo loop 
     scene fondo_inicio
     show aparicion_mapa
     pause 5.0
@@ -110,8 +111,6 @@ label splashscreen:
     pause
     return
 
-
-#escena inicial
 label start:
 
     scene fondo_inicio
