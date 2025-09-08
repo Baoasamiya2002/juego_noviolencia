@@ -1021,9 +1021,9 @@ screen history():
                         add "images/planta/[jugador.estadoPlanta].png" ysize 450
                     vbox:
 
-                        label _("Planta de [nombrePareja]")
+                        label _("Planta de [pareja.nombre]")
                         null height (4 * gui.pref_spacing)
-                        add "flor_capullo" ysize 450
+                        add "images/planta/[pareja.estadoPlanta].png" ysize 450
                 hbox:
 
                     vbox:

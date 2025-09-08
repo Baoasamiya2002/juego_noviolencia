@@ -1,25 +1,29 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/point_and_click/point_and_click.rpy", line 84, in script
-    pareja "Sí."
-Exception: Sayer 'pareja' is not a function or string.
+  File "game/point_and_click/point_and_click.rpy", line 65, in script call
+    call mito_mujer_bienestar
+  File "game/point_and_click/point_and_click.rpy", line 65, in script call
+    call mito_mujer_bienestar
+renpy.script.LabelNotFound: could not find label 'mito_mujer_bienestar'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/point_and_click/point_and_click.rpy", line 84, in script
-    pareja "Sí."
-  File "renpy/ast.py", line 2915, in execute
-    Say.execute(self)
-    ~~~~~~~~~~~^^^^^^
-  File "renpy/ast.py", line 968, in execute
-    raise Exception(f"Sayer {self.who!r} is not a function or string.")
-Exception: Sayer 'pareja' is not a function or string.
+  File "game/point_and_click/point_and_click.rpy", line 65, in script call
+    call mito_mujer_bienestar
+  File "renpy/ast.py", line 1622, in execute
+    rv = renpy.game.context().call(label, return_site=self.next.name)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/point_and_click/point_and_click.rpy", line 65, in script call
+    call mito_mujer_bienestar
+  File "renpy/script.py", line 1161, in lookup
+    raise LabelNotFound(original)
+renpy.script.LabelNotFound: could not find label 'mito_mujer_bienestar'.
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Fri Sep  5 18:16:56 2025
+Sat Sep  6 19:08:07 2025

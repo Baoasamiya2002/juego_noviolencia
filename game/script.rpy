@@ -1,6 +1,4 @@
 ﻿#personajes
-#define jugador = Character("[nombreJugador]")
-define pareja = Character("[nombrePareja]")
 define narrador = Character(
     "", what_color="#ffffff", 
     window_background=Frame("images/caja_texto_instruccion.png", 1, 1))
@@ -8,6 +6,16 @@ define novia = Character("Ximena")
 define novio = Character("Carlos")
 define oncahui = Character("Oncahui")
 
+#constantes
+define apodoNovia = "Xime"
+define apodoNovio = "Charly"
+
+#variables
+default coleccionables = []
+default decisionesJugador = []
+default jugador = Personaje(nombre="???")
+default pareja = Personaje(nombre="???")
+default recuerdo = False
 
 #videos
 image fondo_inicio = Movie(
@@ -18,24 +26,23 @@ image aparicion_mapa = Movie(
 image seleccion_personaje = Movie(
     size=(2560,1600), play="images/seleccion_personaje.webm", loop = False, 
     image="images/seleccion_personaje.png")
-image ximena_neutral = Movie(
-    size=(2560,1600), play="images/ximena neutral.webm", loop = False, 
-    image="images/ximena neutral.png")
-image carlos_neutral = Movie(
-    size=(2560,1600), play="images/carlos neutral.webm", loop = False, 
-    image="images/carlos neutral.png")
-image ximena_triste = Movie(
-    size=(2560,1600), play="images/ximena triste.webm", loop = False, 
-    image="images/ximena triste.png")
-image carlos_triste = Movie(
-    size=(2560,1600), play="images/carlos triste.webm", loop = False, 
-    image="images/carlos triste.png")
-image ximena_enojada = Movie(
-    size=(2560,1600), play="images/ximena enojada.webm", loop = False, 
-    image="images/ximena enojada.png")
-image carlos_enojado = Movie(
-    size=(2560,1600), play="images/carlos enojado.webm", loop = False, 
-    image="images/carlos enojado.png")
+image emocion_seriedad_Carlos = Movie(
+    size=(2560,1600), play="images/emocion/Carlos/seriedad.webm", loop = True)
+image emocion_enojo_Carlos = Movie(
+    size=(2560,1600), play="images/emocion/Carlos/enojo.webm", loop = True)
+image emocion_felicidad_Carlos = Movie(
+    size=(2560,1600), play="images/emocion/Carlos/felicidad.webm", loop = True)
+image emocion_tristeza_Carlos = Movie(
+    size=(2560,1600), play="images/emocion/Carlos/tristeza.webm", loop = True)
+image emocion_seriedad_Ximena = Movie(
+    size=(2560,1600), play="images/emocion/Ximena/seriedad.webm", loop = True)
+image emocion_enojo_Ximena = Movie(
+    size=(2560,1600), play="images/emocion/Ximena/enojo.webm", loop = True)
+image emocion_felicidad_Ximena = Movie(
+    size=(2560,1600), play="images/emocion/Ximena/felicidad.webm", loop = True)
+image emocion_tristeza_Ximena = Movie(
+    size=(2560,1600), play="images/emocion/Ximena/tristeza.webm", loop = True)
+
 image oncahui_zoomout = Movie(
     size=(2560,1600), play="images/Caminata uamito.webm", loop = False, 
     image="uamito.png")
@@ -43,12 +50,17 @@ image oncahui_zoomin = Movie(
     size=(2560,1600), play="images/Salida.webm", loop = False)
 image creditos = Movie(
     size=(2560,1600), play="images/creditos.webm", loop = False)
+
 image cine_fondo = Movie(
     size=(2560,1600), play="images/cine fondo.webm", loop = True)
+image caminata_chapultepec = Movie(
+    size=(2560,1600), play="images/caminata_chapultepec.webm", loop = False, 
+    image="images/caminata_chapultepec.png")
 
 #imagenes estaticas
 image mapa = "images/mapa.webp"
 image chapultepec_fondo = "images/chapus fondo.png"
+image planta_conjunto = "images/planta/capullo_conjunto.png"
 image flor_capullo = "images/planta/capullo.png"
 image planta_florece = "images/planta/florece.png"
 image planta_marchita = "images/planta/marchita.png"
@@ -60,33 +72,32 @@ image logro_aspersor = "images/coleccionables/logro_aspersor.png"
 image penalizacion_aspersor = "images/coleccionables/penalizacion_aspersor.png"
 image oncahui = "uamito.png"
 
-#variables
-default nombreJugador = "Ximena"
-default nombrePareja = "Carlos"
-default coleccionables = []
-default jugador = Personaje(nombre="???")
-#default pareja = Personaje(nombre="???")
 
 #texto de introducción
 init python:
+
     with renpy.file('intro.txt', encoding='utf8') as f:
         texto_intro = f.read()
 
+
 screen boton_eleccion_personaje():
+
     zorder 1
     imagebutton:
-        xalign .33
+        xalign .19
         yalign .15
         idle "boton_seleccion_ximena"
         action Jump("seleccionNovia")
     imagebutton:
-        xalign .61
+        xalign .75
         yalign .15
         idle "boton_seleccion_carlos"
         action Jump("seleccionNovio")
 
+
 #introducción
 label splashscreen:
+
     scene fondo_inicio
     show aparicion_mapa
     pause 5.0
@@ -102,60 +113,80 @@ label splashscreen:
 
 #escena inicial
 label start:
+
     scene fondo_inicio
     show mapa
     narrador "¡Bienvenide! Te explicaré cómo funciona el juego."
     narrador "Vas a tomar el papel de uno de los personajes que se te 
-        presentaron anteriormente, [novia.name] o [novia.name]."
+        presentaron anteriormente, [novia.name] o [novio.name]."
     narrador "En el mapa que puedes ver, eligirás un lugar y tener una cita"
     hide mapa
-    show flor_capullo:
+    show planta_conjunto:
         yalign .3
         xalign .5
-    narrador "Además, tienes una planta que representa el estado de su relación."
-    narrador "Tus desiciones te darán objetos que la ayuden a crecer o la marchiten."
+    narrador "Además, cada quien tiene una planta que representa el estado de 
+        su relación."
+    narrador "Sus decisiones las ayudarán a crecer o marchitarlas."
+
 
 label eleccionPersonaje:
-    hide flor_capullo   
-    narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a conocerlos." 
+
+    hide planta_conjunto   
+    narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a 
+        conocerlos." 
     show cine_fondo
-    narrador "En el cine dentro de una sala, están [novia.name] y [novio.name] esperando a que empiece la película."
-    novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen conseguirlos, escuché que había pocos."
-    novio "Es que estuve pegado a la compu desde la preventa, sabía que tenías muchas ganas de verla. Lo único malo es que vino mucha gente y solo alcanzamos unas palomitas chicas..."
-    novia "No te preocupes, me encanta compartir las palomitas y más si es contigo."
+    narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a 
+        que empiece la película."
+    novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen 
+        conseguirlos, escuché que había pocos."
+    novio "Es que estuve pegado a la compu desde la preventa, sabía que tenías 
+        muchas ganas de verla. Lo único malo es que vino mucha gente y solo 
+        alcanzamos unas palomitas chicas..."
+    novia "No te preocupes, me encanta compartir las palomitas y más si es 
+        contigo."
     novio "Gracias amor, me haces muy feliz Xime."
     hide cine_fondo
     show seleccion_personaje
     show screen boton_eleccion_personaje
-    narrador "Ahora que los conoces, elige el personaje con el que quieres jugar."
+    narrador "Ahora que los conoces un poco, elige el personaje con el que 
+        quieres jugar."
+
 
 label seleccionNovia:
+
     hide screen boton_eleccion_personaje
-    $ jugador = Personaje(Character(novia.name), novia.name)
+    $ jugador = Personaje(novia.name, apodoNovia, Character(novia.name))
+    $ pareja = Personaje(novio.name, apodoNovio, Character(novio.name))
     narrador "Haz seleccionado a [jugador.nombre]"
     hide seleccion_personaje
     jump eleccionCita
 
+
 label seleccionNovio:
+
     hide screen boton_eleccion_personaje
-    $ nombreJugador = "Carlos"
-    $ nombrePareja = "Ximena"
-    narrador "Haz seleccionado a Carlos"
+    $ jugador = Personaje(novio.name, apodoNovio, Character(novio.name))
+    $ pareja = Personaje(novia.name, apodoNovia, Character(novia.name))
+    narrador "Haz seleccionado a [jugador.nombre]"
     hide seleccion_personaje
     jump eleccionCita
 
+
 label eleccionCita:
+
     show mapa
     narrador "Elige el lugar de la cita.\nDa click o toca cualquier parte de la 
         pantalla para minimizar este mensaje."
     jump citasMapa
 
 label finalJuego:
+
     scene fondo_inicio
     narrador "¡Muchas gracias por jugar esta primera versión del juego!"
     narrador "Si tienes comentarios, por favor compartelos con nosotros y 
         ayudanos a mejorar"
     jump evaluacion
+
 
 label evaluacion:
     window hide diss

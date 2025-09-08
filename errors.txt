@@ -2,9 +2,11 @@
 errors listed below, and try again.
 
 
-File "game/class/Person.rpy", line 3: parameter without a default follows parameter with a default
-    def __init__(self, personaje=None, nombre):
-                                           ^^^^^^
+The label violencia_celar_1 is defined twice, at File "game/point_and_click/point_and_click.rpy", line 573:
+label violencia_celar_1:
+and File "game/point_and_click/point_and_click.rpy", line 607:
+label violencia_celar_1:
+
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Fri Sep  5 18:13:22 2025
+Sat Sep  6 21:12:04 2025
