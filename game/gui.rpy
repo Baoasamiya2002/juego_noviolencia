@@ -50,7 +50,7 @@ define gui.muted_color = '#e0a366'
 define gui.hover_muted_color = '#eac199'
 
 ## Colores del texto del diálogo y menú.
-define gui.text_color = '#404040'
+define gui.text_color = '#000000'
 define gui.interface_text_color = '#404040'
 
 
@@ -63,7 +63,7 @@ define gui.text_font = "fonts/JosefinSans-Regular.ttf"
 define gui.name_text_font = "fonts/LondrinaSolid-Regular.ttf"
 
 ## El tipo de letra del texto externo al juego.
-define gui.interface_text_font = "fonts/LondrinaSolid-Regular.ttf"
+define gui.interface_text_font = "fonts/JosefinSans-Regular.ttf"
 
 ## El tamaño normal del texto del diálogo.
 define gui.text_size = 54
@@ -97,18 +97,20 @@ define gui.game_menu_background = "gui/game_menu.png"
 ## línea cada vez.
 
 ## Altura de la caja de texto que contiene el diálogo.
-define gui.textbox_height = 370
+define gui.textbox_height = 480
 
 ## Colocación vertical de la caja de texto en la pantalla. 0.0 para la parte
 ## superior, 0.5 para el centro y 1.0 para la parte inferior.
-define gui.textbox_yalign = 0.95
+define gui.textbox_yalign = 0.85
 
+## Bordes de la ventana de dialogo
+define gui.textbox_borders=Borders(3, 3, 3, 3)
 
 ## Colocación del nombre del personaje hablante, relativa a la caja de texto.
 ## Puede ser el númerode píxels desde la esquina superior izquierda, o 0.5 para
 ## centrar.
-define gui.name_xpos = 480
-define gui.name_ypos = 0
+define gui.name_xpos = 120
+define gui.name_ypos = 30
 
 ## La alineación horizontal del nombre del personaje. (0.0 es izquierda, 0.5 es
 ## centro, 1.0 es derecha).
@@ -121,7 +123,7 @@ define gui.namebox_height = None
 
 ## Los bordes de la caja que contiene el nombre del personaje, en orden:
 ## izquierda, arriba, derecha, abajo.
-define gui.namebox_borders = Borders(5, 5, 5, 5)
+define gui.namebox_borders = Borders(2, 2, 2, 2)
 
 ## Si es 'True, el fondo de la caja del nombre será en mosaico, si es 'False',
 ## el fondo, si la caja del nombre es escalada.
@@ -130,11 +132,11 @@ define gui.namebox_tile = False
 
 ## Colocación del diálogo relativa a la caja de texto. Puede ser el número de
 ## píxels relativos a la esquina superor izquierda o 0.5 para centrar.
-define gui.dialogue_xpos = 536
-define gui.dialogue_ypos = 100
+define gui.dialogue_xpos = 130
+define gui.dialogue_ypos = 130
 
 ## La anchura máxima del texto del diálogo, en píxels.
-define gui.dialogue_width = 1488
+define gui.dialogue_width = 2100
 
 ## La alineación horizontal del texto del diálogo. (0.0 es izquierda, 0.5 es
 ## centro, 1.0 es derecha).
@@ -181,7 +183,7 @@ define gui.button_text_xalign = 0.0
 ##
 ## Personalizaciones de la interfaz por defecto:
 
-define gui.radio_button_borders = Borders(36, 8, 8, 8)
+define gui.radio_button_borders = Borders(36, 30, 8, 30)
 
 define gui.check_button_borders = Borders(36, 8, 8, 8)
 
@@ -189,7 +191,7 @@ define gui.confirm_button_text_xalign = 0.5
 
 define gui.page_button_borders = Borders(20, 8, 20, 8)
 
-define gui.quick_button_borders = Borders(20, 8, 20, 0)
+#define gui.quick_button_borders = Borders(20, 8, 20, 0)
 define gui.quick_button_text_size = 45
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
@@ -209,7 +211,7 @@ define gui.choice_button_width = 1580
 define gui.choice_button_height = None
 define gui.choice_button_tile = False
 define gui.choice_button_borders = Borders(200, 10, 200, 10)
-define gui.choice_button_text_font = gui.interface_text_font
+define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
 define gui.choice_button_text_idle_color = '#707070'
@@ -345,22 +347,22 @@ define config.history_length = 250
 
 ## Altura de una entrada de la pantalla de historial, o 'None' para altura
 ## variable a costa de rendimiento.
-define gui.history_height = 300
+define gui.history_height = None
 
 ## Espacio adicional para añadir entre las entradas de la pantalla de historial.
-define gui.history_spacing = 0
+define gui.history_spacing = 30
 
-## Posición, anchura y alineación de la etiqueta con el nombre del personaje
-## hablante.
-define gui.history_name_xpos = 10
-define gui.history_name_ypos = -80
-define gui.history_name_width = 310
-define gui.history_name_xalign = 0.0
+## The position, width, and alignment of the label giving the name of the
+## speaking character.
+define gui.history_name_xpos = 150
+define gui.history_name_ypos = -60
+define gui.history_name_width = 150
+define gui.history_name_xalign = 1.0
 
-## Posición, anchura y alineación del texto del diálogo.
-define gui.history_text_xpos = 160
-define gui.history_text_ypos = 0
-define gui.history_text_width = 1140
+## The position, width, and alignment of the dialogue text.
+define gui.history_text_xpos = 50
+define gui.history_text_ypos = 5
+define gui.history_text_width = 1340
 define gui.history_text_xalign = 0.0
 
 
@@ -445,10 +447,10 @@ init python:
         # gui.label_text_size = 68
 
         ## Ajusta la colocación de la caja de texto.
-        gui.textbox_height = 480
-        gui.name_xpos = 160
-        gui.dialogue_xpos = 180
-        gui.dialogue_width = 2200
+        # gui.textbox_height = 480
+        # gui.name_xpos = 160
+        # gui.dialogue_xpos = 180
+        # gui.dialogue_width = 2200
 
         ## Cambia el tamaño y espaciado de varios elementos.
         gui.slider_size = 72
@@ -459,7 +461,7 @@ init python:
         gui.navigation_spacing = 40
         gui.pref_button_spacing = 20
 
-        gui.history_height = 380
+        #gui.history_height = 380
         gui.history_text_width = 1380
 
         #gui.quick_button_text_size = 40

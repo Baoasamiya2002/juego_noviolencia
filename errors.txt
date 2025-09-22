@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 297: 'play' is not a keyword argument or valid child of the screen statement.
-    play music musica_fondo loop
-        ^
+File "game/screens.rpy", line 273: '[' was never closed
+    action [OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
+           ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Mon Sep  8 14:19:38 2025
+Sun Sep 21 21:46:14 2025

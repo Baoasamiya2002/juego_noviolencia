@@ -1,6 +1,6 @@
 init python:
     
-    class Personaje:
+    class Persona:
 
         def __init__(self, nombre, apodo=None, personaje=None):
 

@@ -1,10 +1,13 @@
 ﻿#personajes
 define narrador = Character(
     "", what_color="#ffffff", 
-    window_background=Frame("images/caja_texto_instruccion.png", 1, 1))
-define novia = Character("Ximena")
-define novio = Character("Carlos")
-define oncahui = Character("Oncahui")
+    window_background=Frame("gui/narrador_textbox.png"))
+define novia = Character("Ximena", 
+    window_background=Frame("gui/pareja_textbox_trans.png"))
+define novio = Character("Carlos", 
+    window_background=Frame("gui/pareja_textbox_trans.png"))
+define oncahui = Character("Oncahui", 
+    window_background=Frame("gui/oncahui_textbox.png"))
 
 #constantes
 define apodoNovia = "Xime"
@@ -13,16 +16,18 @@ define apodoNovio = "Charly"
 #variables
 default coleccionables = []
 default decisionesJugador = []
-default jugador = Personaje(nombre="???")
-default pareja = Personaje(nombre="???")
-default recuerdo = False
+default listaMito = []
+#[0] = violencias ejercidas por la pareja
+#[1] = violencias ejercidas por el jugador
+default listaViolencia = [[],[]]
+default listaPresion = []
+default jugador = Persona(nombre="???")
+default pareja = Persona(nombre="???")
+default retroalimentacion = False
 
 #videos
 image fondo_inicio = Movie(
     size=(2560,1600), play="images/fondo_inicio.webm", loop = True)
-image aparicion_mapa = Movie(
-    size=(2560,1600), play="images/mapa_aparicion.webm", loop = False, 
-    image="images/aparicion_mapa/Mapa074.png")
 image seleccion_personaje = Movie(
     size=(2560,1600), play="images/seleccion_personaje.webm", loop = False, 
     image="images/seleccion_personaje.png")
@@ -58,18 +63,18 @@ image caminata_chapultepec = Movie(
     image="images/caminata_chapultepec.png")
 
 #imagenes estaticas
-image mapa = "images/mapa.webp"
 image chapultepec_fondo = "images/chapus fondo.png"
 image planta_conjunto = "images/planta/capullo_conjunto.png"
 image flor_capullo = "images/planta/capullo.png"
 image planta_florece = "images/planta/florece.png"
 image planta_marchita = "images/planta/marchita.png"
-image caja_texto_grande = "images/caja_texto_grande.png"
 image boton_seleccion_ximena = "images/boton_seleccion_ximena.png"
 image boton_seleccion_carlos = "images/boton_seleccion_carlos.png"
 image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
 image logro_aspersor = "images/coleccionables/logro_aspersor.png"
 image penalizacion_aspersor = "images/coleccionables/penalizacion_aspersor.png"
+image tarjeta_spotify_intacta = "images/coleccionables/tarjeta_spotify_intacta.png"
+image tarjeta_spotify_rota = "images/coleccionables/tarjeta_spotify_rota.png"
 image oncahui = "uamito.png"
 
 
@@ -100,37 +105,48 @@ label splashscreen:
 
     play music musica_fondo loop 
     scene fondo_inicio
-    show aparicion_mapa
-    pause 5.0
-    hide aparicion_mapa
-    show mapa
-    #show screen preferences
-    show caja_texto_grande:
-        xalign .6
-    show text Text(texto_intro,slow=True)
+    show screen intro
     pause
+    hide screen intro
     return
+
+screen intro():
+    frame:
+        xalign 0.6
+        yalign 0.5
+        xsize 2300
+        ysize 1300
+        padding (100, 30)
+        background Frame("gui/narrador_textbox.png")
+        truncate_text (texto_intro):
+            shrink_to_fit 10 adjust_line_spacing_to_fit -10
+            shrink_before_spacing False
+            yalign 0.5
 
 label start:
 
     scene fondo_inicio
-    show mapa
     narrador "¡Bienvenide! Te explicaré cómo funciona el juego."
     narrador "Vas a tomar el papel de uno de los personajes que se te 
-        presentaron anteriormente, [novia.name] o [novio.name]."
-    narrador "En el mapa que puedes ver, eligirás un lugar y tener una cita"
-    hide mapa
+        mencionaron anteriormente, [novia.name] o [novio.name]."
     show planta_conjunto:
         yalign .3
         xalign .5
     narrador "Además, cada quien tiene una planta que representa el estado de 
         su relación."
     narrador "Sus decisiones las ayudarán a crecer o marchitarlas."
+    hide planta_conjunto
+    narrador "También hay botones en la parte inferior de la pantalla que te llevan a los principales menús (aunque desde ahí también hay otros para guardar/cargar partida, ir al menú principal y más información del juego)"
+    narrador "El de progreso es para que veas es el estado actual de las plantas, los coleccionables que has ganado y para revisitar los dialogos."
+    narrador "El de opciones te permite cambiar la letra, la velocidad del texto mostrado, volumen de la música y más. No dudes en personalizar tu experiencia de juego en cualquier momento."
+    if renpy.variant("pc"):
+        narrador "El de salir, como su nombre, cierra el juego. ¡No olvides guardar antes!"
+    narrador "Y finalmente, el de ¡quitar! te da una salida de \"emergencia\" si en tu entorno alguien se te acerca y no quieres dar explicaciones. Te llevará a unas conferencias ofrecidas por la UPAV y silenciará la música del juego."
+    narrador "Queremos que juegues con total comidad y honestidad, ninguna de tus respuestas serán grabadas."
 
 
 label eleccionPersonaje:
-
-    hide planta_conjunto   
+    
     narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a 
         conocerlos." 
     show cine_fondo
@@ -154,29 +170,37 @@ label eleccionPersonaje:
 label seleccionNovia:
 
     hide screen boton_eleccion_personaje
-    $ jugador = Personaje(novia.name, apodoNovia, Character(novia.name))
-    $ pareja = Personaje(novio.name, apodoNovio, Character(novio.name))
-    narrador "Haz seleccionado a [jugador.nombre]"
+    $ jugador = Persona(novia.name, apodoNovia, Character(
+        novia.name, 
+        window_background=Frame("gui/jugador_textbox_trans.png")))
+    $ pareja = Persona(novio.name, apodoNovio, Character(
+        novio.name, 
+        window_background=Frame("gui/pareja_textbox_trans.png")))
+    narrador "Has seleccionado a [jugador.nombre]"
     hide seleccion_personaje
-    jump eleccionCita
+    jump telefonoConversacion
 
 
 label seleccionNovio:
 
     hide screen boton_eleccion_personaje
-    $ jugador = Personaje(novio.name, apodoNovio, Character(novio.name))
-    $ pareja = Personaje(novia.name, apodoNovia, Character(novia.name))
-    narrador "Haz seleccionado a [jugador.nombre]"
+    $ jugador = Persona(novio.name, apodoNovio, Character(
+        novio.name, 
+        window_background=Frame("gui/jugador_textbox_trans.png")))
+    $ pareja = Persona(novia.name, apodoNovia, Character(
+        novia.name, 
+        window_background=Frame("gui/pareja_textbox_trans.png")))
+    narrador "Has seleccionado a [jugador.nombre]"
     hide seleccion_personaje
-    jump eleccionCita
+    jump citaChapultepec
 
 
 label eleccionCita:
 
     show mapa
-    narrador "Elige el lugar de la cita.\nDa click o toca cualquier parte de la 
+    narrador "Elige el lugar de la cita.\nDa click o toca en la 
         pantalla para minimizar este mensaje."
-    jump citasMapa
+    #jump citasMapa
 
 label finalJuego:
 
@@ -191,8 +215,6 @@ label evaluacion:
     window hide diss
     scene black
     show oncahui_zoomout with fade
-    #pause 3.0
-    #show oncahui
     oncahui "¡Ya terminé el juego!"
 
     menu:

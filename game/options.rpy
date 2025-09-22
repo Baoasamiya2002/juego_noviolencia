@@ -20,7 +20,7 @@ define config.name = _("""Latencia
 ## Determina si el título dado más arriba se muestra en el menú principal.
 ## Ajústalo a 'False' para ocultar el título.
 
-define gui.show_name = True
+define gui.show_name = False
 
 
 ## Versión del juego.

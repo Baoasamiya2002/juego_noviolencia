@@ -99,6 +99,7 @@ style frame:
 screen say(who, what):
 
     window:
+    
         id "window"
 
         if who is not None:
@@ -129,14 +130,19 @@ style say_thought is say_dialogue
 style namebox is default
 style namebox_label is say_label
 
+style transparent: 
+    color "#ff0000ff"
 
 style window:
     xalign 0.5
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
+    left_margin 50
+    right_margin 50
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Frame("gui/textbox.png", gui.textbox_borders)
+
 
 style namebox:
     xpos gui.name_xpos
@@ -249,15 +255,23 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Atrás") action Rollback() size_group "menu"
+            #textbutton _("Atrás") action Rollback() size_group "menu"
             textbutton _("Progreso") action ShowMenu('history') size_group "menu"
             textbutton _("Opciones") action ShowMenu('preferences') size_group "menu"
 
-            if not (renpy.variant("ios") or renpy.variant("web")):
+            if renpy.variant("pc"):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
                 ## Web.
-                textbutton _("Salir") action Quit(confirm=not main_menu) size_group "menu"
+                textbutton _("Salir"): 
+
+                    action Quit(confirm=True) 
+            
+            textbutton _("¡Quitar!"):
+                size_group "menu" 
+                action [
+                    Preference("music volume", 0.0),
+                    OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")]
 
 
 ## Este código asegura que la pantalla 'quick_menu' se muestra en el juego,
@@ -274,7 +288,8 @@ style quick_button_text is button_text
 
 style quick_button:
     properties gui.button_properties("quick_button")
-    background "#ffffff"#"testimg" #"gui/button/quick_idle_background.png"#
+    background "#ffffff"
+    xsize 250
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
@@ -295,33 +310,53 @@ style quick_image_button:
 screen navigation():
 
     if renpy.get_screen("main_menu"):
+        
         vbox:
+
             style_prefix "navigation"
 
             xalign 0.5
-            yalign 0.5
+            yalign 0.75
 
             spacing gui.navigation_spacing
 
-            imagebutton:                
-                    idle "menu_gui/inicio.png"
+            hbox:
+
+                xalign 0.5
+
+                imagebutton:                
+                    idle "gui/button/menu_principal/jugar.png" 
+                    hover "gui/button/menu_principal/jugar_hover.png"
+                    alt "Jugar"
                     action Start()
 
-            textbutton _("Cargar") action ShowMenu("load")
+            null height (1 * gui.pref_spacing)
 
-            imagebutton:                
-                    idle "menu_gui/ajustes.png"
+            hbox:
+
+                imagebutton:
+                    idle "gui/button/menu_principal/cargar.png"
+                    hover "gui/button/menu_principal/cargar_hover.png"
+                    action ShowMenu("load")
+
+                imagebutton: 
+                    idle "gui/button/menu_principal/opciones.png"
+                    hover "gui/button/menu_principal/opciones_hover.png"
                     action ShowMenu("preferences")
 
-            imagebutton:                
-                    idle "menu_gui/informacion.png"
+                imagebutton: 
+                    idle "gui/button/menu_principal/mas_info.png"
+                    hover "gui/button/menu_principal/mas_info_hover.png"
                     action ShowMenu("about")
 
-            if not (renpy.variant("ios") or renpy.variant("web")):
+                if renpy.variant("pc"):
 
-                ## El botón de salida está prohibido en iOS y no es necesario en
-                ## Web.
-                textbutton _("Salir") action Quit(confirm=True)
+                    ## El botón de salida está prohibido en iOS y no es necesario en
+                    ## Web.
+                    imagebutton: 
+                        idle "gui/button/menu_principal/salir.png"
+                        hover "gui/button/menu_principal/salir_hover.png"
+                        action Quit(confirm=True)
     else:
 
         hbox:
@@ -329,7 +364,7 @@ screen navigation():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
+            yalign 0.95
             
             textbutton _("Inicio"):
 
@@ -341,6 +376,8 @@ screen navigation():
                 else:
 
                     action MainMenu()
+                
+                ypos 50
 
             textbutton _("Cargar") action ShowMenu("load") size_group "menu"
                 
@@ -351,18 +388,21 @@ screen navigation():
 
             textbutton _("Opciones") action ShowMenu("preferences") size_group "menu"
             textbutton _("Más info") action ShowMenu("about") size_group "menu"
+            textbutton _("Volver") action Return() size_group "menu" ypos 50
 
-            if not main_menu:
-
-                textbutton _("Volver") action Return() size_group "menu"
-
-            if not (renpy.variant("ios") or renpy.variant("web")):
+            if renpy.variant("pc"):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
                 ## Web.
-                textbutton _("Salir") action Quit(confirm=True) size_group "menu"
+                textbutton _("Salir"): 
+
+                    action Quit(confirm=True) 
+                    size_group "menu" ypos 50
             
-            textbutton _("¡Terminar!") action Quit(confirm=not main_menu) size_group "menu"
+            textbutton _("¡Quitar!"):
+                size_group "menu" 
+                ypos 50
+                action OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
 
 
 style navigation_button is gui_button
@@ -395,16 +435,15 @@ screen main_menu():
     ## real del menú principal está en la pantalla de navegación.
     use navigation
 
-    if gui.show_name:
+    hbox:
 
-        vbox:
-            style "main_menu_vbox"
+        xalign 0.5
+        yalign 0.15
 
-            text "[config.name!t]":
-                style "main_menu_title"
-
-            text "[config.version]":
-                style "main_menu_version"
+        image "images/titulo.png":
+            fit "contain" 
+            xsize 1700 
+            alt "Latencia. Toma el control... o la decisión correcta"
 
 
 style main_menu_vbox is vbox
@@ -442,7 +481,7 @@ style main_menu_version:
 screen game_menu(title=None, scroll=None, yinitial=0.0, spacing=0):
     
     style_prefix "game_menu"
-
+    
     frame:
         
         if title != None:
@@ -451,24 +490,23 @@ screen game_menu(title=None, scroll=None, yinitial=0.0, spacing=0):
         
         else:
 
-            style "history_menu_outer_frame"
+            style_prefix "history_menu"
         
         hbox:
 
             frame:
 
                 style "game_menu_content_frame"
-
+                
                 if scroll == "viewport":
 
                     viewport:
+
                         yinitial yinitial
                         scrollbars "vertical"
                         mousewheel True
                         draggable True
                         pagekeys True
-
-                        side_yfill True
 
                         vbox:
                             spacing spacing
@@ -536,10 +574,13 @@ style game_menu_outer_frame:
     background "#ffffffcf"
     #background "gui/overlay/game_menu.png"
 
-style history_menu_outer_frame:
+style history_menu_frame:
     xfill True    
     yfill True
     background "#0015ff00"
+
+style history_menu_viewport:
+    ysize 1020
 
 style game_menu_navigation_frame:
     xsize 560
@@ -549,7 +590,7 @@ style game_menu_content_frame:
     left_margin 80
     right_margin 40
     top_margin 20
-    ysize 1100
+    ysize 1140
 
 style game_menu_viewport:
     xsize 1840
@@ -770,11 +811,9 @@ screen preferences():
     tag menu
 
     use game_menu(_("Opciones"), scroll=(
-        "vpgrid" if gui.history_height else "viewport")):
+        "vpgrid" if 300 else "viewport")):
         
         vbox:
-            
-            xsize 2375
             
             hbox:
                 
@@ -795,10 +834,9 @@ screen preferences():
 
                     textbutton _("Por defecto") action Preference(
                         "font size", 1.0)
-                    textbutton _("Grande") action Preference(
-                        "font size", 1.25)
+                    textbutton _("Grande") action Preference("font size", 1.25)
                     textbutton _("Extra grande") action Preference(
-                        "font size", 1.5) 
+                        "font size", 1.5)
                 
                 vbox:
 
@@ -826,7 +864,7 @@ screen preferences():
                 xfill True
                 box_wrap True
 
-                if (renpy.variant("pc") or renpy.variant("web")):
+                if (renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile"))):
                     vbox:   
 
                         style_prefix "radio"
@@ -869,7 +907,7 @@ screen preferences():
                     textbutton _("Amplio") action Preference(
                         "font kerning", 0.75)
                 
-                if not (renpy.variant("pc") or renpy.variant("web")):
+                if not (renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile"))):
 
                     vbox:
                     
@@ -906,7 +944,7 @@ screen preferences():
                     xsize 930
                     null height (4 * gui.pref_spacing)
 
-                    textbutton _("Progreso") action [
+                    textbutton _("Regresar a configuración inicial") action [
                         Preference("font kerning", 0.0), 
                         Preference("font line spacing", 1.0), 
                         Preference("font size", 1.0), 
@@ -1016,12 +1054,12 @@ screen history():
 
                     vbox:
 
-                        label _("Planta de [jugador.nombre]")
+                        label _("Planta de [jugador.nombre]") xsize 550
                         null height (4 * gui.pref_spacing)
                         add "images/planta/[jugador.estadoPlanta].png" ysize 450
                     vbox:
 
-                        label _("Planta de [pareja.nombre]")
+                        label _("Planta de [pareja.nombre]") xsize 550
                         null height (4 * gui.pref_spacing)
                         add "images/planta/[pareja.estadoPlanta].png" ysize 450
                 hbox:
@@ -1044,14 +1082,12 @@ screen history():
 
                                         if coleccionables:
                                             for c in coleccionables:
-                                                add "images/coleccionables/[c].png" ysize 450
+                                                add "images/coleccionables/[c].png": 
+                                                    fit "contain"
+                                                    ysize 450
                                         else:
                                             vbox:
-                                                style "slider"
-
-                                            # add "images/logro_aspersor.png" ysize 400
-                                            # text "FileSaveName(slot)":
-                                            #     style "slot_name_text"
+                                                style "slider" 
                   
             
             vbox:
@@ -1083,10 +1119,10 @@ screen history():
                                     ## sido establecido.
                                     if "color" in h.who_args:
                                         text_color h.who_args["color"]
-
+                                    
                             $ what = renpy.filter_text_tags(h.what, 
                             allow=gui.history_allow_tags)
-                            text what:
+                            truncate_text what:
                                 substitute False
 
                     if not _history_list:
@@ -1114,7 +1150,6 @@ style history_window:
     xfill True
     ysize gui.history_height
     top_padding 50
-    background "#ffffff"
 
 style history_name:
     xpos gui.history_name_xpos
@@ -1144,7 +1179,7 @@ style history_label_text:
 
 style horizontal_scroll_vbox:
     xsize 860
-    ysize 575
+    ysize 580
     
 style horizontal_scroll_frame:
     background "#ff000000"

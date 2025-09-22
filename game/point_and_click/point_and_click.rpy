@@ -1,6 +1,6 @@
 init python:
     def filtro():
-        if recuerdo:
+        if retroalimentacion:
             return SaturationMatrix(0.0)
         else:
             return SaturationMatrix(1.0)
@@ -39,7 +39,7 @@ label citasMapa:
 
 label citaChapultepec:
 
-    scene caminata_chapultepec at Transform(matrixcolor=filtro())
+    scene caminata_chapultepec
     narrador "Un domingo por la tarde, Ximena y Carlos decidieron salir a una cita."
     narrador "Caminaban entre los árboles, tenían tiempo de no salir juntos, estaban en entregas finales y la carrera de cada uno comenzaba a ser cada vez más demandante."
     narrador "Aunque a veces se veían entre clases en la universidad, están en ambientes muy distintos y cada vez sus diferencias y expectativas se hacían más evidentes..."
@@ -47,16 +47,16 @@ label citaChapultepec:
     pareja.personaje "Sí."
     jugador.personaje "Y pues, salir de Santa Fe después de las 3 de la tarde y con lluvias está mortal, ¿sabes a qué horas voy a llegar a mi casa? Mínimo a las 7."
     pareja.personaje "Ajá..."
-    $ palabraGenero = "seria" if jugador.nombre == "Carlos" else "serio"
+    $ palabraGenero = "seria" if jugador.nombre == novio.name else "serio"
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "¿Y tú qué tienes? Estás muy [palabraGenero]."
-    $ palabraGenero = "estresada" if jugador.nombre == "Carlos" else "estresado"
+    $ palabraGenero = "estresada" if jugador.nombre == novio.name else "estresado"
     scene expression "emocion_seriedad_[pareja.nombre]"
     pareja.personaje "No, nada amor, solo estoy un poco [palabraGenero] por mi entrega del lunes."
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "¿Sí? Pero a ti te sale todo a la primera… yo sí que debo preocuparme, apenas y le entiendo a la UEA."
     scene expression "emocion_enojo_[pareja.nombre]"
-    pareja.personaje "Bueno, pero yo quiero preocuparme, ¿ok?, más bien tu andas de sensible."
+    pareja.personaje "Bueno, pero yo quiero preocuparme, ¿ok? Más bien tu andas de sensible."
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "O tú de cortante."
     
@@ -74,7 +74,7 @@ label citaChapultepec:
 
     menu:
 
-        "¿Tú respuesta?"
+        narrador "¿Tu respuesta?"
         "¿Por?":
 
             $ decisionesJugador.append("¿Por?") 
@@ -121,7 +121,7 @@ label citaChapultepec:
 
     menu:
 
-        "¿Tú respuesta?"
+        narrador "¿Tu respuesta?"
         "Sincerar mi inseguridad":
 
             $ decisionesJugador.append("Sincerar mi inseguridad")
@@ -151,7 +151,7 @@ label citaChapultepec:
             scene expression "emocion_seriedad_[pareja.nombre]"
             pareja.personaje "Así que ya, vámonos, y perdón por lo que te dije. A veces digo cosas que no quiero decir..."
             scene expression "emocion_felicidad_[jugador.nombre]"
-            $ palabraGenero = "tranquila" if jugador.nombre == "Carlos" else "tranquilo"
+            $ palabraGenero = "tranquila" if jugador.nombre == novio.name else "tranquilo"
             jugador.personaje "Si, [palabraGenero]."
             jump retroalimentacion_pareja_chapultepec
         
@@ -171,14 +171,14 @@ label citaChapultepec:
             scene expression "emocion_seriedad_[jugador.nombre]"
             jugador.personaje "(suspiro) Bueno. Chao"
             scene expression "emocion_tristeza_[pareja.nombre]"
-            pareja.personaje "'¡No, espera!, es que yo... lo siento, a veces digo cosas que no quiero decir..."
+            pareja.personaje "¡No, espera!, es que yo... lo siento, a veces digo cosas que no quiero decir..."
             $ pareja.estadoPlanta = "marchita"
             call violencia_ignorar_1
             jump retroalimentacion_pareja_chapultepec
 
     menu:
 
-        "¿Tú respuesta?"
+        narrador "¿Tu respuesta?"
         "Evitar más pelea":
 
             $ decisionesJugador.append("Evitar más pelea")
@@ -213,7 +213,7 @@ label citaChapultepec:
             
             $ decisionesJugador.append("Mantengo la calma")
             scene expression "emocion_seriedad_[jugador.nombre]"
-            $ palabraGenero = "tranquila" if jugador.nombre == "Carlos" else "tranquilo"
+            $ palabraGenero = "tranquila" if jugador.nombre == novio.name else "tranquilo"
             jugador.personaje "A ver cálmate, quería hablarlo porque no te veía, pero así no llegamos a nada. Caminemos y cuando estés [palabraGenero], lo hablamos."
             scene expression "emocion_seriedad_[pareja.nombre]"
             pareja.personaje "¿Que yo me calme? Te llevas pero no te aguantas... Y yo que te tenía una sorpresa..."
@@ -222,35 +222,44 @@ label citaChapultepec:
             scene expression "emocion_enojo_[pareja.nombre]"
             pareja.personaje "Aaa ahora ya quieres hablar..."
             scene expression "emocion_felicidad_[pareja.nombre]"
-            $ palabraGenero = "hermano" if jugador.nombre == "Carlos" else "hermana"
+            $ palabraGenero = "hermano" if jugador.nombre == novio.name else "hermana"
             pareja.personaje "Era una tarjeta de Spotify que te enviaba mi [palabraGenero]."
             scene expression "emocion_felicidad_[jugador.nombre]"
-            jugador.personaje "¡Hay si! Me dijo [emocionado/a] que me tenía una."
+            $ palabraGenero = "emocionado" if jugador.nombre == novio.name else "emocionada"
+            jugador.personaje "¡Hay si! Me dijo [palabraGenero] que me tenía una."
             scene expression "emocion_seriedad_[pareja.nombre]"
             pareja.personaje "Pero con tus dramas no sé..."
             call violencia_chantaje_1
 
             menu:
 
-                "¿Tú respuesta?"
+                narrador "¿Tu respuesta?"
                 "Si":
 
                     $ decisionesJugador.append("Si")
                     scene expression "emocion_felicidad_[jugador.nombre]"
                     jugador.personaje "(suspiro) Ok... lo podemos hablar otro día. ¿De cuántos meses es la tarjeta?"
-####
+                    $ coleccionables.append("tarjeta_spotify_intacta")
+                    show tarjeta_spotify_intacta:
+                        yalign .3
+                        xalign .5
                     narrador "¡Obtuviste una tarjeta de Spotify! Click o toca para continuar."
+                    hide tarjeta_spotify_intacta
                     jump retroalimentacion_pareja_chapultepec                
                 
                 "No":
 
                     $ decisionesJugador.append("No")
                     scene expression "emocion_seriedad_[jugador.nombre]"
-                    $ palabraGenero = "dispuesta" if jugador.nombre == "Carlos" else "dispuesto"
+                    $ palabraGenero = "dispuesta" if jugador.nombre == novio.name else "dispuesto"
                     jugador.personaje "Sólo si estás [palabraGenero] a hablar de lo que pasó... ¿Ya platicamos en buen plan?"
                     call violencia_destruir_1
-                    #####
+                    $ coleccionables.append("tarjeta_spotify_rota")
+                    show tarjeta_spotify_rota:
+                        yalign .3
+                        xalign .5
                     narrador "¡Obtuviste una tarjeta rota de Spotify! Click o toca para continuar."
+                    hide tarjeta_spotify_rota
                     jump retroalimentacion_pareja_chapultepec
 
 
@@ -270,18 +279,18 @@ label retroalimentacion_pareja_chapultepec:
         xalign .1
     narrador "Lamentablemente [pareja.nombre] dañó tu planta, veamos cuándo pasó:"
     hide planta_marchita
-    $ recuerdo = True
+    $ retroalimentacion = True
 
     if "¿Por?" in decisionesJugador:
 
         call violencia_culpabilizar_1
-        $ palabraGenero = "ella" if jugador.nombre == "Carlos" else "él"
+        $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
         narrador "[pareja.nombre] te hizo {b}gaslighting{/b} y {b}culpabilizó{/b} por la discusión, cuando [palabraGenero] fue quien te dijo absorbente."
         
         if pareja.nombre == novia.name:
 
             call violencia_mito_humillar_1
-            narrador "Ahí te intentó {b}humillar{/b} por mostrar tus sentimientos."
+            narrador "[pareja.nombre] te intentó {b}humillar{/b} por mostrar tus sentimientos."
 
     elif "Tal vez no debí sacar el tema" in decisionesJugador:
         
@@ -326,14 +335,18 @@ label retroalimentacion_pareja_chapultepec:
     elif "Mantengo la calma" in decisionesJugador:
 
         call violencia_chantaje_1
-        $ palabraGenero = "hermano" if jugador.nombre == "Carlos" else "hermana"
+        $ palabraGenero = "hermano" if jugador.nombre == novio.name else "hermana"
         narrador "[pareja.nombre] te intentó {b}chantajear{/b} para hacer pasar la violencia anterior, lo hizo con el regalo de su [palabraGenero] para tí."
 
     elif "No" in decisionesJugador:
 
         call violencia_destruir_1
-        $ palabraGenero = "hermano" if jugador.nombre == "Carlos" else "hermana"        
+        $ palabraGenero = "hermano" if jugador.nombre == novio.name else "hermana"
+        show tarjeta_spotify_rota:
+                        yalign .3
+                        xalign .5        
         narrador "[pareja.nombre] te {b}humilló{/b} con su insulto y {b}destruyó{/b} el regalo de su [palabraGenero] por no caer en su chantaje."
+        hide tarjeta_spotify_rota
 
     narrador "Y con toda esta violencia, acabó afectada tu planta."
     narrador "Pero recuerda, {b}no es tu culpa{/b}. [pareja.nombre] es responsable de los daños que causó, no tú."
@@ -350,12 +363,12 @@ label retroalimentacion_jugador_chapultepec:
         show penalizacion_aspersor:
             xalign .05
         $ coleccionables.append("penalizacion_aspersor")
-        narrador "¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia para tu planta."
+        narrador "¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia para su planta."
         hide penalizacion_aspersor
         show planta_marchita:
             yalign .3
             xalign .5
-        narrador "La planta de [pareja.nombre] se siente un poco enferma., veamos cuándo pasó:"
+        narrador "La planta de [pareja.nombre] se siente un poco enferma, veamos cuándo pasó:"
         hide planta_marchita
 
         if "Alguien más le metió la idea" in decisionesJugador:
@@ -387,7 +400,7 @@ label retroalimentacion_jugador_chapultepec:
         show planta_florece:
             yalign .3
             xalign .5
-        narrador "Tu planta ha comenzado a florecer."
+        narrador "La planta de [pareja.nombre] ha comenzado a florecer."
         hide planta_florece
 
         if any(d in decisionesJugador for d in (
@@ -419,18 +432,31 @@ label retroalimentacion_jugador_chapultepec:
                 narrador "Quisiste hacer pasar la violencia ocurrida para terminar el conflicto."
 
             elif "Si" in decisionesJugador:
-                ####
+                show tarjeta_spotify_intacta:
+                        yalign .3
+                        xalign .5
                 narrador "¿Recuerdas esa tarjeta de Spotify? Era un regalo para tí, pero la aceptaste a través de un {b}chantaje{/b}."
+                hide tarjeta_spotify_intacta
             
             narrador "Cuidado, estas violencias pueden {b}continuar{/b} o {b}escalar{/b} si no se detienen y sólo las aceptas."
 
     jump retroalimentacion_mito_chapultepec
 
+
 label retroalimentacion_mito_chapultepec:
     
     scene chapultepec_fondo
-    narrador "Además, algunos de los diálogos de Carlos y Ximena reproducen mitos sobre los roles de género, ¿Te diste cuenta?"
-    narrador "Por ejemplo:"
+    
+    menu:
+
+        narrador "Además, algunos de los diálogos de Carlos y Ximena reproducen mitos sobre los roles de género, ¿Te diste cuenta?"
+        
+        "Si":
+            
+            narrador "¡Bien! Por ejemplo:"
+        "No":
+            
+            narrador "No te precoupes. Por ejemplo:"
     
     if jugador.nombre == novia.name:
         
@@ -495,7 +521,7 @@ label retroalimentacion_mito_chapultepec:
 
     narrador "Tal vez alguno de estos diálogos no los habías visto con este punto de vista."
     narrador "Por eso es bueno cuestionarnos si ¿es un gesto propio o lo hago porque \"así debe ser\"?"
-    jump finalJuego
+    jump telefonoConversacion
 
 
 label logro_aspersor:
@@ -582,7 +608,7 @@ label violencia_humillar_1:
 
     scene expression "emocion_felicidad_[pareja.nombre]" at Transform(
         matrixcolor=filtro())
-    $ palabraGenero = "tontito" if jugador.nombre == "Carlos" else "tontita"
+    $ palabraGenero = "tontito" if jugador.nombre == novio.name else "tontita"
     pareja.personaje "Si, yo también amor, pero procura ya no hostigar tanto ¿eh?, o voy a tenerte que poner un diurex en la boca [palabraGenero]."
     return
 
@@ -591,7 +617,7 @@ label violencia_humillar_2:
 
     scene expression "emocion_enojo_[pareja.nombre]" at Transform(
         matrixcolor=filtro())
-    $ palabraGenero = "tóxico" if jugador.nombre == "Carlos" else "tóxica"
+    $ palabraGenero = "tóxico" if jugador.nombre == novio.name else "tóxica"
     pareja.personaje "Pero si acabamos de llegar, ¿ves como eres bien [palabraGenero]?"
     return
 
@@ -624,7 +650,7 @@ label violencia_destruir_1:
 
     scene expression "emocion_enojo_[pareja.nombre]" at Transform(
         matrixcolor=filtro())
-    $ palabraGenero = "traumado" if jugador.nombre == "Carlos" else "traumada"
+    $ palabraGenero = "traumado" if jugador.nombre == novio.name else "traumada"
     pareja.personaje "¡Hay pinche [palabraGenero]! Ya mejor me voy, ¿y la tarjeta? Aquí la tienes."
     return
 
