@@ -66,19 +66,19 @@ define gui.name_text_font = "fonts/LondrinaSolid-Regular.ttf"
 define gui.interface_text_font = "fonts/JosefinSans-Regular.ttf"
 
 ## El tamaño normal del texto del diálogo.
-define gui.text_size = 54
+define gui.text_size = 67.5
 
 ## El tamaño de los nombres de los personajes
-define gui.name_text_size = 60
+define gui.name_text_size = 75
 
 ## El tamaño del texto en la interfaz.
-define gui.interface_text_size = 44
+define gui.interface_text_size = 55
 
 ## El tamaño de etiquetas en la interfaz.
-define gui.label_text_size = 48
+define gui.label_text_size = 60
 
 ## El tamaño del texto en las notificaciones.
-define gui.notify_text_size = 32
+define gui.notify_text_size = 40
 
 ## El tamaño del título del juego.
 define gui.title_text_size = 100
@@ -101,7 +101,7 @@ define gui.textbox_height = 480
 
 ## Colocación vertical de la caja de texto en la pantalla. 0.0 para la parte
 ## superior, 0.5 para el centro y 1.0 para la parte inferior.
-define gui.textbox_yalign = 0.85
+define gui.textbox_yalign = 0.95
 
 ## Bordes de la ventana de dialogo
 define gui.textbox_borders=Borders(3, 3, 3, 3)
@@ -136,7 +136,7 @@ define gui.dialogue_xpos = 130
 define gui.dialogue_ypos = 130
 
 ## La anchura máxima del texto del diálogo, en píxels.
-define gui.dialogue_width = 2100
+define gui.dialogue_width = 2115
 
 ## La alineación horizontal del texto del diálogo. (0.0 es izquierda, 0.5 es
 ## centro, 1.0 es derecha).
@@ -192,7 +192,7 @@ define gui.confirm_button_text_xalign = 0.5
 define gui.page_button_borders = Borders(20, 8, 20, 8)
 
 #define gui.quick_button_borders = Borders(20, 8, 20, 0)
-define gui.quick_button_text_size = 45
+define gui.quick_button_text_size = 56.25
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
 
@@ -229,7 +229,7 @@ define gui.choice_button_text_insensitive_color = '#7070707f'
 define gui.slot_button_width = 552
 define gui.slot_button_height = 412
 define gui.slot_button_borders = Borders(20, 20, 20, 20)
-define gui.slot_button_text_size = 28
+define gui.slot_button_text_size = 35
 define gui.slot_button_text_xalign = 0.5
 define gui.slot_button_text_idle_color = gui.idle_small_color
 define gui.slot_button_text_selected_idle_color = gui.selected_color
@@ -456,7 +456,7 @@ init python:
         gui.slider_size = 72
 
         gui.choice_button_width = 2480
-        gui.choice_button_text_size = 60
+        gui.choice_button_text_size = 75
 
         gui.navigation_spacing = 40
         gui.pref_button_spacing = 20

@@ -1,197 +1,37 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/style.pyx", line 808, in renpy.style.rebuild
-  File "game/screens.rpy", line 245, in prepare_screen
-    screen quick_menu():
-  File "game/screens.rpy", line 245, in prepare
-    screen quick_menu():
-  File "game/screens.rpy", line 250, in prepare
-    if quick_menu:
-  File "game/screens.rpy", line 250, in prepare
-    if quick_menu:
-  File "game/screens.rpy", line 252, in prepare
-    hbox:
-  File "game/screens.rpy", line 252, in prepare
-    hbox:
-  File "game/screens.rpy", line 270, in prepare
-    textbutton _("¡Quitar!"):
-  File "game/screens.rpy", line 270, in prepare
-    textbutton _("¡Quitar!"):
-  File "game/screens.rpy", line 274
-    , 
-    ^^
-SyntaxError: invalid syntax
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "game/screens.rpy", line 245, in prepare_screen
-    screen quick_menu():
-  File "game/screens.rpy", line 245, in prepare
-    screen quick_menu():
-  File "game/screens.rpy", line 250, in prepare
-    if quick_menu:
-  File "game/screens.rpy", line 250, in prepare
-    if quick_menu:
-  File "game/screens.rpy", line 252, in prepare
-    hbox:
-  File "game/screens.rpy", line 252, in prepare
-    hbox:
-  File "game/screens.rpy", line 270, in prepare
-    textbutton _("¡Quitar!"):
-  File "game/screens.rpy", line 270, in prepare
-    textbutton _("¡Quitar!"):
-  File "game/screens.rpy", line 274
-    , 
-    ^^
-SyntaxError: invalid syntax
+  File "game/script.rpy", line 129, in script
+    narrador "¡Bienvenide! Te explicaré cómo funciona el juego."
+Exception: The say screen (or show_function) must return a Text object.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "renpy/common/00start.rpy", line 201, in script
-    python:
-  File "renpy/ast.py", line 1187, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1260, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/common/00start.rpy", line 202, in <module>
-    _init_language()
-    ~~~~~~~~~~~~~~^^
-  File "renpy/common/00start.rpy", line 83, in _init_language
-    renpy.change_language(language, force=True)
-    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/translation/__init__.py", line 841, in change_language
-    renpy.style.rebuild()
-    ~~~~~~~~~~~~~~~~~~~^^
-  File "renpy/style.pyx", line 808, in renpy.style.rebuild
-  File "renpy/display/screen.py", line 1035, in prepare_screens
-    s.ast.prepare_screen()
-    ~~~~~~~~~~~~~~~~~~~~^^
-  File "game/screens.rpy", line 245, in prepare_screen
-    screen quick_menu():
-  File "game/screens.rpy", line 245, in prepare
-    screen quick_menu():
-  File "game/screens.rpy", line 250, in prepare
-    if quick_menu:
-  File "game/screens.rpy", line 250, in prepare
-    if quick_menu:
-  File "game/screens.rpy", line 252, in prepare
-    hbox:
-  File "game/screens.rpy", line 252, in prepare
-    hbox:
-  File "game/screens.rpy", line 270, in prepare
-    textbutton _("¡Quitar!"):
-  File "game/screens.rpy", line 270, in prepare
-    textbutton _("¡Quitar!"):
-  File "renpy/pyanalysis.py", line 913, in ast_eval
-    return self.ast_eval_literal(expr)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^   
-  File "renpy/pyanalysis.py", line 895, in ast_eval_literal
-    expr = py_compile(expr, "eval", ast_node=True)
-           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1247, in py_compile
-    raise e
-  File "renpy/python.py", line 1177, in py_compile
-    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
-           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 274
-    , 
-    ^^
-SyntaxError: invalid syntax
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "renpy/bootstrap.py", line 376, in bootstrap
-    renpy.main.main()
-    ~~~~~~~~~~~~~~~^^
-  File "renpy/main.py", line 614, in main
-    run(restart)
-    ~~~^^^^^^^^^
-  File "renpy/main.py", line 137, in run
-    renpy.execution.run_context(True)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "renpy/execution.py", line 1022, in run_context
-    context.run()
-    ~~~~~~~~~~~^^
-  File "renpy/common/00start.rpy", line 201, in script
-    python:
-  File "renpy/common/00start.rpy", line 201, in script
-    python:
-  File "renpy/display/error.py", line 135, in report_exception
-    renpy.game.invoke_in_new_context(
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        call_exception_screen,
-        ^^^^^^^^^^^^^^^^^^^^^^
-    ...<4 lines>...
-        ignore_action=ignore_action,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "renpy/game.py", line 301, in invoke_in_new_context
-    return callable(*args, **kwargs)
-           ~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "renpy/display/error.py", line 44, in call_exception_screen
-    return renpy.ui.interact(mouse="screen", type="screen", suppress_overlay=True, suppress_underlay=True)
-           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/ui.py", line 304, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/core.py", line 2219, in interact
-    repeat, rv = self.interact_core(
-                 ~~~~~~~~~~~~~~~~~~^
-        preloads=preloads,
-        ^^^^^^^^^^^^^^^^^^
-    ...<4 lines>...
-        **kwargs,
-        ^^^^^^^^^
-    )  # type: ignore
-    ^                
-  File "renpy/display/core.py", line 2450, in interact_core
-    renpy.display.screen.prepare_screens()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "renpy/display/screen.py", line 1035, in prepare_screens
-    s.ast.prepare_screen()
-    ~~~~~~~~~~~~~~~~~~~~^^
-  File "game/screens.rpy", line 245, in prepare_screen
-    screen quick_menu():
-  File "game/screens.rpy", line 245, in prepare
-    screen quick_menu():
-  File "game/screens.rpy", line 250, in prepare
-    if quick_menu:
-  File "game/screens.rpy", line 250, in prepare
-    if quick_menu:
-  File "game/screens.rpy", line 252, in prepare
-    hbox:
-  File "game/screens.rpy", line 252, in prepare
-    hbox:
-  File "game/screens.rpy", line 270, in prepare
-    textbutton _("¡Quitar!"):
-  File "game/screens.rpy", line 270, in prepare
-    textbutton _("¡Quitar!"):
-  File "renpy/pyanalysis.py", line 913, in ast_eval
-    return self.ast_eval_literal(expr)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^   
-  File "renpy/pyanalysis.py", line 895, in ast_eval_literal
-    expr = py_compile(expr, "eval", ast_node=True)
-           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1247, in py_compile
-    raise e
-  File "renpy/python.py", line 1177, in py_compile
-    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
-           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 274
-    , 
-    ^^
-SyntaxError: invalid syntax
+  File "game/script.rpy", line 129, in script
+    narrador "¡Bienvenide! Te explicaré cómo funciona el juego."
+  File "renpy/ast.py", line 2915, in execute
+    Say.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "renpy/ast.py", line 991, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/exports/sayexports.py", line 129, in say
+    who(what, *args, **kwargs)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1543, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1198, in do_display
+    display_say(who, what, self.do_show, **display_args)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 834, in display_say
+    raise Exception("The say screen (or show_function) must return a Text object.")
+Exception: The say screen (or show_function) must return a Text object.
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Sun Sep 21 21:46:27 2025
+Tue Sep 23 12:23:42 2025

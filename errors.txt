@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 273: '[' was never closed
-    action [OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
-           ^
+File "game/screens.rpy", line 596: style property O00 is not known.
+    xpos 1O00
+             ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Sun Sep 21 21:46:14 2025
+Tue Sep 23 14:33:59 2025

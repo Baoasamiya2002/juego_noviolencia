@@ -69,9 +69,9 @@ init -1 python:
         "group_joined": "{participant} joined the group.",
         "group_left": "{participant} left the group.",
         # UI Configurations
-        "message_font_size": 24,
-        "choice_font_size": 24,
-        "timestamp_font_size": 20,
+        "message_font_size": 34,
+        "choice_font_size": 34,
+        "timestamp_font_size": 30,
         "auto_scroll": True,
         "show_sender_in_preview": True,
         "default_icon": "phone/icon.png",
@@ -82,7 +82,7 @@ init -1 python:
         "message_padding": 0.025,
         "preview_max_length": 25,
         "emojis": {
-            "size": 32,
+            "size": 42,
         },
         "phone_theme": "light",  # default theme
         "light": {

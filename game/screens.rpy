@@ -112,12 +112,6 @@ screen say(who, what):
         text what id "what"
 
 
-    ## Si hay una imagen lateral, la muestra encima del texto. No la muestra en
-    ## la variante de teléfono - no hay lugar.
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
-
-
 ## Permite que el 'namebox' pueda ser estilizado en el objeto 'Character'.
 init python:
     config.character_id_prefixes.append('namebox')
@@ -253,7 +247,7 @@ screen quick_menu():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
+            yalign 0.0
 
             #textbutton _("Atrás") action Rollback() size_group "menu"
             textbutton _("Progreso") action ShowMenu('history') size_group "menu"
@@ -364,7 +358,7 @@ screen navigation():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 0.95
+            yalign 0.0
             
             textbutton _("Inicio"):
 
@@ -566,8 +560,8 @@ style return_button is navigation_button
 style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
-    bottom_padding 60
-    top_padding 240
+    bottom_padding 20
+    top_padding 280
     left_padding 30
     xfill True    
     yfill True
@@ -590,7 +584,7 @@ style game_menu_content_frame:
     left_margin 80
     right_margin 40
     top_margin 20
-    ysize 1140
+    ysize 1280
 
 style game_menu_viewport:
     xsize 1840
@@ -605,7 +599,7 @@ style game_menu_label:
 style game_menu_label_text:
     size gui.title_text_size
     color gui.accent_color
-    yalign 0.5
+    yalign 1.4
 
 style return_button:
     xpos gui.navigation_xpos
@@ -835,8 +829,6 @@ screen preferences():
                     textbutton _("Por defecto") action Preference(
                         "font size", 1.0)
                     textbutton _("Grande") action Preference("font size", 1.25)
-                    textbutton _("Extra grande") action Preference(
-                        "font size", 1.5)
                 
                 vbox:
 
@@ -1730,10 +1722,6 @@ style pref_vbox:
     variant "medium"
     xsize 900
 
-style window:
-    variant "small"
-    background "gui/phone/textbox.png"
-
 style radio_button:
     variant "small"
     foreground "gui/phone/button/radio_[prefix_]foreground.png"
@@ -1758,10 +1746,6 @@ style game_menu_navigation_frame:
 style game_menu_content_frame:
     variant "small"
     top_margin 0
-
-style pref_vbox:
-    variant "small"
-    #xsize 800
 
 style bar:
     variant "small"

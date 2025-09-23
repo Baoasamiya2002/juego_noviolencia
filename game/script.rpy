@@ -5,7 +5,7 @@ define narrador = Character(
 define novia = Character("Ximena", 
     window_background=Frame("gui/pareja_textbox_trans.png"))
 define novio = Character("Carlos", 
-    window_background=Frame("gui/pareja_textbox_trans.png"))
+    window_background=Frame("gui/jugador_textbox_trans.png"))#
 define oncahui = Character("Oncahui", 
     window_background=Frame("gui/oncahui_textbox.png"))
 
@@ -103,7 +103,7 @@ screen boton_eleccion_personaje():
 #introducción
 label splashscreen:
 
-    play music musica_fondo loop 
+    play music musica_fondo loop fadein 2.0 volume 1.0
     scene fondo_inicio
     show screen intro
     pause
@@ -178,7 +178,7 @@ label seleccionNovia:
         window_background=Frame("gui/pareja_textbox_trans.png")))
     narrador "Has seleccionado a [jugador.nombre]"
     hide seleccion_personaje
-    jump telefonoConversacion
+    jump citaChapultepec
 
 
 label seleccionNovio:
