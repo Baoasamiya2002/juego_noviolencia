@@ -99,10 +99,12 @@ style frame:
 screen say(who, what):
 
     frame:
-    
+        
         id "window"
+        style_prefix "window"
 
         vbox:
+            
             if who is not None:
 
                 window:
@@ -132,11 +134,14 @@ style window:
     xalign 0.5
     xfill True
     yalign gui.textbox_yalign
-    left_margin 50
-    right_margin 50
+    left_margin 200
+    right_margin 200
     padding (0, 50)
     background Frame("gui/textbox.png")
 
+style window_vbox:
+    xalign 0.5
+    xsize 1906
 
 style namebox:
     xpos gui.name_xpos
@@ -157,7 +162,6 @@ style say_dialogue:
     properties gui.text_properties("dialogue")
 
     xpos gui.dialogue_xpos
-    xsize gui.dialogue_width
     ypos gui.dialogue_ypos
 
     adjust_spacing False

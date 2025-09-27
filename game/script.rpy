@@ -150,20 +150,20 @@ label start:
 
 label eleccionPersonaje:
     
-    # narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a 
-    #     conocerlos." 
-    # show cine_fondo
-    # narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a 
-    #     que empiece la película."
-    # novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen 
-    #     conseguirlos, escuché que había pocos."
-    # novio "Es que estuve pegado a la compu desde la preventa, sabía que tenías 
-    #     muchas ganas de verla. Lo único malo es que vino mucha gente y solo 
-    #     alcanzamos unas palomitas chicas..."
-    # novia "No te preocupes, me encanta compartir las palomitas y más si es 
-    #     contigo."
-    # novio "Gracias amor, me haces muy feliz Xime."
-    # hide cine_fondo
+    narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a 
+        conocerlos." 
+    show cine_fondo
+    narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a 
+        que empiece la película."
+    novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen 
+        conseguirlos, escuché que había pocos."
+    novio "Es que estuve pegado a la compu desde la preventa, sabía que tenías 
+        muchas ganas de verla. Lo único malo es que vino mucha gente y solo 
+        alcanzamos unas palomitas chicas..."
+    novia "No te preocupes, me encanta compartir las palomitas y más si es 
+        contigo."
+    novio "Gracias amor, me haces muy feliz Xime."
+    hide cine_fondo
     show seleccion_personaje
     show screen boton_eleccion_personaje
     narrador "Ahora que los conoces un poco, elige el personaje con el que 

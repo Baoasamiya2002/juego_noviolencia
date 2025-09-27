@@ -2,17 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/level/citaChapultepec.rpy", line 376: expected ':' not found.
-    label chapultepec_preocupacion_pareja
-                                         ^
-
-File "game/level/citaChapultepec.rpy", line 381: if statement expects a non-empty block.
-    if retroalimentacion:
-                         ^
-
-File "game/level/citaChapultepec.rpy", line 385: expected statement.
-    else:
-        ^
+File "game/screens.rpy", line 166: end of line expected.
+    ypos gui.dialogue_ypos:
+                          ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Sat Sep 27 13:09:30 2025
+Sat Sep 27 14:07:06 2025
