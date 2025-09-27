@@ -1,6 +1,6 @@
 ﻿#personajes
 define narrador = Character(
-    "", what_color="#ffffff", 
+    None, what_color="#ffffff", 
     window_background=Frame("gui/narrador_textbox.png"))
 define novia = Character("Ximena", 
     window_background=Frame("gui/pareja_textbox_trans.png"))
@@ -15,11 +15,11 @@ define apodoNovio = "Charly"
 
 #variables
 default coleccionables = []
-default decisionesJugador = []
 default listaMito = []
 #[0] = violencias ejercidas por la pareja
 #[1] = violencias ejercidas por el jugador
-default listaViolencia = [[],[]]
+default listaViolenciaJugador = []
+default listaViolenciaPareja = []
 default listaPresion = []
 default jugador = Persona(nombre="???")
 default pareja = Persona(nombre="???")
@@ -31,6 +31,12 @@ image fondo_inicio = Movie(
 image seleccion_personaje = Movie(
     size=(2560,1600), play="images/seleccion_personaje.webm", loop = False, 
     image="images/seleccion_personaje.png")
+image cine_fondo = Movie(
+    size=(2560,1600), play="images/cine fondo.webm", loop = True)
+image caminata_chapultepec = Movie(
+    size=(2560,1600), play="images/caminata_chapultepec.webm", loop = False, 
+    image="images/caminata_chapultepec.png")
+
 image emocion_seriedad_Carlos = Movie(
     size=(2560,1600), play="images/emocion/Carlos/seriedad.webm", loop = True)
 image emocion_enojo_Carlos = Movie(
@@ -55,12 +61,6 @@ image oncahui_zoomin = Movie(
     size=(2560,1600), play="images/Salida.webm", loop = False)
 image creditos = Movie(
     size=(2560,1600), play="images/creditos.webm", loop = False)
-
-image cine_fondo = Movie(
-    size=(2560,1600), play="images/cine fondo.webm", loop = True)
-image caminata_chapultepec = Movie(
-    size=(2560,1600), play="images/caminata_chapultepec.webm", loop = False, 
-    image="images/caminata_chapultepec.png")
 
 #imagenes estaticas
 image chapultepec_fondo = "images/chapus fondo.png"
@@ -116,7 +116,7 @@ screen intro():
         yalign 0.5
         xsize 2300
         ysize 1300
-        padding (100, 30)
+        padding (100, 60)
         background Frame("gui/narrador_textbox.png")
         truncate_text (texto_intro):
             shrink_to_fit 10 adjust_line_spacing_to_fit -10
@@ -125,6 +125,7 @@ screen intro():
 
 label start:
 
+    jump eleccionPersonaje
     scene fondo_inicio
     narrador "¡Bienvenide! Te explicaré cómo funciona el juego."
     narrador "Vas a tomar el papel de uno de los personajes que se te 
@@ -136,7 +137,9 @@ label start:
         su relación."
     narrador "Sus decisiones las ayudarán a crecer o marchitarlas."
     hide planta_conjunto
-    narrador "También hay botones en la parte inferior de la pantalla que te llevan a los principales menús (aunque desde ahí también hay otros para guardar/cargar partida, ir al menú principal y más información del juego)"
+    narrador "También hay botones en la parte inferior de la pantalla que te 
+        llevan a los principales menús (aunque desde ahí también hay otros para 
+        guardar/cargar partida, ir al menú principal y más información del juego)"
     narrador "El de progreso es para que veas es el estado actual de las plantas, los coleccionables que has ganado y para revisitar los dialogos."
     narrador "El de opciones te permite cambiar la letra, la velocidad del texto mostrado, volumen de la música y más. No dudes en personalizar tu experiencia de juego en cualquier momento."
     if renpy.variant("pc"):
@@ -147,20 +150,20 @@ label start:
 
 label eleccionPersonaje:
     
-    narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a 
-        conocerlos." 
-    show cine_fondo
-    narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a 
-        que empiece la película."
-    novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen 
-        conseguirlos, escuché que había pocos."
-    novio "Es que estuve pegado a la compu desde la preventa, sabía que tenías 
-        muchas ganas de verla. Lo único malo es que vino mucha gente y solo 
-        alcanzamos unas palomitas chicas..."
-    novia "No te preocupes, me encanta compartir las palomitas y más si es 
-        contigo."
-    novio "Gracias amor, me haces muy feliz Xime."
-    hide cine_fondo
+    # narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a 
+    #     conocerlos." 
+    # show cine_fondo
+    # narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a 
+    #     que empiece la película."
+    # novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen 
+    #     conseguirlos, escuché que había pocos."
+    # novio "Es que estuve pegado a la compu desde la preventa, sabía que tenías 
+    #     muchas ganas de verla. Lo único malo es que vino mucha gente y solo 
+    #     alcanzamos unas palomitas chicas..."
+    # novia "No te preocupes, me encanta compartir las palomitas y más si es 
+    #     contigo."
+    # novio "Gracias amor, me haces muy feliz Xime."
+    # hide cine_fondo
     show seleccion_personaje
     show screen boton_eleccion_personaje
     narrador "Ahora que los conoces un poco, elige el personaje con el que 
@@ -178,7 +181,7 @@ label seleccionNovia:
         window_background=Frame("gui/pareja_textbox_trans.png")))
     narrador "Has seleccionado a [jugador.nombre]"
     hide seleccion_personaje
-    jump citaChapultepec
+    jump cita_chapultepec
 
 
 label seleccionNovio:
@@ -192,15 +195,8 @@ label seleccionNovio:
         window_background=Frame("gui/pareja_textbox_trans.png")))
     narrador "Has seleccionado a [jugador.nombre]"
     hide seleccion_personaje
-    jump citaChapultepec
+    jump telefono_conversacion#citaChapultepec
 
-
-label eleccionCita:
-
-    show mapa
-    narrador "Elige el lugar de la cita.\nDa click o toca en la 
-        pantalla para minimizar este mensaje."
-    #jump citasMapa
 
 label finalJuego:
 

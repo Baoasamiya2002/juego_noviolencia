@@ -578,9 +578,9 @@ init -1 python:
 ## Screen: Phone Messages
 ## -----------------------------------------------------
 # phone relevant! initial phone position and size 
-default phone_zoom = 1.5
+default phone_zoom = 1.55
 default phone_x = 0.5
-default phone_y = 0.5
+default phone_y = 0.49
 transform phone_position(p_zoom, p_x, p_y):
     anchor(0.5, 0.5) 
     pos(p_x, p_y)
@@ -621,40 +621,31 @@ screen phone_ui():
         add get_phone_theme_value("screen_background_image")
         add get_phone_theme_value("header_background_image")
         add get_phone_theme_value("base_background_image")
-        # if in a chat, add a back button
-        # if current_phone_view != "channel_list" and disable_phone_menu_switch == False:
-        #         $ back_icon_path = get_phone_theme_value("back_button_notif_image") if has_any_notification_not_active() else get_phone_theme_value("back_button_idle_image")
-        #         imagebutton:
-        #             xalign 0.15
-        #             yalign 0.1075
-        #             idle back_icon_path
-        #             hover back_icon_path
-        #             focus_mask True
-        #             xysize (75, 75)
-        #             action SetVariable("current_phone_view", "channel_list")
-        # viewport to hold messages for scrolling
         vbox:
             id "phone_viewport"
-            xsize 450
-            ysize 775
-            yalign 0.325
+            xsize 457
+            ysize 795
+            yalign 0.490
             xalign 1.45
             vbox:
                 spacing 10
                 # display at the top of the screen the name of the current chat (or title for list)
                 if current_phone_view != "channel_list":
-                    null height 5
-                    add phone_channel_data[current_phone_view]["icon"]:
-                            xalign 0.5
-                            xysize (50, 50)
-                    text phone_channel_data[current_phone_view]["display_name"]:
-                        style "phone_header_style"
-                        ypos -5
+                    null height 31
+                    hbox:
+                        add phone_channel_data[current_phone_view]["icon"]:
+                                ypos 0.6
+                                xpos 1.0
+                                xysize (50, 50)
+                        text phone_channel_data[current_phone_view]["display_name"]:
+                            style "phone_header_style"
+                            yalign 2.0
+                            xpos 1.2
                 else:
                     null height 40
                     text phone_config["channels_title"]:
                         style "phone_header_style"
-                null height 19
+                null height 31
                 # main content
                 if current_phone_view == "channel_list":
                     $ yadj = ui.adjustment()

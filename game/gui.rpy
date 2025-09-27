@@ -97,7 +97,7 @@ define gui.game_menu_background = "gui/game_menu.png"
 ## línea cada vez.
 
 ## Altura de la caja de texto que contiene el diálogo.
-define gui.textbox_height = 480
+define gui.textbox_height = None
 
 ## Colocación vertical de la caja de texto en la pantalla. 0.0 para la parte
 ## superior, 0.5 para el centro y 1.0 para la parte inferior.
@@ -110,7 +110,7 @@ define gui.textbox_borders=Borders(3, 3, 3, 3)
 ## Puede ser el númerode píxels desde la esquina superior izquierda, o 0.5 para
 ## centrar.
 define gui.name_xpos = 120
-define gui.name_ypos = 30
+define gui.name_ypos = -20
 
 ## La alineación horizontal del nombre del personaje. (0.0 es izquierda, 0.5 es
 ## centro, 1.0 es derecha).
@@ -123,7 +123,7 @@ define gui.namebox_height = None
 
 ## Los bordes de la caja que contiene el nombre del personaje, en orden:
 ## izquierda, arriba, derecha, abajo.
-define gui.namebox_borders = Borders(2, 2, 2, 2)
+define gui.namebox_borders = Borders(0, 0, 0, 0)
 
 ## Si es 'True, el fondo de la caja del nombre será en mosaico, si es 'False',
 ## el fondo, si la caja del nombre es escalada.
@@ -133,10 +133,10 @@ define gui.namebox_tile = False
 ## Colocación del diálogo relativa a la caja de texto. Puede ser el número de
 ## píxels relativos a la esquina superor izquierda o 0.5 para centrar.
 define gui.dialogue_xpos = 130
-define gui.dialogue_ypos = 130
+define gui.dialogue_ypos = 0
 
 ## La anchura máxima del texto del diálogo, en píxels.
-define gui.dialogue_width = 2115
+define gui.dialogue_width = 2059
 
 ## La alineación horizontal del texto del diálogo. (0.0 es izquierda, 0.5 es
 ## centro, 1.0 es derecha).

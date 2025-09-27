@@ -98,18 +98,19 @@ style frame:
 
 screen say(who, what):
 
-    window:
+    frame:
     
         id "window"
 
-        if who is not None:
+        vbox:
+            if who is not None:
 
-            window:
-                id "namebox"
-                style "namebox"
-                text who id "who"
+                window:
+                    id "namebox"
+                    style "namebox"
+                    text who id "who"
 
-        text what id "what"
+            text what id "what"
 
 
 ## Permite que el 'namebox' pueda ser estilizado en el objeto 'Character'.
@@ -131,11 +132,10 @@ style window:
     xalign 0.5
     xfill True
     yalign gui.textbox_yalign
-    ysize gui.textbox_height
     left_margin 50
     right_margin 50
-
-    background Frame("gui/textbox.png", gui.textbox_borders)
+    padding (0, 50)
+    background Frame("gui/textbox.png")
 
 
 style namebox:
@@ -932,8 +932,6 @@ screen preferences():
                 
                 vbox:
 
-                    style_prefix "quick"
-                    xsize 930
                     null height (4 * gui.pref_spacing)
 
                     textbutton _("Regresar a configuración inicial") action [
