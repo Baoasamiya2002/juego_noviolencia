@@ -26,7 +26,7 @@ define config.check_conflicting_properties = True
 ## Los colores del texto de la interfaz
 
 ## El color enfatizado usado en la interfaz para subrayar texto.
-define gui.accent_color = '#532a00'
+define gui.accent_color = '#421F4E'
 
 ## El color del botón de texto cuando no está seleccionado ni enfocado.
 define gui.idle_color = '#707070'
@@ -35,7 +35,7 @@ define gui.idle_color = '#707070'
 define gui.idle_small_color = '#000000b2'
 
 ## El color usado en botones y barras que ganan foco.
-define gui.hover_color = '#cc6600'
+define gui.hover_color = '#121840'
 
 ## El color del botón de texto seleccionado pero no enfocado. Un botón está
 ## seleccionado si indica el valor actual de la pantalla o preferencia.
@@ -81,7 +81,7 @@ define gui.label_text_size = 60
 define gui.notify_text_size = 40
 
 ## El tamaño del título del juego.
-define gui.title_text_size = 100
+define gui.title_text_size = 150
 
 
 ## Menú principal y menús del juego ############################################
@@ -142,7 +142,6 @@ define gui.dialogue_width = 2040
 ## centro, 1.0 es derecha).
 define gui.dialogue_text_xalign = 0.0
 
-
 ## Botones #####################################################################
 ##
 ## Estas variables, junto con las imágenes de 'gui/button', controla el aspecto
@@ -191,7 +190,7 @@ define gui.confirm_button_text_xalign = 0.5
 
 define gui.page_button_borders = Borders(20, 8, 20, 8)
 
-#define gui.quick_button_borders = Borders(20, 8, 20, 0)
+#define gui.quick_button_borders = Borders(30, 8, 30, 0)
 define gui.quick_button_text_size = 56.25
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color

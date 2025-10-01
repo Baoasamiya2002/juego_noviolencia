@@ -254,12 +254,14 @@ label cita_chapultepec:
 
 label retroalimentacion_pareja_chapultepec:
     
-    scene chapultepec_fondo
+    scene fondo_inicio
     narrador "Bueno... no creo que esa haya sido la cita que planearon, ¿verdad?"    
-    $ jugador.estadoPlanta == "marchita"
+    $ jugador.estadoPlanta = "marchita"
     show planta_marchita:
         yalign .3
-        xalign .1
+        xalign .5
+        xsize 950
+        ysize 900
     narrador "Lamentablemente [pareja.nombre] dañó tu planta, veamos cuándo pasó:"
     hide planta_marchita
     $ retroalimentacion = True
@@ -267,7 +269,6 @@ label retroalimentacion_pareja_chapultepec:
     $ i = 0
     while i < len(listaViolenciaPareja):
         $ renpy.call(listaViolenciaPareja[i])
-        $ reiniciarCelular()
         $ i += 1
         
     scene chapultepec_fondo
@@ -294,6 +295,8 @@ label retroalimentacion_jugador_chapultepec:
         show planta_marchita:
             yalign .3
             xalign .5
+            xsize 950
+            ysize 900
         narrador "La planta de [pareja.nombre] se siente un poco enferma, 
             veamos cuándo pasó:"
         hide planta_marchita
@@ -301,7 +304,6 @@ label retroalimentacion_jugador_chapultepec:
         $ i = 0
         while i < len(listaViolenciaJugador):
             $ renpy.call(listaViolenciaJugador[i])
-            $ reiniciarCelular()
             $ i += 1
         
         scene chapultepec_fondo
@@ -324,6 +326,8 @@ label retroalimentacion_jugador_chapultepec:
         show planta_florece:
             yalign .3
             xalign .5
+            xsize 950
+            ysize 900
         narrador "La planta de [pareja.nombre] ha comenzado a florecer."
         hide planta_florece
 
@@ -335,7 +339,6 @@ label retroalimentacion_jugador_chapultepec:
             $ i = 0
             while i < len(listaPresion):
                 $ renpy.call(listaPresion[i])
-                $ reiniciarCelular()
                 $ i += 1
                 
             scene chapultepec_fondo
@@ -364,7 +367,6 @@ label retroalimentacion_mito_chapultepec:
         $ i = 0
         while i < len(listaMito):
             $ renpy.call(listaMito[i])
-            $ reiniciarCelular()
             $ i += 1
             
         scene chapultepec_fondo

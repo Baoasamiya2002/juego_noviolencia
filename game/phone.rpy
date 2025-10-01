@@ -69,9 +69,9 @@ init -1 python:
         "group_joined": "{participant} joined the group.",
         "group_left": "{participant} left the group.",
         # UI Configurations
-        "message_font_size": 34,
-        "choice_font_size": 34,
-        "timestamp_font_size": 30,
+        "message_font_size": 51,
+        "choice_font_size": 51,
+        "timestamp_font_size": 45,
         "auto_scroll": True,
         "show_sender_in_preview": True,
         "default_icon": "phone/icon.png",
@@ -82,7 +82,7 @@ init -1 python:
         "message_padding": 0.025,
         "preview_max_length": 25,
         "emojis": {
-            "size": 42,
+            "size": 63,
         },
         "phone_theme": "light",  # default theme
         "light": {
@@ -238,7 +238,7 @@ init -1 python:
             channel_latest_global_id[channel_id] = 0
 
     # add messages to a channel in the phone (kind 0 = normal message, kind 1 = timestamp, kind 2 = photo, kind 3 = has emojis)
-    def send_phone_message(sender, message_text, channel_name, message_kind=0, summary_alt="none", image_x=320, image_y=320, do_pause=True):
+    def send_phone_message(sender, message_text, channel_name, message_kind=0, summary_alt="none", image_x=480, image_y=480, do_pause=True):
         """ Sends a message to a specific phone channel and updates the UI.
             Args:
                 sender (str): The name of the character sending the message.
@@ -578,9 +578,9 @@ init -1 python:
 ## Screen: Phone Messages
 ## -----------------------------------------------------
 # phone relevant! initial phone position and size 
-default phone_zoom = 1.55
-default phone_x = 0.5
-default phone_y = 0.49
+default phone_zoom = 1.0
+default phone_x = 0.425
+default phone_y = 0.54
 transform phone_position(p_zoom, p_x, p_y):
     anchor(0.5, 0.5) 
     pos(p_x, p_y)
@@ -615,18 +615,17 @@ screen phone_ui():
         at phone_position(phone_zoom, phone_x, phone_y)
         xalign 0.5
         yalign 0.5 
-        xsize 600
-        ysize 1000
+        xsize 900
         # screen goes first as base will cover up some of it
         add get_phone_theme_value("screen_background_image")
         add get_phone_theme_value("header_background_image")
         add get_phone_theme_value("base_background_image")
         vbox:
             id "phone_viewport"
-            xsize 457
-            ysize 795
-            yalign 0.490
-            xalign 1.45
+            xsize 675
+            ysize 1192
+            yalign 0.4
+            xalign -0.6
             vbox:
                 spacing 10
                 # display at the top of the screen the name of the current chat (or title for list)
@@ -636,7 +635,7 @@ screen phone_ui():
                         add phone_channel_data[current_phone_view]["icon"]:
                                 ypos 0.6
                                 xpos 1.0
-                                xysize (50, 50)
+                                xysize (75, 75)
                         text phone_channel_data[current_phone_view]["display_name"]:
                             style "phone_header_style"
                             yalign 2.0
@@ -707,7 +706,7 @@ screen phone_ui():
                     viewport:
                         id "message_viewport" 
                         xfill True
-                        ysize 750
+                        ysize 979
                         yadjustment yadj
                         scrollbars "vertical"
                         mousewheel True
@@ -789,7 +788,7 @@ screen phone_ui():
                                             else:
                                                 xpos msg_padding xanchor 0.0
                                                 padding (21, 10, 10, 10)
-                                            xmaximum 360
+                                            xmaximum 540
                                             if msg_id == latest_channel_id and not channel_seen_latest[current_phone_view]:
                                                 at message_appear(anim_direction)
                                                 $ channel_seen_latest[current_phone_view] = True
@@ -808,7 +807,7 @@ screen phone_ui():
                                             else:
                                                 xpos msg_padding xanchor 0.0
                                                 padding (21, 10, 10, 10)
-                                            xmaximum 360
+                                            xmaximum 540
                                             if msg_id == latest_channel_id and not channel_seen_latest[current_phone_view]:
                                                 at message_appear(anim_direction)
                                                 $ channel_seen_latest[current_phone_view] = True
@@ -817,7 +816,7 @@ screen phone_ui():
                                                     $ yadj.value = (yadj.range + 1000)
                                             hbox:
                                                 spacing 5
-                                                xmaximum 340
+                                                xmaximum 510
                                                 text replace_emojis(message_text):
                                                     size phone_config["message_font_size"]
                                                     color text_colour
@@ -854,7 +853,7 @@ screen phone_ui():
                             null height 30
 
 style phone_header_style is default:
-    size 28
+    size 42
     color get_phone_theme_value("header_text_colour") 
     xalign 0.5
 

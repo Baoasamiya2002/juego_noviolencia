@@ -12,6 +12,4 @@ Un vínculo que puede florecer... o marchitarse.
 
 Descubre a dónde pueden llevarte las elecciones que tomes.
 
-{i}¿Estás listo para atravesar las capas de Latencia?{/i}{/size}
-
-                           {size=+25}¡Da click o toca tu pantalla!{/size}{/color}
+{i}¿Estás listo para atravesar las capas de Latencia?{/i}{/size}{/color}

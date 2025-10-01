@@ -1,29 +1,46 @@
-﻿#personajes
+﻿init python:
+
+    def modificarPosImage(ruta):
+
+        imagen_ancho, imagen_alto = renpy.image_size(ruta)
+        return Composite(
+            (imagen_ancho, imagen_alto),
+            (0, -15),
+            Image(ruta)
+        )
+
+image boton_opciones = modificarPosImage("gui/button/dialogo/opciones.png")
+image boton_config = modificarPosImage("gui/button/dialogo/config.png")
+
+default text_cps_preview = PreviewSlowText(
+    "{color=#000000}¡Bienvenide! Este juego se centra en la lectura. Modifica "
+    "estas y otras opciones para tener la mejor experiencia.{/color}")
+
+#personajes
 define narrador = Character(
     None, what_color="#ffffff", 
     window_background=Frame("gui/narrador_textbox.png"))
 define novia = Character("Ximena", 
     window_background=Frame("gui/pareja_textbox_trans.png"))
 define novio = Character("Carlos", 
-    window_background=Frame("gui/jugador_textbox_trans.png"))#
+    window_background=Frame("gui/pareja_textbox_trans.png"))#
 define oncahui = Character("Oncahui", 
     window_background=Frame("gui/oncahui_textbox.png"))
 
 #constantes
-define apodoNovia = "Xime"
-define apodoNovio = "Charly"
+define APODO_NOVIA = "Xime"
+define APODO_NOVIO = "Charly"
 
 #variables
 default coleccionables = []
 default listaMito = []
-#[0] = violencias ejercidas por la pareja
-#[1] = violencias ejercidas por el jugador
 default listaViolenciaJugador = []
 default listaViolenciaPareja = []
 default listaPresion = []
 default jugador = Persona(nombre="???")
 default pareja = Persona(nombre="???")
 default retroalimentacion = False
+default persistent.Config = True
 
 #videos
 image fondo_inicio = Movie(
@@ -65,9 +82,15 @@ image creditos = Movie(
 #imagenes estaticas
 image chapultepec_fondo = "images/chapus fondo.png"
 image planta_conjunto = "images/planta/capullo_conjunto.png"
-image flor_capullo = "images/planta/capullo.png"
+image planta_capullo = "images/planta/capullo.png"
+
+
 image planta_florece = "images/planta/florece.png"
-image planta_marchita = "images/planta/marchita.png"
+image planta_florece = Movie(play="images/planta/florece.webm", loop = True)
+image planta_marchita = Movie(play="images/planta/marchita.webm", loop = True)
+
+
+
 image boton_seleccion_ximena = "images/boton_seleccion_ximena.png"
 image boton_seleccion_carlos = "images/boton_seleccion_carlos.png"
 image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
@@ -105,10 +128,54 @@ label splashscreen:
 
     play music musica_fondo loop fadein 2.0 volume 1.0
     scene fondo_inicio
+    
+    if persistent.Config:
+
+        show screen text_preview
+        pause
+        hide screen text_preview
+
+        if renpy.variant("mobile"):
+
+            $ instruccion = "Toca la pantalla"
+        else:
+            $ instruccion = "Da click"
+            
+        narrador "Estas opciones las puedes volver a modificar en el menú de 
+            {image=boton_config} en {image=boton_opciones}. Ahora, ¡[instruccion] 
+            siempre que quieras continuar!"
+        $ persistent.Config = False
+    
     show screen intro
     pause
     hide screen intro
     return
+
+screen text_preview():
+
+    dismiss action NullAction()
+    
+    frame:
+        style "text_preview"
+        vbox:
+            xalign 0.5
+            yalign 0.5
+            xsize 2300
+            style "say_dialogue"
+            add text_cps_preview
+
+    frame:
+        style "preferences_intro"
+        use preferences("Intro")
+
+    vbox:
+        ypos 0.85
+        xpos 0.68
+        imagebutton:                
+            idle "gui/button/menu_principal/continuar.png" 
+            hover "gui/button/menu_principal/continuar_hover.png"
+            alt "Continuar" 
+            action Return()
 
 screen intro():
     frame:
@@ -125,9 +192,9 @@ screen intro():
 
 label start:
 
-    jump eleccionPersonaje
     scene fondo_inicio
-    narrador "¡Bienvenide! Te explicaré cómo funciona el juego."
+    narrador "¡Hola! Te explicaré cómo funciona el juego."
+
     narrador "Vas a tomar el papel de uno de los personajes que se te 
         mencionaron anteriormente, [novia.name] o [novio.name]."
     show planta_conjunto:
@@ -137,15 +204,20 @@ label start:
         su relación."
     narrador "Sus decisiones las ayudarán a crecer o marchitarlas."
     hide planta_conjunto
-    narrador "También hay botones en la parte inferior de la pantalla que te 
-        llevan a los principales menús (aunque desde ahí también hay otros para 
-        guardar/cargar partida, ir al menú principal y más información del juego)"
-    narrador "El de progreso es para que veas es el estado actual de las plantas, los coleccionables que has ganado y para revisitar los dialogos."
-    narrador "El de opciones te permite cambiar la letra, la velocidad del texto mostrado, volumen de la música y más. No dudes en personalizar tu experiencia de juego en cualquier momento."
+    narrador "También hay botones en la parte superior de la pantalla que te 
+        llevan a los principales menús, ¡No dudes en revisarlos ante cualquier duda!"
+    narrador "El de progreso es para que veas es el estado actual de las plantas, 
+        los coleccionables que has ganado y para revisitar los dialogos."
+    narrador "El de opciones te permite guardar/cargar tu partida, conocer más información del juego y recursos de ayuda, entre más opciones."
     if renpy.variant("pc"):
-        narrador "El de salir, como su nombre, cierra el juego. ¡No olvides guardar antes!"
-    narrador "Y finalmente, el de ¡quitar! te da una salida de \"emergencia\" si en tu entorno alguien se te acerca y no quieres dar explicaciones. Te llevará a unas conferencias ofrecidas por la UPAV y silenciará la música del juego."
-    narrador "Queremos que juegues con total comidad y honestidad, ninguna de tus respuestas serán grabadas."
+        narrador "El de salir, como su nombre, cierra el juego. ¡No olvides 
+            guardar antes!"
+    narrador "Y finalmente, el de ¡quitar! te da una salida de \"emergencia\" si 
+        en tu entorno alguien se te acerca y quieres proteger tu privacidad al jugar. Te 
+        llevará a unas conferencias ofrecidas por la UPAV y silenciará la música 
+        del juego."
+    narrador "Queremos que juegues con total comidad y honestidad. Ninguna de tus 
+        respuestas serán grabadas."
 
 
 label eleccionPersonaje:
@@ -173,12 +245,18 @@ label eleccionPersonaje:
 label seleccionNovia:
 
     hide screen boton_eleccion_personaje
-    $ jugador = Persona(novia.name, apodoNovia, Character(
+    $ jugador = Persona(
         novia.name, 
-        window_background=Frame("gui/jugador_textbox_trans.png")))
-    $ pareja = Persona(novio.name, apodoNovio, Character(
+        APODO_NOVIA, 
+        Character(
+            novia.name, 
+            window_background=Frame("gui/jugador_textbox_trans.png")))
+    $ pareja = Persona(
         novio.name, 
-        window_background=Frame("gui/pareja_textbox_trans.png")))
+        APODO_NOVIO, 
+        Character(
+            novio.name, 
+            window_background=Frame("gui/pareja_textbox_trans.png")))
     narrador "Has seleccionado a [jugador.nombre]"
     hide seleccion_personaje
     jump cita_chapultepec
@@ -187,15 +265,21 @@ label seleccionNovia:
 label seleccionNovio:
 
     hide screen boton_eleccion_personaje
-    $ jugador = Persona(novio.name, apodoNovio, Character(
+    $ jugador = Persona(
         novio.name, 
-        window_background=Frame("gui/jugador_textbox_trans.png")))
-    $ pareja = Persona(novia.name, apodoNovia, Character(
+        APODO_NOVIO, 
+        Character(
+            novio.name, 
+            window_background=Frame("gui/jugador_textbox_trans.png")))
+    $ pareja = Persona(
         novia.name, 
-        window_background=Frame("gui/pareja_textbox_trans.png")))
+        APODO_NOVIA, 
+        Character(
+            novia.name, 
+            window_background=Frame("gui/pareja_textbox_trans.png")))
     narrador "Has seleccionado a [jugador.nombre]"
     hide seleccion_personaje
-    jump telefono_conversacion#citaChapultepec
+    jump cita_chapultepec
 
 
 label finalJuego:
@@ -208,7 +292,7 @@ label finalJuego:
 
 
 label evaluacion:
-    window hide diss
+
     scene black
     show oncahui_zoomout with fade
     oncahui "¡Ya terminé el juego!"
@@ -272,7 +356,7 @@ label evaluacion:
 
     oncahui "Bueno, voy a terminar de ver los créditos del juego y apreciar el 
         esfuerzo de todos los involucrados"
-    #hide oncahui    
+
     hide oncahui_zoomout
     show oncahui_zoomin
     pause 9.0

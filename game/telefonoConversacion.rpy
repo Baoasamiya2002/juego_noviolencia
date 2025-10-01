@@ -6,6 +6,10 @@ init python:
 label telefono_conversacion:
 
     $ retroalimentacion = False
+    $ listaMito = []
+    $ listaViolenciaJugador = []
+    $ listaViolenciaPareja = []
+    $ listaPresion = []
 
     scene black
 
@@ -15,7 +19,11 @@ label telefono_conversacion:
 
     show screen phone_ui
 
-    $ send_phone_message(pareja.nombre, "Hola amor <emoji_corazon>, qué haces? <emoji_pensativo>", "pareja_dm", 3)
+    $ send_phone_message(
+        pareja.nombre, 
+        (
+            "Hola amor <emoji_corazon>, qué haces? "
+            "<emoji_pensativo>"), "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Hablando contigo haha", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Y tú??", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "x2 zkxjaj<emoji_risa>", "pareja_dm", 3)
@@ -37,20 +45,34 @@ label telefono_conversacion:
         $ send_phone_message(pareja.nombre, "Del sólo pensar que te grité quiero llorar", "pareja_dm", 3)
 
         $ present_phone_choices([
-            ("Él y sus \"sentimientos\"...", Call("telefono_humillar_vulnerabilidad")), 
-            ("Pero fue mi culpa...", Call("telefono_culparse")), 
-            ("Mmm y en otro tema...", Call("telefono_ignorar_violencia")), 
-            ("Disculpas aceptadas", Call("telefono_perdonar_violencia"))], "pareja_dm")
+            (
+                "Él y sus \"sentimientos\"...", 
+                Call("telefono_humillar_vulnerabilidad")), 
+            (
+                "Pero fue mi culpa...", 
+                Call("telefono_culparse")), 
+            (
+                "Mmm y en otro tema...", 
+                Call("telefono_ignorar_violencia")), 
+            (
+                "Disculpas aceptadas", 
+                Call("telefono_perdonar_violencia"))], "pareja_dm")
     else:
 
         $ present_phone_choices([
-            ("Pero fue mi culpa...", Call("telefono_culparse")), 
-            ("Mmm y en otro tema...", Call("telefono_ignorar_violencia")), 
-            ("Disculpas aceptadas", Call("telefono_perdonar_violencia"))], "pareja_dm")
+            (
+                "Pero fue mi culpa...", 
+                Call("telefono_culparse")), 
+            (
+                "Mmm y en otro tema...", 
+                Call("telefono_ignorar_violencia")), 
+            (
+                "Disculpas aceptadas", 
+                Call("telefono_perdonar_violencia"))], "pareja_dm")
     
     $ send_phone_message(pareja.nombre, "De verdad te amo mucho [jugador.apodo]", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Muchomucho?", "pareja_dm", 3)
-    $ send_phone_message(pareja.nombre, "Muchomuchomuchomucho muasdfasdcasodcxk!", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, "Mucho muchomu chomuch o muasd fasdca sodcxk!", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "<emoji_risa>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "HAHAH", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "<emoji_hablando><emoji_corazon_fuego><emoji_corazon_fuego>", "pareja_dm", 3)
@@ -118,8 +140,12 @@ label telefono_conversacion:
         call telefono_proteccion_masculina
 
     $ present_phone_choices([
-        ("Buscar eliminar la foto y agradecer", Call("telefono_eliminar_foto")), 
-        ("Dejar la foto y terminar el tema, como sea", Call("telefono_mantener_foto"))], "pareja_dm")
+        (
+            "Buscar eliminar la foto y agradecer", 
+            Call("telefono_eliminar_foto")), 
+        (
+            "Dejar la foto y terminar el tema, como sea", 
+            Call("telefono_mantener_foto"))], "pareja_dm")
     
     jump retroalimentacion_pareja_telefono
 
@@ -133,7 +159,9 @@ label retroalimentacion_pareja_telefono:
     $ jugador.estadoPlanta == "marchita"
     show planta_marchita:
         yalign .3
-        xalign .1
+        xalign .5
+        xsize 950
+        ysize 900
     narrador "Lamentablemente [pareja.nombre] volvió a dañar tu planta, veamos cuándo pasó:"
     hide planta_marchita
     hide fondo_inicio
@@ -173,6 +201,8 @@ label retroalimentacion_jugador_telefono:
         show planta_marchita:
             yalign .3
             xalign .5
+            xsize 950
+            ysize 900
         narrador "La planta de [pareja.nombre] se siente un poco enferma, veamos cuándo pasó:"
         hide planta_marchita
         hide fondo_inicio
@@ -204,6 +234,8 @@ label retroalimentacion_jugador_telefono:
         show planta_florece:
             yalign .3
             xalign .5
+            xsize 950
+            ysize 900
         narrador "La planta de [pareja.nombre] ha comenzado a florecer."
         hide planta_florece
 
@@ -265,7 +297,11 @@ label retroalimentacion_mito_telefono:
 
 label telefono_humillar_vulnerabilidad:
         
-    $ send_phone_message(phone_config["phone_player_name"], "Mm llorar? <emoji_alarma><emoji_robot>falla en el sistema, peligro peligro haha", "pareja_dm", 3)
+    $ send_phone_message(
+        phone_config["phone_player_name"], 
+        (
+            "Mm llorar? <emoji_alarma><emoji_robot>falla en el sistema, peligro " 
+            "peligro haha"), "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Entiendo lo del enojo pero tampoco inventes <emoji_risa_nerviosa>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Si jaj.. fue mucho verdad?<emoji_medio_triste> lo siento...", "pareja_dm", 3)
 

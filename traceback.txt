@@ -1,10 +1,71 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/screens.rpy", line 149, in <module>
-    padding gui.namebox_borders.padding
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'padding'
+  File "renpy/style.pyx", line 808, in renpy.style.rebuild
+  File "game/screens.rpy", line 1182, in prepare_screen
+    screen history():
+  File "game/screens.rpy", line 1182, in prepare
+    screen history():
+  File "game/screens.rpy", line 1189, in prepare
+    use game_menu(_("Progreso")):
+  File "game/screens.rpy", line 1189, in prepare
+    use game_menu(_("Progreso")):
+  File "game/screens.rpy", line 1191, in prepare
+    hbox:
+  File "game/screens.rpy", line 1191, in prepare
+    hbox:
+  File "game/screens.rpy", line 1193, in prepare
+    vbox:
+  File "game/screens.rpy", line 1193, in prepare
+    vbox:
+  File "game/screens.rpy", line 1195, in prepare
+    hbox:
+  File "game/screens.rpy", line 1195, in prepare
+    hbox:
+  File "game/screens.rpy", line 1203, in prepare
+    vbox:
+  File "game/screens.rpy", line 1203, in prepare
+    vbox:
+  File "game/screens.rpy", line 1208, in prepare
+    add DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]") ysize 450 xsize 400
+  File "game/screens.rpy", line 1208
+    DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "game/screens.rpy", line 1182, in prepare_screen
+    screen history():
+  File "game/screens.rpy", line 1182, in prepare
+    screen history():
+  File "game/screens.rpy", line 1189, in prepare
+    use game_menu(_("Progreso")):
+  File "game/screens.rpy", line 1189, in prepare
+    use game_menu(_("Progreso")):
+  File "game/screens.rpy", line 1191, in prepare
+    hbox:
+  File "game/screens.rpy", line 1191, in prepare
+    hbox:
+  File "game/screens.rpy", line 1193, in prepare
+    vbox:
+  File "game/screens.rpy", line 1193, in prepare
+    vbox:
+  File "game/screens.rpy", line 1195, in prepare
+    hbox:
+  File "game/screens.rpy", line 1195, in prepare
+    hbox:
+  File "game/screens.rpy", line 1203, in prepare
+    vbox:
+  File "game/screens.rpy", line 1203, in prepare
+    vbox:
+  File "game/screens.rpy", line 1208, in prepare
+    add DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]") ysize 450 xsize 400
+  File "game/screens.rpy", line 1208
+    DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -23,32 +84,154 @@ Traceback (most recent call last):
   File "renpy/common/00start.rpy", line 83, in _init_language
     renpy.change_language(language, force=True)
     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/translation/__init__.py", line 835, in change_language
-    run_blocks()
-    ~~~~~~~~~~^^
-  File "renpy/translation/__init__.py", line 790, in run_blocks
-    new_change_language(tl, language, changed)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/translation/__init__.py", line 740, in new_change_language
-    i.apply()
-    ~~~~~~~^^
-  File "renpy/ast.py", line 2668, in apply
-    value = renpy.python.py_eval(expr)
-            ~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "renpy/python.py", line 1292, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1285, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 149, in <module>
-    padding gui.namebox_borders.padding
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'padding'
+  File "renpy/translation/__init__.py", line 841, in change_language
+    renpy.style.rebuild()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "renpy/style.pyx", line 808, in renpy.style.rebuild
+  File "renpy/display/screen.py", line 1035, in prepare_screens
+    s.ast.prepare_screen()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "game/screens.rpy", line 1182, in prepare_screen
+    screen history():
+  File "game/screens.rpy", line 1182, in prepare
+    screen history():
+  File "game/screens.rpy", line 1189, in prepare
+    use game_menu(_("Progreso")):
+  File "game/screens.rpy", line 1189, in prepare
+    use game_menu(_("Progreso")):
+  File "game/screens.rpy", line 1191, in prepare
+    hbox:
+  File "game/screens.rpy", line 1191, in prepare
+    hbox:
+  File "game/screens.rpy", line 1193, in prepare
+    vbox:
+  File "game/screens.rpy", line 1193, in prepare
+    vbox:
+  File "game/screens.rpy", line 1195, in prepare
+    hbox:
+  File "game/screens.rpy", line 1195, in prepare
+    hbox:
+  File "game/screens.rpy", line 1203, in prepare
+    vbox:
+  File "game/screens.rpy", line 1203, in prepare
+    vbox:
+  File "game/screens.rpy", line 1208, in prepare
+    add DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]") ysize 450 xsize 400
+  File "renpy/pyanalysis.py", line 913, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^   
+  File "renpy/pyanalysis.py", line 895, in ast_eval_literal
+    expr = py_compile(expr, "eval", ast_node=True)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1247, in py_compile
+    raise e
+  File "renpy/python.py", line 1177, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/screens.rpy", line 1208
+    DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "renpy/bootstrap.py", line 376, in bootstrap
+    renpy.main.main()
+    ~~~~~~~~~~~~~~~^^
+  File "renpy/main.py", line 614, in main
+    run(restart)
+    ~~~^^^^^^^^^
+  File "renpy/main.py", line 137, in run
+    renpy.execution.run_context(True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "renpy/execution.py", line 1022, in run_context
+    context.run()
+    ~~~~~~~~~~~^^
+  File "renpy/common/00start.rpy", line 201, in script
+    python:
+  File "renpy/common/00start.rpy", line 201, in script
+    python:
+  File "renpy/display/error.py", line 135, in report_exception
+    renpy.game.invoke_in_new_context(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        call_exception_screen,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        ignore_action=ignore_action,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "renpy/game.py", line 301, in invoke_in_new_context
+    return callable(*args, **kwargs)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "renpy/display/error.py", line 44, in call_exception_screen
+    return renpy.ui.interact(mouse="screen", type="screen", suppress_overlay=True, suppress_underlay=True)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/ui.py", line 304, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/core.py", line 2219, in interact
+    repeat, rv = self.interact_core(
+                 ~~~~~~~~~~~~~~~~~~^
+        preloads=preloads,
+        ^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )  # type: ignore
+    ^                
+  File "renpy/display/core.py", line 2450, in interact_core
+    renpy.display.screen.prepare_screens()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "renpy/display/screen.py", line 1035, in prepare_screens
+    s.ast.prepare_screen()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "game/screens.rpy", line 1182, in prepare_screen
+    screen history():
+  File "game/screens.rpy", line 1182, in prepare
+    screen history():
+  File "game/screens.rpy", line 1189, in prepare
+    use game_menu(_("Progreso")):
+  File "game/screens.rpy", line 1189, in prepare
+    use game_menu(_("Progreso")):
+  File "game/screens.rpy", line 1191, in prepare
+    hbox:
+  File "game/screens.rpy", line 1191, in prepare
+    hbox:
+  File "game/screens.rpy", line 1193, in prepare
+    vbox:
+  File "game/screens.rpy", line 1193, in prepare
+    vbox:
+  File "game/screens.rpy", line 1195, in prepare
+    hbox:
+  File "game/screens.rpy", line 1195, in prepare
+    hbox:
+  File "game/screens.rpy", line 1203, in prepare
+    vbox:
+  File "game/screens.rpy", line 1203, in prepare
+    vbox:
+  File "game/screens.rpy", line 1208, in prepare
+    add DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]") ysize 450 xsize 400
+  File "renpy/pyanalysis.py", line 913, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^   
+  File "renpy/pyanalysis.py", line 895, in ast_eval_literal
+    expr = py_compile(expr, "eval", ast_node=True)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1247, in py_compile
+    raise e
+  File "renpy/python.py", line 1177, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/screens.rpy", line 1208
+    DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Fri Sep 26 15:21:09 2025
+Wed Oct  1 12:03:45 2025

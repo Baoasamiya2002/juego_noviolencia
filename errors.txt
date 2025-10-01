@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 166: end of line expected.
-    ypos gui.dialogue_ypos:
-                          ^
+File "game/screens.rpy", line 1202: expected a keyword argument, colon, or end of line.
+    add DynamicImage()"planta_marchita" ysize 450 xsize 400
+                      ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Sat Sep 27 14:07:06 2025
+Wed Oct  1 11:59:44 2025

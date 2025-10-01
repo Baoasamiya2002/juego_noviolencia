@@ -36,6 +36,7 @@ style button_text is gui_text:
 
 style label_text is gui_text:
     properties gui.text_properties("label", accent=True)
+    font gui.name_text_font
 
 style prompt_text is gui_text:
     properties gui.text_properties("prompt")
@@ -127,9 +128,6 @@ style say_thought is say_dialogue
 style namebox is default
 style namebox_label is say_label
 
-style transparent: 
-    color "#ff0000ff"
-
 style window:
     xalign 0.5
     xfill True
@@ -138,6 +136,9 @@ style window:
     right_margin 200
     padding (0, 50)
     background Frame("gui/textbox.png")
+
+style window_image:
+    xalign 1.0
 
 style window_vbox:
     xalign 0.5
@@ -166,6 +167,23 @@ style say_dialogue:
 
     adjust_spacing False
 
+style text_preview:
+    xalign 0.5
+    xfill True
+    #yalign gui.textbox_yalign
+    ypos 0.01
+    left_margin 100
+    right_margin 100
+    ysize 240
+    padding (0, 20)
+    background Frame("gui/preview_textbox.png")
+
+style preferences_intro:
+    ypos 0.17    
+    left_margin 100
+    right_margin 100
+    ysize 1310
+    background Frame("gui/preview_textbox.png")
 ## Pantalla de introducción de texto ###########################################
 ##
 ## Pantalla usada para visualizar 'renpy.input'. El parámetro 'prompt' se usa
@@ -255,7 +273,7 @@ screen quick_menu():
 
             #textbutton _("Atrás") action Rollback() size_group "menu"
             textbutton _("Progreso") action ShowMenu('history') size_group "menu"
-            textbutton _("Opciones") action ShowMenu('preferences') size_group "menu"
+            textbutton _("Opciones") action ShowMenu('options') size_group "menu"
 
             if renpy.variant("pc"):
 
@@ -287,7 +305,7 @@ style quick_button_text is button_text
 style quick_button:
     properties gui.button_properties("quick_button")
     background "#ffffff"
-    xsize 250
+    #xsize 250
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
@@ -314,7 +332,7 @@ screen navigation():
             style_prefix "navigation"
 
             xalign 0.5
-            yalign 0.75
+            yalign 0.90
 
             spacing gui.navigation_spacing
 
@@ -328,79 +346,106 @@ screen navigation():
                     alt "Jugar"
                     action Start()
 
-            null height (1 * gui.pref_spacing)
+            null height (1.5 * gui.pref_spacing)
 
             hbox:
 
                 imagebutton:
                     idle "gui/button/menu_principal/cargar.png"
                     hover "gui/button/menu_principal/cargar_hover.png"
+                    alt "Cargar"
                     action ShowMenu("load")
-
-                imagebutton: 
-                    idle "gui/button/menu_principal/opciones.png"
-                    hover "gui/button/menu_principal/opciones_hover.png"
-                    action ShowMenu("preferences")
 
                 imagebutton: 
                     idle "gui/button/menu_principal/mas_info.png"
                     hover "gui/button/menu_principal/mas_info_hover.png"
-                    action ShowMenu("about")
+                    alt "Más info"
+                    action ShowMenu("more_info")
+
+                imagebutton: 
+                    idle "gui/button/menu_principal/opciones.png"
+                    hover "gui/button/menu_principal/opciones_hover.png"
+                    alt "Opciones"
+                    action ShowMenu("options")
+
+            hbox:
+
+                xalign 0.5
 
                 if renpy.variant("pc"):
-
                     ## El botón de salida está prohibido en iOS y no es necesario en
                     ## Web.
                     imagebutton: 
                         idle "gui/button/menu_principal/salir.png"
                         hover "gui/button/menu_principal/salir_hover.png"
+                        alt "Salir"
                         action Quit(confirm=True)
+                
+                imagebutton: 
+                    idle "gui/button/menu_principal/quitar.png"
+                    hover "gui/button/menu_principal/quitar_hover.png"
+                    alt "¡Quitar!"
+                    action OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
     else:
-
+        
         hbox:
 
-            style_prefix "quick"
+            xfill True
 
-            xalign 0.5
-            yalign 0.0
-            
-            textbutton _("Inicio"):
+            imagebutton:
+                idle "gui/button/menu_opciones/volver.png"
+                hover "gui/button/menu_opciones/volver_hover.png"
+                alt "Volver"
+                action Return()
 
-                size_group "menu"
-                
-                if main_menu:
-                
-                    action Start()
-                else:
-
-                    action MainMenu()
-                
-                ypos 50
-
-            textbutton _("Cargar") action ShowMenu("load") size_group "menu"
-                
-            if not main_menu:
-                
-                textbutton _("Guardar") action ShowMenu("save") size_group "menu"
-                textbutton _("Progreso") action ShowMenu("history") size_group "menu"
-
-            textbutton _("Opciones") action ShowMenu("preferences") size_group "menu"
-            textbutton _("Más info") action ShowMenu("about") size_group "menu"
-            textbutton _("Volver") action Return() size_group "menu" ypos 50
-
-            if renpy.variant("pc"):
-
-                ## El botón de salida está prohibido en iOS y no es necesario en
-                ## Web.
-                textbutton _("Salir"): 
-
-                    action Quit(confirm=True) 
-                    size_group "menu" ypos 50
-            
-            textbutton _("¡Quitar!"):
-                size_group "menu" 
-                ypos 50
+            imagebutton:
+                xalign 1.0
+                idle "gui/button/menu_opciones/quitar.png"
+                hover "gui/button/menu_opciones/quitar_hover.png"
+                alt "¡Quitar!"
                 action OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
+    #     hbox:
+
+    #         style_prefix "quick"
+
+    #         xalign 0.5
+    #         yalign 0.0
+                        
+    #         textbutton _("Inicio"):
+
+    #             size_group "menu"
+                
+    #             if main_menu:
+                
+    #                 action Start()
+    #             else:
+
+    #                 action MainMenu()
+
+    #         textbutton _("Cargar") action ShowMenu("load") size_group "menu"
+                
+    #         if not main_menu:
+                
+    #             textbutton _("Guardar") action ShowMenu("save") size_group "menu"
+    #             textbutton _("Progreso") action ShowMenu("history") size_group "menu"
+
+    #         textbutton _("Opciones") action ShowMenu("preferences") size_group "menu"
+    #         textbutton _("Más info") action ShowMenu("about") size_group "menu"
+    #         textbutton _("Volver") action Return() size_group "menu" ypos 50
+
+    #         if renpy.variant("pc"):
+
+    #             ## El botón de salida está prohibido en iOS y no es necesario en
+    #             ## Web.
+    #             textbutton _("Salir"): 
+
+    #                 action Quit(confirm=True) 
+    #                 size_group "menu" ypos 50
+            
+    #         textbutton _("¡Quitar!"):
+    #             size_group "menu" 
+    #             ypos 50
+    #             action OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
 
 
 style navigation_button is gui_button
@@ -565,12 +610,11 @@ style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
     bottom_padding 20
-    top_padding 280
-    left_padding 30
+    top_padding 200
+    left_padding 0
     xfill True    
     yfill True
     background "#ffffffcf"
-    #background "gui/overlay/game_menu.png"
 
 style history_menu_frame:
     xfill True    
@@ -585,7 +629,7 @@ style game_menu_navigation_frame:
     yfill True
 
 style game_menu_content_frame:
-    left_margin 80
+    left_margin 40
     right_margin 40
     top_margin 20
     ysize 1280
@@ -597,19 +641,67 @@ style game_menu_vscrollbar:
     unscrollable gui.unscrollable
 
 style game_menu_label:
-    xpos 100
+    xalign 0.5
     ysize 240
 
 style game_menu_label_text:
     size gui.title_text_size
     color gui.accent_color
-    yalign 1.4
+    yalign 0.5
 
 style return_button:
     xpos gui.navigation_xpos
     yalign 1.0
     yoffset -60
 
+
+screen more_info():
+
+    tag menu
+
+    use game_menu("Más información"):
+
+        hbox:
+
+            xfill True
+        vbox:
+
+            align (0.5, 0.45)
+            spacing 100
+            imagebutton:
+                idle "gui/button/menu_mas_info/recursos.png"
+                hover "gui/button/menu_mas_info/recursos_hover.png"
+                alt "Recursos de ayuda"
+                action ShowMenu("resources")
+            imagebutton:
+                xalign 0.5
+                idle "gui/button/menu_mas_info/tutorial.png"
+                hover "gui/button/menu_mas_info/tutorial_hover.png"
+                alt "Tutorial"
+                action ShowMenu("tutorial")
+            imagebutton:
+                xalign 0.5
+                idle "gui/button/menu_mas_info/creditos.png"
+                hover "gui/button/menu_mas_info/creditos_hover.png"
+                alt "Creditos"
+                action ShowMenu("about")
+
+
+screen resources():
+
+    tag menu
+
+    use game_menu("Recursos de ayuda"):
+
+        label ("En construcción")
+
+screen tutorial():
+
+    tag menu
+
+    use game_menu("Tutorial"):
+
+        label ("En construcción")
 
 ## Pantalla 'acerca de' ########################################################
 ##
@@ -626,7 +718,7 @@ screen about():
     ## Esta sentencia 'use' incluye la pantalla 'game_menu' dentro de esta. El
     ## elemento 'vbox' se incluye entonces dentro del 'viewport' al interno de
     ## la pantalla 'game_menu'.
-    use game_menu(_("Información"), scroll="viewport"):
+    use game_menu(("Créditos"), scroll="viewport"):
 
         style_prefix "about"
 
@@ -797,6 +889,61 @@ style slot_button_text:
     properties gui.text_properties("slot_button")
 
 
+screen options():
+    
+    tag menu
+    
+    use game_menu("Opciones"):
+    
+        vbox:
+
+            hbox:
+
+                xfill True
+                yfill True
+                vbox:
+
+                    align (0.5, 0.45)
+                    spacing 100
+                    imagebutton:
+                        idle "gui/button/menu_opciones/cargar.png"
+                        hover "gui/button/menu_opciones/cargar_hover.png"
+                        alt "Cargar"
+                        action ShowMenu("load")
+                    imagebutton: 
+                        idle "gui/button/menu_opciones/guardar.png"
+                        hover "gui/button/menu_opciones/guardar_hover.png"
+                        alt "Guardar"
+                        action ShowMenu("save")
+                vbox:
+
+                    align (0.5, 0.45)
+                    spacing 100
+                    imagebutton: 
+                        idle "gui/button/menu_opciones/mas_info.png"
+                        hover "gui/button/menu_opciones/mas_info_hover.png"
+                        alt "Más info"
+                        action ShowMenu("more_info")
+                    imagebutton: 
+                        idle "gui/button/menu_opciones/config.png"
+                        hover "gui/button/menu_opciones/config_hover.png"
+                        alt "Configuración"
+                        action ShowMenu("preferences")
+
+            if renpy.variant("pc"):
+
+                ## El botón de salida está prohibido en iOS y no es necesario en
+                ## Web.
+                hbox:
+
+                    align (0.5, 0.5)
+                    imagebutton: 
+                        ypos -230
+                        idle "gui/button/menu_opciones/salir.png"
+                        hover "gui/button/menu_opciones/salir_hover.png"
+                        alt "Salir"
+                        action Quit(confirm=True)
+
 ## Pantalla de preferencias ####################################################
 ##
 ## La pantalla de preferencias permite al jugador configurar el juego a su
@@ -804,15 +951,15 @@ style slot_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
-screen preferences():
-
+screen preferences(view="Menu"):
+    
     tag menu
 
-    use game_menu(_("Opciones"), scroll=(
+    use game_menu(title=("Opciones" if view == "Menu" else None), scroll=(
         "vpgrid" if 300 else "viewport")):
         
         vbox:
-            
+                
             hbox:
                 
                 xfill True
@@ -823,7 +970,10 @@ screen preferences():
                     style_prefix "slider"
                     label _("Velocidad del texto")
 
-                    bar value Preference("text speed") xsize 610
+                    bar:
+                        value Preference("text speed") 
+                        xsize 610
+                        released Function(text_cps_preview.update_cps)
 
                 vbox:
 
@@ -931,14 +1081,14 @@ screen preferences():
                         "self voicing", "disable")
                     textbutton _("Text-to-speech") action Preference(
                         "self voicing", "enable")
-                    textbutton _("Clipboard") action Preference(
-                        "clipboard voicing", "enable")
                 
                 vbox:
 
+                    
+                    xsize 1000
                     null height (4 * gui.pref_spacing)
 
-                    textbutton _("Regresar a configuración inicial") action [
+                    textbutton ("{u}Regresar a configuración inicial{/u}") action [
                         Preference("font kerning", 0.0), 
                         Preference("font line spacing", 1.0), 
                         Preference("font size", 1.0), 
@@ -947,11 +1097,9 @@ screen preferences():
                         Preference("voice volume", 1.0), 
                         Preference("self voicing", "disable"), 
                         Preference("music volume", 1.0), 
-                        Preference("text speed", 40)]
-
-                vbox:
-
-                    style_prefix "radio"
+                        Preference("text speed", 40)]:
+                        
+                        xalign 0.5
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -1050,12 +1198,14 @@ screen history():
 
                         label _("Planta de [jugador.nombre]") xsize 550
                         null height (4 * gui.pref_spacing)
-                        add "images/planta/[jugador.estadoPlanta].png" ysize 450
+                        align(0.5, 0.5)
+                        add DynamicImage("planta_[jugador.estadoPlanta]") ysize 450 xsize 400
                     vbox:
 
-                        label _("Planta de [pareja.nombre]") xsize 550
+                        label _("Planta de [pareja.nombre]") xsize 450
                         null height (4 * gui.pref_spacing)
-                        add "images/planta/[pareja.estadoPlanta].png" ysize 450
+                        align(0.5, 0.5)
+                        add DynamicImage("planta_[pareja.estadoPlanta]") ysize 450 xsize 400
                 hbox:
 
                     vbox:
