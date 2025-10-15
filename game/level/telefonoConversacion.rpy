@@ -10,20 +10,27 @@ label telefono_conversacion:
     $ listaViolenciaJugador = []
     $ listaViolenciaPareja = []
     $ listaPresion = []
+    $ palabraGenero = ""
 
     scene black
+    show expression "pantalla_bloqueo_[jugador.nombre]":
+        anchor(0.5, 0.5) 
+        pos(0.5, 0.57)
 
     narrador "Estás en una fiesta y escuchas una notificación en tu celular."
 
     $ reiniciar_celular()
 
+    hide expression "pantalla_bloqueo_[jugador.nombre]"
     show screen phone_ui
 
+    
     $ send_phone_message(
         pareja.nombre, 
         (
             "Hola amor <emoji_corazon>, qué haces? "
             "<emoji_pensativo>"), "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt="Captura de pantalla del instagram de [palabraGenero] de [jugador.nombre]")
     $ send_phone_message(phone_config["phone_player_name"], "Hablando contigo haha", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Y tú??", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "x2 zkxjaj<emoji_risa>", "pareja_dm", 3)
@@ -156,14 +163,19 @@ label retroalimentacion_pareja_telefono:
     scene black
     show fondo_inicio
     narrador "Ellos sí que escribían rápido, aunque no sabemos si al hacerlo, dijeron cosas sin pensarlo..."
-    $ jugador.estadoPlanta == "marchita"
-    show planta_marchita:
-        yalign .3
+    $ pos = LISTA_ESTADO_PLANTA.index(jugador.estadoPlanta)
+    $ jugador.estadoPlanta = LISTA_ESTADO_PLANTA[pos - 1]    
+    show planta_fondo:
+        yalign .4
+        xalign .5
+    show expression "planta_[jugador.estadoPlanta]":
+        yalign .4
         xalign .5
         xsize 950
         ysize 900
     narrador "Lamentablemente [pareja.nombre] volvió a dañar tu planta, veamos cuándo pasó:"
-    hide planta_marchita
+    hide planta_fondo
+    hide expression "planta_[jugador.estadoPlanta]"
     hide fondo_inicio
 
     $ reiniciar_celular()
@@ -191,20 +203,25 @@ label retroalimentacion_jugador_telefono:
     
     if listaViolenciaJugador:
 
-        $ pareja.estadoPlanta == "marchita"
+        $ pos = LISTA_ESTADO_PLANTA.index(pareja.estadoPlanta)
+        $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[pos - 1]
 
         show penalizacion_aspersor:
             xalign .05
         $ coleccionables.append("penalizacion_aspersor")
         narrador "¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia para su planta."
         hide penalizacion_aspersor
-        show planta_marchita:
-            yalign .3
+        show planta_fondo:
+            yalign .4
+            xalign .5
+        show expression "planta_[pareja.estadoPlanta]":
+            yalign .4
             xalign .5
             xsize 950
             ysize 900
         narrador "La planta de [pareja.nombre] se siente un poco enferma, veamos cuándo pasó:"
-        hide planta_marchita
+        hide planta_fondo
+        hide expression "planta_[pareja.estadoPlanta]"
         hide fondo_inicio
 
         $ reiniciar_celular()
@@ -224,20 +241,25 @@ label retroalimentacion_jugador_telefono:
         narrador "¿Es eso lo que quieres en una relación?"
     else:
 
-        $ pareja.estadoPlanta == "florece"
+        $ pos = LISTA_ESTADO_PLANTA.index(pareja.estadoPlanta)
+        $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[pos + 1]
 
         show logro_aspersor:
             xalign .05
         $ coleccionables.append("logro_aspersor")
         narrador "¡Felicidades! Con tus respuestas ganaste un aspersor con agua limpia."
         hide logro_aspersor
-        show planta_florece:
-            yalign .3
+        show planta_fondo:
+            yalign .4
+            xalign .5
+        show expression "planta_[pareja.estadoPlanta]":
+            yalign .4
             xalign .5
             xsize 950
             ysize 900
         narrador "La planta de [pareja.nombre] ha comenzado a florecer."
-        hide planta_florece
+        hide planta_fondo
+        hide expression "planta_[pareja.estadoPlanta]"
 
         if listaPresion:
              
@@ -267,7 +289,7 @@ label retroalimentacion_mito_telefono:
 
         menu:
 
-            narrador "Y, como en la cita en Chapultepec, algunos de los diálogos de Carlos y Ximena reproducen mitos sobre los roles de género, ¿Esta vez tuviste mejor suerte detectándolos?"
+            narrador "Y, como en la cita en Chapultepec, algunos de los diálogos de [pareja.nombre] y [jugador.nombre] reproducen mitos sobre los roles de género, ¿Esta vez tuviste mejor suerte detectándolos?"
             
             "Sí":
             

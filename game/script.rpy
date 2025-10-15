@@ -8,19 +8,16 @@
             (0, -15),
             Image(ruta)
         )
-
-image boton_opciones = modificarPosImage("gui/button/dialogo/opciones.png")
-image boton_config = modificarPosImage("gui/button/dialogo/config.png")
-
-default text_cps_preview = PreviewSlowText(
-    "{color=#000000}¡Bienvenide! Este juego se centra en la lectura. Modifica "
-    "estas y otras opciones para tener la mejor experiencia.{/color}")
+    
+    #texto introductorio
+    with renpy.file('misc/intro.txt', encoding='utf8') as f:
+        texto_intro = f.read()
 
 #personajes
 define narrador = Character(
     None, what_color="#ffffff", 
     window_background=Frame("gui/narrador_textbox.png"))
-define novia = Character("Ximena", 
+define novia = Character("Fernanda", 
     window_background=Frame("gui/pareja_textbox_trans.png"))
 define novio = Character("Carlos", 
     window_background=Frame("gui/pareja_textbox_trans.png"))#
@@ -28,8 +25,13 @@ define oncahui = Character("Oncahui",
     window_background=Frame("gui/oncahui_textbox.png"))
 
 #constantes
-define APODO_NOVIA = "Xime"
+define APODO_NOVIA = "Fer"
 define APODO_NOVIO = "Charly"
+define LISTA_ESTADO_PLANTA = ["marchita", "levemente_marchita", 
+    "levemente_florece", "florece"]
+define TEXTO_CPS_PREVIEW = PreviewSlowText(
+    "{color=#000000}¡Bienvenide! Este juego se centra en la lectura. Modifica "
+    "estas y otras opciones para tener la mejor experiencia.{/color}")
 
 #variables
 default coleccionables = []
@@ -39,6 +41,7 @@ default listaViolenciaPareja = []
 default listaPresion = []
 default jugador = Persona(nombre="???")
 default pareja = Persona(nombre="???")
+default palabraGenero = ""
 default retroalimentacion = False
 default persistent.Config = True
 
@@ -53,7 +56,6 @@ image cine_fondo = Movie(
 image caminata_chapultepec = Movie(
     size=(2560,1600), play="images/caminata_chapultepec.webm", loop = False, 
     image="images/caminata_chapultepec.png")
-
 image emocion_seriedad_Carlos = Movie(
     size=(2560,1600), play="images/emocion/Carlos/seriedad.webm", loop = True)
 image emocion_enojo_Carlos = Movie(
@@ -62,15 +64,21 @@ image emocion_felicidad_Carlos = Movie(
     size=(2560,1600), play="images/emocion/Carlos/felicidad.webm", loop = True)
 image emocion_tristeza_Carlos = Movie(
     size=(2560,1600), play="images/emocion/Carlos/tristeza.webm", loop = True)
-image emocion_seriedad_Ximena = Movie(
-    size=(2560,1600), play="images/emocion/Ximena/seriedad.webm", loop = True)
-image emocion_enojo_Ximena = Movie(
-    size=(2560,1600), play="images/emocion/Ximena/enojo.webm", loop = True)
-image emocion_felicidad_Ximena = Movie(
-    size=(2560,1600), play="images/emocion/Ximena/felicidad.webm", loop = True)
-image emocion_tristeza_Ximena = Movie(
-    size=(2560,1600), play="images/emocion/Ximena/tristeza.webm", loop = True)
-
+image emocion_seriedad_Fernanda = Movie(
+    size=(2560,1600), play="images/emocion/Fernanda/seriedad.webm", loop = True)
+image emocion_enojo_Fernanda = Movie(
+    size=(2560,1600), play="images/emocion/Fernanda/enojo.webm", loop = True)
+image emocion_felicidad_Fernanda = Movie(
+    size=(2560,1600), play="images/emocion/Fernanda/felicidad.webm", loop = True)
+image emocion_tristeza_Fernanda = Movie(
+    size=(2560,1600), play="images/emocion/Fernanda/tristeza.webm", loop = True)
+image planta_capullo = Movie(play="images/planta/capullo.webm", loop = True)
+image planta_marchita = Movie(play="images/planta/marchita.webm", loop = True)
+image planta_levemente_marchita = Movie(
+    play="images/planta/levemente_marchita.webm", loop = True)
+image planta_levemente_florece = Movie(
+    play="images/planta/levemente_florece.webm", loop = True)
+image planta_florece = Movie(play="images/planta/florece.webm", loop = True)
 image oncahui_zoomout = Movie(
     size=(2560,1600), play="images/Caminata uamito.webm", loop = False, 
     image="uamito.png")
@@ -80,47 +88,27 @@ image creditos = Movie(
     size=(2560,1600), play="images/creditos.webm", loop = False)
 
 #imagenes estaticas
+image boton_opciones = modificarPosImage("gui/button/dialogo/opciones.png") 
+image boton_config = modificarPosImage("gui/button/dialogo/config.png")
+image boton_progreso = modificarPosImage("gui/button/dialogo/progreso.png")
+image boton_quitar = modificarPosImage("gui/button/dialogo/quitar.png")
+image boton_cargar = modificarPosImage("gui/button/dialogo/cargar.png")
+image boton_guardar = modificarPosImage("gui/button/dialogo/guardar.png")
+image boton_opciones_quick = modificarPosImage("gui/button/dialogo/opciones_quick.png")
+image boton_mas_info = modificarPosImage("gui/button/dialogo/mas_info.png")
+image boton_tutorial = modificarPosImage("gui/button/dialogo/tutorial.png")
+image boton_recursos = modificarPosImage("gui/button/dialogo/recursos.png")
 image chapultepec_fondo = "images/chapus fondo.png"
 image planta_conjunto = "images/planta/capullo_conjunto.png"
-image planta_capullo = "images/planta/capullo.png"
-
-
-image planta_florece = "images/planta/florece.png"
-image planta_florece = Movie(play="images/planta/florece.webm", loop = True)
-image planta_marchita = Movie(play="images/planta/marchita.webm", loop = True)
-
-
-
-image boton_seleccion_ximena = "images/boton_seleccion_ximena.png"
-image boton_seleccion_carlos = "images/boton_seleccion_carlos.png"
+image planta_fondo = "images/planta/fondo.png"
 image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
 image logro_aspersor = "images/coleccionables/logro_aspersor.png"
 image penalizacion_aspersor = "images/coleccionables/penalizacion_aspersor.png"
 image tarjeta_spotify_intacta = "images/coleccionables/tarjeta_spotify_intacta.png"
 image tarjeta_spotify_rota = "images/coleccionables/tarjeta_spotify_rota.png"
+image pantalla_bloqueo_Carlos = "images/phone/media/pantalla_bloqueo_Carlos.png"
+image pantalla_bloqueo_Fernanda = "images/phone/media/pantalla_bloqueo_Fernanda.png"
 image oncahui = "uamito.png"
-
-
-#texto de introducción
-init python:
-
-    with renpy.file('intro.txt', encoding='utf8') as f:
-        texto_intro = f.read()
-
-
-screen boton_eleccion_personaje():
-
-    zorder 1
-    imagebutton:
-        xalign .19
-        yalign .15
-        idle "boton_seleccion_ximena"
-        action Jump("seleccionNovia")
-    imagebutton:
-        xalign .75
-        yalign .15
-        idle "boton_seleccion_carlos"
-        action Jump("seleccionNovio")
 
 
 #introducción
@@ -139,93 +127,137 @@ label splashscreen:
 
             $ instruccion = "Toca la pantalla"
         else:
+
             $ instruccion = "Da click"
+
+        if _preferences.self_voicing:
+
+            narrador "Estas opciones las puedes volver a modificar en el menú de 
+                Configuración en Opciones en cualquier momento."
+        else:
+
+            narrador "Estas opciones las puedes volver a modificar en el menú de 
+                {image=boton_config} en {image=boton_opciones} en cualquier 
+                momento."
+        narrador "Ahora, ¡[instruccion] siempre que quieras continuar! Puede ser 
+            en cualquier parte de la pantalla"
+    else:
+
+        if _preferences.self_voicing:
             
-        narrador "Estas opciones las puedes volver a modificar en el menú de 
-            {image=boton_config} en {image=boton_opciones}. Ahora, ¡[instruccion] 
-            siempre que quieras continuar!"
-        $ persistent.Config = False
+            narrador "Si olvidas cómo hacer una acción ¡no te preocupes!, 
+                en el menú de Más información se encuentra el Tutorial."
+        else:
+
+            narrador "Si olvidas cómo hacer una acción ¡no te preocupes!, 
+                en el menú de {image=boton_mas_info} se encuentra el 
+                {image=boton_tutorial}."
     
     show screen intro
     pause
     hide screen intro
     return
 
-screen text_preview():
-
-    dismiss action NullAction()
-    
-    frame:
-        style "text_preview"
-        vbox:
-            xalign 0.5
-            yalign 0.5
-            xsize 2300
-            style "say_dialogue"
-            add text_cps_preview
-
-    frame:
-        style "preferences_intro"
-        use preferences("Intro")
-
-    vbox:
-        ypos 0.85
-        xpos 0.68
-        imagebutton:                
-            idle "gui/button/menu_principal/continuar.png" 
-            hover "gui/button/menu_principal/continuar_hover.png"
-            alt "Continuar" 
-            action Return()
-
-screen intro():
-    frame:
-        xalign 0.6
-        yalign 0.5
-        xsize 2300
-        ysize 1300
-        padding (100, 60)
-        background Frame("gui/narrador_textbox.png")
-        truncate_text (texto_intro):
-            shrink_to_fit 10 adjust_line_spacing_to_fit -10
-            shrink_before_spacing False
-            yalign 0.5
 
 label start:
 
-    scene fondo_inicio
-    narrador "¡Hola! Te explicaré cómo funciona el juego."
+    
+    scene black
 
-    narrador "Vas a tomar el papel de uno de los personajes que se te 
-        mencionaron anteriormente, [novia.name] o [novio.name]."
-    show planta_conjunto:
-        yalign .3
-        xalign .5
-    narrador "Además, cada quien tiene una planta que representa el estado de 
-        su relación."
-    narrador "Sus decisiones las ayudarán a crecer o marchitarlas."
-    hide planta_conjunto
-    narrador "También hay botones en la parte superior de la pantalla que te 
-        llevan a los principales menús, ¡No dudes en revisarlos ante cualquier duda!"
-    narrador "El de progreso es para que veas es el estado actual de las plantas, 
-        los coleccionables que has ganado y para revisitar los dialogos."
-    narrador "El de opciones te permite guardar/cargar tu partida, conocer más información del juego y recursos de ayuda, entre más opciones."
-    if renpy.variant("pc"):
-        narrador "El de salir, como su nombre, cierra el juego. ¡No olvides 
-            guardar antes!"
-    narrador "Y finalmente, el de ¡quitar! te da una salida de \"emergencia\" si 
-        en tu entorno alguien se te acerca y quieres proteger tu privacidad al jugar. Te 
-        llevará a unas conferencias ofrecidas por la UPAV y silenciará la música 
-        del juego."
-    narrador "Queremos que juegues con total comidad y honestidad. Ninguna de tus 
-        respuestas serán grabadas."
+    if persistent.Config:
+
+        narrador"Antes de empezar, ¿Estás en un lugar privado y en confianza?"
+
+        menu:
+            "Si":
+                if _preferences.self_voicing:
+
+                    narrador "¡Bien! Aunque si quieres una salida de emergencia 
+                        de miradas ajenas, el botón de ¡Quitar! (último botón 
+                        superior derecha) está para ayudarte."
+                else:
+                                        
+                    narrador "¡Bien! Aunque si quieres una salida de emergencia 
+                        de miradas ajenas, el botón de {image=boton_quitar} 
+                        está para ayudarte."    
+            "No":
+                if _preferences.self_voicing:
+
+                    narrador "¿Quieres jugar ahora? El juego toca temas 
+                        sensibles y necesita tu atención, así que es mejor 
+                        jugarlo en privado.\n\nSi quieres una salida de emergencia 
+                        de miradas ajenas, el botón de ¡Quitar! (último botón 
+                        superior derecha) está para ayudarte."
+                else:
+                                        
+                    narrador "¿Quieres jugar ahora? El juego toca temas 
+                        sensibles y necesita tu atención, así que es mejor 
+                        jugarlo en privado.\n\nSi quieres una salida de emergencia 
+                        de miradas ajenas, el botón de {image=boton_quitar} está 
+                        para ayudarte."
+        
+        narrador "Queremos que juegues con comodidad y honestidad. Ahora sí, 
+            puedes continuar jugando si así lo decides."
+        $ persistent.Config = False
+    #jump eleccionPersonaje
+    scene fondo_inicio with fade
+    show planta_fondo:
+        yalign .4
+        xalign .27
+    show planta_fondo as fondo_pareja:
+        yalign .4
+        xalign .69
+    show planta_capullo:
+        yalign .4
+        xalign .27        
+        xsize 950
+        ysize 900
+    show planta_capullo as planta_pareja:
+        yalign .4
+        xalign .69        
+        xsize 950
+        ysize 900
+
+    narrador "(cantando) Ella sabía que él sabía, que algún día pasaría"
+
+    menu:
+        "¿Flores cantando? ¿Qué ch...":
+            narrador "Tampoco es para tanto ¿eh?"
+        "¡Me sé la canción! Me les uno.":
+            narrador "Que vendría a buscarla con sus flooores amariiillaas"
+
+    narrador "Jeje perdón, no te habíamos visto."
+    narrador "Nosotras somos las flores que representamos el estado de la 
+        relación de [novia.name] y [novio.name]. Pronto podrás elegir a uno de 
+        los dos para jugar."
+    narrador "Y no, no estamos así de tapaditas por el frío de Cuajis, es que 
+        todavía no florecemos."
+    show logro_aspersor:
+            yalign .1
+    narrador "Con ayuda del agua y otros cuidados podremos seguir creciendo."
+    hide logro_aspersor
+
+    if _preferences.self_voicing:
+
+        narrador "Nos puedes visitar en el menú de Progreso (primer botón 
+            superior izquierda). 
+            Ahí también puedes recordar lo que [novia.name] y [novio.name] 
+            hablen, ¡incluso esta conversación!"
+    else:
+
+        narrador "Nos puedes visitar en el menú de {image=boton_progreso}. 
+            Ahí también puedes recordar lo que [novia.name] y [novio.name] 
+            hablen, ¡incluso hasta esta conversación!"
+
+    narrador "Que hablando de los reyes de roma, [novia.name] y [novio.name] están 
+        en el cine, vamos a conocerlos."
+    jump eleccionPersonaje
 
 
 label eleccionPersonaje:
     
-    narrador "Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a 
-        conocerlos." 
-    show cine_fondo
-    narrador "En el cine dentro de una sala, están Ximena y Carlos esperando a 
+    scene cine_fondo
+    narrador "En el cine dentro de una sala, están Fernanda y Carlos esperando a 
         que empiece la película."
     novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen 
         conseguirlos, escuché que había pocos."
@@ -234,10 +266,10 @@ label eleccionPersonaje:
         alcanzamos unas palomitas chicas..."
     novia "No te preocupes, me encanta compartir las palomitas y más si es 
         contigo."
-    novio "Gracias amor, me haces muy feliz Xime."
-    hide cine_fondo
-    show seleccion_personaje
-    show screen boton_eleccion_personaje
+    novio "Gracias amor, me haces muy feliz Fer."
+    scene seleccion_personaje
+    show screen boton_eleccion_personaje    
+    $ forzarAutosave()
     narrador "Ahora que los conoces un poco, elige el personaje con el que 
         quieres jugar."
 
@@ -257,8 +289,21 @@ label seleccionNovia:
         Character(
             novio.name, 
             window_background=Frame("gui/pareja_textbox_trans.png")))
-    narrador "Has seleccionado a [jugador.nombre]"
-    hide seleccion_personaje
+    
+    if _preferences.self_voicing:
+
+        narrador "¡Hola [jugador.nombre]! Esto se acaba de guardar en automático. 
+            Si después quieres jugar como [pareja.nombre] o guardar tu progreso, 
+            Cargar y Guardar se encuentran en el menú de Opciones (segundo botón 
+            superior izquierda)."
+    else:
+
+        narrador "¡Hola [jugador.nombre]! Esto se acaba de guardar en automático. 
+            Si después quieres jugar como [pareja.nombre] o guardar tu progreso, 
+            {image=boton_cargar} y {image=boton_guardar} se encuentran en el 
+            menú de {image=boton_opciones_quick}."
+
+        hide seleccion_personaje
     jump cita_chapultepec
 
 
@@ -287,7 +332,7 @@ label finalJuego:
     scene fondo_inicio
     narrador "¡Muchas gracias por jugar esta primera versión del juego!"
     narrador "Si tienes comentarios, por favor compartelos con nosotros y 
-        ayudanos a mejorar"
+        ayúdanos a mejorar."
     jump evaluacion
 
 

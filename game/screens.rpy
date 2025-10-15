@@ -1,4 +1,8 @@
-﻿################################################################################
+﻿init python:
+    def forzarAutosave():
+        renpy.force_autosave()
+
+################################################################################
 ## Inicialización
 ################################################################################
 
@@ -170,7 +174,6 @@ style say_dialogue:
 style text_preview:
     xalign 0.5
     xfill True
-    #yalign gui.textbox_yalign
     ypos 0.01
     left_margin 100
     right_margin 100
@@ -272,22 +275,42 @@ screen quick_menu():
             yalign 0.0
 
             #textbutton _("Atrás") action Rollback() size_group "menu"
-            textbutton _("Progreso") action ShowMenu('history') size_group "menu"
-            textbutton _("Opciones") action ShowMenu('options') size_group "menu"
+            imagebutton: 
+                idle "gui/button/menu_quick/progreso.png"
+                hover "gui/button/menu_quick/progreso_hover.png"
+                alt "Progreso"
+                action ShowMenu("history")
+
+            imagebutton: 
+                idle "gui/button/menu_quick/opciones.png"
+                hover "gui/button/menu_quick/opciones_hover.png"
+                alt "Opciones"
+                action ShowMenu("options")
+
+            imagebutton: 
+                idle "gui/button/menu_quick/recursos.png"
+                hover "gui/button/menu_quick/recursos_hover.png"
+                alt "Recursos de ayuda"
+                action ShowMenu("resources")
 
             if renpy.variant("pc"):
 
                 ## El botón de salida está prohibido en iOS y no es necesario en
                 ## Web.
-                textbutton _("Salir"): 
-
-                    action Quit(confirm=True) 
+                imagebutton: 
+                    idle "gui/button/menu_quick/salir.png"
+                    hover "gui/button/menu_quick/salir_hover.png"
+                    alt "Salir"
+                    action [forzarAutosave,
+                            Quit(confirm=True)] 
             
-            textbutton _("¡Quitar!"):
-                size_group "menu" 
-                action [
-                    Preference("music volume", 0.0),
-                    OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")]
+            imagebutton:
+                idle "gui/button/menu_quick/quitar.png"
+                hover "gui/button/menu_quick/quitar_hover.png"
+                alt "¡Quitar!"
+                action [forzarAutosave, 
+                        OpenURL("https://www.uam.mx/calendario/index.html"), 
+                        Quit(confirm=False)]
 
 
 ## Este código asegura que la pantalla 'quick_menu' se muestra en el juego,
@@ -304,14 +327,13 @@ style quick_button_text is button_text
 
 style quick_button:
     properties gui.button_properties("quick_button")
-    background "#ffffff"
     #xsize 250
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
 
 style quick_image_button:
-    xsize 400
+    xsize 230
 
 
 ################################################################################
@@ -385,7 +407,8 @@ screen navigation():
                     idle "gui/button/menu_principal/quitar.png"
                     hover "gui/button/menu_principal/quitar_hover.png"
                     alt "¡Quitar!"
-                    action OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
+                    action [OpenURL("https://www.uam.mx/calendario/index.html"), 
+                            Quit(confirm=False)]
     else:
         
         hbox:
@@ -403,49 +426,9 @@ screen navigation():
                 idle "gui/button/menu_opciones/quitar.png"
                 hover "gui/button/menu_opciones/quitar_hover.png"
                 alt "¡Quitar!"
-                action OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
-    #     hbox:
-
-    #         style_prefix "quick"
-
-    #         xalign 0.5
-    #         yalign 0.0
-                        
-    #         textbutton _("Inicio"):
-
-    #             size_group "menu"
-                
-    #             if main_menu:
-                
-    #                 action Start()
-    #             else:
-
-    #                 action MainMenu()
-
-    #         textbutton _("Cargar") action ShowMenu("load") size_group "menu"
-                
-    #         if not main_menu:
-                
-    #             textbutton _("Guardar") action ShowMenu("save") size_group "menu"
-    #             textbutton _("Progreso") action ShowMenu("history") size_group "menu"
-
-    #         textbutton _("Opciones") action ShowMenu("preferences") size_group "menu"
-    #         textbutton _("Más info") action ShowMenu("about") size_group "menu"
-    #         textbutton _("Volver") action Return() size_group "menu" ypos 50
-
-    #         if renpy.variant("pc"):
-
-    #             ## El botón de salida está prohibido en iOS y no es necesario en
-    #             ## Web.
-    #             textbutton _("Salir"): 
-
-    #                 action Quit(confirm=True) 
-    #                 size_group "menu" ypos 50
-            
-    #         textbutton _("¡Quitar!"):
-    #             size_group "menu" 
-    #             ypos 50
-    #             action OpenURL("https://www.youtube.com/watch?v=itutg_3J1xI&list=PLqGZhNa0qbM1y2d_uqoEHfPweEasOk2ML")
+                action [forzarAutosave, 
+                        OpenURL("https://www.uam.mx/calendario/index.html"), 
+                        Quit(confirm=False)]
 
 
 style navigation_button is gui_button
@@ -767,7 +750,7 @@ screen load():
 
 screen file_slots(title):
 
-    default page_name_value = FilePageNameInputValue(pattern=_("Página {}"), auto=_("Grabación automática"), quick=_("Grabación rápida"))
+    default page_name_value = FilePageNameInputValue(pattern=_("Página {}"), auto=_("Guardado automático"), quick=_("Grabación rápida"))
 
     use game_menu(title):
 
@@ -810,6 +793,8 @@ screen file_slots(title):
 
                         add FileScreenshot(slot) xalign 0.5
 
+                        spacing 12
+
                         text FileTime(slot, format=_("{#file_time}%A, %d de %B %Y, %H:%M"), empty=_("vacío")):
                             style "slot_time_text"
 
@@ -834,7 +819,7 @@ screen file_slots(title):
                     key "save_page_prev" action FilePagePrevious()
 
                     if config.has_autosave:
-                        textbutton _("{#auto_page}A") action FilePage("auto")
+                        textbutton _("{#auto_page}Automático") action FilePage("auto")
 
                     if config.has_quicksave:
                         textbutton _("{#quick_page}R") action FilePage("quick")
@@ -888,7 +873,7 @@ style slot_button:
 style slot_button_text:
     properties gui.text_properties("slot_button")
 
-
+default flag = False
 screen options():
     
     tag menu
@@ -913,6 +898,8 @@ screen options():
                     imagebutton: 
                         idle "gui/button/menu_opciones/guardar.png"
                         hover "gui/button/menu_opciones/guardar_hover.png"
+                        insensitive "gui/button/menu_opciones/guardar_insensitive.png"
+                        sensitive not main_menu
                         alt "Guardar"
                         action ShowMenu("save")
                 vbox:
@@ -941,8 +928,12 @@ screen options():
                         ypos -230
                         idle "gui/button/menu_opciones/salir.png"
                         hover "gui/button/menu_opciones/salir_hover.png"
-                        alt "Salir"
-                        action Quit(confirm=True)
+                        alt "Salir"                        
+                        if main_menu:
+                            action Quit(confirm=True)
+                        else:
+                            action [forzarAutosave,
+                                    Quit(confirm=True)]
 
 ## Pantalla de preferencias ####################################################
 ##
@@ -955,7 +946,7 @@ screen preferences(view="Menu"):
     
     tag menu
 
-    use game_menu(title=("Opciones" if view == "Menu" else None), scroll=(
+    use game_menu(title=("Configuración" if view == "Menu" else None), scroll=(
         "vpgrid" if 300 else "viewport")):
         
         vbox:
@@ -973,7 +964,16 @@ screen preferences(view="Menu"):
                     bar:
                         value Preference("text speed") 
                         xsize 610
-                        released Function(text_cps_preview.update_cps)
+                        released Function(TEXTO_CPS_PREVIEW.update_cps)
+
+                    if view == "Menu":
+                        
+                        vbox:
+                            
+                            ysize 100
+                            xsize 600
+                            add PreviewSlowText(
+                                "{size=-14}Muestra de velocidad{/size}")
 
                 vbox:
 
@@ -1145,7 +1145,7 @@ style radio_button:
     foreground "gui/button/radio_[prefix_]foreground.png"
 
 style radio_button_text:
-    properties gui.text_properties("radio_button")
+    ypos 0.18
 
 style check_vbox:
     spacing gui.pref_button_spacing
@@ -1510,6 +1510,14 @@ screen confirm(message, yes_action, no_action):
 
     ## Asegura que otras pantallas no reciban entrada mientras se muestra esta
     ## pantalla.
+
+    if message == layout.QUIT:
+            
+        $ message = ("¿Quieres salir?")
+        if not main_menu:
+
+            $ message += "\nYa se guardó tu partida hasta este punto en automático."
+
     modal True
 
     zorder 200
@@ -1942,3 +1950,62 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 1200
+
+
+screen text_preview():
+
+    dismiss action NullAction()
+    
+    frame:
+        style "text_preview"
+        vbox:
+            xalign 0.5
+            yalign 0.5
+            xsize 2300
+            style "say_dialogue"
+            add TEXTO_CPS_PREVIEW
+
+    frame:
+        style "preferences_intro"
+        use preferences("Intro")
+
+    vbox:
+        ypos 0.85
+        xpos 0.68
+        imagebutton:                
+            idle "gui/button/menu_principal/continuar.png" 
+            hover "gui/button/menu_principal/continuar_hover.png"
+            alt "Continuar" 
+            action Return()
+
+
+screen intro():
+
+    frame:
+        xalign 0.6
+        yalign 0.5
+        xsize 2300
+        ysize 1300
+        padding (100, 60)
+        background Frame("gui/narrador_textbox.png")
+        truncate_text (texto_intro):
+            shrink_to_fit 10 adjust_line_spacing_to_fit -10
+            shrink_before_spacing False
+            yalign 0.5
+
+
+screen boton_eleccion_personaje():
+
+    zorder 1
+    imagebutton:
+        xalign .19
+        yalign .4
+        idle "gui/button/boton_seleccion_fernanda.png"
+        hover "gui/button/boton_seleccion_fernanda_hover.png"
+        action Jump("seleccionNovia")
+    imagebutton:
+        xalign .75
+        yalign .4
+        idle "gui/button/boton_seleccion_carlos.png"        
+        hover "gui/button/boton_seleccion_carlos_hover.png"
+        action Jump("seleccionNovio")

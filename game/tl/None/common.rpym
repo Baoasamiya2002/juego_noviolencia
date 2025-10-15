@@ -479,15 +479,15 @@ translate None strings:
 
     # renpy/common/00gui.rpy:449
     old "Are you sure you want to delete this save?"
-    new "¿Seguro que quieres borrar esta partida?"
+    new "¿Quieres borrar esta partida?"
 
     # renpy/common/00gui.rpy:450
     old "Are you sure you want to overwrite your save?"
-    new "¿Seguro que quieres sobreescribir esta partida?"
+    new "¿Quieres sobreescribir esta partida?"
 
     # renpy/common/00gui.rpy:451
     old "Loading will lose unsaved progress.\nAre you sure you want to do this?"
-    new "Al cargar se perderá el progreso no guardado.\n¿Seguro que quieres hacer esto?"
+    new "Al cargar se perderá el progreso no guardado.\n¿Quieres hacer esto?"
 
     # renpy/common/00gui.rpy:452
     old "Are you sure you want to quit?"
@@ -495,7 +495,7 @@ translate None strings:
 
     # renpy/common/00gui.rpy:453
     old "Are you sure you want to return to the main menu?\nThis will lose unsaved progress."
-    new "¿Seguro que quieres volver al menú principal?\nSe perderá el progreso no guardado."
+    new "¿Quieres volver al menú principal?\nSe perderá el progreso no guardado."
 
     # renpy/common/00gui.rpy:454
     old "Are you sure you want to continue where you left off?"
@@ -503,19 +503,19 @@ translate None strings:
 
     # renpy/common/00gui.rpy:455
     old "Are you sure you want to end the replay?"
-    new "¿Seguro que quieres finalizar la repetición?"
+    new "¿Quieres finalizar la repetición?"
 
     # renpy/common/00gui.rpy:456
     old "Are you sure you want to begin skipping?"
-    new "¿Seguro que quieres empezar el modo salto de escenas?"
+    new "¿Quieres empezar el modo salto de escenas?"
 
     # renpy/common/00gui.rpy:457
     old "Are you sure you want to skip to the next choice?"
-    new "¿Seguro que quieres saltar hasta la próxima elección?"
+    new "¿Quieres saltar hasta la próxima elección?"
 
     # renpy/common/00gui.rpy:458
     old "Are you sure you want to skip unseen dialogue to the next choice?"
-    new "¿Seguro que quieres saltar el texto no visto hasta la próxima elección?"
+    new "¿Quieres saltar el texto no visto hasta la próxima elección?"
 
     # renpy/common/00gui.rpy:459
     old "This save was created on a different device. Maliciously constructed save files can harm your computer. Do you trust this save's creator and everyone who could have changed the file?"

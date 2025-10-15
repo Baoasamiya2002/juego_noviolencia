@@ -274,13 +274,23 @@ init -1 python:
         last_id = channel_last_message_id.get(channel_name, 0)
         current_id = last_id + 1
         channel_last_message_id[channel_name] = current_id
+
+        # if len(phone_channels[channel_name]) > 0:
+
+        #     last_message_data = phone_channels[channel_name][-1]
+        #     updated_message_text = "{noalt}" + last_message_data[2] + "{/noalt}"
+        #     updated_message_data = (
+        #         last_message_data[0:2] + 
+        #         (updated_message_text,) + last_message_data[3:])
+        #     phone_channels[channel_name][-1] = updated_message_data
+        
         message_data = (current_id, sender, message_text, message_kind, current_global_id, summary_alt, image_x, image_y)
         phone_channels[channel_name].append(message_data)
         channel_notifs[channel_name] = True
         channel_seen_latest[channel_name] = False
         renpy.restart_interaction()
         if (message_kind == 0 or message_kind == 3):
-            narrator.add_history(kind="adv", who=sender, what=message_text)
+            narrator.add_history(kind="adv", who=sender, what=renpy.substitute(message_text))
         elif message_kind == 2:
             narrator.add_history(kind="adv", who=sender, what="Envió una foto")
         renpy.checkpoint()
@@ -324,7 +334,7 @@ init -1 python:
         _phone_global_message_counter = 0
         current_phone_view = "pareja_dm"
         # phone relevant! if you want to add initial chats that appear before anything (or remove the demo ones) do so here~
-        create_phone_channel("pareja_dm", "[pareja.apodo]<3", [pareja.nombre, phone_config["phone_player_name"]], "phone/icons/foto_perfil.png")
+        create_phone_channel("pareja_dm", "[pareja.apodo]<3", [pareja.nombre, jugador.nombre], "phone/icons/foto_perfil.png")
         # phone relevant! same as above, but with messages
         send_phone_message("", "Hoy", "pareja_dm", 1, do_pause=False)        
         phone_config["phone_player_name"] = [jugador.nombre]
@@ -579,8 +589,8 @@ init -1 python:
 ## -----------------------------------------------------
 # phone relevant! initial phone position and size 
 default phone_zoom = 1.0
-default phone_x = 0.425
-default phone_y = 0.54
+default phone_x = 0.42
+default phone_y = 0.57
 transform phone_position(p_zoom, p_x, p_y):
     anchor(0.5, 0.5) 
     pos(p_x, p_y)
@@ -617,13 +627,13 @@ screen phone_ui():
         yalign 0.5 
         xsize 900
         # screen goes first as base will cover up some of it
-        add get_phone_theme_value("screen_background_image")
-        add get_phone_theme_value("header_background_image")
+        #add get_phone_theme_value("screen_background_image")
+        #add get_phone_theme_value("header_background_image")
         add get_phone_theme_value("base_background_image")
         vbox:
             id "phone_viewport"
-            xsize 675
-            ysize 1192
+            xsize 685
+            ysize 1150
             yalign 0.4
             xalign -0.6
             vbox:
@@ -644,7 +654,7 @@ screen phone_ui():
                     null height 40
                     text phone_config["channels_title"]:
                         style "phone_header_style"
-                null height 31
+                null height 47
                 # main content
                 if current_phone_view == "channel_list":
                     $ yadj = ui.adjustment()
@@ -653,8 +663,9 @@ screen phone_ui():
                         xfill True
                         ysize 750
                         yadjustment yadj
-                        scrollbars "vertical"
+                        scrollbars "vertical"                        
                         mousewheel True
+                        draggable True
                         # list of chats
                         vbox:
                             spacing 15 
@@ -710,7 +721,7 @@ screen phone_ui():
                         yadjustment yadj
                         scrollbars "vertical"
                         mousewheel True
-                        draggable False
+                        draggable True
                         # do this once when it opens
                         if phone_config["auto_scroll"]:
                             $ yadj.value = (yadj.range + 1000)
@@ -721,7 +732,7 @@ screen phone_ui():
                                 $ latest_channel_id = channel_last_message_id.get(current_phone_view, 0)
                                 $ last_sender_in_chat_view = None
                                 # display all messages
-                                for message_data in phone_channels[current_phone_view]:
+                                for index, message_data in enumerate(phone_channels[current_phone_view]):
                                     $ msg_id, sender, message_text, message_kind, current_global_id, summary_alt, image_x, image_y = message_data               
                                     if sender == phone_config["phone_player_name"]:
                                         $ bubble_image = get_phone_theme_value("player_bubble_image")
@@ -772,6 +783,8 @@ screen phone_ui():
                                                 $ channel_notifs[current_phone_view] = False
                                                 if phone_config["auto_scroll"]:
                                                     $ yadj.value = (yadj.range + 1000)
+                                            if index > 0:##NO FUNCIONA
+                                                $ message_text = "{noalt}" + message_text + "{/noalt}"
                                             text message_text:
                                                 color get_phone_theme_value("timestamp_text_colour")
                                                 size phone_config["timestamp_font_size"]
@@ -795,7 +808,9 @@ screen phone_ui():
                                                 $ channel_notifs[current_phone_view] = False
                                                 if phone_config["auto_scroll"]:
                                                     $ yadj.value = (yadj.range + 1000)
-                                            add message_text at scale_to_fit(image_x, image_y)
+                                            add message_text at scale_to_fit(image_x, image_y) 
+                                            text summary_alt:##LO LEE, PERO AFECTA COMO SE VE LA IMAGEN
+                                                size 0
                                         $ last_sender_in_chat_view = sender
                                     elif message_kind == 3:
                                         # this is a message with emojis
@@ -817,6 +832,9 @@ screen phone_ui():
                                             hbox:
                                                 spacing 5
                                                 xmaximum 510
+
+                                                if index != len(phone_channels[current_phone_view]) - 1:##FUNCIONA
+                                                    $ message_text = "{noalt}" + message_text + "{/noalt}"
                                                 text replace_emojis(message_text):
                                                     size phone_config["message_font_size"]
                                                     color text_colour

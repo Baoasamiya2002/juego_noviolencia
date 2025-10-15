@@ -1,173 +1,49 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/style.pyx", line 808, in renpy.style.rebuild
-  File "game/screens.rpy", line 1182, in prepare_screen
-    screen history():
-  File "game/screens.rpy", line 1182, in prepare
-    screen history():
-  File "game/screens.rpy", line 1189, in prepare
-    use game_menu(_("Progreso")):
-  File "game/screens.rpy", line 1189, in prepare
-    use game_menu(_("Progreso")):
-  File "game/screens.rpy", line 1191, in prepare
-    hbox:
-  File "game/screens.rpy", line 1191, in prepare
-    hbox:
-  File "game/screens.rpy", line 1193, in prepare
-    vbox:
-  File "game/screens.rpy", line 1193, in prepare
-    vbox:
-  File "game/screens.rpy", line 1195, in prepare
-    hbox:
-  File "game/screens.rpy", line 1195, in prepare
-    hbox:
-  File "game/screens.rpy", line 1203, in prepare
-    vbox:
-  File "game/screens.rpy", line 1203, in prepare
-    vbox:
-  File "game/screens.rpy", line 1208, in prepare
-    add DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]") ysize 450 xsize 400
-  File "game/screens.rpy", line 1208
-    DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]")
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "game/screens.rpy", line 1182, in prepare_screen
-    screen history():
-  File "game/screens.rpy", line 1182, in prepare
-    screen history():
-  File "game/screens.rpy", line 1189, in prepare
-    use game_menu(_("Progreso")):
-  File "game/screens.rpy", line 1189, in prepare
-    use game_menu(_("Progreso")):
-  File "game/screens.rpy", line 1191, in prepare
-    hbox:
-  File "game/screens.rpy", line 1191, in prepare
-    hbox:
-  File "game/screens.rpy", line 1193, in prepare
-    vbox:
-  File "game/screens.rpy", line 1193, in prepare
-    vbox:
-  File "game/screens.rpy", line 1195, in prepare
-    hbox:
-  File "game/screens.rpy", line 1195, in prepare
-    hbox:
-  File "game/screens.rpy", line 1203, in prepare
-    vbox:
-  File "game/screens.rpy", line 1203, in prepare
-    vbox:
-  File "game/screens.rpy", line 1208, in prepare
-    add DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]") ysize 450 xsize 400
-  File "game/screens.rpy", line 1208
-    DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]")
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
+  File "game/script.rpy", line 163, in script
+    narrador "{font=calibri.ttc}♫{/font} Ella sabía que él sabía, que algún día pasaría ♫"
+  File "renpy/display/render.pyx", line 487, in renpy.display.render.render_screen
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+Exception: Could not find font 'calibri.ttc'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "renpy/common/00start.rpy", line 201, in script
-    python:
-  File "renpy/ast.py", line 1187, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1260, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/common/00start.rpy", line 202, in <module>
-    _init_language()
-    ~~~~~~~~~~~~~~^^
-  File "renpy/common/00start.rpy", line 83, in _init_language
-    renpy.change_language(language, force=True)
-    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/translation/__init__.py", line 841, in change_language
-    renpy.style.rebuild()
-    ~~~~~~~~~~~~~~~~~~~^^
-  File "renpy/style.pyx", line 808, in renpy.style.rebuild
-  File "renpy/display/screen.py", line 1035, in prepare_screens
-    s.ast.prepare_screen()
-    ~~~~~~~~~~~~~~~~~~~~^^
-  File "game/screens.rpy", line 1182, in prepare_screen
-    screen history():
-  File "game/screens.rpy", line 1182, in prepare
-    screen history():
-  File "game/screens.rpy", line 1189, in prepare
-    use game_menu(_("Progreso")):
-  File "game/screens.rpy", line 1189, in prepare
-    use game_menu(_("Progreso")):
-  File "game/screens.rpy", line 1191, in prepare
-    hbox:
-  File "game/screens.rpy", line 1191, in prepare
-    hbox:
-  File "game/screens.rpy", line 1193, in prepare
-    vbox:
-  File "game/screens.rpy", line 1193, in prepare
-    vbox:
-  File "game/screens.rpy", line 1195, in prepare
-    hbox:
-  File "game/screens.rpy", line 1195, in prepare
-    hbox:
-  File "game/screens.rpy", line 1203, in prepare
-    vbox:
-  File "game/screens.rpy", line 1203, in prepare
-    vbox:
-  File "game/screens.rpy", line 1208, in prepare
-    add DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]") ysize 450 xsize 400
-  File "renpy/pyanalysis.py", line 913, in ast_eval
-    return self.ast_eval_literal(expr)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^   
-  File "renpy/pyanalysis.py", line 895, in ast_eval_literal
-    expr = py_compile(expr, "eval", ast_node=True)
-           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1247, in py_compile
-    raise e
-  File "renpy/python.py", line 1177, in py_compile
-    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
-           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 1208
-    DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]")
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "renpy/bootstrap.py", line 376, in bootstrap
-    renpy.main.main()
-    ~~~~~~~~~~~~~~~^^
-  File "renpy/main.py", line 614, in main
-    run(restart)
-    ~~~^^^^^^^^^
-  File "renpy/main.py", line 137, in run
-    renpy.execution.run_context(True)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "renpy/execution.py", line 1022, in run_context
-    context.run()
-    ~~~~~~~~~~~^^
-  File "renpy/common/00start.rpy", line 201, in script
-    python:
-  File "renpy/common/00start.rpy", line 201, in script
-    python:
-  File "renpy/display/error.py", line 135, in report_exception
-    renpy.game.invoke_in_new_context(
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        call_exception_screen,
-        ^^^^^^^^^^^^^^^^^^^^^^
-    ...<4 lines>...
-        ignore_action=ignore_action,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "renpy/game.py", line 301, in invoke_in_new_context
-    return callable(*args, **kwargs)
-           ~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "renpy/display/error.py", line 44, in call_exception_screen
-    return renpy.ui.interact(mouse="screen", type="screen", suppress_overlay=True, suppress_underlay=True)
-           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/script.rpy", line 163, in script
+    narrador "{font=calibri.ttc}♫{/font} Ella sabía que él sabía, que algún día pasaría ♫"
+  File "renpy/ast.py", line 2915, in execute
+    Say.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "renpy/ast.py", line 991, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/exports/sayexports.py", line 129, in say
+    who(what, *args, **kwargs)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1543, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1198, in do_display
+    display_say(who, what, self.do_show, **display_args)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 888, in display_say
+    rv = renpy.ui.interact(mouse="say", type=type, roll_forward=roll_forward)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/ui.py", line 304, in interact
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -181,57 +57,86 @@ Traceback (most recent call last):
         ^^^^^^^^^
     )  # type: ignore
     ^                
-  File "renpy/display/core.py", line 2450, in interact_core
-    renpy.display.screen.prepare_screens()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "renpy/display/screen.py", line 1035, in prepare_screens
-    s.ast.prepare_screen()
-    ~~~~~~~~~~~~~~~~~~~~^^
-  File "game/screens.rpy", line 1182, in prepare_screen
-    screen history():
-  File "game/screens.rpy", line 1182, in prepare
-    screen history():
-  File "game/screens.rpy", line 1189, in prepare
-    use game_menu(_("Progreso")):
-  File "game/screens.rpy", line 1189, in prepare
-    use game_menu(_("Progreso")):
-  File "game/screens.rpy", line 1191, in prepare
-    hbox:
-  File "game/screens.rpy", line 1191, in prepare
-    hbox:
-  File "game/screens.rpy", line 1193, in prepare
-    vbox:
-  File "game/screens.rpy", line 1193, in prepare
-    vbox:
-  File "game/screens.rpy", line 1195, in prepare
-    hbox:
-  File "game/screens.rpy", line 1195, in prepare
-    hbox:
-  File "game/screens.rpy", line 1203, in prepare
-    vbox:
-  File "game/screens.rpy", line 1203, in prepare
-    vbox:
-  File "game/screens.rpy", line 1208, in prepare
-    add DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]") ysize 450 xsize 400
-  File "renpy/pyanalysis.py", line 913, in ast_eval
-    return self.ast_eval_literal(expr)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^   
-  File "renpy/pyanalysis.py", line 895, in ast_eval_literal
-    expr = py_compile(expr, "eval", ast_node=True)
-           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1247, in py_compile
-    raise e
-  File "renpy/python.py", line 1177, in py_compile
-    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
-           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 1208
-    DynamicImage("planta_[DynamicImage("planta_[jugador.estadoPlanta]").estadoPlanta]")
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
+  File "renpy/display/core.py", line 2890, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/core.py", line 1380, in draw_screen
+    surftree = renpy.display.render.render_screen(
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        root_widget,
+        ^^^^^^^^^^^^
+        renpy.config.screen_width,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        renpy.config.screen_height,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "renpy/display/render.pyx", line 487, in renpy.display.render.render_screen
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/layout.py", line 899, in render
+    surf = render(child, width, height, cst, cat)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/layout.py", line 899, in render
+    surf = render(child, width, height, cst, cat)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/layout.py", line 899, in render
+    surf = render(child, width, height, cst, cat)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/screen.py", line 767, in render
+    child = renpy.display.render.render(self.child, w, h, st, at)
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/layout.py", line 899, in render
+    surf = render(child, width, height, cst, cat)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/layout.py", line 1442, in render
+    surf = render(child, width - cxmargin - cxpadding, height - cymargin - cypadding, st, at)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/display/layout.py", line 1162, in render
+    surf = render(d, width - x, rh, cst, cat)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
+  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
+  File "renpy/text/text.py", line 2730, in render
+    virtual_layout = Layout(self, width, height, renders, drawable_res=False, size_only=True)
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/text/text.py", line 820, in __init__
+    seg_glyphs, rtl = self.glyphs_paragraph(p, order)
+                      ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "renpy/text/text.py", line 1673, in glyphs_paragraph
+    rv.append((ts, ts.glyphs(s[offset:], self, l)))
+                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^  
+  File "renpy/text/text.py", line 357, in glyphs
+    fo = font.get_font(
+         ~~~~~~~~~~~~~^
+        self.font,
+        ^^^^^^^^^^
+    ...<11 lines>...
+        self.features,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "renpy/text/font.py", line 750, in get_font
+    face = load_face(fn, shaper)
+           ~~~~~~~~~^^^^^^^^^^^^
+  File "renpy/text/font.py", line 668, in load_face
+    raise Exception("Could not find font {0!r}.".format(orig_fn))
+Exception: Could not find font 'calibri.ttc'.
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Wed Oct  1 12:03:45 2025
+Tue Oct 14 14:26:08 2025

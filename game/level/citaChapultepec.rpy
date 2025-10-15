@@ -9,7 +9,7 @@ init python:
 label cita_chapultepec:
 
     scene caminata_chapultepec
-    narrador "Un domingo por la tarde, Ximena y Carlos decidieron salir a una 
+    narrador "Un domingo por la tarde, [jugador.nombre] y [pareja.nombre] decidieron salir a una 
         cita."
     narrador "Caminaban entre los árboles, tenían tiempo de no salir juntos, 
         estaban en entregas finales y la carrera de cada uno comenzaba a ser 
@@ -89,7 +89,7 @@ label cita_chapultepec:
             call chapultepec_aceptar_broma
     
     scene caminata_chapultepec
-    narrador "Hay un breve silencio entre Carlos y Ximena. Llevan tiempo 
+    narrador "Hay un breve silencio entre [pareja.nombre] y [jugador.nombre]. Llevan tiempo 
         intentando sacar la relación a flote a pesar de sus compromisos con la 
         escuela, familia y amigos."
     narrador "Su relación nunca ha sido perfecta, pero siguen intentando que lo 
@@ -226,7 +226,7 @@ label cita_chapultepec:
                         día. ¿De cuántos meses es la tarjeta?"
                     $ coleccionables.append("tarjeta_spotify_intacta")
                     show tarjeta_spotify_intacta:
-                        yalign .3
+                        yalign .4
                         xalign .5
                     narrador "¡Obtuviste una tarjeta de Spotify! Click o toca 
                         para continuar."
@@ -244,7 +244,7 @@ label cita_chapultepec:
                     call chapultepec_romper_tarjeta
                     $ coleccionables.append("tarjeta_spotify_rota")
                     show tarjeta_spotify_rota:
-                        yalign .3
+                        yalign .4
                         xalign .5
                     narrador "¡Obtuviste una tarjeta rota de Spotify! Click o 
                         toca para continuar."
@@ -256,14 +256,18 @@ label retroalimentacion_pareja_chapultepec:
     
     scene fondo_inicio
     narrador "Bueno... no creo que esa haya sido la cita que planearon, ¿verdad?"    
-    $ jugador.estadoPlanta = "marchita"
-    show planta_marchita:
-        yalign .3
+    $ jugador.estadoPlanta = LISTA_ESTADO_PLANTA[1]
+    show planta_fondo:
+        yalign .4
+        xalign .5
+    show expression "planta_[jugador.estadoPlanta]":
+        yalign .4
         xalign .5
         xsize 950
         ysize 900
     narrador "Lamentablemente [pareja.nombre] dañó tu planta, veamos cuándo pasó:"
-    hide planta_marchita
+    hide planta_fondo
+    hide expression "planta_[jugador.estadoPlanta]"
     $ retroalimentacion = True
 
     $ i = 0
@@ -284,22 +288,26 @@ label retroalimentacion_jugador_chapultepec:
     
     if listaViolenciaJugador:
 
-        $ pareja.estadoPlanta == "marchita"
+        $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[1]
 
         show penalizacion_aspersor:
             xalign .05
         $ coleccionables.append("penalizacion_aspersor")
         narrador "¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia 
             para su planta."
-        hide penalizacion_aspersor
-        show planta_marchita:
-            yalign .3
+        hide penalizacion_aspersor    
+        show planta_fondo:
+            yalign .4
+            xalign .5
+        show expression "planta_[pareja.estadoPlanta]":
+            yalign .4
             xalign .5
             xsize 950
             ysize 900
         narrador "La planta de [pareja.nombre] se siente un poco enferma, 
             veamos cuándo pasó:"
-        hide planta_marchita
+        hide planta_fondo
+        hide expression "planta_[pareja.estadoPlanta]"
 
         $ i = 0
         while i < len(listaViolenciaJugador):
@@ -315,21 +323,25 @@ label retroalimentacion_jugador_chapultepec:
             entiende la gente."
     else:
 
-        $ pareja.estadoPlanta == "florece"
+        $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[2]
 
         show logro_aspersor:
             xalign .05
         $ coleccionables.append("logro_aspersor")
         narrador "¡Felicidades! Con tus respuestas ganaste un aspersor con agua 
             limpia."
-        hide logro_aspersor
-        show planta_florece:
-            yalign .3
+        hide logro_aspersor    
+        show planta_fondo:
+            yalign .4
+            xalign .5
+        show expression "planta_[pareja.estadoPlanta]":
+            yalign .4
             xalign .5
             xsize 950
             ysize 900
         narrador "La planta de [pareja.nombre] ha comenzado a florecer."
-        hide planta_florece
+        hide planta_fondo
+        hide expression "planta_[pareja.estadoPlanta]"
 
         if listaPresion:
              
@@ -354,7 +366,7 @@ label retroalimentacion_mito_chapultepec:
 
         menu:
 
-            narrador "Además, algunos de los diálogos de Carlos y Ximena 
+            narrador "Además, algunos de los diálogos de [pareja.nombre] y [jugador.nombre] 
                 reproducen mitos sobre los roles de género, ¿Te diste cuenta?"
         
             "Sí":
@@ -371,8 +383,16 @@ label retroalimentacion_mito_chapultepec:
             
         scene chapultepec_fondo
         narrador "Tal vez alguno de estos diálogos no los habías visto con este punto de vista."
-        narrador "Por eso es bueno cuestionarnos si ¿es un gesto propio o lo hago porque \"así debe ser\"?"
-    
+        narrador "Por eso es bueno cuestionarnos ¿es un gesto propio o lo hago porque \"así debe ser\"?"
+
+    if _preferences.self_voicing:
+            
+        narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
+            los contactos en el menú de Recursos (tercer botón superior)."
+    else:
+
+        narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
+            los contactos en el menú de {image=boton_recursos}"
     jump telefono_conversacion
 
 
@@ -385,7 +405,7 @@ label chapultepec_preocupacion_pareja:
     if retroalimentacion:
 
         narrador "Está bien reconocer tus errores, pero ¿fue por un error o 
-            porque Ximena cree estar encargada de hacer sentir bien a su pareja?"
+            porque [jugador.nombre] cree estar encargada de hacer sentir bien a su pareja?"
     else:
 
         $ listaMito.append("chapultepec_preocupacion_pareja")
@@ -878,7 +898,7 @@ label chapultepec_romper_tarjeta:
 
         $ palabraGenero = "hermano" if jugador.nombre == novio.name else "hermana"
         show tarjeta_spotify_rota:
-                        yalign .3
+                        yalign .4
                         xalign .5        
         narrador "[pareja.nombre] te {b}humilló{/b} con su insulto y 
             {b}destruyó{/b} el regalo de su [palabraGenero] por no caer en su 
@@ -894,7 +914,7 @@ label chapultepec_romper_tarjeta:
 label chapultepec_aceptar_chantaje:
     
     show tarjeta_spotify_intacta:
-        yalign .3
+        yalign .4
         xalign .5
     narrador "¿Y recuerdas esa tarjeta de Spotify? Era un regalo para tí, pero la 
         aceptaste a través de un {b}chantaje{/b}."

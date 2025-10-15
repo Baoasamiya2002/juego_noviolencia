@@ -42,12 +42,12 @@ define gui.hover_color = '#121840'
 define gui.selected_color = '#555555'
 
 ## El color de los botones de texto que no pueden ser seleccionados.
-define gui.insensitive_color = '#7070707f'
+define gui.insensitive_color = '#734382'
 
 ## Colores de la parte vacía de las barras. No se usan directamente, sino en la
 ## regeneración de las imágenes de barra.
-define gui.muted_color = '#e0a366'
-define gui.hover_muted_color = '#eac199'
+define gui.muted_color = '#421f4e'
+define gui.hover_muted_color = '#493151'
 
 ## Colores del texto del diálogo y menú.
 define gui.text_color = '#000000'
@@ -213,7 +213,7 @@ define gui.choice_button_borders = Borders(200, 10, 200, 10)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = '#707070'
+define gui.choice_button_text_idle_color = '#000000'
 define gui.choice_button_text_hover_color = "#ffffff"
 define gui.choice_button_text_insensitive_color = '#7070707f'
 
@@ -354,7 +354,7 @@ define gui.history_spacing = 30
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
 define gui.history_name_xpos = 150
-define gui.history_name_ypos = -60
+define gui.history_name_ypos = -75
 define gui.history_name_width = 150
 define gui.history_name_xalign = 1.0
 

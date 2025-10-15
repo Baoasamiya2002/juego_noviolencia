@@ -1,6 +1,6 @@
 Kinetic Text Tags Ren'Py Module 2021 Daniel Westfall <SoDaRa2595@gmail.com>
 http://twitter.com/sodara9 I'd appreciate being given credit if you do end up using it! :D Would really make my day to know I helped some people out! Really hope this can help the community create some really neat ways to spice up their dialogue! http://opensource.org/licenses/mit-license.php Github: https://github.com/SoDaRa/Kinetic-Text-Tags itch.io: https://wattson.itch.io/kinetic-text-tags Forum Post: https://lemmasoft.renai.us/forums/viewtopic.php?f=51&t=60527&sid=75b4eb1aa5212a33cbfe9b0354e5376b
-Un domingo por la tarde, Ximena y Carlos decidieron salir a una cita.
+Un domingo por la tarde, Fernanda y Carlos decidieron salir a una cita.
 Caminaban entre los árboles, tenían tiempo de no salir juntos, estaban en entregas finales y la carrera de cada uno comenzaba a ser cada vez más demandante.
 Aunque a veces se veían entre clases en la universidad, están en ambientes muy distintos y cada vez sus diferencias y expectativas se hacían más evidentes...
 Ay no amor. Hablé con mi equipo y quieren trabajar en la escuela. Ya les dije que es más fácil que cada quien llegue a su casa y luego ponernos a trabajar en línea.
@@ -19,7 +19,7 @@ No, de verdad que no, solo quiero saber...
 ¿Eso quéee?, ¿ya viste que en lugar de preguntar por qué pienso eso, hiciste que todo se tratara sobre ti?
 ...
 Eh... yo no quería molestarte. A veces soy así por que me importas. Por que te amo.
-Hay un breve silencio entre Carlos y Ximena. Llevan tiempo intentando sacar la relación a flote a pesar de sus compromisos con la escuela, familia y amigos.
+Hay un breve silencio entre Carlos y Fernanda. Llevan tiempo intentando sacar la relación a flote a pesar de sus compromisos con la escuela, familia y amigos.
 Su relación nunca ha sido perfecta, pero siguen intentando que lo sea. Piensan que así es el amor.
 Mejor ya vámonos [pareja.apodo].
 La verdad no quiero pelear amor, pero a veces te siento distante. He llegado a pensar que te sientes mejor con tus amistades que conmigo. Creo que te aburro o no sé...
@@ -75,18 +75,18 @@ Buscaste cambiar el tema ante el enojo de [pareja.nombre] y poner su bienestar p
 Quisiste hacer pasar la violencia ocurrida para terminar el conflicto.
 ¿Recuerdas esa tarjeta de Spotify? Era un regalo para tí, pero la aceptaste a través de un {b}chantaje{/b}.
 Cuidado, estas violencias pueden {b}continuar{/b} o {b}escalar{/b} si no se detienen y sólo las aceptas.
-Además, algunos de los diálogos de Carlos y Ximena reproducen mitos sobre los roles de género, ¿Te diste cuenta?
+Además, algunos de los diálogos de Carlos y Fernanda reproducen mitos sobre los roles de género, ¿Te diste cuenta?
 Por ejemplo:
-Está bien reconocer tus errores, pero ¿fue por un error o porque Ximena cree estar encargada de hacer sentir bien a su pareja?
+Está bien reconocer tus errores, pero ¿fue por un error o porque Fernanda cree estar encargada de hacer sentir bien a su pareja?
 Te intentó {b}humillar{b} por mostrar tus emociones, ¿Eso es algo de verguenza?
 ¿Será que quiere ser el tema de conversación, o cree que así debe ser en una relación?
 ¿Será que quiere ser el tema de conversación, o cree que así debe ser en una relación?
 ¿Será que quiere ser el tema de conversación, o cree que así debe ser en una relación?
 ¿Será que quiere ser el tema de conversación, o cree que así debe ser en una relación?
 Puede ser cierto, pero la respuesta fue a la defensiva, ¿puede ser que cree tener que ocultar sus emociones?
-Aunque Ximena haya "empezado", si hay una agresión, ¿quién es el responsable?
+Aunque Fernanda haya "empezado", si hay una agresión, ¿quién es el responsable?
 Además de la {b}humillación{/b}, ¿será que cree que en la relación debe de dar órdenes?
-Puede que Ximena se enoje facilmente, ¿pero por qué piensa que así son todas las mujeres?
+Puede que Fernanda se enoje facilmente, ¿pero por qué piensa que así son todas las mujeres?
 ¿Los regalos son una muestra de amor o cree que es una responsabilidad?
 Puede ser cierto, pero la respuesta fue a la defensiva, ¿puede ser que cree tener que ocultar sus emociones?
 Además de la {b}culpabilización{/b}, ¿la mejor solución será ser reservado?
@@ -131,11 +131,11 @@ En el mapa que puedes ver, eligirás un lugar y tener una cita
 Además, cada quien tiene una planta que representa el estado de su relación.
 Sus decisiones las ayudarán a crecer o marchitarlas.
 Y ¡oh mira! [novia.name] y [novio.name] están en el cine, vamos a conocerlos.
-En el cine dentro de una sala, están Ximena y Carlos esperando a que empiece la película.
+En el cine dentro de una sala, están Fernanda y Carlos esperando a que empiece la película.
 Ay amor, ¡gracias por los boletos! Seguro te costó un buen conseguirlos, escuché que había pocos.
 Es que estuve pegado a la compu desde la preventa, sabía que tenías muchas ganas de verla. Lo único malo es que vino mucha gente y solo alcanzamos unas palomitas chicas...
 No te preocupes, me encanta compartir las palomitas y más si es contigo.
-Gracias amor, me haces muy feliz Xime.
+Gracias amor, me haces muy feliz Fer.
 Ahora que los conoces un poco, elige el personaje con el que quieres jugar.
 Haz seleccionado a [jugador.nombre]
 Haz seleccionado a [jugador.nombre]

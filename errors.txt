@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 1202: expected a keyword argument, colon, or end of line.
-    add DynamicImage()"planta_marchita" ysize 450 xsize 400
-                      ^
+File "game/level/citaChapultepec.rpy", line 392: Indentation mismatch.
+    else:
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Wed Oct  1 11:59:44 2025
+Tue Oct 14 18:15:25 2025
