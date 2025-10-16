@@ -1555,7 +1555,7 @@ style confirm_button is gui_medium_button
 style confirm_button_text is gui_medium_button_text
 
 style confirm_frame:
-    background Frame([ "gui/confirm_frame.png", "gui/frame.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
+    background Frame(["gui/confirm_frame.png", "gui/frame.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
     padding gui.confirm_frame_borders.padding
     xalign .5
     yalign .5
@@ -2002,10 +2002,14 @@ screen boton_eleccion_personaje():
         yalign .4
         idle "gui/button/boton_seleccion_fernanda.png"
         hover "gui/button/boton_seleccion_fernanda_hover.png"
-        action Jump("seleccionNovia")
+        action [
+            Function(lambda: definirPersonaje(novia, APODO_NOVIA, novio, APODO_NOVIO)), 
+            Jump("seleccionPersonaje")]
     imagebutton:
         xalign .75
         yalign .4
         idle "gui/button/boton_seleccion_carlos.png"        
         hover "gui/button/boton_seleccion_carlos_hover.png"
-        action Jump("seleccionNovio")
+        action [
+            Function(lambda: definirPersonaje(novio, APODO_NOVIO, novia, APODO_NOVIA)), 
+            Jump("seleccionPersonaje")]

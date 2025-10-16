@@ -1,103 +1,28 @@
-2025-10-15 00:15:25 UTC
+2025-10-16 00:34:18 UTC
 Windows-11-10.0.26100-SP0
 Ren'Py 8.4.1.25072401
 
-Early init took 31 ms
-Loading error handling took 18 ms
-Loading script took 133 ms
-Loading save slot metadata took 23 ms
+Early init took 30 ms
+Loading error handling took 19 ms
+Loading script took 108 ms
+Loading save slot metadata took 21 ms
 Loading persistent took 0 ms
-
-File "game/level/citaChapultepec.rpy", line 392: Indentation mismatch.
-    else:
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: b"Couldn't load nvlib." (can be ignored)
-Interface start took 90 ms
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1920, 1080)
-swap interval: 1 frames
-Windowed mode.
-Vendor: 'Intel'
-Renderer: 'Intel(R) Iris(R) Xe Graphics'
-Version: '4.6.0 - Build 32.0.101.6913'
-Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1080, 'refresh_rate': 75, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
-Screen sizes: virtual=(2560, 1600) physical=(1150, 719) drawable=(1150, 719)
-Maximum texture size: 4096x4096
-Resetting cache.
-Early init took 7 ms
-Loading error handling took 15 ms
-Loading script took 168 ms
-Loading save slot metadata took 16 ms
-Loading persistent took 0 ms
-Running init code took 39 ms
+Running init code took 42 ms
 Loading analysis data took 7 ms
-Analyze and compile ATL took 2 ms
-Reloading save slot metadata took 14 ms
-Backing up script files to 'C:\\Users\\puxka\\AppData\\Roaming/RenPy/backups\\version 1.0':
-Dump and make backups took 36 ms
-Cleaning cache took 0 ms
-Making clean stores took 1 ms
-Initial gc took 35 ms
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object took 1 ms
-Init translation took 0 ms
-Cleaning stores took 0 ms
-Load screen analysis took 0 ms
-Analyze screens took 15 ms
-Save screen analysis took 17 ms
-Save pyanalysis took 7 ms
-Save bytecode took 2 ms
-Running _start took 0 ms
-Interface start took 189 ms
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1920, 1080)
-swap interval: 1 frames
-Windowed mode.
-Vendor: 'Intel'
-Renderer: 'Intel(R) Iris(R) Xe Graphics'
-Version: '4.6.0 - Build 32.0.101.6913'
-Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1080, 'refresh_rate': 75, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
-Screen sizes: virtual=(2560, 1600) physical=(1150, 719) drawable=(1150, 719)
-Maximum texture size: 4096x4096
-Resetting cache.
-Early init took 7 ms
-Loading error handling took 8 ms
-Loading script took 179 ms
-Loading save slot metadata took 15 ms
-Loading persistent took 1 ms
-Running init code took 34 ms
-Loading analysis data took 8 ms
 Analyze and compile ATL took 1 ms
 Reloading save slot metadata took 15 ms
-Backing up script files to 'C:\\Users\\puxka\\AppData\\Roaming/RenPy/backups\\version 1.0':
-Dump and make backups took 37 ms
+Dump and make backups took 27 ms
 Cleaning cache took 0 ms
-Making clean stores took 0 ms
-Initial gc took 54 ms
+Making clean stores took 1 ms
+Initial gc took 44 ms
 DPI scale factor: 1.000000
-Creating interface object took 0 ms
-Init translation took 0 ms
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object took 2 ms
+Init translation took 1 ms
 Cleaning stores took 0 ms
-Load screen analysis took 0 ms
-Analyze screens took 16 ms
-Save screen analysis took 16 ms
-Save pyanalysis took 8 ms
-Save bytecode took 1 ms
-Running _start took 0 ms
-Interface start took 205 ms
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1920, 1080)
-swap interval: 1 frames
-Windowed mode.
-Vendor: 'Intel'
-Renderer: 'Intel(R) Iris(R) Xe Graphics'
-Version: '4.6.0 - Build 32.0.101.6913'
-Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1080, 'refresh_rate': 75, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
-Screen sizes: virtual=(2560, 1600) physical=(1150, 719) drawable=(1150, 719)
-Maximum texture size: 4096x4096
+Load screen analysis took 34 ms
+Analyze screens took 1 ms
+Save screen analysis took 0 ms
+Save pyanalysis took 0 ms
+Save bytecode took 0 ms

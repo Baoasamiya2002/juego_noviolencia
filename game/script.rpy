@@ -9,6 +9,23 @@
             Image(ruta)
         )
     
+    def definirPersonaje(personajeJugador, apodoJugador, personajePareja, apodoPareja):
+
+        global jugador, pareja
+
+        jugador = Persona(
+            personajeJugador.name, 
+            apodoJugador, 
+            Character(
+                personajeJugador.name, 
+                window_background=Frame("gui/jugador_textbox_trans.png")))
+        pareja = Persona(
+            personajePareja.name, 
+            apodoPareja, 
+            Character(
+                personajePareja.name, 
+                window_background=Frame("gui/pareja_textbox_trans.png")))
+    
     #texto introductorio
     with renpy.file('misc/intro.txt', encoding='utf8') as f:
         texto_intro = f.read()
@@ -161,7 +178,7 @@ label splashscreen:
 
 label start:
 
-    
+    jump eleccionPersonaje
     scene black
 
     if persistent.Config:
@@ -221,6 +238,8 @@ label start:
     narrador "(cantando) Ella sabía que él sabía, que algún día pasaría"
 
     menu:
+
+        narrador "Selecciona una respuesta."
         "¿Flores cantando? ¿Qué ch...":
             narrador "Tampoco es para tanto ¿eh?"
         "¡Me sé la canción! Me les uno.":
@@ -274,21 +293,9 @@ label eleccionPersonaje:
         quieres jugar."
 
 
-label seleccionNovia:
+label seleccionPersonaje:
 
     hide screen boton_eleccion_personaje
-    $ jugador = Persona(
-        novia.name, 
-        APODO_NOVIA, 
-        Character(
-            novia.name, 
-            window_background=Frame("gui/jugador_textbox_trans.png")))
-    $ pareja = Persona(
-        novio.name, 
-        APODO_NOVIO, 
-        Character(
-            novio.name, 
-            window_background=Frame("gui/pareja_textbox_trans.png")))
     
     if _preferences.self_voicing:
 
@@ -304,34 +311,14 @@ label seleccionNovia:
             menú de {image=boton_opciones_quick}."
 
         hide seleccion_personaje
-    jump cita_chapultepec
-
-
-label seleccionNovio:
-
-    hide screen boton_eleccion_personaje
-    $ jugador = Persona(
-        novio.name, 
-        APODO_NOVIO, 
-        Character(
-            novio.name, 
-            window_background=Frame("gui/jugador_textbox_trans.png")))
-    $ pareja = Persona(
-        novia.name, 
-        APODO_NOVIA, 
-        Character(
-            novia.name, 
-            window_background=Frame("gui/pareja_textbox_trans.png")))
-    narrador "Has seleccionado a [jugador.nombre]"
-    hide seleccion_personaje
-    jump cita_chapultepec
+    jump telefono_conversacion#cita_chapultepec
 
 
 label finalJuego:
 
     scene fondo_inicio
     narrador "¡Muchas gracias por jugar esta primera versión del juego!"
-    narrador "Si tienes comentarios, por favor compartelos con nosotros y 
+    narrador "Si tienes comentarios, por favor compártelos con nosotros y 
         ayúdanos a mejorar."
     jump evaluacion
 

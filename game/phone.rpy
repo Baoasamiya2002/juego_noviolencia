@@ -335,8 +335,9 @@ init -1 python:
         current_phone_view = "pareja_dm"
         # phone relevant! if you want to add initial chats that appear before anything (or remove the demo ones) do so here~
         create_phone_channel("pareja_dm", "[pareja.apodo]<3", [pareja.nombre, jugador.nombre], "phone/icons/foto_perfil.png")
+        create_phone_channel("jugador_dm", "mis notass", [jugador.nombre], "phone/icons/foto_perfil.png")
         # phone relevant! same as above, but with messages
-        send_phone_message("", "Hoy", "pareja_dm", 1, do_pause=False)        
+        send_phone_message("", "{color=#ffffff}Hoy{/color}", "pareja_dm", 1, do_pause=False)        
         phone_config["phone_player_name"] = [jugador.nombre]
         # clear notifications
         clear_notifications()
@@ -649,7 +650,7 @@ screen phone_ui():
                         text phone_channel_data[current_phone_view]["display_name"]:
                             style "phone_header_style"
                             yalign 2.0
-                            xpos 1.2
+                            xpos 1.3
                 else:
                     null height 40
                     text phone_config["channels_title"]:
@@ -809,8 +810,8 @@ screen phone_ui():
                                                 if phone_config["auto_scroll"]:
                                                     $ yadj.value = (yadj.range + 1000)
                                             add message_text at scale_to_fit(image_x, image_y) 
-                                            text summary_alt:##LO LEE, PERO AFECTA COMO SE VE LA IMAGEN
-                                                size 0
+                                            # text summary_alt:##LO LEE, PERO AFECTA COMO SE VE LA IMAGEN
+                                            #     size 0
                                         $ last_sender_in_chat_view = sender
                                     elif message_kind == 3:
                                         # this is a message with emojis

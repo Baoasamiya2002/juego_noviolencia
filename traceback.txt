@@ -1,142 +1,51 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 163, in script
-    narrador "{font=calibri.ttc}♫{/font} Ella sabía que él sabía, que algún día pasaría ♫"
-  File "renpy/display/render.pyx", line 487, in renpy.display.render.render_screen
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-Exception: Could not find font 'calibri.ttc'.
+  File "game/level/telefonoConversacion.rpy", line 16, in script
+    show expression "pantalla_bloqueo_[jugador.nombre]":
+Exception: DynamicImage 'pantalla_bloqueo_[jugador.nombre]': could not find image. ('pantalla_bloqueo_???')
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/script.rpy", line 163, in script
-    narrador "{font=calibri.ttc}♫{/font} Ella sabía que él sabía, que algún día pasaría ♫"
-  File "renpy/ast.py", line 2915, in execute
-    Say.execute(self)
-    ~~~~~~~~~~~^^^^^^
-  File "renpy/ast.py", line 991, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/exports/sayexports.py", line 129, in say
-    who(what, *args, **kwargs)
-    ~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 1543, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 1198, in do_display
-    display_say(who, what, self.do_show, **display_args)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 888, in display_say
-    rv = renpy.ui.interact(mouse="say", type=type, roll_forward=roll_forward)
-         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/ui.py", line 304, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/core.py", line 2219, in interact
-    repeat, rv = self.interact_core(
-                 ~~~~~~~~~~~~~~~~~~^
-        preloads=preloads,
-        ^^^^^^^^^^^^^^^^^^
-    ...<4 lines>...
-        **kwargs,
-        ^^^^^^^^^
-    )  # type: ignore
-    ^                
-  File "renpy/display/core.py", line 2890, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/core.py", line 1380, in draw_screen
-    surftree = renpy.display.render.render_screen(
-               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-        root_widget,
-        ^^^^^^^^^^^^
-        renpy.config.screen_width,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^
-        renpy.config.screen_height,
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/level/telefonoConversacion.rpy", line 16, in script
+    show expression "pantalla_bloqueo_[jugador.nombre]":
+  File "renpy/ast.py", line 1357, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/ast.py", line 730, in show_imspec
+    renpy.config.show(
+    ~~~~~~~~~~~~~~~~~^
+        name, at_list=at_list, layer=layer, what=expression, zorder=zorder, tag=tag, behind=behind, atl=atl
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     )
     ^
-  File "renpy/display/render.pyx", line 487, in renpy.display.render.render_screen
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/layout.py", line 899, in render
-    surf = render(child, width, height, cst, cat)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/layout.py", line 899, in render
-    surf = render(child, width, height, cst, cat)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/layout.py", line 899, in render
-    surf = render(child, width, height, cst, cat)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/screen.py", line 767, in render
-    child = renpy.display.render.render(self.child, w, h, st, at)
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/layout.py", line 899, in render
-    surf = render(child, width, height, cst, cat)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/layout.py", line 1442, in render
-    surf = render(child, width - cxmargin - cxpadding, height - cymargin - cypadding, st, at)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/display/layout.py", line 1162, in render
-    surf = render(d, width - x, rh, cst, cat)
-           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/render.pyx", line 170, in renpy.display.render.render
-  File "renpy/display/render.pyx", line 260, in renpy.display.render.render
-  File "renpy/text/text.py", line 2730, in render
-    virtual_layout = Layout(self, width, height, renders, drawable_res=False, size_only=True)
-                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/text/text.py", line 820, in __init__
-    seg_glyphs, rtl = self.glyphs_paragraph(p, order)
-                      ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
-  File "renpy/text/text.py", line 1673, in glyphs_paragraph
-    rv.append((ts, ts.glyphs(s[offset:], self, l)))
-                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^  
-  File "renpy/text/text.py", line 357, in glyphs
-    fo = font.get_font(
-         ~~~~~~~~~~~~~^
-        self.font,
-        ^^^^^^^^^^
-    ...<11 lines>...
-        self.features,
-        ^^^^^^^^^^^^^^
+  File "renpy/exports/displayexports.py", line 513, in show
+    sls.add(
+    ~~~~~~~^
+        layer,
+        ^^^^^^
+    ...<8 lines>...
+        transient=transient,
+        ^^^^^^^^^^^^^^^^^^^^
     )
     ^
-  File "renpy/text/font.py", line 750, in get_font
-    face = load_face(fn, shaper)
-           ~~~~~~~~~^^^^^^^^^^^^
-  File "renpy/text/font.py", line 668, in load_face
-    raise Exception("Could not find font {0!r}.".format(orig_fn))
-Exception: Could not find font 'calibri.ttc'.
+  File "renpy/display/scenelists.py", line 453, in add
+    thing.set_transform_event("show")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "renpy/display/transform.py", line 862, in set_transform_event
+    self.child.set_transform_event(event)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "renpy/display/image.py", line 775, in set_transform_event
+    self.find_target()
+    ~~~~~~~~~~~~~~~~^^
+  File "renpy/display/image.py", line 699, in find_target
+    raise Exception(error)
+Exception: DynamicImage 'pantalla_bloqueo_[jugador.nombre]': could not find image. ('pantalla_bloqueo_???')
 
 Windows-11-10.0.26100-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Tue Oct 14 14:26:08 2025
+Wed Oct 15 18:25:49 2025

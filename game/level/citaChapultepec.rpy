@@ -8,33 +8,61 @@ init python:
 
 label cita_chapultepec:
 
+    scene chapultepec_fondo
+    narrador "Un domingo por la tarde, [jugador.nombre] y [pareja.nombre] 
+        decidieron salir a una cita."
+    
+    if jugador.nombre == novia.name:
+        
+        call prologo_novia
+    else:
+
+        call prologo_novio
+
     scene caminata_chapultepec
-    narrador "Un domingo por la tarde, [jugador.nombre] y [pareja.nombre] decidieron salir a una 
-        cita."
-    narrador "Caminaban entre los árboles, tenían tiempo de no salir juntos, 
-        estaban en entregas finales y la carrera de cada uno comenzaba a ser 
-        cada vez más demandante."
+    narrador "Empezaron a caminar entre los árboles, tenían tiempo de no salir 
+        juntos, estaban en entregas finales y la carrera de cada uno comenzaba a 
+        ser cada vez más demandante."
     narrador "Aunque a veces se veían entre clases en la universidad, están en 
         ambientes muy distintos y cada vez sus diferencias y expectativas se 
         hacían más evidentes..."
-    jugador.personaje "Ay no amor. Hablé con mi equipo y quieren trabajar en la 
-        escuela. Ya les dije que es más fácil que cada quien llegue a su casa y 
-        luego ponernos a trabajar en línea."
-    pareja.personaje "Sí."
-    jugador.personaje "Y pues, salir de Santa Fe después de las 3 de la tarde y 
-        con lluvias está mortal, ¿sabes a qué horas voy a llegar a mi casa? 
-        Mínimo a las 7."
-    pareja.personaje "Ajá..."
-    $ palabraGenero = "seria" if jugador.nombre == novio.name else "serio"
-    scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "¿Y tú qué tienes? Estás muy [palabraGenero]."
-    $ palabraGenero = "estresada" if jugador.nombre == novio.name else "estresado"
-    scene expression "emocion_seriedad_[pareja.nombre]"
-    pareja.personaje "No, nada amor, solo estoy un poco [palabraGenero] por mi 
-        entrega del lunes."
-    scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "¿Sí? Pero a ti te sale todo a la primera… yo sí que debo 
-        preocuparme, apenas y le entiendo a la UEA."
+    
+    if jugador.nombre == novia.name:
+
+        jugador.personaje "Ay no amor. Hablé con mi equipo y quieren trabajar en la 
+            escuela. Ya les dije que es más fácil que cada quien llegue a su casa y 
+            luego ponernos a trabajar en línea."
+        pareja.personaje "Sí."
+        jugador.personaje "Y pues, salir de Santa Fe después de las 3 de la tarde y 
+            con lluvias está mortal, ¿sabes a qué horas voy a llegar a mi casa? 
+            Mínimo a las 7."
+        pareja.personaje "Ajá..."
+        scene expression "emocion_seriedad_[jugador.nombre]"
+        jugador.personaje "¿Y tú qué tienes? Estás muy serio."
+        scene expression "emocion_seriedad_[pareja.nombre]"
+        pareja.personaje "No, nada amor, solo estoy un poco estresado por mi 
+            entrega del lunes."
+        scene expression "emocion_seriedad_[jugador.nombre]"
+        jugador.personaje "¿Sí? Pero a ti te sale todo a la primera… yo sí que debo 
+            preocuparme, apenas y le entiendo a la UEA."
+    else:
+
+        jugador.personaje "¿Te acuerdas de mi proyecto que tengo para mañana? 
+            Pues al parecer yo no... casi no he hecho nada."
+        pareja.personaje "Sí."
+        jugador.personaje "Y pues le puedo pedir cosas a ChatGPT ¿verdad?, 
+            pero la otra vez, de ese mismo tema, me dió cosas que nada que ver. 
+            Tendré que ver algunos videos para que al menos escriba algo medio 
+            coherente."
+        pareja.personaje "Ajá..."
+        scene expression "emocion_seriedad_[jugador.nombre]"
+        jugador.personaje "¿Y tú qué tienes? Estás muy seria."
+        scene expression "emocion_seriedad_[pareja.nombre]"
+        pareja.personaje "No, nada amor, solo estoy un poco estresada por mi 
+            trabajo en equipo."
+        scene expression "emocion_seriedad_[jugador.nombre]"
+        jugador.personaje "¿Si? Pero te tocó con puro matadito… yo sí que debo 
+            preocuparme, apenas y le entiendo a la UEA."
     scene expression "emocion_enojo_[pareja.nombre]"
     pareja.personaje "Bueno, pero yo quiero preocuparme, ¿ok? Más bien tu andas 
         de sensible."
@@ -252,10 +280,90 @@ label cita_chapultepec:
                     jump retroalimentacion_pareja_chapultepec
 
 
+label prologo_novia:
+
+    narrador "[jugador.nombre] está en Chapultepec... pero todavía no está en el 
+        punto de reunión con [pareja.nombre]"
+    scene expression "emocion_seriedad_[jugador.nombre]"
+    jugador.personaje "Otra vez me equivoqué de parada... hasta parezco nueva, 
+        pero ahorita me apuro."
+    narrador "El día está soleado y [jugador.nombre] empieza a sentir el calor a 
+        comparación de cuando estaba en Cuajimalpa."
+    jugador.personaje "Diablos... por andar organizando cosas con mi equipo ya 
+        no chequé el clima acá en la ciudad..."
+    scene expression "emocion_tristeza_[jugador.nombre]"
+    jugador.personaje "Que con este solecito y las botitas que me traje, me van 
+        a quedar los pies bien sudados."
+    jugador.personaje "Ash ¿por qué no me traje mis tenis? Así ando más liviana."
+    scene expression "emocion_seriedad_[jugador.nombre]"
+    jugador.personaje "Aaah si cierto, que me las regaló mi [pareja.apodo] y 
+        tiene un ratote que no las uso..."
+    call chapultepec_ocultar_incomodidad
+    scene expression "emocion_felicidad_[jugador.nombre]"
+    jugador.personaje "Así que uff, respira y enderezate..."
+    narrador "En el camino [jugador.nombre] ve que venden flores"
+    jugador.personaje "Hmm unas flores... ¿y si le compro una a [pareja.apodo]?"
+    call chapultepec_miedo_estereotipo
+    jugador.personaje "Si mejor no, me van a ver raro."
+    call chapultepec_merecer_enojo
+    scene expression "emocion_seriedad_[jugador.nombre]"
+    jugador.personaje "Ya debo de dejar de ser rara... sólo debo concentrarme en 
+        encontrarlo"
+    jugador.personaje "Y... ¿ese es [pareja.nombre]? Se ve un poco preocupado..."
+    narrador "[jugador.nombre] ve que [pareja.nombre] la saluda y ella empieza a 
+        caminar hacia él."
+    call chapultepec_encargada_sentir_pareja
+    return
+
+
+label prologo_novio:
+
+    narrador "Carlos llegó primero a Chapultepec."
+    scene expression "emocion_seriedad_[jugador.nombre]"
+    jugador.personaje "Pues bueno, espero que Fer no tarde."
+    narrador "Carlos se pone a revisar sus notas."
+
+    $ reiniciar_celular()
+    show screen phone_ui
+    $ switch_channel_view("jugador_dm")
+    $ send_phone_message(
+        jugador.nombre, 
+        (
+            "Mañana entrega final\n\nComprar monedas para el COD," +
+            "\n\n(IMPORTANTE) regalo para [pareja.apodo]"), "jugador_dm", 3)
+
+    jugador.personaje "El proyecto... Otra noche sin dormir para que el profe ni 
+        lo lea.."
+    jugador.personaje "Gastos y más gastos... ¿Y si le vuelvo a pedir prestado 
+        a mi pa'?"
+    jugador.personaje "Pero todavía le debo del regalo pasado de [pareja.apodo]..."
+    hide screen phone_ui
+    call chapultepec_ser_romantico
+    scene expression "emocion_felicidad_[jugador.nombre]"
+    jugador.personaje "Pero mi hermano me había dado dinero ¿no?, voy a..."
+    scene expression "emocion_seriedad_[jugador.nombre]"
+    jugador.personaje "..."
+    jugador.personaje "También se me olvidó en la mesa."
+    jugador.personaje "..."
+    scene expression "emocion_enojo_[jugador.nombre]"
+    jugador.personaje "Como siempre, ¡soy un pinche desastre!"
+    call chapultepec_ocultar_frustracion
+    call chapultepec_guardar_emocion_soledad
+    scene expression "emocion_tristeza_[jugador.nombre]"
+    jugador.personaje "Además se ve agitada, puede que sea por la caminata, 
+        pero tal vez sea otra cosa... La voy a distraer y ver si se le pasa."
+    scene expression "emocion_seriedad_[jugador.nombre]"
+    narrador "[jugador.nombre] sumerge sus sentimientos y ve que [pareja.nombre] 
+        ya está por llegar."
+    scene expression "emocion_felicidad_[jugador.nombre]"
+    jugador.personaje "Erm, aquí, ¡Aquí estoy Fer!"
+    return    
+
+
 label retroalimentacion_pareja_chapultepec:
     
     scene fondo_inicio
-    narrador "Bueno... no creo que esa haya sido la cita que planearon, ¿verdad?"    
+    narrador "Bueno... no creo que esa haya sido la cita que planeaste, ¿verdad?"    
     $ jugador.estadoPlanta = LISTA_ESTADO_PLANTA[1]
     show planta_fondo:
         yalign .4
@@ -316,11 +424,11 @@ label retroalimentacion_jugador_chapultepec:
         
         scene chapultepec_fondo
         narrador "Y por esta violencia, acabó afectada la planta de [pareja.nombre]."
-        narrador "Es normal querer defenderse o terminar la discusión, pero la 
-            violencia nos puede alejar de lo que queremos decir."
-        narrador "Con las emociones en lo alto podemos hacer cosas de las que 
-            nos arrepentimos después. Tomemos un respiro y con respeto se 
-            entiende la gente."
+        narrador "Es normal que quieras defenderte o terminar la discusión, pero 
+            la violencia te aleja de lo que en verdad quieres decir."
+        narrador "Con las emociones en lo alto puedes hacer cosas de las que te 
+            arrepientes después. Toma un respiro y con respeto mutuo pueden 
+            llegar a algo."
     else:
 
         $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[2]
@@ -366,7 +474,7 @@ label retroalimentacion_mito_chapultepec:
 
         menu:
 
-            narrador "Además, algunos de los diálogos de [pareja.nombre] y [jugador.nombre] 
+            narrador "Además, algunos de sus diálogos 
                 reproducen mitos sobre los roles de género, ¿Te diste cuenta?"
         
             "Sí":
@@ -382,8 +490,10 @@ label retroalimentacion_mito_chapultepec:
             $ i += 1
             
         scene chapultepec_fondo
-        narrador "Tal vez alguno de estos diálogos no los habías visto con este punto de vista."
-        narrador "Por eso es bueno cuestionarnos ¿es un gesto propio o lo hago porque \"así debe ser\"?"
+        narrador "Tal vez alguno de estos diálogos no los habías visto con este 
+            punto de vista."
+        narrador "Por eso es bueno cuestionarnos ¿es un gesto propio o lo hago 
+            porque \"así debe ser\"?"
 
     if _preferences.self_voicing:
             
@@ -392,20 +502,153 @@ label retroalimentacion_mito_chapultepec:
     else:
 
         narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
-            los contactos en el menú de {image=boton_recursos}"
+            los contactos en el menú de {image=boton_recursos}."
     jump telefono_conversacion
+
+
+label chapultepec_ocultar_incomodidad:
+
+    scene expression "emocion_felicidad_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    jugador.personaje "Así que espero no olvidar verme feliz o va a pensar que 
+        no estoy agradecida por su regalo."    
+    scene expression "emocion_seriedad_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    jugador "Todo sea en nombre de la moda... porque también estos mallones me 
+        aprietan un buen, pero combinan y obvio me quiere ver bonita."
+
+    if retroalimentacion:
+
+        narrador "Si sientes incomodidad, ¿Porqué sacrificar tu cuerpo para 
+            verte como crees que [pareja.nombre] te quiere ver?"
+    else:
+
+        $ listaMito.append("chapultepec_ocultar_incomodidad")
+    
+    return
+
+
+label chapultepec_miedo_estereotipo:
+
+    scene expression "emocion_seriedad_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    jugador.personaje "Aunque ¿yo darle una flor? Eso lo hacen más los chicos..."
+
+    if retroalimentacion:
+
+        narrador "¿Es de chicos el dar regalos a su pareja? o 
+            ¿Las flores son de chicas?"
+    else:
+
+        $ listaMito.append("chapultepec_miedo_estereotipo")
+    
+    return
+
+
+label chapultepec_merecer_enojo:
+
+    scene expression "emocion_tristeza_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    jugador.personaje "Y no quiero que [pareja.apodo] sienta que tiene que 
+        enojarse conmigo porque soy rara... Fue una idea estúpida."
+
+    if retroalimentacion:
+
+        narrador "¿El ser una persona \"rara\" es merecedor de enojo por 
+            [pareja.nombre]?"
+    else:
+
+        $ listaMito.append("chapultepec_merecer_enojo")
+    
+    return
+
+label chapultepec_encargada_sentir_pareja:
+
+    scene expression "emocion_seriedad_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    jugador.personaje "¿Será de la escuela? No, no creo, pero ahorita que 
+        hablemos lo voy a hacer sentir bien, debo poder..."
+
+    if retroalimentacion:
+
+        narrador "Está bien que te preocupes por [nombre.pareja], pero ¿es tu 
+            \"deber\" hacerlo sentir mejor?"
+    else:
+
+        $ listaMito.append("chapultepec_encargada_sentir_pareja")
+    
+    return
+
+
+label chapultepec_ser_romantico:
+
+    scene expression "emocion_enojo_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    jugador.personaje "¡Ah, el regalo de [pareja.apodo]! lo olvidé. Va a pensar 
+        que estoy enojado con ella..."
+
+    if retroalimentacion:
+
+        narrador "A cualquiera se le puede olvidar algo, ¿O el enojo es porque 
+            crees que [pareja.nombre] espera que le des regalos?"
+    else:
+
+        $ listaMito.append("chapultepec_ser_romantico")
+    
+    return
+
+
+label chapultepec_ocultar_frustracion:
+
+    scene expression "emocion_tristeza_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    narrador "[jugador.nombre] empieza a sentir la frustración en su rostro y como 
+        empiezan sus ganas de llorar. Sin embargo, antes de que lo invadan estos 
+        sentimientos, se pellizca con fuerza."
+    scene expression "emocion_enojo_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    jugador.personaje "No, ya no soy un niño, puedo con esto."
+    jugador.personaje "Despierta cabrón, eres fuerte."
+
+    if retroalimentacion:
+
+        narrador "¿La mejor forma de tratar tus sentimientos es autolesionandote? 
+            Además, ¿hay algo malo en querer llorar?"
+    else:
+
+        $ listaMito.append("chapultepec_ocultar_frustracion")
+    
+    return
+
+
+label chapultepec_guardar_emocion_soledad:
+
+    scene expression "emocion_enojo_[jugador.nombre]" at Transform(
+        matrixcolor=filtro())
+    jugador.personaje "Y que la gente me vea, sobre todo [pareja.apodo], ¿qué 
+        van a pensar de mí?"
+
+    if retroalimentacion:
+
+        narrador "¿Te preocupa más que los demás vean tus sentimientos en vez de 
+            entenderlos?"
+    else:
+
+        $ listaMito.append("chapultepec_guardar_emocion_soledad")
+    
+    return
 
 
 label chapultepec_preocupacion_pareja:
     
     scene expression "emocion_tristeza_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
-    jugador.personaje "...Perdón, sólo me preocupaba por tí."
+    jugador.personaje "...Perdón, es que me preocupa que no te haga sentir bien."
 
     if retroalimentacion:
 
-        narrador "Está bien reconocer tus errores, pero ¿fue por un error o 
-            porque [jugador.nombre] cree estar encargada de hacer sentir bien a su pareja?"
+        narrador "Está bien reconocer tus errores, pero ¿fue tu culpa o crees 
+            estar encargada de hacer sentir bien a su pareja?"
     else:
 
         $ listaMito.append("chapultepec_preocupacion_pareja")
@@ -714,7 +957,7 @@ label chapultepec_enviar_mensaje:
 
     if retroalimentacion:
 
-        narrador "¿Será que [jugador.nombre] casi no envía mensajes, o ella cree
+        narrador "¿Será que casi no le envías mensajes, o ella cree
             estar encargada de la comunicación?"
     else:
 

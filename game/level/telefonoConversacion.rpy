@@ -20,6 +20,7 @@ label telefono_conversacion:
     narrador "Estás en una fiesta y escuchas una notificación en tu celular."
 
     $ reiniciar_celular()
+    $ switch_channel_view("pareja_dm")
 
     hide expression "pantalla_bloqueo_[jugador.nombre]"
     show screen phone_ui
@@ -30,7 +31,6 @@ label telefono_conversacion:
         (
             "Hola amor <emoji_corazon>, qué haces? "
             "<emoji_pensativo>"), "pareja_dm", 3)
-    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt="Captura de pantalla del instagram de [palabraGenero] de [jugador.nombre]")
     $ send_phone_message(phone_config["phone_player_name"], "Hablando contigo haha", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Y tú??", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "x2 zkxjaj<emoji_risa>", "pareja_dm", 3)
@@ -162,7 +162,8 @@ label retroalimentacion_pareja_telefono:
     hide screen phone_ui
     scene black
     show fondo_inicio
-    narrador "Ellos sí que escribían rápido, aunque no sabemos si al hacerlo, dijeron cosas sin pensarlo..."
+    narrador "Sí que escribieron rápido, aunque al hacerlo ¿dijeron cosas sin 
+        pensarlo?"
     $ pos = LISTA_ESTADO_PLANTA.index(jugador.estadoPlanta)
     $ jugador.estadoPlanta = LISTA_ESTADO_PLANTA[pos - 1]    
     show planta_fondo:
@@ -173,10 +174,12 @@ label retroalimentacion_pareja_telefono:
         xalign .5
         xsize 950
         ysize 900
-    narrador "Lamentablemente [pareja.nombre] volvió a dañar tu planta, veamos cuándo pasó:"
+    narrador "Lamentablemente [pareja.nombre] volvió a dañar tu planta, veamos 
+        cuándo pasó:"
     hide planta_fondo
     hide expression "planta_[jugador.estadoPlanta]"
     hide fondo_inicio
+    scene black
 
     $ reiniciar_celular()
     show screen phone_ui
@@ -193,7 +196,8 @@ label retroalimentacion_pareja_telefono:
     show fondo_inicio
     narrador "E, igual que la vez pasada, esta violencia afectó a tu planta."
     narrador "Parece un ciclo, ¿no lo crees?"
-    narrador "Las plantas, como los humanos, merecen cuidados. {b}Merecemos cuidados{/b}"
+    narrador "Las plantas, como los humanos, merecen cuidados. {b}Merecemos 
+        cuidados{/b}."
     jump retroalimentacion_jugador_telefono
 
 
@@ -209,7 +213,8 @@ label retroalimentacion_jugador_telefono:
         show penalizacion_aspersor:
             xalign .05
         $ coleccionables.append("penalizacion_aspersor")
-        narrador "¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia para su planta."
+        narrador "¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia 
+            para su planta."
         hide penalizacion_aspersor
         show planta_fondo:
             yalign .4
@@ -219,10 +224,12 @@ label retroalimentacion_jugador_telefono:
             xalign .5
             xsize 950
             ysize 900
-        narrador "La planta de [pareja.nombre] se siente un poco enferma, veamos cuándo pasó:"
+        narrador "La planta de [pareja.nombre] se siente un poco enferma, veamos 
+            cuándo pasó:"
         hide planta_fondo
         hide expression "planta_[pareja.estadoPlanta]"
         hide fondo_inicio
+        scene black
 
         $ reiniciar_celular()
         show screen phone_ui
@@ -237,8 +244,9 @@ label retroalimentacion_jugador_telefono:
         scene black
         show fondo_inicio
         narrador "Y por esta violencia, acabó afectada la planta de [pareja.nombre]."
-        narrador "A veces los efectos de la violencia no son tan perceptibles, pero de que hacen daño, lo hacen."
-        narrador "¿Es eso lo que quieres en una relación?"
+        narrador "A veces los efectos de la violencia que ejerces no son tan 
+            perceptibles, pero de que hacen daño, lo hacen."
+        narrador "¿Es eso lo que quieres en tu relación?"
     else:
 
         $ pos = LISTA_ESTADO_PLANTA.index(pareja.estadoPlanta)
@@ -247,7 +255,8 @@ label retroalimentacion_jugador_telefono:
         show logro_aspersor:
             xalign .05
         $ coleccionables.append("logro_aspersor")
-        narrador "¡Felicidades! Con tus respuestas ganaste un aspersor con agua limpia."
+        narrador "¡Felicidades! Con tus respuestas ganaste un aspersor con agua 
+            limpia."
         hide logro_aspersor
         show planta_fondo:
             yalign .4
@@ -263,7 +272,8 @@ label retroalimentacion_jugador_telefono:
 
         if listaPresion:
              
-            narrador "Pero hubo momentos en los que caíste en la presión de [pareja.nombre]:"
+            narrador "Pero hubo momentos en los que caíste en la presión 
+                de [pareja.nombre]:"
 
             hide fondo_inicio
             $ reiniciar_celular()
@@ -278,7 +288,8 @@ label retroalimentacion_jugador_telefono:
             hide screen phone_ui
             scene black
             show fondo_inicio
-            narrador "Seguir los deseos del otro puede parecer la mejor opción, pero ¿dónde quedas tú?"
+            narrador "Seguir sus deseos puede parecer la mejor opción, pero 
+                ¿dónde quedas tú?"
 
     jump retroalimentacion_mito_telefono
 
@@ -289,7 +300,8 @@ label retroalimentacion_mito_telefono:
 
         menu:
 
-            narrador "Y, como en la cita en Chapultepec, algunos de los diálogos de [pareja.nombre] y [jugador.nombre] reproducen mitos sobre los roles de género, ¿Esta vez tuviste mejor suerte detectándolos?"
+            narrador "Y, como en la cita en Chapultepec, algunos de sus diálogos 
+                reproducen mitos sobre los roles de género, ¿Esta vez tuviste mejor suerte detectándolos?"
             
             "Sí":
             
@@ -299,6 +311,7 @@ label retroalimentacion_mito_telefono:
                 narrador "No te preocupes, veamos juntos:"
 
         hide fondo_inicio
+        scene black
         $ reiniciar_celular()
         show screen phone_ui
 
@@ -312,7 +325,8 @@ label retroalimentacion_mito_telefono:
         scene black
         show fondo_inicio
         narrador "Las palabras pueden esconder más que su significado literal."
-        narrador "¿Cuántas de estas y otras frases haz utilizado sin saber lo que {b}realmente{/b} significan?"
+        narrador "¿Cuántas de estas y otras frases haz utilizado sin saber lo 
+            que {b}realmente{/b} significan?"
 
     jump finalJuego
 
@@ -360,7 +374,8 @@ label telefono_merece_violencia:
 
         if retroalimentacion:
 
-            narrador "Aunque [jugador.nombre] haya \"provocado\" su enojo, ¿debe tomar responsabilidad por las acciones de [pareja.nombre]?"
+            narrador "Aunque tú hayas \"provocado\" su enojo, ¿debes tomar 
+                responsabilidad por sus acciones??"
         else:
 
             $ listaMito.append("telefono_merece_violencia")
@@ -465,7 +480,8 @@ label telefono_insinuar_mujeriego:
 
     if retroalimentacion:
 
-        narrador "[jugador.nombre] {b}celó{/b} a [pareja.nombre], porque ¿cómo sabe eso?, ¿por una experiencia previa o porque cree que así son los hombres?"
+        narrador "{b}Celaste{/b} a Carlos, porque ¿cómo sabes eso?, ¿por una 
+            experiencia previa o porque crees que así son los hombres?"
     else:
 
         $ listaMito.append("telefono_insinuar_mujeriego")
