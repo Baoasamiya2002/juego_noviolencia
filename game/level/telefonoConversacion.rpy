@@ -78,14 +78,14 @@ label telefono_conversacion:
                 Call("telefono_perdonar_violencia"))], "pareja_dm")
     
     $ send_phone_message(pareja.nombre, "De verdad te amo mucho [jugador.apodo]", "pareja_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Muchomucho?", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Mucho mucho?", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Mucho muchomu chomuch o muasd fasdca sodcxk!", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "<emoji_risa>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "HAHAH", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "<emoji_hablando><emoji_corazon_fuego><emoji_corazon_fuego>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "<emoji_corazon>Oie amor, donde andas?", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "En un lugar con 4 paredes hah<emoji_risa><emoji_risa>", "pareja_dm", 3)
-    $ send_phone_message(pareja.nombre, "jaja y de casualidad no tiene 1 techo??, pero ya encerio, me mandas ubicación pls?", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, "Jaja y de casualidad no tiene 1 techo??, pero ya encerio, me mandas ubicación pls?", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Todavía te acuerdas cómo verdad??", "pareja_dm", 3)
 
     $ palabraGenero = "amigo" if pareja.nombre == novio.name else "amiga"     
@@ -112,7 +112,7 @@ label telefono_conversacion:
     $ send_phone_message("", "15 minutos despúes", "pareja_dm", 1)
     $ send_phone_message(pareja.nombre, "Bueno, a mi ni me importaba dónde estás", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Sólo preguntaba porque sé que nunca tienes datos", "pareja_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "?? y eso qué tiene que ver<emoji_indiferente><emoji_indiferente>", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "?? y eso qué tiene que ver??<emoji_indiferente><emoji_indiferente>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Es que te quiero enviar una imagen", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Y si estabas en la calle, el internetcdmx luego taarda en descargar algo", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Ya te había dicho que estaba en lugar pero ok, manda la imagen", "pareja_dm", 3)
@@ -169,7 +169,7 @@ label retroalimentacion_pareja_telefono:
     show planta_fondo:
         yalign .4
         xalign .5
-    show expression "planta_[jugador.estadoPlanta]":
+    show expression "planta_[jugador.estadoPlanta]" as planta:
         yalign .4
         xalign .5
         xsize 950
@@ -177,7 +177,7 @@ label retroalimentacion_pareja_telefono:
     narrador "Lamentablemente [pareja.nombre] volvió a dañar tu planta, veamos 
         cuándo pasó:"
     hide planta_fondo
-    hide expression "planta_[jugador.estadoPlanta]"
+    hide planta
     hide fondo_inicio
     scene black
 
@@ -212,6 +212,7 @@ label retroalimentacion_jugador_telefono:
 
         show penalizacion_aspersor:
             xalign .05
+            yalign 0.3
         $ coleccionables.append("penalizacion_aspersor")
         narrador "¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia 
             para su planta."
@@ -219,7 +220,7 @@ label retroalimentacion_jugador_telefono:
         show planta_fondo:
             yalign .4
             xalign .5
-        show expression "planta_[pareja.estadoPlanta]":
+        show expression "planta_[pareja.estadoPlanta]" as planta:
             yalign .4
             xalign .5
             xsize 950
@@ -227,7 +228,7 @@ label retroalimentacion_jugador_telefono:
         narrador "La planta de [pareja.nombre] se siente un poco enferma, veamos 
             cuándo pasó:"
         hide planta_fondo
-        hide expression "planta_[pareja.estadoPlanta]"
+        hide planta
         hide fondo_inicio
         scene black
 
@@ -254,6 +255,7 @@ label retroalimentacion_jugador_telefono:
 
         show logro_aspersor:
             xalign .05
+            yalign 0.3
         $ coleccionables.append("logro_aspersor")
         narrador "¡Felicidades! Con tus respuestas ganaste un aspersor con agua 
             limpia."
@@ -261,14 +263,14 @@ label retroalimentacion_jugador_telefono:
         show planta_fondo:
             yalign .4
             xalign .5
-        show expression "planta_[pareja.estadoPlanta]":
+        show expression "planta_[pareja.estadoPlanta]" as planta:
             yalign .4
             xalign .5
             xsize 950
             ysize 900
         narrador "La planta de [pareja.nombre] ha comenzado a florecer."
         hide planta_fondo
-        hide expression "planta_[pareja.estadoPlanta]"
+        hide planta
 
         if listaPresion:
              
@@ -328,6 +330,24 @@ label retroalimentacion_mito_telefono:
         narrador "¿Cuántas de estas y otras frases haz utilizado sin saber lo 
             que {b}realmente{/b} significan?"
 
+    $ forzarAutosave()
+    if _preferences.self_voicing:
+            
+        narrador "Se guardó hasta aquí en automático. 
+            Si quieres regresar a este punto o guardar en otro momento, 
+            Cargar y Guardar se encuentran en el menú de Opciones (segundo botón 
+            superior izquierda)."
+        narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
+            los contactos en el menú de Recursos (tercer botón superior)."
+    else:
+
+        narrador "Se guardó hasta aquí en automático. 
+            Si quieres regresar a este punto o guardar en otro momento, 
+            {image=boton_cargar} y {image=boton_guardar} se encuentran en el 
+            menú de {image=boton_opciones_quick}."
+        narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
+            los contactos en el menú de {image=boton_recursos}."
+
     jump finalJuego
 
 
@@ -336,7 +356,7 @@ label telefono_humillar_vulnerabilidad:
     $ send_phone_message(
         phone_config["phone_player_name"], 
         (
-            "Mm llorar? <emoji_alarma><emoji_robot>falla en el sistema, peligro " 
+            "Mmm llorar? <emoji_alarma><emoji_robot>falla en el sistema, peligro " 
             "peligro haha"), "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Entiendo lo del enojo pero tampoco inventes <emoji_risa_nerviosa>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Si jaj.. fue mucho verdad?<emoji_medio_triste> lo siento...", "pareja_dm", 3)
@@ -353,7 +373,7 @@ label telefono_humillar_vulnerabilidad:
 
 label telefono_culparse:
     
-    $ send_phone_message(phone_config["phone_player_name"], "Noo amor no te disculpes, yo soy quien se debería disculpar", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Noo amor, no te disculpes, yo soy quien se debería disculpar", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Perdóname por hacerte sentir así<emoji_rezando><emoji_rezando>", "pareja_dm", 3)
 
     if retroalimentacion:
@@ -385,8 +405,8 @@ label telefono_merece_violencia:
 
 label telefono_ignorar_violencia:
         
-    $ send_phone_message(phone_config["phone_player_name"], "Bueno pero el clima en Chapu estuvo padre no? Así soleadito pero fresco<emoji_feliz>", "pareja_dm", 3)
-    $ send_phone_message(pareja.nombre, "?? si jaj eso creo...", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Bueno pero el clima en Chapu estuvo padre, no? Así soleadito pero fresco<emoji_feliz>", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, "?? Sí jaj eso creo...", "pareja_dm", 3)
 
     if retroalimentacion:
 
@@ -443,8 +463,8 @@ label telefono_celos_amigue:
 
 label telefono_negar_ubicacion:
     
-    $ send_phone_message(phone_config["phone_player_name"], "Y si no qué? Te vas a teletransportar hasta acá? Si el único truco que conoces es pedirme ayuda a mí por tu torpeza tecnológica!!<emoji_voltea_ojos>", "pareja_dm", 3)#####################
-    $ send_phone_message(phone_config["phone_player_name"], "Haber, pásame tú tu ubicación", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Y si no qué? Tú me vas a ayudar? Si yo soy quien te ayuda cuando no le sabes al cel!!<emoji_voltea_ojos>", "pareja_dm", 3)#####################
+    $ send_phone_message(phone_config["phone_player_name"], "A ver, pásame tú tu ubicación", "pareja_dm", 3)
 
     if pareja.nombre == novio.name:
 
@@ -588,7 +608,7 @@ label telefono_mentir_relacion:
     
         $ send_phone_message(pareja.nombre, "No puedo creer que me mentiste", "pareja_dm", 3)
         $ send_phone_message(pareja.nombre, "<emoji_lagrima>", "pareja_dm", 3)
-        $ send_phone_message(phone_config["phone_player_name"], "Nono espera! yo sólo quería quitar tus preocupaciones", "pareja_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Nono espera! Yo sólo quería quitar tus preocupaciones", "pareja_dm", 3)
         $ send_phone_message(phone_config["phone_player_name"], "[pareja.apodo]", "pareja_dm", 3)
         $ send_phone_message(phone_config["phone_player_name"], "<emoji_lagrima><emoji_corazon>", "pareja_dm", 3)
         $ send_phone_message(phone_config["phone_player_name"], "[pareja.apodo]!", "pareja_dm", 3)
@@ -625,11 +645,11 @@ label telefono_mantener_foto:
 label telefono_pretexto:
 
     $ send_phone_message(phone_config["phone_player_name"], "Y si le digo, tendré que decirle que me obligaste<emoji_medio_triste>", "pareja_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Y cuando sepan mis padres... nos van a querer separar, y no queremos eso verdad?", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Y cuando sepan mis padres... nos van a querer separar, y no queremos eso, verdad?", "pareja_dm", 3)
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}engañar{/b} para terminar con el tema, pero ¿esa es la mejor solución?"
+        narrador "Decidiste {b}engañar{/b} y {b}chantajear{/b} para terminar con el tema, pero ¿esa es la mejor solución?"
     else:
         
         $ listaViolenciaJugador.append("telefono_pretexto")

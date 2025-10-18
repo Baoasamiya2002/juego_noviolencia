@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/level/telefonoConversacion.rpy", line 316: Line is indented, but the preceding scene statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    $ reiniciar_celular()
-    ^
+File "game/level/citaChapultepec.rpy", line 404: expected 'simple_expression' not found.
+    yalign
+           ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Wed Oct 15 18:23:30 2025
+Fri Oct 17 20:05:12 2025

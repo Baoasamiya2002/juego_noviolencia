@@ -51,9 +51,7 @@ label cita_chapultepec:
             Pues al parecer yo no... casi no he hecho nada."
         pareja.personaje "Sí."
         jugador.personaje "Y pues le puedo pedir cosas a ChatGPT ¿verdad?, 
-            pero la otra vez, de ese mismo tema, me dió cosas que nada que ver. 
-            Tendré que ver algunos videos para que al menos escriba algo medio 
-            coherente."
+            pero la otra vez, de ese mismo tema, me dió cosas que nada que ver..."
         pareja.personaje "Ajá..."
         scene expression "emocion_seriedad_[jugador.nombre]"
         jugador.personaje "¿Y tú qué tienes? Estás muy seria."
@@ -77,7 +75,7 @@ label cita_chapultepec:
     scene expression "emocion_seriedad_[pareja.nombre]"
     pareja.personaje "Sólo sacas un pretexto para pelear."
     scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "No, de verdad que no, solo quiero saber..."
+    jugador.personaje "No, de verdad que no, sólo quiero saber..."
     scene expression "emocion_enojo_[pareja.nombre]"
     pareja.personaje "¿La verdad? Pues yo... siento que eres muy absorbente, 
         hostigas."
@@ -285,6 +283,7 @@ label prologo_novia:
     narrador "[jugador.nombre] está en Chapultepec... pero todavía no está en el 
         punto de reunión con [pareja.nombre]"
     scene expression "emocion_seriedad_[jugador.nombre]"
+    jugador.personaje "Ya ví el mensaje de [pareja.apodo], pero tendrá que esperar."
     jugador.personaje "Otra vez me equivoqué de parada... hasta parezco nueva, 
         pero ahorita me apuro."
     narrador "El día está soleado y [jugador.nombre] empieza a sentir el calor a 
@@ -308,7 +307,7 @@ label prologo_novia:
     call chapultepec_merecer_enojo
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "Ya debo de dejar de ser rara... sólo debo concentrarme en 
-        encontrarlo"
+        encontrarlo."
     jugador.personaje "Y... ¿ese es [pareja.nombre]? Se ve un poco preocupado..."
     narrador "[jugador.nombre] ve que [pareja.nombre] la saluda y ella empieza a 
         caminar hacia él."
@@ -320,8 +319,10 @@ label prologo_novio:
 
     narrador "Carlos llegó primero a Chapultepec."
     scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "Pues bueno, espero que Fer no tarde."
-    narrador "Carlos se pone a revisar sus notas."
+    jugador.personaje "Le voy a enviar un mensaje de que ya estoy aquí, espero 
+        no tarde mucho."
+    narrador "Después de enviar el mensaje, [jugador.nombre] se pone a revisar 
+        sus notas."
 
     $ reiniciar_celular()
     show screen phone_ui
@@ -329,7 +330,7 @@ label prologo_novio:
     $ send_phone_message(
         jugador.nombre, 
         (
-            "Mañana entrega final\n\nComprar monedas para el COD," +
+            "Mañana entrega final\n\nComprar pavos Fortnite," +
             "\n\n(IMPORTANTE) regalo para [pareja.apodo]"), "jugador_dm", 3)
 
     jugador.personaje "El proyecto... Otra noche sin dormir para que el profe ni 
@@ -368,14 +369,14 @@ label retroalimentacion_pareja_chapultepec:
     show planta_fondo:
         yalign .4
         xalign .5
-    show expression "planta_[jugador.estadoPlanta]":
+    show expression "planta_[jugador.estadoPlanta]" as planta:
         yalign .4
         xalign .5
         xsize 950
         ysize 900
     narrador "Lamentablemente [pareja.nombre] dañó tu planta, veamos cuándo pasó:"
     hide planta_fondo
-    hide expression "planta_[jugador.estadoPlanta]"
+    hide planta
     $ retroalimentacion = True
 
     $ i = 0
@@ -400,6 +401,7 @@ label retroalimentacion_jugador_chapultepec:
 
         show penalizacion_aspersor:
             xalign .05
+            yalign 0.3
         $ coleccionables.append("penalizacion_aspersor")
         narrador "¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia 
             para su planta."
@@ -407,7 +409,7 @@ label retroalimentacion_jugador_chapultepec:
         show planta_fondo:
             yalign .4
             xalign .5
-        show expression "planta_[pareja.estadoPlanta]":
+        show expression "planta_[pareja.estadoPlanta]" as planta:
             yalign .4
             xalign .5
             xsize 950
@@ -415,7 +417,7 @@ label retroalimentacion_jugador_chapultepec:
         narrador "La planta de [pareja.nombre] se siente un poco enferma, 
             veamos cuándo pasó:"
         hide planta_fondo
-        hide expression "planta_[pareja.estadoPlanta]"
+        hide planta
 
         $ i = 0
         while i < len(listaViolenciaJugador):
@@ -435,6 +437,7 @@ label retroalimentacion_jugador_chapultepec:
 
         show logro_aspersor:
             xalign .05
+            yalign 0.3
         $ coleccionables.append("logro_aspersor")
         narrador "¡Felicidades! Con tus respuestas ganaste un aspersor con agua 
             limpia."
@@ -442,14 +445,14 @@ label retroalimentacion_jugador_chapultepec:
         show planta_fondo:
             yalign .4
             xalign .5
-        show expression "planta_[pareja.estadoPlanta]":
+        show expression "planta_[pareja.estadoPlanta]" as planta:
             yalign .4
             xalign .5
             xsize 950
             ysize 900
         narrador "La planta de [pareja.nombre] ha comenzado a florecer."
         hide planta_fondo
-        hide expression "planta_[pareja.estadoPlanta]"
+        hide planta
 
         if listaPresion:
              
@@ -495,12 +498,21 @@ label retroalimentacion_mito_chapultepec:
         narrador "Por eso es bueno cuestionarnos ¿es un gesto propio o lo hago 
             porque \"así debe ser\"?"
 
+    $ forzarAutosave()
     if _preferences.self_voicing:
-            
+        
+        narrador "Se guardó hasta aquí en automático. 
+            Si quieres regresar a este punto o guardar en otro momento, 
+            Cargar y Guardar se encuentran en el menú de Opciones (segundo botón 
+            superior izquierda)."
         narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
             los contactos en el menú de Recursos (tercer botón superior)."
     else:
 
+        narrador "Se guardó hasta aquí en automático. 
+            Si quieres regresar a este punto o guardar en otro momento, 
+            {image=boton_cargar} y {image=boton_guardar} se encuentran en el 
+            menú de {image=boton_opciones_quick}."
         narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
             los contactos en el menú de {image=boton_recursos}."
     jump telefono_conversacion
@@ -514,8 +526,8 @@ label chapultepec_ocultar_incomodidad:
         no estoy agradecida por su regalo."    
     scene expression "emocion_seriedad_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
-    jugador "Todo sea en nombre de la moda... porque también estos mallones me 
-        aprietan un buen, pero combinan y obvio me quiere ver bonita."
+    jugador.personaje "Todo sea en nombre de la moda... porque también estos mallones me 
+        aprietan un buen, pero combinan y obvio en la fotos me quiere ver bonita."
 
     if retroalimentacion:
 
@@ -536,8 +548,8 @@ label chapultepec_miedo_estereotipo:
 
     if retroalimentacion:
 
-        narrador "¿Es de chicos el dar regalos a su pareja? o 
-            ¿Las flores son de chicas?"
+        narrador "¿Es de chicos el dar regalos a su pareja?, ¿Las flores son de 
+            chicas? o ¿ninguna de las anteriores?"
     else:
 
         $ listaMito.append("chapultepec_miedo_estereotipo")
@@ -549,13 +561,13 @@ label chapultepec_merecer_enojo:
 
     scene expression "emocion_tristeza_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
-    jugador.personaje "Y no quiero que [pareja.apodo] sienta que tiene que 
-        enojarse conmigo porque soy rara... Fue una idea estúpida."
+    jugador.personaje "Y no quiero que [pareja.apodo] se moleste por hacer cosas 
+        extrañas... Fue una idea estúpida."
 
     if retroalimentacion:
 
-        narrador "¿El ser una persona \"rara\" es merecedor de enojo por 
-            [pareja.nombre]?"
+        narrador "¿El hacer cosas \"extrañas\" es para que [pareja.nombre] se 
+            enoje contigo? Si no lo dañas, ¿porqué mereces su maltrato?"
     else:
 
         $ listaMito.append("chapultepec_merecer_enojo")
@@ -571,7 +583,7 @@ label chapultepec_encargada_sentir_pareja:
 
     if retroalimentacion:
 
-        narrador "Está bien que te preocupes por [nombre.pareja], pero ¿es tu 
+        narrador "Está bien que te preocupes por [pareja.nombre], pero ¿es tu 
             \"deber\" hacerlo sentir mejor?"
     else:
 
@@ -648,7 +660,7 @@ label chapultepec_preocupacion_pareja:
     if retroalimentacion:
 
         narrador "Está bien reconocer tus errores, pero ¿fue tu culpa o crees 
-            estar encargada de hacer sentir bien a su pareja?"
+            estar encargada de hacer sentir bien a [pareja.nombre]?"
     else:
 
         $ listaMito.append("chapultepec_preocupacion_pareja")

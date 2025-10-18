@@ -178,7 +178,6 @@ label splashscreen:
 
 label start:
 
-    jump eleccionPersonaje
     scene black
 
     if persistent.Config:
@@ -216,7 +215,7 @@ label start:
         narrador "Queremos que juegues con comodidad y honestidad. Ahora sí, 
             puedes continuar jugando si así lo decides."
         $ persistent.Config = False
-    #jump eleccionPersonaje
+
     scene fondo_inicio with fade
     show planta_fondo:
         yalign .4
@@ -235,7 +234,7 @@ label start:
         xsize 950
         ysize 900
 
-    narrador "(cantando) Ella sabía que él sabía, que algún día pasaría"
+    narrador "(cantando) Ella sabía que él sabía, que algún día pasaría."
 
     menu:
 
@@ -243,7 +242,7 @@ label start:
         "¿Flores cantando? ¿Qué ch...":
             narrador "Tampoco es para tanto ¿eh?"
         "¡Me sé la canción! Me les uno.":
-            narrador "Que vendría a buscarla con sus flooores amariiillaas"
+            narrador "Que vendría a buscarla con sus flooores amariiillaas."
 
     narrador "Jeje perdón, no te habíamos visto."
     narrador "Nosotras somos las flores que representamos el estado de la 
@@ -310,8 +309,8 @@ label seleccionPersonaje:
             {image=boton_cargar} y {image=boton_guardar} se encuentran en el 
             menú de {image=boton_opciones_quick}."
 
-        hide seleccion_personaje
-    jump telefono_conversacion#cita_chapultepec
+    hide seleccion_personaje
+    jump cita_chapultepec
 
 
 label finalJuego:

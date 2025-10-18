@@ -1,51 +1,62 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/level/telefonoConversacion.rpy", line 16, in script
-    show expression "pantalla_bloqueo_[jugador.nombre]":
-Exception: DynamicImage 'pantalla_bloqueo_[jugador.nombre]': could not find image. ('pantalla_bloqueo_???')
+  File "game/level/citaChapultepec.rpy", line 492, in script call
+    $ renpy.call(listaMito[i])
+  File "game/level/citaChapultepec.rpy", line 653, in script
+    narrador "Está bien reconocer tus errores, pero ¿fue tu culpa o crees
+  File "<none>", line 1
+    pareja.
+SyntaxError: invalid syntax
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/level/telefonoConversacion.rpy", line 16, in script
-    show expression "pantalla_bloqueo_[jugador.nombre]":
-  File "renpy/ast.py", line 1357, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/ast.py", line 730, in show_imspec
-    renpy.config.show(
-    ~~~~~~~~~~~~~~~~~^
-        name, at_list=at_list, layer=layer, what=expression, zorder=zorder, tag=tag, behind=behind, atl=atl
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "renpy/exports/displayexports.py", line 513, in show
-    sls.add(
-    ~~~~~~~^
-        layer,
-        ^^^^^^
-    ...<8 lines>...
-        transient=transient,
-        ^^^^^^^^^^^^^^^^^^^^
-    )
-    ^
-  File "renpy/display/scenelists.py", line 453, in add
-    thing.set_transform_event("show")
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
-  File "renpy/display/transform.py", line 862, in set_transform_event
-    self.child.set_transform_event(event)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
-  File "renpy/display/image.py", line 775, in set_transform_event
-    self.find_target()
-    ~~~~~~~~~~~~~~~~^^
-  File "renpy/display/image.py", line 699, in find_target
-    raise Exception(error)
-Exception: DynamicImage 'pantalla_bloqueo_[jugador.nombre]': could not find image. ('pantalla_bloqueo_???')
+  File "game/level/citaChapultepec.rpy", line 492, in script call
+    $ renpy.call(listaMito[i])
+  File "game/level/citaChapultepec.rpy", line 653, in script
+    narrador "Está bien reconocer tus errores, pero ¿fue tu culpa o crees
+  File "renpy/ast.py", line 2915, in execute
+    Say.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "renpy/ast.py", line 991, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/exports/sayexports.py", line 129, in say
+    who(what, *args, **kwargs)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1528, in __call__
+    what = self.prefix_suffix("what", self.what_prefix, what, self.what_suffix)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1442, in prefix_suffix
+    return sub(prefix) + sub(body, translate=not renpy.game.context().translated) + sub(suffix)
+                         ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^              
+  File "renpy/character.py", line 1421, in sub
+    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
+  File "renpy/substitutions.py", line 355, in substitute
+    s = interpolate(s, variables)  # type: ignore
+        ~~~~~~~~~~~^^^^^^^^^^^^^^                
+  File "renpy/substitutions.py", line 89, in interpolate
+    raise e
+  File "renpy/substitutions.py", line 81, in interpolate
+    value = renpy.python.py_eval(code, {}, scope)
+            ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1290, in py_eval
+    code = py_compile(code, "eval")
+           ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1247, in py_compile
+    raise e
+  File "renpy/python.py", line 1177, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<none>", line 1
+    pareja.
+SyntaxError: invalid syntax
 
-Windows-11-10.0.26100-SP0 AMD64
+Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Wed Oct 15 18:25:49 2025
+Fri Oct 17 20:11:30 2025

@@ -650,7 +650,7 @@ screen phone_ui():
                         text phone_channel_data[current_phone_view]["display_name"]:
                             style "phone_header_style"
                             yalign 2.0
-                            xpos 1.3
+                            xpos 1.25
                 else:
                     null height 40
                     text phone_config["channels_title"]:
