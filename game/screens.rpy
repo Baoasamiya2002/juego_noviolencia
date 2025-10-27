@@ -1,6 +1,15 @@
 ﻿init python:
+    import random
+
     def forzarAutosave():
         renpy.force_autosave()
+    
+    #codigo aleatorio para compartir
+    if not persistent.codigo_usuario:
+        with renpy.file('misc/codigos_maceta.txt', encoding='utf8') as f:
+            persistent.codigos_maceta = [line[:-1] for line in f]
+            persistent.codigo_usuario = (
+                random.choice(persistent.codigos_maceta) + str(random.randint(0, 9)))
 
 ################################################################################
 ## Inicialización
@@ -347,9 +356,38 @@ style quick_image_button:
 
 screen navigation():
 
+    hbox:
+
+        xfill True
+
+        if (renpy.get_screen("main_menu") and renpy.variant("pc")):
+            ## El botón de salida está prohibido en iOS y no es necesario en
+            ## Web.
+            imagebutton:
+                idle "gui/button/menu_principal/salir.png"
+                hover "gui/button/menu_principal/salir_hover.png"
+                alt "Salir"
+                action Quit(confirm=True)
+        else:
+
+            imagebutton:
+                idle "gui/button/menu_opciones/volver.png"
+                hover "gui/button/menu_opciones/volver_hover.png"
+                alt "Volver"
+                action Return()
+
+        imagebutton:
+            xalign 1.0
+            idle "gui/button/menu_opciones/quitar.png"
+            hover "gui/button/menu_opciones/quitar_hover.png"
+            alt "¡Quitar!"
+            action [forzarAutosave, 
+                    OpenURL("https://www.uam.mx/calendario/index.html"), 
+                    Quit(confirm=False)]
+
     if renpy.get_screen("main_menu"):
-        
-        vbox:
+
+        hbox:
 
             style_prefix "navigation"
 
@@ -358,19 +396,26 @@ screen navigation():
 
             spacing gui.navigation_spacing
 
-            hbox:
+            vbox:
 
-                xalign 0.5
+                yalign 0.5
 
                 imagebutton:                
                     idle "gui/button/menu_principal/jugar.png" 
                     hover "gui/button/menu_principal/jugar_hover.png"
                     alt "Jugar"
                     action Start()
+                
+                if not persistent.desbloqueo:
+                    imagebutton:
+                        xalign 0.5
+                        idle "mejora_button"
+                        alt "Mejora"
+                        action ShowMenu("desbloquear")
 
             null height (1.5 * gui.pref_spacing)
 
-            hbox:
+            vbox:
 
                 imagebutton:
                     idle "gui/button/menu_principal/cargar.png"
@@ -390,46 +435,13 @@ screen navigation():
                     alt "Opciones"
                     action ShowMenu("options")
 
-            hbox:
 
-                xalign 0.5
-
-                if renpy.variant("pc"):
-                    ## El botón de salida está prohibido en iOS y no es necesario en
-                    ## Web.
-                    imagebutton: 
-                        idle "gui/button/menu_principal/salir.png"
-                        hover "gui/button/menu_principal/salir_hover.png"
-                        alt "Salir"
-                        action Quit(confirm=True)
-                
-                imagebutton: 
-                    idle "gui/button/menu_principal/quitar.png"
-                    hover "gui/button/menu_principal/quitar_hover.png"
-                    alt "¡Quitar!"
-                    action [OpenURL("https://www.uam.mx/calendario/index.html"), 
-                            Quit(confirm=False)]
-    else:
-        
-        hbox:
-
-            xfill True
-
-            imagebutton:
-                idle "gui/button/menu_opciones/volver.png"
-                hover "gui/button/menu_opciones/volver_hover.png"
-                alt "Volver"
-                action Return()
-
-            imagebutton:
-                xalign 1.0
-                idle "gui/button/menu_opciones/quitar.png"
-                hover "gui/button/menu_opciones/quitar_hover.png"
-                alt "¡Quitar!"
-                action [forzarAutosave, 
-                        OpenURL("https://www.uam.mx/calendario/index.html"), 
-                        Quit(confirm=False)]
-
+image mejora_button:
+    "gui/button/menu_principal/mejora.png"
+    pause 0.5
+    "gui/button/menu_principal/mejora_hover.png"
+    pause 0.5
+    repeat
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
@@ -464,7 +476,7 @@ screen main_menu():
     hbox:
 
         xalign 0.5
-        yalign 0.15
+        yalign 0.25
 
         image "images/titulo.png":
             fit "contain" 
@@ -1205,7 +1217,9 @@ screen history():
                         label _("Planta de [pareja.nombre]") xsize 450
                         null height (4 * gui.pref_spacing)
                         align(0.5, 0.5)
-                        add DynamicImage("planta_[pareja.estadoPlanta]") ysize 450 xsize 400
+                        add DynamicImage("planta_[pareja.estadoPlanta]"): 
+                            ysize 450 
+                            xsize 400
                 hbox:
 
                     vbox:
@@ -1506,7 +1520,7 @@ style help_label_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#confirm
 
-screen confirm(message, yes_action, no_action):
+screen confirm(message, yes_action, no_action=None):
 
     ## Asegura que otras pantallas no reciban entrada mientras se muestra esta
     ## pantalla.
@@ -1541,8 +1555,10 @@ screen confirm(message, yes_action, no_action):
                 xalign 0.5
                 spacing 200
 
-                textbutton _("Sí") action yes_action
-                textbutton _("No") action no_action
+                textbutton _("Sí") action [yes_action, Hide("confirm")]
+
+                if no_action:
+                    textbutton _("No") action no_action
 
     ## Clic derecho o escape responden "no".
     key "game_menu" action no_action
@@ -1983,7 +1999,7 @@ screen intro():
 
     frame:
         xalign 0.6
-        yalign 0.5
+        yalign 0.8
         xsize 2300
         ysize 1300
         padding (100, 60)
@@ -1993,6 +2009,20 @@ screen intro():
             shrink_before_spacing False
             yalign 0.5
 
+screen boton_quitar():
+
+    hbox:
+
+        xfill True
+
+        imagebutton:
+            xalign 1.0
+            idle "gui/button/menu_opciones/quitar.png"
+            hover "gui/button/menu_opciones/quitar_hover.png"
+            alt "¡Quitar!"
+            action [forzarAutosave, 
+                    OpenURL("https://www.uam.mx/calendario/index.html"), 
+                    Quit(confirm=False)]
 
 screen boton_eleccion_personaje():
 
@@ -2003,7 +2033,9 @@ screen boton_eleccion_personaje():
         idle "gui/button/boton_seleccion_fernanda.png"
         hover "gui/button/boton_seleccion_fernanda_hover.png"
         action [
-            Function(lambda: definirPersonaje(novia, APODO_NOVIA, novio, APODO_NOVIO)), 
+            Function(lambda: definirPersonaje(
+                novia, APODO_NOVIA, 
+                novio, APODO_NOVIO)), 
             Jump("seleccionPersonaje")]
     imagebutton:
         xalign .75
@@ -2011,5 +2043,86 @@ screen boton_eleccion_personaje():
         idle "gui/button/boton_seleccion_carlos.png"        
         hover "gui/button/boton_seleccion_carlos_hover.png"
         action [
-            Function(lambda: definirPersonaje(novio, APODO_NOVIO, novia, APODO_NOVIA)), 
+            Function(lambda: definirPersonaje(
+                novio, APODO_NOVIO, 
+                novia, APODO_NOVIA)), 
             Jump("seleccionPersonaje")]
+
+screen desbloquear():
+    
+    default mostrarInput = False
+
+    tag menu
+
+    use game_menu("Desbloquear", scroll=(
+        "vpgrid" if 300 else "viewport")):
+
+        vbox:
+            
+            xfill True
+            null height (6 * gui.pref_spacing)
+
+            text "¡Muchas gracias por querer jugar nuestro juego!"
+            null height (4 * gui.pref_spacing)
+            text "¿Quieres desbloquear algo especial?"
+            null height (4 * gui.pref_spacing)
+            text "¡Invita a alguien a jugar y compartan sus códigos!"
+            null height (5 * gui.pref_spacing) 
+
+            style_prefix "codigo"
+            hbox:
+
+                vbox:
+
+                    label (" Comparte este código")
+                    textbutton (persistent.codigo_usuario)
+                vbox:
+
+                    label (" Escribe aquí el código compartido")
+                    textbutton ("") action SetScreenVariable("mostrarInput",True)
+                    
+                    if mostrarInput:
+                                                
+                        input default "":
+                            color "#000"
+                            size gui.interface_text_size + 50
+                            pos(280, -211)
+                            pixel_width(500)
+                            value VariableInputValue("codigoCompartido")
+                        
+                        if len(codigoCompartido) == 6:
+                            
+                            if codigoCompartido == persistent.codigo_usuario:
+
+                                text "Tiene que ser un código distinto al tuyo"
+                            else:
+
+                                if codigoCompartido[:-1] in persistent.codigos_maceta:
+
+                                    timer 0.1 action Show(
+                                        "confirm", 
+                                        message=(
+                                            "¡Desbloqueo exitoso!" + 
+                                            "\nJuega para verlo"), 
+                                        yes_action=Return())
+
+                                    $ persistent.desbloqueo = True
+
+            null height (4 * gui.pref_spacing)
+            text "Así, reciben un objeto sorpresa que podrás ver al jugar..."
+            if (mostrarInput and renpy.variant("mobile")):
+                null height (50 * gui.pref_spacing)
+
+style codigo_hbox:
+    xalign 0.5
+
+style codigo_button:
+    xysize (924,305)
+    background "gui/button/codigo.png"
+
+style codigo_button_text:
+    size gui.interface_text_size + 50
+    color "#000" 
+
+style codigo_text:
+    xalign 0.5

@@ -6,7 +6,7 @@ init python:
 label telefono_conversacion:
 
     $ retroalimentacion = False
-    $ listaMito = []
+    $ listaEstereotipo = []
     $ listaViolenciaJugador = []
     $ listaViolenciaPareja = []
     $ listaPresion = []
@@ -98,7 +98,7 @@ label telefono_conversacion:
             "¿Mi ubicación? ¡Ni en pedo!", 
             Call("telefono_negar_ubicacion"))], "pareja_dm")
     
-    call telefono_ignorar_reclamo
+    call telefono_ignorar_reclamo from _call_telefono_ignorar_reclamo
     
     $ send_phone_message(phone_config["phone_player_name"], "Me pides cosas y te molestas???", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Hey", "pareja_dm", 3)
@@ -114,8 +114,8 @@ label telefono_conversacion:
     $ send_phone_message(pareja.nombre, "Sólo preguntaba porque sé que nunca tienes datos", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "?? y eso qué tiene que ver??<emoji_indiferente><emoji_indiferente>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Es que te quiero enviar una imagen", "pareja_dm", 3)
-    $ send_phone_message(pareja.nombre, "Y si estabas en la calle, el internetcdmx luego taarda en descargar algo", "pareja_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Ya te había dicho que estaba en lugar pero ok, manda la imagen", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, "Y si estabas en la calle, tus datos luego taardan en descargar algo", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Pues si tengo wifi, manda la imagen", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "<emoji_pensativo>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Voy", "pareja_dm", 3)
 
@@ -124,7 +124,7 @@ label telefono_conversacion:
     $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt="Captura de pantalla del instagram de [palabraGenero] de [jugador.nombre]")
     $ send_phone_message(phone_config["phone_player_name"], "Ah no sabía que había subido la foto<emoji_feliz>", "pareja_dm", 3)
     
-    call telefono_captura_instagram
+    call telefono_captura_instagram from _call_telefono_captura_instagram
 
     $ palabraGenero = "cercanas" if pareja.nombre == novio.name else "cercanos"
 
@@ -132,7 +132,7 @@ label telefono_conversacion:
     $ send_phone_message(phone_config["phone_player_name"], "Pues maso, fue de la reunión familiar pasada, te acuerdas?", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Aaa si, si me contaste, que se reunió un buen de tu familia", "pareja_dm", 3)
     
-    call telefono_celos_foto
+    call telefono_celos_foto from _call_telefono_celos_foto
 
     $ palabraGenero = "otro" if pareja.nombre == novio.name else "otra"       
     $ send_phone_message(phone_config["phone_player_name"], "Haha<emoji_risa> quien insinua es [palabraGenero], si sólo estamos hombro con hombro", "pareja_dm", 3)
@@ -144,7 +144,7 @@ label telefono_conversacion:
 
     if jugador.nombre == novia.name:
 
-        call telefono_proteccion_masculina
+        call telefono_proteccion_masculina from _call_telefono_proteccion_masculina
 
     $ present_phone_choices([
         (
@@ -174,10 +174,17 @@ label retroalimentacion_pareja_telefono:
         xalign .5
         xsize 950
         ysize 900
+    if persistent.desbloqueo:
+        show maceta_dorado:
+            yalign .4
+            xalign .5        
+            xsize 950
+            ysize 900
     narrador "Lamentablemente [pareja.nombre] volvió a dañar tu planta, veamos 
         cuándo pasó:"
     hide planta_fondo
     hide planta
+    hide maceta_dorado
     hide fondo_inicio
     scene black
 
@@ -293,17 +300,18 @@ label retroalimentacion_jugador_telefono:
             narrador "Seguir sus deseos puede parecer la mejor opción, pero 
                 ¿dónde quedas tú?"
 
-    jump retroalimentacion_mito_telefono
+    jump retroalimentacion_estereotipo_telefono
 
 
-label retroalimentacion_mito_telefono:
+label retroalimentacion_estereotipo_telefono:
 
-    if listaMito:
+    if listaEstereotipo:
 
         menu:
 
             narrador "Y, como en la cita en Chapultepec, algunos de sus diálogos 
-                reproducen mitos sobre los roles de género, ¿Esta vez tuviste mejor suerte detectándolos?"
+                reproducen estereotipos sobre los roles de género, ¿Esta vez 
+                tuviste mejor suerte detectándolos?"
             
             "Sí":
             
@@ -318,8 +326,8 @@ label retroalimentacion_mito_telefono:
         show screen phone_ui
 
         $ i = 0
-        while i < len(listaMito):
-            $ renpy.call(listaMito[i])
+        while i < len(listaEstereotipo):
+            $ renpy.call(listaEstereotipo[i])
             $ reiniciar_celular()
             $ i += 1
             
@@ -363,7 +371,7 @@ label telefono_humillar_vulnerabilidad:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}humillar{/b} a [pareja.nombre] por querer llorar, invalidándolo, ¿Los hombres no pueden llorar?"
+        narrador "Decidiste {atl=rotate_text}humillar {/atl} a [pareja.nombre] por querer llorar, invalidándolo, ¿Los hombres no pueden llorar?"
     else:
 
         $ listaViolenciaJugador.append("telefono_humillar_vulnerabilidad")
@@ -382,7 +390,7 @@ label telefono_culparse:
     else:
         
         $ listaPresion.append("telefono_culparse")
-        call telefono_merece_violencia
+        call telefono_merece_violencia from _call_telefono_merece_violencia
     return
 
 
@@ -398,7 +406,7 @@ label telefono_merece_violencia:
                 responsabilidad por sus acciones??"
         else:
 
-            $ listaMito.append("telefono_merece_violencia")
+            $ listaEstereotipo.append("telefono_merece_violencia")
 
     return
 
@@ -410,7 +418,7 @@ label telefono_ignorar_violencia:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}ignorar{/b} a [pareja.nombre] cuando se disculpó contigo. Aunque el tema te sea incómodo, ignorarlo puede hacer más daño."
+        narrador "Decidiste {atl=rotate_text}ignorar {/atl} a [pareja.nombre] cuando se disculpó contigo. Aunque el tema te sea incómodo, ignorarlo puede hacer más daño."
     else:
 
         $ listaViolenciaJugador.append("telefono_ignorar_violencia")
@@ -435,7 +443,7 @@ label telefono_aceptar_ubicacion:
     $ send_phone_message(pareja.nombre, "<emoji_groserias>", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Enojes...", "pareja_dm", 3)
     
-    call telefono_celos_amigue
+    call telefono_celos_amigue from _call_telefono_celos_amigue
     
     $ send_phone_message(phone_config["phone_player_name"], "Es el cumple de su hermana, de mi clase, ella invitó al salón", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Claaro que si<emoji_voltea_ojos>", "pareja_dm", 3)
@@ -453,7 +461,7 @@ label telefono_celos_amigue:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}celó{/b} por estar en casa de una de sus amistades, siendo su primera reacción el enojo y reclamo."
+        narrador "[pareja.nombre] te {atl=rotate_text}celó {/atl} por estar en casa de una de sus amistades, siendo su primera reacción el enojo y reclamo."
     else:
 
         $ listaViolenciaPareja.append("telefono_celos_amigue")
@@ -468,11 +476,11 @@ label telefono_negar_ubicacion:
 
     if pareja.nombre == novio.name:
 
-        call telefono_insinuar_mujeriego
+        call telefono_insinuar_mujeriego from _call_telefono_insinuar_mujeriego
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}humillar{/b} a [pareja.nombre], aunque estás en tu derecho de no compartir tu ubicación, puedes hacerlo sin violentar al otro."
+        narrador "Decidiste {atl=rotate_text}humillar {/atl} a [pareja.nombre], aunque estás en tu derecho de no compartir tu ubicación, puedes hacerlo sin violentar al otro."
     else:
 
         $ listaViolenciaJugador.append("telefono_negar_ubicacion")
@@ -486,7 +494,7 @@ label telefono_ignorar_reclamo:
 
     if retroalimentacion:
 
-        narrador "A partir de ahí [pareja.nombre] te {b}ignoró{/b} a causa de su enojo, cortando el diálogo sin mayor explicación."
+        narrador "A partir de ahí [pareja.nombre] te {atl=rotate_text}ignoró {/atl} a causa de su enojo, cortando el diálogo sin mayor explicación."
     else:
 
         $ listaViolenciaPareja.append("telefono_ignorar_reclamo")
@@ -500,11 +508,11 @@ label telefono_insinuar_mujeriego:
 
     if retroalimentacion:
 
-        narrador "{b}Celaste{/b} a Carlos, porque ¿cómo sabes eso?, ¿por una 
+        narrador "{atl=rotate_text}Celaste {/atl} a Carlos, porque ¿cómo sabes eso?, ¿por una 
             experiencia previa o porque crees que así son los hombres?"
     else:
 
-        $ listaMito.append("telefono_insinuar_mujeriego")
+        $ listaEstereotipo.append("telefono_insinuar_mujeriego")
         
     return
 
@@ -518,7 +526,7 @@ label telefono_captura_instagram:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}stalkeó{/b}, porque si siguió a alguien que te acaba de seguir, es que está pendiente de tus seguidores."
+        narrador "[pareja.nombre] te {atl=rotate_text}stalkeó {/atl}, porque si siguió a alguien que te acaba de seguir, es que está pendiente de tus seguidores."
     else:
         
         $ listaViolenciaPareja.append("telefono_captura_instagram")
@@ -535,7 +543,7 @@ label telefono_celos_foto:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}celó{/b} por una foto familiar, por su inseguridad."
+        narrador "[pareja.nombre] te {atl=rotate_text}celó {/atl} por una foto familiar, por su inseguridad."
     else:
         
         $ listaViolenciaPareja.append("telefono_celos_foto")
@@ -553,7 +561,7 @@ label telefono_proteccion_masculina:
         narrador "Está bien que te quiera proteger, pero su \"protección\" eran celos, además, ¿lo está haciendo por seguir un rol de protector, sin considerar que puede ser algo mutuo?"
     else:
         
-        $ listaMito.append("telefono_proteccion_masculina")
+        $ listaEstereotipo.append("telefono_proteccion_masculina")
         
     return
 
@@ -596,7 +604,7 @@ label telefono_mentir_relacion:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}mentir{/b} para calmar sus inseguridades, pero como viste, eso puede empeorar las cosas"
+        narrador "Decidiste {atl=rotate_text}mentir {/atl} para calmar sus inseguridades, pero como viste, eso puede empeorar las cosas"
     else:
     
         $ listaViolenciaJugador.append("telefono_mentir_relacion")
@@ -604,7 +612,7 @@ label telefono_mentir_relacion:
         $ send_phone_message(pareja.nombre, "Perdon, qué??<emoji_groserias>", "pareja_dm", 3)
         $ send_phone_message(pareja.nombre, "Por qué me mientes??", "pareja_dm", 3)
     
-        call telefono_checar_chat
+        call telefono_checar_chat from _call_telefono_checar_chat
     
         $ send_phone_message(pareja.nombre, "No puedo creer que me mentiste", "pareja_dm", 3)
         $ send_phone_message(pareja.nombre, "<emoji_lagrima>", "pareja_dm", 3)
@@ -621,7 +629,7 @@ label telefono_checar_chat:
     $ send_phone_message(pareja.nombre, "Yo ya sé que son [palabraGenero]!, si veo en tus mensajes que hablan seguido", "pareja_dm", 3)
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}stalkeó{/b}, porque de otra forma no conocería tus mensajes privados."
+        narrador "[pareja.nombre] te {atl=rotate_text}stalkeó {/atl}, porque de otra forma no conocería tus mensajes privados."
     else:
         
         $ listaViolenciaPareja.append("telefono_checar_chat")
@@ -633,7 +641,7 @@ label telefono_mantener_foto:
 
     $ send_phone_message(phone_config["phone_player_name"], "Pero es su insta...", "pareja_dm", 3)
 
-    call telefono_pretexto
+    call telefono_pretexto from _call_telefono_pretexto
 
     $ send_phone_message(pareja.nombre, "<emoji_grito>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Nnonononoo", "pareja_dm", 3)
@@ -649,7 +657,7 @@ label telefono_pretexto:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}engañar{/b} y {b}chantajear{/b} para terminar con el tema, pero ¿esa es la mejor solución?"
+        narrador "Decidiste {atl=rotate_text}engañar {/atl} y {atl=rotate_text}chantajear {/atl} para terminar con el tema, pero ¿esa es la mejor solución?"
     else:
         
         $ listaViolenciaJugador.append("telefono_pretexto")

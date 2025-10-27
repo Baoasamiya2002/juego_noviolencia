@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/level/citaChapultepec.rpy", line 404: expected 'simple_expression' not found.
-    yalign
-           ^
+File "game/script.rpy", line 263: if statement expects a non-empty block.
+    if persistent.desbloqueo:
+                             ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Fri Oct 17 20:05:12 2025
+Sun Oct 26 21:40:55 2025

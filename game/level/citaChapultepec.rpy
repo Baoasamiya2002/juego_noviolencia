@@ -14,10 +14,10 @@ label cita_chapultepec:
     
     if jugador.nombre == novia.name:
         
-        call prologo_novia
+        call prologo_novia from _call_prologo_novia
     else:
 
-        call prologo_novio
+        call prologo_novio from _call_prologo_novio
 
     scene caminata_chapultepec
     narrador "Empezaron a caminar entre los árboles, tenían tiempo de no salir 
@@ -50,7 +50,7 @@ label cita_chapultepec:
         jugador.personaje "¿Te acuerdas de mi proyecto que tengo para mañana? 
             Pues al parecer yo no... casi no he hecho nada."
         pareja.personaje "Sí."
-        jugador.personaje "Y pues le puedo pedir cosas a ChatGPT ¿verdad?, 
+        jugador.personaje "Y pues le puedo pedir cosas a IA ¿verdad?, 
             pero la otra vez, de ese mismo tema, me dió cosas que nada que ver..."
         pareja.personaje "Ajá..."
         scene expression "emocion_seriedad_[jugador.nombre]"
@@ -69,8 +69,8 @@ label cita_chapultepec:
 
     if jugador.nombre == novia.name:
         
-        call chapultepec_preocupacion_pareja
-        call chapultepec_ocultar_emocion
+        call chapultepec_preocupacion_pareja from _call_chapultepec_preocupacion_pareja
+        call chapultepec_ocultar_emocion from _call_chapultepec_ocultar_emocion
     
     scene expression "emocion_seriedad_[pareja.nombre]"
     pareja.personaje "Sólo sacas un pretexto para pelear."
@@ -87,23 +87,23 @@ label cita_chapultepec:
 
             scene expression "emocion_tristeza_[jugador.nombre]"
             jugador.personaje "¿Cómo? No entiendo, si según yo estábamos bien."
-            call chapultepec_culpar_otro
+            call chapultepec_culpar_otro from _call_chapultepec_culpar_otro
 
             if pareja.nombre == novia.name:
 
-                call chapultepec_pedir_foco
-                call chapultepec_burlar_emociones
+                call chapultepec_pedir_foco from _call_chapultepec_pedir_foco
+                call chapultepec_burlar_emociones from _call_chapultepec_burlar_emociones
 
         "Alguien más le metió la idea":
 
-            call chapultepec_celar_amigues
+            call chapultepec_celar_amigues from _call_chapultepec_celar_amigues
             scene expression "emocion_enojo_[pareja.nombre]"
             pareja.personaje "¿Eso quéee?, ¿ya viste que en lugar de preguntar 
                 por qué pienso eso, hiciste que todo se tratara sobre ti?"
             
             if pareja.nombre == novio.name:
 
-                call chapultepec_provocacion
+                call chapultepec_provocacion from _call_chapultepec_provocacion
 
         "Tal vez no debí sacar el tema":
 
@@ -112,7 +112,7 @@ label cita_chapultepec:
             scene expression "emocion_tristeza_[jugador.nombre]"
             jugador.personaje "Eh... yo no quería molestarte. A veces soy así 
                 por que me importas. Por que te amo."
-            call chapultepec_aceptar_broma
+            call chapultepec_aceptar_broma from _call_chapultepec_aceptar_broma
     
     scene caminata_chapultepec
     narrador "Hay un breve silencio entre [pareja.nombre] y [jugador.nombre]. Llevan tiempo 
@@ -122,7 +122,7 @@ label cita_chapultepec:
         sea. Piensan que así es el amor."
     scene expression "emocion_tristeza_[jugador.nombre]"
     jugador.personaje "Mejor ya vámonos [pareja.apodo]."
-    call chapultepec_reclamar_toxicidad
+    call chapultepec_reclamar_toxicidad from _call_chapultepec_reclamar_toxicidad
 
     menu:
 
@@ -133,25 +133,25 @@ label cita_chapultepec:
             jugador.personaje "La verdad no quiero pelear amor, pero a veces te 
                 siento distante. He llegado a pensar que te sientes mejor con 
                 tus amistades que conmigo. Creo que te aburro o no sé..."
-            call chapultepec_culpar_drama
+            call chapultepec_culpar_drama from _call_chapultepec_culpar_drama
 
         "Cambiar de tema":
 
             if jugador.nombre == novia.name:
 
-                call chapultepec_cambiar_tema
+                call chapultepec_cambiar_tema from _call_chapultepec_cambiar_tema
             else:
 
-                call chapultepec_olvidar_preocupacion
+                call chapultepec_olvidar_preocupacion from _call_chapultepec_olvidar_preocupacion
                 
-            call chapultepec_culpa_imprudente
+            call chapultepec_culpa_imprudente from _call_chapultepec_culpa_imprudente
             
             if pareja.nombre == novia.name:
                 
-                call chapultepec_evitar_interrogar
+                call chapultepec_evitar_interrogar from _call_chapultepec_evitar_interrogar
             else:                
         
-                call chapultepec_reclamar_estupidez
+                call chapultepec_reclamar_estupidez from _call_chapultepec_reclamar_estupidez
 
             scene expression "emocion_seriedad_[pareja.nombre]"
             pareja.personaje "Así que ya, vámonos, y perdón por lo que te dije. 
@@ -170,17 +170,17 @@ label cita_chapultepec:
             
             if pareja.nombre == novio.name:
                 
-                call chapultepec_comparar_mujeres
+                call chapultepec_comparar_mujeres from _call_chapultepec_comparar_mujeres
             else:                
         
-                call chapultepec_enviar_mensaje
+                call chapultepec_enviar_mensaje from _call_chapultepec_enviar_mensaje
 
             scene expression "emocion_seriedad_[jugador.nombre]"
             jugador.personaje "(suspiro) Bueno. Chao"
             scene expression "emocion_tristeza_[pareja.nombre]"
             pareja.personaje "¡No, espera!, es que yo... lo siento, a veces digo 
                 cosas que no quiero decir..."
-            call chapultepec_repetir_retirada
+            call chapultepec_repetir_retirada from _call_chapultepec_repetir_retirada
             jump retroalimentacion_pareja_chapultepec
 
     menu:
@@ -188,28 +188,28 @@ label cita_chapultepec:
         narrador "¿Tu respuesta?"
         "Evitar más pelea":
 
-            call chapultepec_tomar_culpa
-            call chapultepec_quitarse_culpa
+            call chapultepec_tomar_culpa from _call_chapultepec_tomar_culpa
+            call chapultepec_quitarse_culpa from _call_chapultepec_quitarse_culpa
 
             if pareja.nombre == novia.name:
                 
-                call chapultepec_preguntar_semana
+                call chapultepec_preguntar_semana from _call_chapultepec_preguntar_semana
             else:                
         
-                call chapultepec_comprar_helado
+                call chapultepec_comprar_helado from _call_chapultepec_comprar_helado
 
             jump retroalimentacion_pareja_chapultepec
 
         "¡Ya basta!":
 
-            call chapultepec_reclamar_salida
+            call chapultepec_reclamar_salida from _call_chapultepec_reclamar_salida
 
             if pareja.nombre == novia.name:
                 
-                call chapultepec_pretexto_amigues
+                call chapultepec_pretexto_amigues from _call_chapultepec_pretexto_amigues
             else:                
         
-                call chapultepec_reclamar_drama
+                call chapultepec_reclamar_drama from _call_chapultepec_reclamar_drama
 
             jump retroalimentacion_pareja_chapultepec
 
@@ -231,15 +231,21 @@ label cita_chapultepec:
             scene expression "emocion_felicidad_[pareja.nombre]"
             $ palabraGenero = (
                 "hermano" if jugador.nombre == novio.name else "hermana")
-            pareja.personaje "Era una tarjeta de Spotify que te enviaba mi 
-                [palabraGenero]."
+            pareja.personaje "Era una tarjeta para streaming de música que te 
+                enviaba mi [palabraGenero]."
             scene expression "emocion_felicidad_[jugador.nombre]"
             $ palabraGenero = (
                 "emocionado" if jugador.nombre == novio.name else "emocionada")
             jugador.personaje "¡Hay si! Me dijo [palabraGenero] que me tenía una."
             scene expression "emocion_seriedad_[pareja.nombre]"
             pareja.personaje "Pero con tus dramas no sé..."
-            call chapultepec_condicionar_regalo
+            call chapultepec_condicionar_regalo from _call_chapultepec_condicionar_regalo
+            if renpy.variant("mobile"):
+
+                $ instruccion = "Toca la pantalla para continuar."
+            else:
+
+                $ instruccion = "Da click para continuar."
 
             menu:
 
@@ -250,13 +256,13 @@ label cita_chapultepec:
                     scene expression "emocion_felicidad_[jugador.nombre]"
                     jugador.personaje "(suspiro) Ok... lo podemos hablar otro 
                         día. ¿De cuántos meses es la tarjeta?"
-                    $ coleccionables.append("tarjeta_spotify_intacta")
-                    show tarjeta_spotify_intacta:
+                    $ coleccionables.append("tarjeta_intacta")
+                    show tarjeta_intacta:
                         yalign .4
                         xalign .5
-                    narrador "¡Obtuviste una tarjeta de Spotify! Click o toca 
-                        para continuar."
-                    hide tarjeta_spotify_intacta
+                    narrador "¡Obtuviste una tarjeta para streaming de música! 
+                        [instruccion]"
+                    hide tarjeta_intacta
                     jump retroalimentacion_pareja_chapultepec                
                 
                 "No":
@@ -267,14 +273,14 @@ label cita_chapultepec:
                         else "dispuesto")
                     jugador.personaje "Sólo si estás [palabraGenero] a hablar de 
                         lo que pasó... ¿Ya platicamos en buen plan?"
-                    call chapultepec_romper_tarjeta
-                    $ coleccionables.append("tarjeta_spotify_rota")
-                    show tarjeta_spotify_rota:
+                    call chapultepec_romper_tarjeta from _call_chapultepec_romper_tarjeta
+                    $ coleccionables.append("tarjeta_rota")
+                    show tarjeta_rota:
                         yalign .4
                         xalign .5
-                    narrador "¡Obtuviste una tarjeta rota de Spotify! Click o 
-                        toca para continuar."
-                    hide tarjeta_spotify_rota
+                    narrador "¡Obtuviste una tarjeta rota para streaming de 
+                        música! [instruccion]"
+                    hide tarjeta_rota
                     jump retroalimentacion_pareja_chapultepec
 
 
@@ -297,21 +303,21 @@ label prologo_novia:
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "Aaah si cierto, que me las regaló mi [pareja.apodo] y 
         tiene un ratote que no las uso..."
-    call chapultepec_ocultar_incomodidad
+    call chapultepec_ocultar_incomodidad from _call_chapultepec_ocultar_incomodidad
     scene expression "emocion_felicidad_[jugador.nombre]"
     jugador.personaje "Así que uff, respira y enderezate..."
     narrador "En el camino [jugador.nombre] ve que venden flores"
     jugador.personaje "Hmm unas flores... ¿y si le compro una a [pareja.apodo]?"
-    call chapultepec_miedo_estereotipo
+    call chapultepec_miedo_estereotipo from _call_chapultepec_miedo_estereotipo
     jugador.personaje "Si mejor no, me van a ver raro."
-    call chapultepec_merecer_enojo
+    call chapultepec_merecer_enojo from _call_chapultepec_merecer_enojo
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "Ya debo de dejar de ser rara... sólo debo concentrarme en 
         encontrarlo."
     jugador.personaje "Y... ¿ese es [pareja.nombre]? Se ve un poco preocupado..."
     narrador "[jugador.nombre] ve que [pareja.nombre] la saluda y ella empieza a 
         caminar hacia él."
-    call chapultepec_encargada_sentir_pareja
+    call chapultepec_encargada_sentir_pareja from _call_chapultepec_encargada_sentir_pareja
     return
 
 
@@ -339,7 +345,7 @@ label prologo_novio:
         a mi pa'?"
     jugador.personaje "Pero todavía le debo del regalo pasado de [pareja.apodo]..."
     hide screen phone_ui
-    call chapultepec_ser_romantico
+    call chapultepec_ser_romantico from _call_chapultepec_ser_romantico
     scene expression "emocion_felicidad_[jugador.nombre]"
     jugador.personaje "Pero mi hermano me había dado dinero ¿no?, voy a..."
     scene expression "emocion_seriedad_[jugador.nombre]"
@@ -348,8 +354,8 @@ label prologo_novio:
     jugador.personaje "..."
     scene expression "emocion_enojo_[jugador.nombre]"
     jugador.personaje "Como siempre, ¡soy un pinche desastre!"
-    call chapultepec_ocultar_frustracion
-    call chapultepec_guardar_emocion_soledad
+    call chapultepec_ocultar_frustracion from _call_chapultepec_ocultar_frustracion
+    call chapultepec_guardar_emocion_soledad from _call_chapultepec_guardar_emocion_soledad
     scene expression "emocion_tristeza_[jugador.nombre]"
     jugador.personaje "Además se ve agitada, puede que sea por la caminata, 
         pero tal vez sea otra cosa... La voy a distraer y ver si se le pasa."
@@ -374,9 +380,16 @@ label retroalimentacion_pareja_chapultepec:
         xalign .5
         xsize 950
         ysize 900
+    if persistent.desbloqueo:
+        show maceta_dorado:
+            yalign .4
+            xalign .5        
+            xsize 950
+            ysize 900
     narrador "Lamentablemente [pareja.nombre] dañó tu planta, veamos cuándo pasó:"
     hide planta_fondo
     hide planta
+    hide maceta_dorado
     $ retroalimentacion = True
 
     $ i = 0
@@ -468,17 +481,17 @@ label retroalimentacion_jugador_chapultepec:
             narrador "Cuidado, estas violencias pueden {b}continuar{/b} o 
                 {b}escalar{/b} si no se detienen y sólo las aceptas."
 
-    jump retroalimentacion_mito_chapultepec
+    jump retroalimentacion_estereotipo_chapultepec
 
 
-label retroalimentacion_mito_chapultepec:
+label retroalimentacion_estereotipo_chapultepec:
 
-    if listaMito:
+    if listaEstereotipo:
 
         menu:
 
             narrador "Además, algunos de sus diálogos 
-                reproducen mitos sobre los roles de género, ¿Te diste cuenta?"
+                reproducen estereotipos sobre los roles de género, ¿Te diste cuenta?"
         
             "Sí":
             
@@ -488,8 +501,8 @@ label retroalimentacion_mito_chapultepec:
                 narrador "No te preocupes, veamos juntos:"
         
         $ i = 0
-        while i < len(listaMito):
-            $ renpy.call(listaMito[i])
+        while i < len(listaEstereotipo):
+            $ renpy.call(listaEstereotipo[i])
             $ i += 1
             
         scene chapultepec_fondo
@@ -531,11 +544,11 @@ label chapultepec_ocultar_incomodidad:
 
     if retroalimentacion:
 
-        narrador "Si sientes incomodidad, ¿Porqué sacrificar tu cuerpo para 
-            verte como crees que [pareja.nombre] te quiere ver?"
+        narrador "Si sientes incomodidad, ¿Porqué fingir y sacrificar tu cuerpo 
+            para verte como crees que [pareja.nombre] te quiere ver?"
     else:
 
-        $ listaMito.append("chapultepec_ocultar_incomodidad")
+        $ listaEstereotipo.append("chapultepec_ocultar_incomodidad")
     
     return
 
@@ -552,7 +565,7 @@ label chapultepec_miedo_estereotipo:
             chicas? o ¿ninguna de las anteriores?"
     else:
 
-        $ listaMito.append("chapultepec_miedo_estereotipo")
+        $ listaEstereotipo.append("chapultepec_miedo_estereotipo")
     
     return
 
@@ -570,7 +583,7 @@ label chapultepec_merecer_enojo:
             enoje contigo? Si no lo dañas, ¿porqué mereces su maltrato?"
     else:
 
-        $ listaMito.append("chapultepec_merecer_enojo")
+        $ listaEstereotipo.append("chapultepec_merecer_enojo")
     
     return
 
@@ -587,7 +600,7 @@ label chapultepec_encargada_sentir_pareja:
             \"deber\" hacerlo sentir mejor?"
     else:
 
-        $ listaMito.append("chapultepec_encargada_sentir_pareja")
+        $ listaEstereotipo.append("chapultepec_encargada_sentir_pareja")
     
     return
 
@@ -605,7 +618,7 @@ label chapultepec_ser_romantico:
             crees que [pareja.nombre] espera que le des regalos?"
     else:
 
-        $ listaMito.append("chapultepec_ser_romantico")
+        $ listaEstereotipo.append("chapultepec_ser_romantico")
     
     return
 
@@ -628,7 +641,7 @@ label chapultepec_ocultar_frustracion:
             Además, ¿hay algo malo en querer llorar?"
     else:
 
-        $ listaMito.append("chapultepec_ocultar_frustracion")
+        $ listaEstereotipo.append("chapultepec_ocultar_frustracion")
     
     return
 
@@ -646,7 +659,7 @@ label chapultepec_guardar_emocion_soledad:
             entenderlos?"
     else:
 
-        $ listaMito.append("chapultepec_guardar_emocion_soledad")
+        $ listaEstereotipo.append("chapultepec_guardar_emocion_soledad")
     
     return
 
@@ -663,7 +676,7 @@ label chapultepec_preocupacion_pareja:
             estar encargada de hacer sentir bien a [pareja.nombre]?"
     else:
 
-        $ listaMito.append("chapultepec_preocupacion_pareja")
+        $ listaEstereotipo.append("chapultepec_preocupacion_pareja")
     
     return
 
@@ -680,7 +693,7 @@ label chapultepec_ocultar_emocion:
             ser que cree tener que ocultar sus emociones?"
     else:
 
-        $ listaMito.append("chapultepec_ocultar_emocion")
+        $ listaEstereotipo.append("chapultepec_ocultar_emocion")
     
     return
 
@@ -690,14 +703,14 @@ label chapultepec_culpar_otro:
     scene expression "emocion_seriedad_[pareja.nombre]" at Transform(
         matrixcolor=filtro())
     pareja.personaje "Es que yo quiero estar bien, o sea si te acuerdas yo solo 
-        te estaba escuchando, pero pues empezaste a hecharme bronca por algúna 
+        te estaba escuchando, pero pues empezaste a echarme bronca por alguna 
         razón..."
 
     if retroalimentacion:
 
         $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
-        narrador "[pareja.nombre] te hizo {b}gaslighting{/b} y 
-            {b}culpabilizó{/b} por la discusión, cuando [palabraGenero] fue 
+        narrador "[pareja.nombre] te hizo {atl=rotate_text}gaslighting {/atl} y 
+            {atl=rotate_text}culpabilizó {/atl} por la discusión, cuando [palabraGenero] fue 
             quien te dijo absorbente."
     else:
 
@@ -719,7 +732,7 @@ label chapultepec_pedir_foco:
             así debe ser en una relación?"
     else:
 
-        $ listaMito.append("chapultepec_pedir_foco")
+        $ listaEstereotipo.append("chapultepec_pedir_foco")
     
     return 
 
@@ -734,7 +747,7 @@ label chapultepec_burlar_emociones:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te intentó {b}humillar{/b} por mostrar tus 
+        narrador "[pareja.nombre] te intentó {atl=rotate_text}humillar {/atl} por mostrar tus 
             sentimientos. ¿Eso es algo de verguenza?"
     else:
 
@@ -753,7 +766,7 @@ label chapultepec_celar_amigues:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}celar{/b} a [pareja.nombre] por alguien más, en 
+        narrador "Decidiste {atl=rotate_text}celar {/atl} a [pareja.nombre] por alguien más, en 
             vez de preguntarle por sus sentimientos."
     else:
 
@@ -775,7 +788,7 @@ label chapultepec_provocacion:
             ¿quién es el responsable?"
     else:
 
-        $ listaMito.append("chapultepec_provocacion")
+        $ listaEstereotipo.append("chapultepec_provocacion")
     
     return
 
@@ -790,7 +803,7 @@ label chapultepec_broma_diurex:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] se {b}burló{/b} de tu preocupación 
+        narrador "[pareja.nombre] se {atl=rotate_text}burló {/atl} de tu preocupación 
             demeritandote y queriendo que te callaras."
     else:
 
@@ -801,14 +814,14 @@ label chapultepec_broma_diurex:
 
 label chapultepec_aceptar_broma:
     
-    call chapultepec_broma_diurex
+    call chapultepec_broma_diurex from _call_chapultepec_broma_diurex
     scene expression "emocion_tristeza_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
     jugador.personaje "(risa nerviosa) Haha si..."
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}humilló{/b} y decidiste seguirle la 
+        narrador "[pareja.nombre] te {atl=rotate_text}humilló {/atl} y decidiste seguirle la 
             corriente."
     else:
 
@@ -827,7 +840,7 @@ label chapultepec_reclamar_toxicidad:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te intentó {b}humillar{/b} por querer irte, 
+        narrador "[pareja.nombre] te intentó {atl=rotate_text}humillar {/atl} por querer irte, 
             en vez de platicarlo."
     else:
 
@@ -846,7 +859,7 @@ label chapultepec_culpar_drama:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}culpabilizó{/b} de crear peleas por 
+        narrador "[pareja.nombre] te {atl=rotate_text}culpabilizó {/atl} de crear peleas por 
             expresar cómo te sentías y quitándose responsabilidad en la discusión."
     else:
 
@@ -868,7 +881,7 @@ label chapultepec_cambiar_tema:
             poner su bienestar primero."
     else:
 
-        $ listaMito.append("chapultepec_cambiar_tema")
+        $ listaEstereotipo.append("chapultepec_cambiar_tema")
     
     return
 
@@ -885,7 +898,7 @@ label chapultepec_olvidar_preocupacion:
             poner su bienestar primero."
     else:
 
-        $ listaMito.append("chapultepec_olvidar_preocupacion")
+        $ listaEstereotipo.append("chapultepec_olvidar_preocupacion")
     
     return
 
@@ -899,7 +912,7 @@ label chapultepec_culpa_imprudente:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}culpabilizó{b} de hacerla enojar y 
+        narrador "[pareja.nombre] te {atl=rotate_text}culpabilizó{atl=rotate_text} de hacerla enojar y 
             te insultó."
     else:
 
@@ -920,7 +933,7 @@ label chapultepec_evitar_interrogar:
             debe ser en una relación?"
     else:
 
-        $ listaMito.append("chapultepec_evitar_interrogar")
+        $ listaEstereotipo.append("chapultepec_evitar_interrogar")
     
     return
 
@@ -934,7 +947,7 @@ label chapultepec_reclamar_estupidez:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te intentó {b}humillar{/b} por tus preguntas, 
+        narrador "[pareja.nombre] te intentó {atl=rotate_text}humillar {/atl} por tus preguntas, 
             descalificándolas. ¿Será que cree que en la relación debe de dar 
             órdenes?"
     else:
@@ -952,11 +965,12 @@ label chapultepec_comparar_mujeres:
 
     if retroalimentacion:
 
-        narrador "Puede que [pareja.nombre] se enoje facilmente, ¿pero por qué 
-            piensa que así son todas las mujeres?"
+        narrador "Puede que te hayas enojado, ¿pero por qué 
+            piensa [pareja.nombre] que lo haces \"a  la primera\"? ¿Y que así 
+            son todas las mujeres?"
     else:
 
-        $ listaMito.append("chapultepec_comparar_mujeres")
+        $ listaEstereotipo.append("chapultepec_comparar_mujeres")
     
     return
 
@@ -973,7 +987,7 @@ label chapultepec_enviar_mensaje:
             estar encargada de la comunicación?"
     else:
 
-        $ listaMito.append("chapultepec_enviar_mensaje")
+        $ listaEstereotipo.append("chapultepec_enviar_mensaje")
     
     return
 
@@ -986,7 +1000,7 @@ label chapultepec_repetir_retirada:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}ignorar{/b} a [pareja.nombre] cuando se empezaba 
+        narrador "Decidiste {atl=rotate_text}ignorar {/atl} a [pareja.nombre] cuando se empezaba 
             a abrir contigo y no darle importancia."
     else:
 
@@ -1022,7 +1036,7 @@ label chapultepec_quitarse_culpa:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te hizo {b}gaslighting{/b} y {b}culpabilizó{/b} 
+        narrador "[pareja.nombre] te hizo {atl=rotate_text}gaslighting {/atl} y {atl=rotate_text}culpabilizó {/atl} 
             de su reacción, justificando que decías mentiras cuando no hubo ninguna."
     else:
 
@@ -1044,7 +1058,7 @@ label chapultepec_preguntar_semana:
             debe ser en una relación?"
     else:
 
-        $ listaMito.append("chapultepec_preguntar_semana")
+        $ listaEstereotipo.append("chapultepec_preguntar_semana")
     
     return
 
@@ -1062,7 +1076,7 @@ label chapultepec_comprar_helado:
             responsabilidad?"
     else:
 
-        $ listaMito.append("chapultepec_comprar_helado")
+        $ listaEstereotipo.append("chapultepec_comprar_helado")
     
     return
 
@@ -1076,8 +1090,8 @@ label chapultepec_reclamar_salida:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}culpabilizar{/b} a [pareja.nombre] y cortar la 
-            comunicación. Además de intentar {b}humillar{/b} por no aceptar tus 
+        narrador "Decidiste {atl=rotate_text}culpabilizar {/atl} a [pareja.nombre] y cortar la 
+            comunicación. Además de intentar {atl=rotate_text}humillar {/atl} por no aceptar tus 
             preocupaciones."
     else:
 
@@ -1095,7 +1109,7 @@ label chapultepec_pretexto_amigues:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}celó{/b} por tus amistades, justificando 
+        narrador "[pareja.nombre] te {atl=rotate_text}celó {/atl} por tus amistades, justificando 
             que peleaste para terminar la cita."
     else:
 
@@ -1113,7 +1127,7 @@ label chapultepec_reclamar_drama:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}culpabilizó{/b} de la discusión y lo 
+        narrador "[pareja.nombre] te {atl=rotate_text}culpabilizó {/atl} de la discusión y lo 
             redujo a un \"drama\". ¿La mejor solución era ser reservado?"
     else:
 
@@ -1131,7 +1145,7 @@ label chapultepec_condicionar_regalo:
     if retroalimentacion:
 
         $ palabraGenero = "hermano" if jugador.nombre == novio.name else "hermana"
-        narrador "[pareja.nombre] te intentó {b}chantajear{/b} para hacer pasar 
+        narrador "[pareja.nombre] te intentó {atl=rotate_text}chantajear {/atl} para hacer pasar 
             la violencia anterior, lo hizo con el regalo de su [palabraGenero] 
             para tí."
     else:
@@ -1152,13 +1166,13 @@ label chapultepec_romper_tarjeta:
     if retroalimentacion:
 
         $ palabraGenero = "hermano" if jugador.nombre == novio.name else "hermana"
-        show tarjeta_spotify_rota:
+        show tarjeta_rota:
                         yalign .4
                         xalign .5        
-        narrador "[pareja.nombre] te {b}humilló{/b} con su insulto y 
-            {b}destruyó{/b} el regalo de su [palabraGenero] por no caer en su 
+        narrador "[pareja.nombre] te {atl=rotate_text}humilló {/atl} con su insulto y 
+            {atl=rotate_text}destruyó {/atl} el regalo de su [palabraGenero] por no caer en su 
             chantaje."
-        hide tarjeta_spotify_rota
+        hide tarjeta_rota
     else:
 
         $ listaViolenciaPareja.append("chapultepec_romper_tarjeta")
@@ -1168,11 +1182,11 @@ label chapultepec_romper_tarjeta:
 
 label chapultepec_aceptar_chantaje:
     
-    show tarjeta_spotify_intacta:
+    show tarjeta_intacta:
         yalign .4
         xalign .5
-    narrador "¿Y recuerdas esa tarjeta de Spotify? Era un regalo para tí, pero la 
-        aceptaste a través de un {b}chantaje{/b}."
-    hide tarjeta_spotify_intacta
+    narrador "¿Y recuerdas esa tarjeta para streaming de música? Era un regalo 
+        para tí, pero la aceptaste a través de un {atl=rotate_text}chantaje {/atl}."
+    hide tarjeta_intacta
 
     return

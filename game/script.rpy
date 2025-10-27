@@ -52,13 +52,14 @@ define TEXTO_CPS_PREVIEW = PreviewSlowText(
 
 #variables
 default coleccionables = []
-default listaMito = []
+default listaEstereotipo = []
 default listaViolenciaJugador = []
 default listaViolenciaPareja = []
 default listaPresion = []
 default jugador = Persona(nombre="???")
 default pareja = Persona(nombre="???")
 default palabraGenero = ""
+default codigoCompartido = ""
 default retroalimentacion = False
 default persistent.Config = True
 
@@ -121,11 +122,12 @@ image planta_fondo = "images/planta/fondo.png"
 image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
 image logro_aspersor = "images/coleccionables/logro_aspersor.png"
 image penalizacion_aspersor = "images/coleccionables/penalizacion_aspersor.png"
-image tarjeta_spotify_intacta = "images/coleccionables/tarjeta_spotify_intacta.png"
-image tarjeta_spotify_rota = "images/coleccionables/tarjeta_spotify_rota.png"
+image tarjeta_intacta = "images/coleccionables/tarjeta_intacta.png"
+image tarjeta_rota = "images/coleccionables/tarjeta_rota.png"
 image pantalla_bloqueo_Carlos = "images/phone/media/pantalla_bloqueo_Carlos.png"
 image pantalla_bloqueo_Fernanda = "images/phone/media/pantalla_bloqueo_Fernanda.png"
 image oncahui = "uamito.png"
+image maceta_dorado = "images/planta/maceta_dorado.png"
 
 
 #introducción
@@ -146,7 +148,8 @@ label splashscreen:
         else:
 
             $ instruccion = "Da click"
-
+        
+        show screen boton_quitar
         if _preferences.self_voicing:
 
             narrador "Estas opciones las puedes volver a modificar en el menú de 
@@ -159,7 +162,8 @@ label splashscreen:
         narrador "Ahora, ¡[instruccion] siempre que quieras continuar! Puede ser 
             en cualquier parte de la pantalla"
     else:
-
+        
+        show screen boton_quitar
         if _preferences.self_voicing:
             
             narrador "Si olvidas cómo hacer una acción ¡no te preocupes!, 
@@ -170,9 +174,11 @@ label splashscreen:
                 en el menú de {image=boton_mas_info} se encuentra el 
                 {image=boton_tutorial}."
     
-    show screen intro
+    show screen intro    
+    show screen boton_quitar
     pause
     hide screen intro
+    hide screen boton_quitar
     return
 
 
@@ -228,6 +234,12 @@ label start:
         xalign .27        
         xsize 950
         ysize 900
+    if persistent.desbloqueo:
+        show maceta_dorado:
+            yalign .4
+            xalign .27        
+            xsize 950
+            ysize 900
     show planta_capullo as planta_pareja:
         yalign .4
         xalign .69        
@@ -239,7 +251,7 @@ label start:
     menu:
 
         narrador "Selecciona una respuesta."
-        "¿Flores cantando? ¿Qué ch...":
+        "¿Flores cantando? ¿Qué p...":
             narrador "Tampoco es para tanto ¿eh?"
         "¡Me sé la canción! Me les uno.":
             narrador "Que vendría a buscarla con sus flooores amariiillaas."
@@ -248,6 +260,9 @@ label start:
     narrador "Nosotras somos las flores que representamos el estado de la 
         relación de [novia.name] y [novio.name]. Pronto podrás elegir a uno de 
         los dos para jugar."
+    if persistent.desbloqueo:
+        narrador "Aunque ya veo que desbloqueaste la maceta {atl=bounce}dorada{/atl}. 
+            ¡En esa está tu planta! Y gracias por compartir nuestro juego."
     narrador "Y no, no estamos así de tapaditas por el frío de Cuajis, es que 
         todavía no florecemos."
     show logro_aspersor:
@@ -386,7 +401,7 @@ label evaluacion:
             oncahui "No me gustaron..."
 
     oncahui "Bueno, voy a terminar de ver los créditos del juego y apreciar el 
-        esfuerzo de todos los involucrados"
+        esfuerzo de todos los involucrados."
 
     hide oncahui_zoomout
     show oncahui_zoomin

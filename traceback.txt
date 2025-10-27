@@ -1,21 +1,16 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/level/citaChapultepec.rpy", line 492, in script call
-    $ renpy.call(listaMito[i])
-  File "game/level/citaChapultepec.rpy", line 653, in script
-    narrador "Está bien reconocer tus errores, pero ¿fue tu culpa o crees
-  File "<none>", line 1
-    pareja.
-SyntaxError: invalid syntax
+  File "game/script.rpy", line 264, in script
+    narrador "Aunque ya veo que desbloqueaste la maceta {atl=bounce}dorada.
+  File "renpy/text/textsupport.pyx", line 195, in renpy.text.textsupport.tokenize
+Exception: Open text tag at end of string 'Aunque ya veo que desbloqueaste la maceta {atl=bouncedorada. ¡Esa será tu planta!'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/level/citaChapultepec.rpy", line 492, in script call
-    $ renpy.call(listaMito[i])
-  File "game/level/citaChapultepec.rpy", line 653, in script
-    narrador "Está bien reconocer tus errores, pero ¿fue tu culpa o crees
+  File "game/script.rpy", line 264, in script
+    narrador "Aunque ya veo que desbloqueaste la maceta {atl=bounce}dorada.
   File "renpy/ast.py", line 2915, in execute
     Say.execute(self)
     ~~~~~~~~~~~^^^^^^
@@ -25,38 +20,27 @@ Traceback (most recent call last):
   File "renpy/exports/sayexports.py", line 129, in say
     who(what, *args, **kwargs)
     ~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 1528, in __call__
-    what = self.prefix_suffix("what", self.what_prefix, what, self.what_suffix)
-           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 1442, in prefix_suffix
-    return sub(prefix) + sub(body, translate=not renpy.game.context().translated) + sub(suffix)
-                         ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^              
-  File "renpy/character.py", line 1421, in sub
-    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   
-  File "renpy/substitutions.py", line 355, in substitute
-    s = interpolate(s, variables)  # type: ignore
-        ~~~~~~~~~~~^^^^^^^^^^^^^^                
-  File "renpy/substitutions.py", line 89, in interpolate
-    raise e
-  File "renpy/substitutions.py", line 81, in interpolate
-    value = renpy.python.py_eval(code, {}, scope)
-            ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1290, in py_eval
-    code = py_compile(code, "eval")
-           ~~~~~~~~~~^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1247, in py_compile
-    raise e
-  File "renpy/python.py", line 1177, in py_compile
-    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
-           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<none>", line 1
-    pareja.
-SyntaxError: invalid syntax
+  File "renpy/character.py", line 1543, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 1198, in do_display
+    display_say(who, what, self.do_show, **display_args)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/character.py", line 868, in display_say
+    what_text.update()
+    ~~~~~~~~~~~~~~~~^^
+  File "renpy/text/text.py", line 2428, in update
+    tokens = self.tokenize(text)
+             ~~~~~~~~~~~~~^^^^^^
+  File "renpy/text/text.py", line 2945, in tokenize
+    tokens.extend(textsupport.tokenize(i))
+                  ~~~~~~~~~~~~~~~~~~~~^^^ 
+  File "renpy/text/textsupport.pyx", line 195, in renpy.text.textsupport.tokenize
+Exception: Open text tag at end of string 'Aunque ya veo que desbloqueaste la maceta {atl=bouncedorada. ¡Esa será tu planta!'.
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Fri Oct 17 20:11:30 2025
+Sun Oct 26 21:44:10 2025

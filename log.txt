@@ -1,28 +1,46 @@
-2025-10-18 21:04:08 UTC
+2025-10-27 14:44:26 UTC
 Windows-11-10.0.26200-SP0
 Ren'Py 8.4.1.25072401
 
-Early init took 30 ms
-Loading error handling took 18 ms
-Loading script took 105 ms
-Loading save slot metadata took 22 ms
+Early init took 60 ms
+Loading error handling took 43 ms
+Loading script took 178 ms
+Loading save slot metadata took 68 ms
 Loading persistent took 0 ms
-Running init code took 42 ms
-Loading analysis data took 6 ms
-Analyze and compile ATL took 2 ms
-Reloading save slot metadata took 13 ms
-Dump and make backups took 28 ms
+Running init code took 96 ms
+Loading analysis data took 15 ms
+Analyze and compile ATL took 4 ms
+Reloading save slot metadata took 51 ms
+Backing up script files to 'C:\\Users\\puxka\\AppData\\Roaming/RenPy/backups\\version 1.0':
+Dump and make backups took 63 ms
 Cleaning cache took 0 ms
 Making clean stores took 0 ms
-Initial gc took 42 ms
-DPI scale factor: 1.000000
+Initial gc took 24 ms
+DPI scale factor: 1.250000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: b"Couldn't load nvlib." (can be ignored)
-Creating interface object took 4 ms
+Creating interface object took 2 ms
 Init translation took 0 ms
 Cleaning stores took 0 ms
-Load screen analysis took 33 ms
-Analyze screens took 1 ms
-Save screen analysis took 0 ms
+Load screen analysis took 1 ms
+Analyze screens took 12 ms
+Save screen analysis took 12 ms
 Save pyanalysis took 0 ms
-Save bytecode took 0 ms
+Save bytecode took 23 ms
+Running _start took 0 ms
+Interface start took 476 ms
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'Intel'
+Renderer: 'Intel(R) Iris(R) Xe Graphics'
+Version: '4.6.0 - Build 32.0.101.7026'
+Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1200, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
+Screen sizes: virtual=(2560, 1600) physical=(1757, 1098) drawable=(1757, 1098)
+Maximum texture size: 4096x4096
+Cleaning stores took 0 ms
+Load screen analysis took 61 ms
+Analyze screens took 0 ms
+Running _start took 3 ms
