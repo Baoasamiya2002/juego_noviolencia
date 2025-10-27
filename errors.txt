@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 263: if statement expects a non-empty block.
-    if persistent.desbloqueo:
-                             ^
+File "game/screens.rpy", line 2102: 'Hide' is not a keyword argument or valid child of the timer statement.
+    timer 0.1 Hide("desbloquear")
+                  ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Sun Oct 26 21:40:55 2025
+Mon Oct 27 12:24:51 2025

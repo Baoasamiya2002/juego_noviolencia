@@ -368,7 +368,7 @@ screen navigation():
                 hover "gui/button/menu_principal/salir_hover.png"
                 alt "Salir"
                 action Quit(confirm=True)
-        else:
+        elif not renpy.get_screen("main_menu"):
 
             imagebutton:
                 idle "gui/button/menu_opciones/volver.png"
@@ -2027,6 +2027,9 @@ screen boton_quitar():
 screen boton_eleccion_personaje():
 
     zorder 1
+
+    dismiss action NullAction()
+    
     imagebutton:
         xalign .19
         yalign .4
@@ -2087,7 +2090,7 @@ screen desbloquear():
                             color "#000"
                             size gui.interface_text_size + 50
                             pos(280, -211)
-                            pixel_width(500)
+                            length(6)
                             value VariableInputValue("codigoCompartido")
                         
                         if len(codigoCompartido) == 6:
@@ -2098,7 +2101,8 @@ screen desbloquear():
                             else:
 
                                 if codigoCompartido[:-1] in persistent.codigos_maceta:
-
+                                    
+                                    timer 0.1 action Hide("desbloquear")
                                     timer 0.1 action Show(
                                         "confirm", 
                                         message=(
@@ -2110,8 +2114,6 @@ screen desbloquear():
 
             null height (4 * gui.pref_spacing)
             text "Así, reciben un objeto sorpresa que podrás ver al jugar..."
-            if (mostrarInput and renpy.variant("mobile")):
-                null height (50 * gui.pref_spacing)
 
 style codigo_hbox:
     xalign 0.5
