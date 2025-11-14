@@ -861,8 +861,8 @@ screen phone_ui():
                                                 Return()
                                             ]
                                             background Frame(get_phone_theme_value("player_bubble_image"), 23, 23)
-                                            idle_background Frame(get_phone_theme_value("player_bubble_image"), 23, 23)
-                                            hover_background Frame(get_phone_theme_value("player_bubble_hover_image"), 23, 23)
+                                            idle_background Frame(get_phone_theme_value("player_bubble_hover_image"), 23, 23)
+                                            hover_background Frame(get_phone_theme_value("player_bubble_image"), 23, 23)
                                             text_color text_colour
                                             text_size phone_config["choice_font_size"]
                                             text_align 0.5

@@ -1,9 +1,12 @@
 ﻿init python:
     import random
 
+    config.has_quicksave = False
+    config.has_sync = False
+
     def forzarAutosave():
         renpy.force_autosave()
-    
+
     #codigo aleatorio para compartir
     if not persistent.codigo_usuario:
         with renpy.file('misc/codigos_maceta.txt', encoding='utf8') as f:
@@ -378,9 +381,9 @@ screen navigation():
 
         imagebutton:
             xalign 1.0
-            idle "gui/button/menu_opciones/quitar.png"
-            hover "gui/button/menu_opciones/quitar_hover.png"
-            alt "¡Quitar!"
+            idle "gui/button/menu_principal/ocultar.png"
+            hover "gui/button/menu_principal/ocultar_hover.png"
+            alt "¡Ocultar!"
             action [forzarAutosave, 
                     OpenURL("https://www.uam.mx/calendario/index.html"), 
                     Quit(confirm=False)]
@@ -426,7 +429,7 @@ screen navigation():
                 imagebutton: 
                     idle "gui/button/menu_principal/mas_info.png"
                     hover "gui/button/menu_principal/mas_info_hover.png"
-                    alt "Más info"
+                    alt "Más información"
                     action ShowMenu("more_info")
 
                 imagebutton: 
@@ -520,6 +523,9 @@ screen game_menu(title=None, scroll=None, yinitial=0.0, spacing=0):
     
     style_prefix "game_menu"
     
+    if main_menu:
+        add "fondo_inicio"
+
     frame:
         
         if title != None:
@@ -609,7 +615,7 @@ style game_menu_outer_frame:
     left_padding 0
     xfill True    
     yfill True
-    background "#ffffffcf"
+    background "#ffffffcf"#ffffffcf
 
 style history_menu_frame:
     xfill True    
@@ -762,35 +768,39 @@ screen load():
 
 screen file_slots(title):
 
-    default page_name_value = FilePageNameInputValue(pattern=_("Página {}"), auto=_("Guardado automático"), quick=_("Grabación rápida"))
-
     use game_menu(title):
 
         fixed:
 
-            ## Esto asegura que 'input' recibe el evento 'enter' antes que otros
-            ## botones.
-            order_reverse True
+            ## Botones de acceso a otras páginas
+            vbox:
+                style_prefix "page"
 
-            ## El nombre de la pagina, se puede editar haciendo clic en el
-            ## botón.
-            button:
-                style "page_label"
-
-                key_events True
                 xalign 0.5
-                action page_name_value.Toggle()
+                yalign 0.05
 
-                input:
-                    style "page_label_text"
-                    value page_name_value
+                hbox:
+                    xalign 0.5
 
-            ## La cuadrícula de huecos de guardado.
+                    spacing gui.page_spacing
+
+                    if config.has_autosave:
+                        textbutton _("Guardado automático") action FilePage("auto")
+
+                    if title == "Cargar":
+                        text "|"
+                        textbutton "Capas" action FilePage("quick")
+
+                    ## range(1, 3) da los números del 1 al 2.
+                    for page in range(1, 3):
+                        text "|"
+                        textbutton "Partida propia ([page])" action FilePage(page)
+
             grid gui.file_slot_cols gui.file_slot_rows:
                 style_prefix "slot"
 
                 xalign 0.5
-                yalign 0.5
+                yalign 1.0
 
                 spacing gui.slot_spacing
 
@@ -798,61 +808,46 @@ screen file_slots(title):
 
                     $ slot = i + 1
 
-                    button:
-                        action FileAction(slot)
+                    if persistent._file_page != "quick":
 
-                        has vbox
+                        button:
+                            action FileAction(slot)
 
-                        add FileScreenshot(slot) xalign 0.5
+                            has vbox
 
-                        spacing 12
+                            add FileScreenshot(slot) xalign 0.5
 
-                        text FileTime(slot, format=_("{#file_time}%A, %d de %B %Y, %H:%M"), empty=_("vacío")):
-                            style "slot_time_text"
+                            spacing 22
 
-                        text FileSaveName(slot):
-                            style "slot_name_text"
+                            text FileTime(
+                                slot, 
+                                format=_("{#file_time}%A, %d/%m/%Y - %H:%M"), 
+                                empty=_("vacío")):
+                                style "slot_time_text"
 
-                        key "save_delete" action FileDelete(slot)
+                            text FileSaveName(slot):
+                                style "slot_name_text"
 
-            ## Botones de acceso a otras páginas
-            vbox:
-                style_prefix "page"
-
-                xalign 0.5
-                yalign 1.0
-
-                hbox:
-                    xalign 0.5
-
-                    spacing gui.page_spacing
-
-                    textbutton _("<") action FilePagePrevious()
-                    key "save_page_prev" action FilePagePrevious()
-
-                    if config.has_autosave:
-                        textbutton _("{#auto_page}Automático") action FilePage("auto")
-
-                    if config.has_quicksave:
-                        textbutton _("{#quick_page}R") action FilePage("quick")
-
-                    ## range(1, 10) da los números del 1 al 9.
-                    for page in range(1, 10):
-                        textbutton "[page]" action FilePage(page)
-
-                    textbutton _(">") action FilePageNext()
-                    key "save_page_next" action FilePageNext()
-
-                if config.has_sync:
-                    if CurrentScreenName() == "save":
-                        textbutton _("Subir Sync"):
-                            action UploadSync()
-                            xalign 0.5
+                            key "save_delete" action FileDelete(slot)
                     else:
-                        textbutton _("Descargar Sync"):
-                            action DownloadSync()
-                            xalign 0.5
 
+                        $ nombreLabel = "eleccionCapa" + str(slot)
+                        $ nombreImagen = "capa_" + str(slot)
+
+                        button:
+                            action Start(nombreLabel)
+
+                            has vbox
+
+                            add DynamicImage(nombreImagen): 
+                                ysize config.thumbnail_height 
+                                xsize config.thumbnail_width
+
+                            spacing 22
+
+                            text NOMBRE_CAPA[i]:
+                                style "slot_time_text"
+            
 
 style page_label is gui_label
 style page_label_text is gui_label_text
@@ -876,8 +871,13 @@ style page_label_text:
 style page_button:
     properties gui.button_properties("page_button")
 
+style page_text:
+    yalign 0.5
+
 style page_button_text:
-    properties gui.text_properties("page_button")
+    properties gui.text_properties("page_button")   
+    font gui.name_text_font
+    size 70
 
 style slot_button:
     properties gui.button_properties("slot_button")
@@ -921,7 +921,7 @@ screen options():
                     imagebutton: 
                         idle "gui/button/menu_opciones/mas_info.png"
                         hover "gui/button/menu_opciones/mas_info_hover.png"
-                        alt "Más info"
+                        alt "Más información"
                         action ShowMenu("more_info")
                     imagebutton: 
                         idle "gui/button/menu_opciones/config.png"
@@ -1077,22 +1077,22 @@ screen preferences(view="Menu"):
                 box_wrap True
 
                 vbox:
-                    
-                    style_prefix "slider"
-                    label _("Volumen  voz automática")
-                    
-                    bar value Preference("voice volume") xsize 610
-
-                vbox:
 
                     style_prefix "radio"
-                    xsize 425
+                    #xsize 425
                     label _("Self-Voicing")
 
                     textbutton _("Off") action Preference(
                         "self voicing", "disable")
                     textbutton _("Text-to-speech") action Preference(
                         "self voicing", "enable")
+
+                vbox:
+                    
+                    style_prefix "slider"
+                    label _("Volumen  voz automática")
+                    
+                    bar value Preference("voice volume") xsize 610
                 
                 vbox:
 
@@ -1913,7 +1913,6 @@ style nvl_window:
 style game_menu_outer_frame:
     variant "small"
     background "#ffffffcf"
-    #background "gui/phone/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
     variant "small"
@@ -2017,9 +2016,9 @@ screen boton_quitar():
 
         imagebutton:
             xalign 1.0
-            idle "gui/button/menu_opciones/quitar.png"
-            hover "gui/button/menu_opciones/quitar_hover.png"
-            alt "¡Quitar!"
+            idle "gui/button/menu_principal/ocultar.png"
+            hover "gui/button/menu_principal/ocultar_hover.png"
+            alt "¡Ocultar!"
             action [forzarAutosave, 
                     OpenURL("https://www.uam.mx/calendario/index.html"), 
                     Quit(confirm=False)]
@@ -2039,7 +2038,7 @@ screen boton_eleccion_personaje():
             Function(lambda: definirPersonaje(
                 novia, APODO_NOVIA, 
                 novio, APODO_NOVIO)), 
-            Jump("seleccionPersonaje")]
+            Return()]
     imagebutton:
         xalign .75
         yalign .4
@@ -2049,7 +2048,7 @@ screen boton_eleccion_personaje():
             Function(lambda: definirPersonaje(
                 novio, APODO_NOVIO, 
                 novia, APODO_NOVIA)), 
-            Jump("seleccionPersonaje")]
+            Return()]
 
 screen desbloquear():
     
@@ -2113,7 +2112,7 @@ screen desbloquear():
                                     $ persistent.desbloqueo = True
 
             null height (4 * gui.pref_spacing)
-            text "Así, reciben un objeto sorpresa que podrás ver al jugar..."
+            text "Así, reciben un objeto sorpresa que podrán ver al jugar..."
 
 style codigo_hbox:
     xalign 0.5

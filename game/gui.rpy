@@ -39,7 +39,7 @@ define gui.hover_color = '#121840'
 
 ## El color del botón de texto seleccionado pero no enfocado. Un botón está
 ## seleccionado si indica el valor actual de la pantalla o preferencia.
-define gui.selected_color = '#555555'
+define gui.selected_color = '#000000'
 
 ## El color de los botones de texto que no pueden ser seleccionados.
 define gui.insensitive_color = '#734382'
@@ -225,21 +225,21 @@ define gui.choice_button_text_insensitive_color = '#7070707f'
 ## button' como los otros botones.
 
 ## Botón de guardar partida
-define gui.slot_button_width = 552
-define gui.slot_button_height = 412
-define gui.slot_button_borders = Borders(20, 20, 20, 20)
-define gui.slot_button_text_size = 35
+define gui.slot_button_width = 652
+define gui.slot_button_height = 512
+define gui.slot_button_borders = Borders(25, 20, 20, 20)
+define gui.slot_button_text_size = 45
 define gui.slot_button_text_xalign = 0.5
 define gui.slot_button_text_idle_color = gui.idle_small_color
 define gui.slot_button_text_selected_idle_color = gui.selected_color
 define gui.slot_button_text_selected_hover_color = gui.hover_color
 
 ## La anchura y altura de las miniaturas de las partidas guardadas.
-define config.thumbnail_width = 512
-define config.thumbnail_height = 288
+define config.thumbnail_width = 602
+define config.thumbnail_height = 368
 
 ## Número de columnas y filas de la cuadrícula de partidas guardadas.
-define gui.file_slot_cols = 3
+define gui.file_slot_cols = 2
 define gui.file_slot_rows = 2
 
 

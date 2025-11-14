@@ -504,7 +504,8 @@ init python:
         char_offset = 0  # Since we want our text to move in a wave,
                          # we want to let each character know where it is in the wave.
                          # So they move in harmony. Otherwise they rise and fall all together.
-        my_style = DispTextStyle() # This will keep track of what tags and styling to add to each letter
+        my_style = DispTextStyle() # This will keep track of what tags and styling to add to each letter 
+        my_style.add_tags("color=#fff")
         for kind,text in contents:
             if kind == renpy.TEXT_TEXT:
                 for char in text:                                            # Extract every character from the string

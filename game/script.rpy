@@ -1,5 +1,7 @@
 ﻿init python:
 
+    import time
+
     def modificarPosImage(ruta):
 
         imagen_ancho, imagen_alto = renpy.image_size(ruta)
@@ -46,9 +48,19 @@ define APODO_NOVIA = "Fer"
 define APODO_NOVIO = "Charly"
 define LISTA_ESTADO_PLANTA = ["marchita", "levemente_marchita", 
     "levemente_florece", "florece"]
+define NOMBRE_CAPA = ["Primera capa", "Segunda capa", "Tercera capa", 
+    "Cuarta capa"]
+define LISTA_MENSAJE_ALEATORIO = [
+    ("Oye, acabo de llegar, pero creo que lo tendremos que cancelar..."+
+    "<emoji_lagrima> es que me siento mal... de que no estás aquí conmigo "+
+    "<emoji_risa>"),
+    ("Holaa amor, ya estoy aquí, pero tú tranqui. Te espero con gusto, así que"+
+    " no te apures <emoji_corazon>"),
+    ("Ya llegué. Me dices si vas a tardar y me doy una vuelta jeje"+
+    "<emoji_risa_nerviosa>")]
 define TEXTO_CPS_PREVIEW = PreviewSlowText(
     "{color=#000000}¡Bienvenide! Este juego se centra en la lectura. Modifica "
-    "estas y otras opciones para tener la mejor experiencia.{/color}")
+    "estas opciones para tener la mejor experiencia.{/color}")
 
 #variables
 default coleccionables = []
@@ -60,12 +72,13 @@ default jugador = Persona(nombre="???")
 default pareja = Persona(nombre="???")
 default palabraGenero = ""
 default codigoCompartido = ""
+default info_descriptiva = ""
 default retroalimentacion = False
 default persistent.Config = True
 
 #videos
 image fondo_inicio = Movie(
-    size=(2560,1600), play="images/fondo_inicio.webm", loop = True)
+    size=(2560,1600), play="images/fondo_inicio.webm", loop = True) 
 image seleccion_personaje = Movie(
     size=(2560,1600), play="images/seleccion_personaje.webm", loop = False, 
     image="images/seleccion_personaje.png")
@@ -128,7 +141,10 @@ image pantalla_bloqueo_Carlos = "images/phone/media/pantalla_bloqueo_Carlos.png"
 image pantalla_bloqueo_Fernanda = "images/phone/media/pantalla_bloqueo_Fernanda.png"
 image oncahui = "uamito.png"
 image maceta_dorado = "images/planta/maceta_dorado.png"
-
+image capa_1 = "images/cortinilla_capa/capa_1.png"
+image capa_2 = "images/cortinilla_capa/capa_2.png"
+image capa_3 = "images/cortinilla_capa/capa_3.png"
+image capa_4 = "images/cortinilla_capa/capa_4.png"
 
 #introducción
 label splashscreen:
@@ -149,33 +165,29 @@ label splashscreen:
 
             $ instruccion = "Da click"
         
-        show screen boton_quitar
+        narrador "Ahora, ¡[instruccion] para continuar! Puede ser 
+            en cualquier parte de la pantalla."
+        
         if _preferences.self_voicing:
 
-            narrador "Estas opciones las puedes volver a modificar en el menú de 
-                Configuración en Opciones en cualquier momento."
+            narrador "Puedes volver a modificar las opciones en el menú de 
+                Configuración dentro de Opciones."
         else:
 
-            narrador "Estas opciones las puedes volver a modificar en el menú de 
-                {image=boton_config} en {image=boton_opciones} en cualquier 
-                momento."
-        narrador "Ahora, ¡[instruccion] siempre que quieras continuar! Puede ser 
-            en cualquier parte de la pantalla"
+            narrador "Puedes volver a modificar las opciones en el menú de 
+                {image=boton_config} dentro de {image=boton_opciones}."
     else:
         
         show screen boton_quitar
         if _preferences.self_voicing:
             
-            narrador "Si olvidas cómo hacer una acción ¡no te preocupes!, 
-                en el menú de Más información se encuentra el Tutorial."
+            narrador "¿Dudas sobre el juego? Consulta el menú de Más información."
         else:
 
-            narrador "Si olvidas cómo hacer una acción ¡no te preocupes!, 
-                en el menú de {image=boton_mas_info} se encuentra el 
-                {image=boton_tutorial}."
+            narrador "¿Dudas sobre el juego? Consulta el menú 
+                de {image=boton_mas_info}."
     
     show screen intro    
-    show screen boton_quitar
     pause
     hide screen intro
     hide screen boton_quitar
@@ -184,6 +196,7 @@ label splashscreen:
 
 label start:
 
+    $ save_name = _("Introducción")
     scene black
 
     if persistent.Config:
@@ -192,34 +205,32 @@ label start:
 
         menu:
             "Si":
+
                 if _preferences.self_voicing:
 
-                    narrador "¡Bien! Aunque si quieres una salida de emergencia 
-                        de miradas ajenas, el botón de ¡Quitar! (último botón 
-                        superior derecha) está para ayudarte."
-                else:
+                    $ info_descriptiva = "(último botón superior derecha)"
                                         
-                    narrador "¡Bien! Aunque si quieres una salida de emergencia 
-                        de miradas ajenas, el botón de {image=boton_quitar} 
-                        está para ayudarte."    
+                narrador "¡Bien! Pero si eso cambia, el botón de 
+                    ¡Ocultar! [info_descriptiva]{image=boton_quitar} oculta el 
+                    juego y muestra el calendario de la UAM. Úsalo como salida 
+                    de emergencia de miradas ajenas."    
             "No":
-                if _preferences.self_voicing:
 
-                    narrador "¿Quieres jugar ahora? El juego toca temas 
-                        sensibles y necesita tu atención, así que es mejor 
-                        jugarlo en privado.\n\nSi quieres una salida de emergencia 
-                        de miradas ajenas, el botón de ¡Quitar! (último botón 
-                        superior derecha) está para ayudarte."
-                else:
-                                        
-                    narrador "¿Quieres jugar ahora? El juego toca temas 
-                        sensibles y necesita tu atención, así que es mejor 
-                        jugarlo en privado.\n\nSi quieres una salida de emergencia 
-                        de miradas ajenas, el botón de {image=boton_quitar} está 
-                        para ayudarte."
+                narrador "¿Quieres jugar ahorita? El juego toca temas 
+                        que piden tu reflexión en privado."
+
+                $ info_descriptiva = ""
+                
+                if _preferences.self_voicing:
+                    
+                    $ info_descriptiva = "(último botón superior derecha)"
+                
+                narrador "El botón de 
+                        ¡Ocultar! [info_descriptiva]{image=boton_quitar} oculta 
+                        el juego y muestra el calendario de la UAM. Úsalo como 
+                        salida de emergencia de miradas ajenas."
         
-        narrador "Queremos que juegues con comodidad y honestidad. Ahora sí, 
-            puedes continuar jugando si así lo decides."
+        narrador "Queremos que juegues con comodidad y honestidad."
         $ persistent.Config = False
 
     scene fondo_inicio with fade
@@ -245,16 +256,25 @@ label start:
         xalign .69        
         xsize 950
         ysize 900
+    
+    narrador "(cantando) {bt=a2-s2.0-p3.0}Ella sabía que él sabía, que algún día 
+        pasaría.{/bt}"
 
-    narrador "(cantando) Ella sabía que él sabía, que algún día pasaría."
+    if renpy.variant("mobile"):
+
+        $ instruccion = "tocando"
+    else:
+
+        $ instruccion = "dando click"
 
     menu:
 
-        narrador "Selecciona una respuesta."
+        narrador "Selecciona una respuesta [instruccion] sobre ella."
         "¿Flores cantando? ¿Qué p...":
             narrador "Tampoco es para tanto ¿eh?"
         "¡Me sé la canción! Me les uno.":
-            narrador "Que vendría a buscarla con sus flooores amariiillaas."
+            narrador "{bt=a2-s2.0-p3.0}Que vendría a buscarla con sus flooores 
+                amariiillaas.{/bt}"
 
     narrador "Jeje perdón, no te habíamos visto."
     narrador "Nosotras somos las flores que representamos el estado de la 
@@ -270,24 +290,24 @@ label start:
     narrador "Con ayuda del agua y otros cuidados podremos seguir creciendo."
     hide logro_aspersor
 
+    $ info_descriptiva = ""
+
     if _preferences.self_voicing:
 
-        narrador "Nos puedes visitar en el menú de Progreso (primer botón 
-            superior izquierda). 
-            Ahí también puedes recordar lo que [novia.name] y [novio.name] 
-            hablen, ¡incluso esta conversación!"
-    else:
-
-        narrador "Nos puedes visitar en el menú de {image=boton_progreso}. 
-            Ahí también puedes recordar lo que [novia.name] y [novio.name] 
-            hablen, ¡incluso hasta esta conversación!"
-
-    narrador "Que hablando de los reyes de roma, [novia.name] y [novio.name] están 
+        $ info_descriptiva = "(primer botón superior izquierda)"
+    
+    narrador "Nos puedes visitar en el menú de 
+        Progreso [info_descriptiva]{image=boton_progreso}."
+    narrador "{cps=100}¡Hola desde el menú de Progreso!{/cps}{nw}"
+    narrador "En el menú de Progreso {image=boton_progreso} también puedes 
+        volver a leer diálogos pasados (como el anterior que estuvo rapidísimo)
+        . \n\n¡Te invitamos a probarlo!"
+    narrador "Bueno, suficiente de nosotras. [novia.name] y [novio.name] están 
         en el cine, vamos a conocerlos."
-    jump eleccionPersonaje
+    jump conocerPersonaje
 
 
-label eleccionPersonaje:
+label conocerPersonaje:
     
     scene cine_fondo
     narrador "En el cine dentro de una sala, están Fernanda y Carlos esperando a 
@@ -300,33 +320,63 @@ label eleccionPersonaje:
     novia "No te preocupes, me encanta compartir las palomitas y más si es 
         contigo."
     novio "Gracias amor, me haces muy feliz Fer."
-    scene seleccion_personaje
-    show screen boton_eleccion_personaje    
-    $ forzarAutosave()
-    narrador "Ahora que los conoces un poco, elige el personaje con el que 
+    call eleccionPersonaje    
+    jump prologo_personaje
+
+
+label eleccionPersonaje:
+
+    hide screen phone_ui
+    scene seleccion_personaje    
+    narrador "Ya que los conoces un poco, elige el personaje con el que 
         quieres jugar."
 
-
-label seleccionPersonaje:
-
+    show screen boton_eleccion_personaje    
+    pause
+    $ forzarAutosave()
     hide screen boton_eleccion_personaje
-    
+
+    narrador "¡Hola [jugador.nombre]! Estás a punto de atravesar la primera 
+        capa de Latencia."
+
     if _preferences.self_voicing:
 
-        narrador "¡Hola [jugador.nombre]! Esto se acaba de guardar en automático. 
-            Si después quieres jugar como [pareja.nombre] o guardar tu progreso, 
-            Cargar y Guardar se encuentran en el menú de Opciones (segundo botón 
-            superior izquierda)."
+        narrador "Puedes guardar tu partida en cualquier momento en el menú de 
+            Guardar dentro de Opciones (segundo botón superior izquierda)."
+        narrador "Y puedes cargar una partida o jugar directo en otra capa en 
+            el menú de Cargar dentro de Opciones (segundo botón superior izquierda)."
     else:
 
-        narrador "¡Hola [jugador.nombre]! Esto se acaba de guardar en automático. 
-            Si después quieres jugar como [pareja.nombre] o guardar tu progreso, 
-            {image=boton_cargar} y {image=boton_guardar} se encuentran en el 
-            menú de {image=boton_opciones_quick}."
+        narrador "Puedes guardar tu partida en cualquier momento en el menú de 
+            {image=boton_guardar} dentro de Opciones {image=boton_opciones_quick}."
+        narrador "Y puedes cargar una partida o jugar directo en otra capa en 
+            el menú de {image=boton_cargar} dentro de 
+            Opciones {image=boton_opciones_quick}."
 
     hide seleccion_personaje
+    return
+
+
+label eleccionCapa1:
+
+    call eleccionPersonaje    
+    jump prologo_personaje
+
+
+label eleccionCapa2:
+
+    call eleccionPersonaje    
     jump cita_chapultepec
 
+label eleccionCapa3:
+
+    call eleccionPersonaje    
+    jump telefono_conversacion
+
+label eleccionCapa4:
+
+    call eleccionPersonaje    
+    jump cita_chapultepec
 
 label finalJuego:
 

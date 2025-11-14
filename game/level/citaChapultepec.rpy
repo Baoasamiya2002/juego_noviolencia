@@ -8,21 +8,17 @@ init python:
 
 label cita_chapultepec:
 
-    scene chapultepec_fondo
-    narrador "Un domingo por la tarde, [jugador.nombre] y [pareja.nombre] 
-        decidieron salir a una cita."
-    
-    if jugador.nombre == novia.name:
-        
-        call prologo_novia from _call_prologo_novia
-    else:
+    $ save_name = _("Segunda capa")
+    show capa_2 with fade
+    pause
 
-        call prologo_novio from _call_prologo_novio
+    $ retroalimentacion = False
+    $ listaEstereotipo = []
 
-    scene caminata_chapultepec
-    narrador "Empezaron a caminar entre los árboles, tenían tiempo de no salir 
-        juntos, estaban en entregas finales y la carrera de cada uno comenzaba a 
-        ser cada vez más demandante."
+    scene caminata_chapultepec with fade
+    narrador "[jugador.nombre] y [pareja.nombre] empezaron a caminar entre los 
+        árboles, tenían tiempo de no salir juntos, estaban en entregas finales y 
+        la carrera de cada uno comenzaba a ser cada vez más demandante."
     narrador "Aunque a veces se veían entre clases en la universidad, están en 
         ambientes muy distintos y cada vez sus diferencias y expectativas se 
         hacían más evidentes..."
@@ -83,7 +79,7 @@ label cita_chapultepec:
     menu:
 
         narrador "¿Tu respuesta?"
-        "¿Por?":
+        "Qué confuso":
 
             scene expression "emocion_tristeza_[jugador.nombre]"
             jugador.personaje "¿Cómo? No entiendo, si según yo estábamos bien."
@@ -127,7 +123,7 @@ label cita_chapultepec:
     menu:
 
         narrador "¿Tu respuesta?"
-        "Sincerar mi inseguridad":
+        "Puede que sea mi culpa":
 
             scene expression "emocion_tristeza_[jugador.nombre]"
             jugador.personaje "La verdad no quiero pelear amor, pero a veces te 
@@ -213,7 +209,7 @@ label cita_chapultepec:
 
             jump retroalimentacion_pareja_chapultepec
 
-        "Mantengo la calma":
+        "Insistir más":
 
             scene expression "emocion_seriedad_[jugador.nombre]"
             $ palabraGenero = (
@@ -281,90 +277,7 @@ label cita_chapultepec:
                     narrador "¡Obtuviste una tarjeta rota para streaming de 
                         música! [instruccion]"
                     hide tarjeta_rota
-                    jump retroalimentacion_pareja_chapultepec
-
-
-label prologo_novia:
-
-    narrador "[jugador.nombre] está en Chapultepec... pero todavía no está en el 
-        punto de reunión con [pareja.nombre]"
-    scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "Ya ví el mensaje de [pareja.apodo], pero tendrá que esperar."
-    jugador.personaje "Otra vez me equivoqué de parada... hasta parezco nueva, 
-        pero ahorita me apuro."
-    narrador "El día está soleado y [jugador.nombre] empieza a sentir el calor a 
-        comparación de cuando estaba en Cuajimalpa."
-    jugador.personaje "Diablos... por andar organizando cosas con mi equipo ya 
-        no chequé el clima acá en la ciudad..."
-    scene expression "emocion_tristeza_[jugador.nombre]"
-    jugador.personaje "Que con este solecito y las botitas que me traje, me van 
-        a quedar los pies bien sudados."
-    jugador.personaje "Ash ¿por qué no me traje mis tenis? Así ando más liviana."
-    scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "Aaah si cierto, que me las regaló mi [pareja.apodo] y 
-        tiene un ratote que no las uso..."
-    call chapultepec_ocultar_incomodidad from _call_chapultepec_ocultar_incomodidad
-    scene expression "emocion_felicidad_[jugador.nombre]"
-    jugador.personaje "Así que uff, respira y enderezate..."
-    narrador "En el camino [jugador.nombre] ve que venden flores"
-    jugador.personaje "Hmm unas flores... ¿y si le compro una a [pareja.apodo]?"
-    call chapultepec_miedo_estereotipo from _call_chapultepec_miedo_estereotipo
-    jugador.personaje "Si mejor no, me van a ver raro."
-    call chapultepec_merecer_enojo from _call_chapultepec_merecer_enojo
-    scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "Ya debo de dejar de ser rara... sólo debo concentrarme en 
-        encontrarlo."
-    jugador.personaje "Y... ¿ese es [pareja.nombre]? Se ve un poco preocupado..."
-    narrador "[jugador.nombre] ve que [pareja.nombre] la saluda y ella empieza a 
-        caminar hacia él."
-    call chapultepec_encargada_sentir_pareja from _call_chapultepec_encargada_sentir_pareja
-    return
-
-
-label prologo_novio:
-
-    narrador "Carlos llegó primero a Chapultepec."
-    scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "Le voy a enviar un mensaje de que ya estoy aquí, espero 
-        no tarde mucho."
-    narrador "Después de enviar el mensaje, [jugador.nombre] se pone a revisar 
-        sus notas."
-
-    $ reiniciar_celular()
-    show screen phone_ui
-    $ switch_channel_view("jugador_dm")
-    $ send_phone_message(
-        jugador.nombre, 
-        (
-            "Mañana entrega final\n\nComprar pavos Fortnite," +
-            "\n\n(IMPORTANTE) regalo para [pareja.apodo]"), "jugador_dm", 3)
-
-    jugador.personaje "El proyecto... Otra noche sin dormir para que el profe ni 
-        lo lea.."
-    jugador.personaje "Gastos y más gastos... ¿Y si le vuelvo a pedir prestado 
-        a mi pa'?"
-    jugador.personaje "Pero todavía le debo del regalo pasado de [pareja.apodo]..."
-    hide screen phone_ui
-    call chapultepec_ser_romantico from _call_chapultepec_ser_romantico
-    scene expression "emocion_felicidad_[jugador.nombre]"
-    jugador.personaje "Pero mi hermano me había dado dinero ¿no?, voy a..."
-    scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "..."
-    jugador.personaje "También se me olvidó en la mesa."
-    jugador.personaje "..."
-    scene expression "emocion_enojo_[jugador.nombre]"
-    jugador.personaje "Como siempre, ¡soy un pinche desastre!"
-    call chapultepec_ocultar_frustracion from _call_chapultepec_ocultar_frustracion
-    call chapultepec_guardar_emocion_soledad from _call_chapultepec_guardar_emocion_soledad
-    scene expression "emocion_tristeza_[jugador.nombre]"
-    jugador.personaje "Además se ve agitada, puede que sea por la caminata, 
-        pero tal vez sea otra cosa... La voy a distraer y ver si se le pasa."
-    scene expression "emocion_seriedad_[jugador.nombre]"
-    narrador "[jugador.nombre] sumerge sus sentimientos y ve que [pareja.nombre] 
-        ya está por llegar."
-    scene expression "emocion_felicidad_[jugador.nombre]"
-    jugador.personaje "Erm, aquí, ¡Aquí estoy Fer!"
-    return    
+                    jump retroalimentacion_pareja_chapultepec    
 
 
 label retroalimentacion_pareja_chapultepec:
@@ -495,10 +408,10 @@ label retroalimentacion_estereotipo_chapultepec:
         
             "Sí":
             
-                narrador "¡Muy bien!, vamos a comprobarlo:"
+                narrador "¿Eso crees?, vamos a comprobarlo:"
             "No":
                 
-                narrador "No te preocupes, veamos juntos:"
+                narrador "Puede ser difícil ¿verdad?, veamos:"
         
         $ i = 0
         while i < len(listaEstereotipo):
@@ -512,23 +425,29 @@ label retroalimentacion_estereotipo_chapultepec:
             porque \"así debe ser\"?"
 
     $ forzarAutosave()
-    if _preferences.self_voicing:
-        
-        narrador "Se guardó hasta aquí en automático. 
-            Si quieres regresar a este punto o guardar en otro momento, 
-            Cargar y Guardar se encuentran en el menú de Opciones (segundo botón 
-            superior izquierda)."
-        narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
-            los contactos en el menú de Recursos (tercer botón superior)."
-    else:
 
-        narrador "Se guardó hasta aquí en automático. 
-            Si quieres regresar a este punto o guardar en otro momento, 
-            {image=boton_cargar} y {image=boton_guardar} se encuentran en el 
-            menú de {image=boton_opciones_quick}."
-        narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
-            los contactos en el menú de {image=boton_recursos}."
-    jump telefono_conversacion
+    call instrucciones_recursos
+    jump opcion_chapultepec_regresar_menu
+
+
+label opcion_chapultepec_regresar_menu:
+
+    scene black
+
+    menu:
+        
+        narrador "Haz atravesado la segunda capa de Latencia ¿Quieres continuar? 
+            La siguiente capa te {glitch=4.1}retará{/glitch}."
+        "Si":
+
+            call instrucciones_cargar
+            jump telefono_conversacion
+        "Más tarde":
+
+            narrador "¡Entendido! Espero que regreses pronto para atravesar más 
+                capas de Latencia."
+            call instrucciones_cargar
+            $ renpy.full_restart() 
 
 
 label chapultepec_ocultar_incomodidad:
@@ -627,7 +546,7 @@ label chapultepec_ocultar_frustracion:
 
     scene expression "emocion_tristeza_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
-    narrador "[jugador.nombre] empieza a sentir la frustración en su rostro y como 
+    narrador "[jugador.nombre] empieza a sentir la frustración en su rostro y cómo 
         empiezan sus ganas de llorar. Sin embargo, antes de que lo invadan estos 
         sentimientos, se pellizca con fuerza."
     scene expression "emocion_enojo_[jugador.nombre]" at Transform(

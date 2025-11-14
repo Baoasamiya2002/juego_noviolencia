@@ -5,6 +5,10 @@ init python:
 
 label telefono_conversacion:
 
+    $ save_name = _("Tercera capa")
+    show capa_3 with fade
+    pause
+    
     $ retroalimentacion = False
     $ listaEstereotipo = []
     $ listaViolenciaJugador = []
@@ -162,10 +166,17 @@ label retroalimentacion_pareja_telefono:
     hide screen phone_ui
     scene black
     show fondo_inicio
-    narrador "Sí que escribieron rápido, aunque al hacerlo ¿dijeron cosas sin 
-        pensarlo?"
-    $ pos = LISTA_ESTADO_PLANTA.index(jugador.estadoPlanta)
-    $ jugador.estadoPlanta = LISTA_ESTADO_PLANTA[pos - 1]    
+    narrador "Sí que ustedes \"escribieron\" rápido, aunque al hacerlo, 
+        ¿dijeron cosas sin pensarlo?"
+    
+    if jugador.estadoPlanta == "capullo":
+
+        $ jugador.estadoPlanta = LISTA_ESTADO_PLANTA[1]
+    else:
+
+        $ pos = LISTA_ESTADO_PLANTA.index(jugador.estadoPlanta)
+        $ jugador.estadoPlanta = LISTA_ESTADO_PLANTA[pos - 1]    
+
     show planta_fondo:
         yalign .4
         xalign .5
@@ -201,7 +212,7 @@ label retroalimentacion_pareja_telefono:
     hide screen phone_ui
     scene black
     show fondo_inicio
-    narrador "E, igual que la vez pasada, esta violencia afectó a tu planta."
+    narrador "Así que, igual que la vez pasada, esta violencia afectó a tu planta."
     narrador "Parece un ciclo, ¿no lo crees?"
     narrador "Las plantas, como los humanos, merecen cuidados. {b}Merecemos 
         cuidados{/b}."
@@ -214,9 +225,14 @@ label retroalimentacion_jugador_telefono:
     
     if listaViolenciaJugador:
 
-        $ pos = LISTA_ESTADO_PLANTA.index(pareja.estadoPlanta)
-        $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[pos - 1]
+        if pareja.estadoPlanta == "capullo":
 
+            $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[1]
+        else:
+
+            $ pos = LISTA_ESTADO_PLANTA.index(pareja.estadoPlanta)
+            $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[pos - 1]
+        
         show penalizacion_aspersor:
             xalign .05
             yalign 0.3
@@ -257,8 +273,13 @@ label retroalimentacion_jugador_telefono:
         narrador "¿Es eso lo que quieres en tu relación?"
     else:
 
-        $ pos = LISTA_ESTADO_PLANTA.index(pareja.estadoPlanta)
-        $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[pos + 1]
+        if pareja.estadoPlanta == "capullo":
+
+            $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[2]
+        else:
+        
+            $ pos = LISTA_ESTADO_PLANTA.index(pareja.estadoPlanta)
+            $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[pos + 1]
 
         show logro_aspersor:
             xalign .05
@@ -309,16 +330,16 @@ label retroalimentacion_estereotipo_telefono:
 
         menu:
 
-            narrador "Y, como en la cita en Chapultepec, algunos de sus diálogos 
+            narrador "Y, como en capas anteriores, algunos diálogos 
                 reproducen estereotipos sobre los roles de género, ¿Esta vez 
                 tuviste mejor suerte detectándolos?"
             
             "Sí":
             
-                narrador "¡Muy bien!, vamos a comprobarlo:"
+                narrador "Esperamos que no sólo sea suerte, vamos a comprobarlo:"
             "No":
                 
-                narrador "No te preocupes, veamos juntos:"
+                narrador "Tal vez no tuviste suerte, pero ahorita los conoceremos:"
 
         hide fondo_inicio
         scene black
@@ -339,23 +360,8 @@ label retroalimentacion_estereotipo_telefono:
             que {b}realmente{/b} significan?"
 
     $ forzarAutosave()
-    if _preferences.self_voicing:
-            
-        narrador "Se guardó hasta aquí en automático. 
-            Si quieres regresar a este punto o guardar en otro momento, 
-            Cargar y Guardar se encuentran en el menú de Opciones (segundo botón 
-            superior izquierda)."
-        narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
-            los contactos en el menú de Recursos (tercer botón superior)."
-    else:
 
-        narrador "Se guardó hasta aquí en automático. 
-            Si quieres regresar a este punto o guardar en otro momento, 
-            {image=boton_cargar} y {image=boton_guardar} se encuentran en el 
-            menú de {image=boton_opciones_quick}."
-        narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
-            los contactos en el menú de {image=boton_recursos}."
-
+    call instrucciones_recursos
     jump finalJuego
 
 
