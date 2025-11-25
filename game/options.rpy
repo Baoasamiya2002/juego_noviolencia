@@ -155,6 +155,10 @@ define config.save_directory = "prototipo1-1744240549"
 define config.window_icon = "gui/window_icon.png"
 
 
+## Permitir text tags en el Historial
+
+define gui.history_allow_tags = {'b', 'image'}
+
 ## Configuración de 'Build' ####################################################
 ##
 ## Esta sección contrla cómo Ren'Py convierte el proyecto en archivos para la

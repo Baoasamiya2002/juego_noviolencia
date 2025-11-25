@@ -835,7 +835,9 @@ screen file_slots(title):
                         $ nombreImagen = "capa_" + str(slot)
 
                         button:
-                            action Start(nombreLabel)
+                            action [SetVariable(
+                                        "capa_seleccionada", NOMBRE_CAPA[i]),
+                                    Start(nombreLabel)]
 
                             has vbox
 
@@ -1530,7 +1532,7 @@ screen confirm(message, yes_action, no_action=None):
         $ message = ("¿Quieres salir?")
         if not main_menu:
 
-            $ message += "\nYa se guardó tu partida hasta este punto en automático."
+            $ message += "\nSe guardó tu partida hasta este punto en Guardado automático."
 
     modal True
 
@@ -1757,12 +1759,13 @@ style nvl_window:
     xfill True
     yfill True
 
-    background "gui/nvl.png"
+    #background "gui/nvl.png"
     padding gui.nvl_borders.padding
 
 style nvl_entry:
     xfill True
     ysize gui.nvl_height
+    bottom_padding 50
 
 style nvl_label:
     xpos gui.nvl_name_xpos
@@ -1790,6 +1793,7 @@ style nvl_thought:
     min_width gui.nvl_thought_width
     textalign gui.nvl_thought_xalign
     layout ("subtitle" if gui.nvl_text_xalign else "tex")
+    outlines [(8, "#ffffff", 0, 0)]
 
 style nvl_button:
     properties gui.button_properties("nvl_button")
@@ -2080,7 +2084,7 @@ screen desbloquear():
                     textbutton (persistent.codigo_usuario)
                 vbox:
 
-                    label (" Escribe aquí el código compartido")
+                    label (" Escribe aquí abajo el código compartido")
                     textbutton ("") action SetScreenVariable("mostrarInput",True)
                     
                     if mostrarInput:
@@ -2127,3 +2131,14 @@ style codigo_button_text:
 
 style codigo_text:
     xalign 0.5
+
+screen color_fondo_final():
+    frame:
+        style "color_fondo_final"             
+        add "images/fade.png"   
+        add Solid(color_var) 
+    
+
+style color_fondo_final:
+    xfill True
+    yfill True

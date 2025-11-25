@@ -289,7 +289,8 @@ init -1 python:
         channel_notifs[channel_name] = True
         channel_seen_latest[channel_name] = False
         renpy.restart_interaction()
-        if (message_kind == 0 or message_kind == 3):
+        if (message_kind == 1 or message_kind == 3):
+            message_text = replace_emojis(message_text)
             narrator.add_history(kind="adv", who=sender, what=renpy.substitute(message_text))
         elif message_kind == 2:
             narrator.add_history(kind="adv", who=sender, what="Envió una foto")
@@ -336,6 +337,7 @@ init -1 python:
         # phone relevant! if you want to add initial chats that appear before anything (or remove the demo ones) do so here~
         create_phone_channel("pareja_dm", "[pareja.apodo]<3", [pareja.nombre, jugador.nombre], "phone/icons/foto_perfil.png")
         create_phone_channel("jugador_dm", "mis notass", [jugador.nombre], "phone/icons/foto_perfil.png")
+        create_phone_channel("amigue_dm", "[viejoAmigue.nombre] xD", [viejoAmigue.nombre, jugador.nombre], "phone/icons/foto_amigue.png")
         # phone relevant! same as above, but with messages
         send_phone_message("", "{color=#ffffff}Hoy{/color}", "pareja_dm", 1, do_pause=False)        
         phone_config["phone_player_name"] = [jugador.nombre]

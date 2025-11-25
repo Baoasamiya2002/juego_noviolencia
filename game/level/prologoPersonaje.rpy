@@ -32,11 +32,12 @@ label prologo_novia:
     
     menu:
 
-        "Ya estoy cerca...":
+        narrador "¿Tu decisión?"
+        "Mejor no, ya estoy cerca...":
 
             jugador.personaje "Puede esperar tantito, ya ahorita lo veo y me 
             lo puede platicar."
-        "¿Y si es algo importante?":
+        "Mejor si, ¿y si es algo importante?":
 
             jugador.personaje "Pero ¿y si le pasó algo? Mejor checo ahorita."
 
@@ -99,6 +100,7 @@ label prologo_novio:
 
     menu:
 
+        narrador "¿Tu decisión?"
         "Mensaje juguetón":
 
             $ reiniciar_celular()
@@ -115,7 +117,7 @@ label prologo_novio:
             $ send_phone_message(
                 phone_config["phone_player_name"], 
                 LISTA_MENSAJE_ALEATORIO[1], "pareja_dm", 3)
-        "Mensaje con urgencia":
+        "Mensaje ansioso":
 
             $ reiniciar_celular()
             show screen phone_ui
@@ -225,6 +227,13 @@ label opcion_prologo_regresar_menu:
 
 label instrucciones_cargar:
 
+    show tutorial_cargar_capa:
+        yalign .35
+        xalign .5
+    show marco_tutorial:
+        yalign .35
+        xalign .5
+
     if _preferences.self_voicing:
         
         narrador "Puedes volver a jugar esta capa desde el menú de Cargar 
@@ -235,6 +244,9 @@ label instrucciones_cargar:
             de {image=boton_cargar} dentro de 
             Opciones {image=boton_opciones_quick}."
     
+    hide tutorial_cargar_capa
+    hide marco_tutorial
+
     return
 
 

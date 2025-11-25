@@ -13,7 +13,7 @@
     
     def definirPersonaje(personajeJugador, apodoJugador, personajePareja, apodoPareja):
 
-        global jugador, pareja
+        global jugador, pareja, viejoAmigue
 
         jugador = Persona(
             personajeJugador.name, 
@@ -27,7 +27,24 @@
             Character(
                 personajePareja.name, 
                 window_background=Frame("gui/pareja_textbox_trans.png")))
-    
+        
+        if apodoJugador == APODO_NOVIA:
+
+            viejoAmigue = Persona(
+                "Sofia", 
+                "", 
+                Character(
+                    "Sofia", 
+                    window_background=Frame("gui/jugador_textbox_trans.png")))
+        else:
+
+            viejoAmigue = Persona(
+                "Armando", 
+                "", 
+                Character(
+                    "Armando", 
+                    window_background=Frame("gui/jugador_textbox_trans.png")))
+ 
     #texto introductorio
     with renpy.file('misc/intro.txt', encoding='utf8') as f:
         texto_intro = f.read()
@@ -39,9 +56,10 @@ define narrador = Character(
 define novia = Character("Fernanda", 
     window_background=Frame("gui/pareja_textbox_trans.png"))
 define novio = Character("Carlos", 
-    window_background=Frame("gui/pareja_textbox_trans.png"))#
+    window_background=Frame("gui/pareja_textbox_trans.png"))
 define oncahui = Character("Oncahui", 
     window_background=Frame("gui/oncahui_textbox.png"))
+define narrator = nvl_narrator
 
 #constantes
 define APODO_NOVIA = "Fer"
@@ -53,14 +71,20 @@ define NOMBRE_CAPA = ["Primera capa", "Segunda capa", "Tercera capa",
 define LISTA_MENSAJE_ALEATORIO = [
     ("Oye, acabo de llegar, pero creo que lo tendremos que cancelar..."+
     "<emoji_lagrima> es que me siento mal... de que no estás aquí conmigo "+
-    "<emoji_risa>"),
+    "<emoji_risa> jaja"),
     ("Holaa amor, ya estoy aquí, pero tú tranqui. Te espero con gusto, así que"+
     " no te apures <emoji_corazon>"),
     ("Ya llegué. Me dices si vas a tardar y me doy una vuelta jeje"+
-    "<emoji_risa_nerviosa>")]
+    "<emoji_risa_nerviosa>. Es que me da amsiedad jaj")]
 define TEXTO_CPS_PREVIEW = PreviewSlowText(
     "{color=#000000}¡Bienvenide! Este juego se centra en la lectura. Modifica "
     "estas opciones para tener la mejor experiencia.{/color}")
+define LISTA_FINAL_PRIMERA_OPCION = [
+    [True, True], [True, False], [False, True, True, True], 
+    [False, False, False], [False, True, True], 
+    [False, False, True, False], [False, True, False, True]]
+define LISTA_FINAL_SEGUNDA_OPCION = [
+    [True, True], [True, False], [False]]
 
 #variables
 default coleccionables = []
@@ -68,17 +92,26 @@ default listaEstereotipo = []
 default listaViolenciaJugador = []
 default listaViolenciaPareja = []
 default listaPresion = []
+default listaMito = []
 default jugador = Persona(nombre="???")
 default pareja = Persona(nombre="???")
+default viejoAmigue = Persona(nombre="???")
 default palabraGenero = ""
 default codigoCompartido = ""
 default info_descriptiva = ""
 default retroalimentacion = False
 default persistent.Config = True
+default capa_seleccionada = ""
+default color_var = Color((0, 0, 0))
+default persistent.final_tercera_opcion = True
+default persistent.final_segunda_opcion = False
+default persistent.final_primera_opcion = False
+default test = [True, True]
+
 
 #videos
 image fondo_inicio = Movie(
-    size=(2560,1600), play="images/fondo_inicio.webm", loop = True) 
+    size=(2561,1600), play="images/fondo_inicio.webm", loop = True) 
 image seleccion_personaje = Movie(
     size=(2560,1600), play="images/seleccion_personaje.webm", loop = False, 
     image="images/seleccion_personaje.png")
@@ -117,6 +150,18 @@ image oncahui_zoomin = Movie(
     size=(2560,1600), play="images/Salida.webm", loop = False)
 image creditos = Movie(
     size=(2560,1600), play="images/creditos.webm", loop = False)
+image tutorial_mas_info = Movie(
+    size=(1572,987), play="images/tutorial/mas_info.webm", 
+    start_image = "images/tutorial/mas_info_focus.png")
+image tutorial_guardar = Movie(
+    size=(1572,987), play="images/tutorial/guardar.webm", 
+    start_image = "images/tutorial/guardar_focus_1.png")
+image tutorial_cargar = Movie(
+    size=(1572,987), play="images/tutorial/cargar.webm", 
+    start_image = "images/tutorial/cargar_focus_1.png")
+image tutorial_cargar_capa = Movie(
+    size=(1572,987), play="images/tutorial/cargar_capa.webm", 
+    start_image = "images/tutorial/cargar_capa_1.png")
 
 #imagenes estaticas
 image boton_opciones = modificarPosImage("gui/button/dialogo/opciones.png") 
@@ -145,6 +190,8 @@ image capa_1 = "images/cortinilla_capa/capa_1.png"
 image capa_2 = "images/cortinilla_capa/capa_2.png"
 image capa_3 = "images/cortinilla_capa/capa_3.png"
 image capa_4 = "images/cortinilla_capa/capa_4.png"
+image marco_tutorial = "images/tutorial/marco_tutorial.png"
+image white = "images/white.png"
 
 #introducción
 label splashscreen:
@@ -179,6 +226,13 @@ label splashscreen:
     else:
         
         show screen boton_quitar
+        show tutorial_mas_info:
+            yalign .405
+            xalign .5
+        show marco_tutorial:
+            yalign .405
+            xalign .5
+
         if _preferences.self_voicing:
             
             narrador "¿Dudas sobre el juego? Consulta el menú de Más información."
@@ -187,6 +241,8 @@ label splashscreen:
             narrador "¿Dudas sobre el juego? Consulta el menú 
                 de {image=boton_mas_info}."
     
+    hide tutorial_mas_info
+    hide marco_tutorial
     show screen intro    
     pause
     hide screen intro
@@ -298,7 +354,7 @@ label start:
     
     narrador "Nos puedes visitar en el menú de 
         Progreso [info_descriptiva]{image=boton_progreso}."
-    narrador "{cps=100}¡Hola desde el menú de Progreso!{/cps}{nw}"
+    narrador "{cps=100}(mensaje rapidísimo) ¡Hola desde el menú de Progreso!{/cps}{nw}"
     narrador "En el menú de Progreso {image=boton_progreso} también puedes 
         volver a leer diálogos pasados (como el anterior que estuvo rapidísimo)
         . \n\n¡Te invitamos a probarlo!"
@@ -310,8 +366,8 @@ label start:
 label conocerPersonaje:
     
     scene cine_fondo
-    narrador "En el cine dentro de una sala, están Fernanda y Carlos esperando a 
-        que empiece la película."
+    narrador "En el cine dentro de una sala, están Fernanda (Fer) y Carlos 
+        (Charly) esperando a que empiece la película."
     novia "Ay amor, ¡gracias por los boletos! Seguro te costó un buen 
         conseguirlos, escuché que había pocos."
     novio "Es que estuve pegado a la compu desde la preventa, sabía que tenías 
@@ -327,6 +383,7 @@ label conocerPersonaje:
 label eleccionPersonaje:
 
     hide screen phone_ui
+    hide screen color_fondo_final
     scene seleccion_personaje    
     narrador "Ya que los conoces un poco, elige el personaje con el que 
         quieres jugar."
@@ -336,23 +393,54 @@ label eleccionPersonaje:
     $ forzarAutosave()
     hide screen boton_eleccion_personaje
 
-    narrador "¡Hola [jugador.nombre]! Estás a punto de atravesar la primera 
-        capa de Latencia."
+    if not capa_seleccionada:
+
+        $ capa_seleccionada = NOMBRE_CAPA[0].lower()
+    else:
+
+        $ capa_seleccionada = capa_seleccionada.lower()
+
+    narrador "¡Hola [jugador.nombre]! Estás a punto de atravesar la 
+        [capa_seleccionada] de Latencia."
+    
+    show tutorial_guardar:
+        yalign .35
+        xalign .5
+    show marco_tutorial:
+        yalign .35
+        xalign .5
 
     if _preferences.self_voicing:
 
         narrador "Puedes guardar tu partida en cualquier momento en el menú de 
             Guardar dentro de Opciones (segundo botón superior izquierda)."
+        hide marco_tutorial
+        show tutorial_cargar:
+            yalign .35
+            xalign .5
+        show marco_tutorial:
+            yalign .35
+            xalign .5
         narrador "Y puedes cargar una partida o jugar directo en otra capa en 
             el menú de Cargar dentro de Opciones (segundo botón superior izquierda)."
     else:
 
         narrador "Puedes guardar tu partida en cualquier momento en el menú de 
             {image=boton_guardar} dentro de Opciones {image=boton_opciones_quick}."
+        hide marco_tutorial
+        show tutorial_cargar:
+            yalign .35
+            xalign .5
+        show marco_tutorial:
+            yalign .35
+            xalign .5
         narrador "Y puedes cargar una partida o jugar directo en otra capa en 
             el menú de {image=boton_cargar} dentro de 
             Opciones {image=boton_opciones_quick}."
 
+    hide marco_tutorial
+    hide tutorial_cargar
+    hide tutorial_guardar
     hide seleccion_personaje
     return
 
@@ -376,7 +464,7 @@ label eleccionCapa3:
 label eleccionCapa4:
 
     call eleccionPersonaje    
-    jump cita_chapultepec
+    jump telefono_amigue
 
 label finalJuego:
 

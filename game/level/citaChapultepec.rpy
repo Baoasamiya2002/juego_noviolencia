@@ -78,8 +78,8 @@ label cita_chapultepec:
 
     menu:
 
-        narrador "¿Tu respuesta?"
-        "Qué confuso":
+        narrador "¿Tu decisión?"
+        "Mostrar confusión":
 
             scene expression "emocion_tristeza_[jugador.nombre]"
             jugador.personaje "¿Cómo? No entiendo, si según yo estábamos bien."
@@ -90,7 +90,7 @@ label cita_chapultepec:
                 call chapultepec_pedir_foco from _call_chapultepec_pedir_foco
                 call chapultepec_burlar_emociones from _call_chapultepec_burlar_emociones
 
-        "Alguien más le metió la idea":
+        "Preguntar de dónde sacó la idea":
 
             call chapultepec_celar_amigues from _call_chapultepec_celar_amigues
             scene expression "emocion_enojo_[pareja.nombre]"
@@ -101,7 +101,7 @@ label cita_chapultepec:
 
                 call chapultepec_provocacion from _call_chapultepec_provocacion
 
-        "Tal vez no debí sacar el tema":
+        "Arrepentirse por hostigar":
 
             scene expression "emocion_tristeza_[jugador.nombre]"
             jugador.personaje "..."
@@ -122,8 +122,8 @@ label cita_chapultepec:
 
     menu:
 
-        narrador "¿Tu respuesta?"
-        "Puede que sea mi culpa":
+        narrador "¿Tu decisión?"
+        "Culpabilizar inseguridades":
 
             scene expression "emocion_tristeza_[jugador.nombre]"
             jugador.personaje "La verdad no quiero pelear amor, pero a veces te 
@@ -181,7 +181,7 @@ label cita_chapultepec:
 
     menu:
 
-        narrador "¿Tu respuesta?"
+        narrador "¿Tu decisión?"
         "Evitar más pelea":
 
             call chapultepec_tomar_culpa from _call_chapultepec_tomar_culpa
@@ -196,7 +196,7 @@ label cita_chapultepec:
 
             jump retroalimentacion_pareja_chapultepec
 
-        "¡Ya basta!":
+        "Terminar cita":
 
             call chapultepec_reclamar_salida from _call_chapultepec_reclamar_salida
 
@@ -211,6 +211,7 @@ label cita_chapultepec:
 
         "Insistir más":
 
+            $ listaMito.append("chapultepec_insistir_hablar")
             scene expression "emocion_seriedad_[jugador.nombre]"
             $ palabraGenero = (
                 "tranquila" if jugador.nombre == novio.name else "tranquilo")
@@ -245,7 +246,7 @@ label cita_chapultepec:
 
             menu:
 
-                narrador "¿Tu respuesta?"
+                narrador "¿Tu decisión?"
                 "Sí":
 
                     $ listaPresion.append("chapultepec_aceptar_chantaje")
@@ -498,8 +499,8 @@ label chapultepec_merecer_enojo:
 
     if retroalimentacion:
 
-        narrador "¿El hacer cosas \"extrañas\" es para que [pareja.nombre] se 
-            enoje contigo? Si no lo dañas, ¿porqué mereces su maltrato?"
+        narrador "Si tus acciones no le hacen daño ¿Por qué se podría molestar?, 
+            ¿o es lo que esperas de él?"
     else:
 
         $ listaEstereotipo.append("chapultepec_merecer_enojo")
@@ -515,8 +516,8 @@ label chapultepec_encargada_sentir_pareja:
 
     if retroalimentacion:
 
-        narrador "Está bien que te preocupes por [pareja.nombre], pero ¿es tu 
-            \"deber\" hacerlo sentir mejor?"
+        narrador "Está bien que te preocupes por [pareja.nombre], pero ¿por 
+            qué lo ves como una obligación?"
     else:
 
         $ listaEstereotipo.append("chapultepec_encargada_sentir_pareja")
@@ -533,8 +534,8 @@ label chapultepec_ser_romantico:
 
     if retroalimentacion:
 
-        narrador "A cualquiera se le puede olvidar algo, ¿O el enojo es porque 
-            crees que [pareja.nombre] espera que le des regalos?"
+        narrador "A cualquiera se le puede olvidar algo, ¿O crees que 
+            [pareja.nombre] se enojará porque espera que siempre le des regalos?"
     else:
 
         $ listaEstereotipo.append("chapultepec_ser_romantico")
@@ -628,8 +629,9 @@ label chapultepec_culpar_otro:
     if retroalimentacion:
 
         $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
-        narrador "[pareja.nombre] te hizo {atl=rotate_text}gaslighting {/atl} y 
-            {atl=rotate_text}culpabilizó {/atl} por la discusión, cuando [palabraGenero] fue 
+        narrador "[pareja.nombre] te hizo {atl=rotate_text}gaslighting {/atl} 
+            (manipular para sembrar la duda) y {atl=rotate_text}culpabilizó {/atl} 
+            por la discusión, cuando [palabraGenero] fue 
             quien te dijo absorbente."
     else:
 
@@ -685,8 +687,9 @@ label chapultepec_celar_amigues:
 
     if retroalimentacion:
 
-        narrador "Decidiste {atl=rotate_text}celar {/atl} a [pareja.nombre] por alguien más, en 
-            vez de preguntarle por sus sentimientos."
+        narrador "Decidiste celar a {atl=rotate_text}celar {/atl} a 
+            [pareja.nombre] culpando a sus amistades, sin dejar que 
+            [pareja.nombre] se explicara."
     else:
 
         $ listaViolenciaJugador.append("chapultepec_celar_amigues")
@@ -817,7 +820,7 @@ label chapultepec_olvidar_preocupacion:
             poner su bienestar primero."
     else:
 
-        $ listaEstereotipo.append("chapultepec_olvidar_preocupacion")
+        $ listaPresion.append("chapultepec_olvidar_preocupacion")
     
     return
 
@@ -919,8 +922,8 @@ label chapultepec_repetir_retirada:
 
     if retroalimentacion:
 
-        narrador "Decidiste {atl=rotate_text}ignorar {/atl} a [pareja.nombre] cuando se empezaba 
-            a abrir contigo y no darle importancia."
+        narrador "Decidiste {atl=rotate_text}ignorar {/atl} a [pareja.nombre] 
+            cuando se empezaba a abrir contigo y cortar la comunicación."
     else:
 
         $ listaViolenciaJugador.append("chapultepec_repetir_retirada")
@@ -942,6 +945,7 @@ label chapultepec_tomar_culpa:
     else:
 
         $ listaPresion.append("chapultepec_tomar_culpa")
+        $ listaMito.append("chapultepec_tomar_culpa")
     
     return
 
@@ -973,8 +977,8 @@ label chapultepec_preguntar_semana:
 
     if retroalimentacion:
 
-        narrador "¿Será que quiere ser el tema de conversación, o cree que así 
-            debe ser en una relación?"
+        narrador "¿De verdad le interesa contarle sobre su semana o es porque 
+            cree estar encargada de llevar la conversación?"
     else:
 
         $ listaEstereotipo.append("chapultepec_preguntar_semana")
@@ -1015,6 +1019,7 @@ label chapultepec_reclamar_salida:
     else:
 
         $ listaViolenciaJugador.append("chapultepec_reclamar_salida")
+        $ listaMito.append("chapultepec_reclamar_salida")
     
     return
 
@@ -1046,8 +1051,9 @@ label chapultepec_reclamar_drama:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {atl=rotate_text}culpabilizó {/atl} de la discusión y lo 
-            redujo a un \"drama\". ¿La mejor solución era ser reservado?"
+        narrador "[pareja.nombre] te {atl=rotate_text}culpabilizó {/atl} de la 
+            discusión y lo redujo a un \"drama\". ¿Su silencio de verdad sería 
+            la mejor solución?"
     else:
 
         $ listaViolenciaPareja.append("chapultepec_reclamar_drama")

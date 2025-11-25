@@ -370,7 +370,7 @@ define gui.history_text_xalign = 0.0
 ## La pantalla NVL-mode presenta el diálogo hablado por personajes en modo NVL.
 
 ## Bordes del fondo de la ventana del modo NVL.
-define gui.nvl_borders = Borders(0, 20, 0, 40)
+define gui.nvl_borders = Borders(0, 200, 0, 40)
 
 ## Máximo número de entradas en modo NVL que Ren'Py presentará. Al presentar más
 ## entradas, se borrarán las más antiguas.
@@ -378,7 +378,7 @@ define gui.nvl_list_length = 6
 
 ## Altura de una entrada en modo NVL. Ajusta a 'None' para que las entradas
 ## ajusten la altura dinámicamente.
-define gui.nvl_height = 230
+define gui.nvl_height = None
 
 ## Espacio entre entradas en modo NVL cuando 'gui.nvl_height' es None, y entre
 ## las entradas en modo NVL y el menú en modo NVL.

@@ -1,32 +1,48 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/level/telefonoConversacion.rpy", line 177, in script
-    $ pos = LISTA_ESTADO_PLANTA.index(jugador.estadoPlanta)
-  File "game/level/telefonoConversacion.rpy", line 177, in <module>
-    $ pos = LISTA_ESTADO_PLANTA.index(jugador.estadoPlanta)
-            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
-ValueError: 'capullo' is not in list
+  File "game/level/telefonoAmigue.rpy", line 23, in script call
+    call final_no_tomar_atencion
+  File "game/level/telefonoAmigue.rpy", line 622, in script
+    hide screen color_fondo_final with fade(0.5, 0, 0.5, color="#FFFFFF")
+  File "game/level/telefonoAmigue.rpy", line 622, in <module>
+    hide screen color_fondo_final with fade(0.5, 0, 0.5, color="#FFFFFF")
+                                       ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Fade() got multiple values for argument 'color'
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/level/telefonoConversacion.rpy", line 177, in script
-    $ pos = LISTA_ESTADO_PLANTA.index(jugador.estadoPlanta)
-  File "renpy/ast.py", line 1187, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1260, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/level/telefonoConversacion.rpy", line 177, in <module>
-    $ pos = LISTA_ESTADO_PLANTA.index(jugador.estadoPlanta)
-            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
-ValueError: 'capullo' is not in list
+  File "game/level/telefonoAmigue.rpy", line 23, in script call
+    call final_no_tomar_atencion
+  File "game/level/telefonoAmigue.rpy", line 622, in script
+    hide screen color_fondo_final with fade(0.5, 0, 0.5, color="#FFFFFF")
+  File "renpy/ast.py", line 2231, in execute
+    self.call("execute")
+    ~~~~~~~~~^^^^^^^^^^^
+  File "renpy/ast.py", line 2195, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/statements.py", line 379, in call
+    return method(parsed, *args, **kwargs)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/common/000statements.rpy", line 709, in execute_hide_screen
+    renpy.with_statement(eval(transition_expr))
+                         ~~~~^^^^^^^^^^^^^^^^^ 
+  File "renpy/python.py", line 1292, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1285, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/level/telefonoAmigue.rpy", line 622, in <module>
+    hide screen color_fondo_final with fade(0.5, 0, 0.5, color="#FFFFFF")
+                                       ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Fade() got multiple values for argument 'color'
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia
 
 Me quiere o no me quiere, pero ¿cómo quiero? 1.0.0-alpha
-Thu Nov 13 17:03:28 2025
+Mon Nov 24 14:51:11 2025
