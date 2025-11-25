@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/level/telefonoAmigue.rpy", line 713: expected 'simple_expression' not found.
-    with
-        ^
+File "game/screens.rpy", line 716: hbox expects a non-empty block.
+    hbox:
+         ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Tue Nov 25 10:27:53 2025
+Tue Nov 25 11:53:38 2025

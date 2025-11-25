@@ -694,7 +694,39 @@ screen resources():
 
     use game_menu("Recursos de ayuda"):
 
-        label ("En construcción")
+        fixed:
+            vbox:
+                style_prefix "page"
+
+                xalign 0.5
+                yalign 0.05
+
+                hbox:
+                    xalign 0.5
+
+                    spacing gui.page_spacing
+
+                    textbutton ("UPAV") action FilePage("upav")
+
+                    textbutton ("Salud mental") action FilePage("salud_mental")
+
+                    textbutton ("Servicios externos") action FilePage("servicios_ext")
+                
+            vbox:
+
+                align (0.5, 1.0)
+
+                if persistent._file_page == "upav":
+                    text ("Escanea el código o usa el link para ver sus distintos" 
+                        " medios de contacto.")
+                    null height (4 * gui.pref_spacing)
+                    add ("images/recursos/UPAV.jpg"):
+                        xsize 600
+                        ysize 840
+                        xalign 0.5
+                    textbutton ("Link contactos"): 
+                        xalign 0.5
+                        action OpenURL("https://drive.google.com/file/d/1KTwVzOrGXyeGsv7U-UVrBu5JD11Trvz8/view?usp=sharing")
 
 screen tutorial():
 

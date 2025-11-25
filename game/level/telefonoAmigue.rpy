@@ -20,8 +20,6 @@ label telefono_amigue:
     $ listaViolenciaPareja = []
     $ listaPresion = []
     $ palabraGenero = ""
-    call final_tomar_atencion_individual
-    jump palabras_finales
 
     scene fondo_inicio at Transform(matrixcolor=TintMatrix("#161616"))
 
