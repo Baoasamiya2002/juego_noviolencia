@@ -194,60 +194,60 @@ image marco_tutorial = "images/tutorial/marco_tutorial.png"
 image white = "images/white.png"
 
 #introducción
-label splashscreen:
+# label splashscreen:
 
-    play music musica_fondo loop fadein 2.0 volume 1.0
-    scene fondo_inicio
+#     play music musica_fondo loop fadein 2.0 volume 1.0
+#     scene fondo_inicio
     
-    if persistent.Config:
+#     if persistent.Config:
 
-        show screen text_preview
-        pause
-        hide screen text_preview
+#         show screen text_preview
+#         pause
+#         hide screen text_preview
 
-        if renpy.variant("mobile"):
+#         if renpy.variant("mobile"):
 
-            $ instruccion = "Toca la pantalla"
-        else:
+#             $ instruccion = "Toca la pantalla"
+#         else:
 
-            $ instruccion = "Da click"
+#             $ instruccion = "Da click"
         
-        narrador "Ahora, ¡[instruccion] para continuar! Puede ser 
-            en cualquier parte de la pantalla."
+#         narrador "Ahora, ¡[instruccion] para continuar! Puede ser 
+#             en cualquier parte de la pantalla."
         
-        if _preferences.self_voicing:
+#         if _preferences.self_voicing:
 
-            narrador "Puedes volver a modificar las opciones en el menú de 
-                Configuración dentro de Opciones."
-        else:
+#             narrador "Puedes volver a modificar las opciones en el menú de 
+#                 Configuración dentro de Opciones."
+#         else:
 
-            narrador "Puedes volver a modificar las opciones en el menú de 
-                {image=boton_config} dentro de {image=boton_opciones}."
-    else:
+#             narrador "Puedes volver a modificar las opciones en el menú de 
+#                 {image=boton_config} dentro de {image=boton_opciones}."
+#     else:
         
-        show screen boton_quitar
-        show tutorial_mas_info:
-            yalign .405
-            xalign .5
-        show marco_tutorial:
-            yalign .405
-            xalign .5
+#         show screen boton_quitar
+#         show tutorial_mas_info:
+#             yalign .405
+#             xalign .5
+#         show marco_tutorial:
+#             yalign .405
+#             xalign .5
 
-        if _preferences.self_voicing:
+#         if _preferences.self_voicing:
             
-            narrador "¿Dudas sobre el juego? Consulta el menú de Más información."
-        else:
+#             narrador "¿Dudas sobre el juego? Consulta el menú de Más información."
+#         else:
 
-            narrador "¿Dudas sobre el juego? Consulta el menú 
-                de {image=boton_mas_info}."
+#             narrador "¿Dudas sobre el juego? Consulta el menú 
+#                 de {image=boton_mas_info}."
     
-    hide tutorial_mas_info
-    hide marco_tutorial
-    show screen intro    
-    pause
-    hide screen intro
-    hide screen boton_quitar
-    return
+#     hide tutorial_mas_info
+#     hide marco_tutorial
+#     show screen intro    
+#     pause
+#     hide screen intro
+#     hide screen boton_quitar
+#     return
 
 
 label start:

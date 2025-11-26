@@ -690,6 +690,9 @@ screen more_info():
 
 screen resources():
 
+    if len(persistent._file_page) < 6:
+        $ persistent._file_page = "r_upav"
+
     tag menu
 
     use game_menu("Recursos de ayuda"):
@@ -706,7 +709,7 @@ screen resources():
 
                     spacing gui.page_spacing
 
-                    textbutton ("UPAV") action FilePage("upav")
+                    textbutton ("UPAV") action FilePage("r_upav")
 
                     textbutton ("Salud mental") action FilePage("salud_mental")
 
@@ -714,19 +717,107 @@ screen resources():
                 
             vbox:
 
-                align (0.5, 1.0)
+                xalign 0.5
+                if persistent._file_page == "r_upav":
+                    hbox:
+                        xfill True
+                        yfill True
+                        ysize .88
+                        ypos .18
+                        frame:
+                            style "fondo_recurso"
+                            xsize 1800
+                            align (0.5, 0.0)
+                            viewport:
+                                scrollbars "vertical"
+                                mousewheel True
+                                draggable True
+                                vbox:
+                                    spacing 50
+                                    text ("Escanea el código o usa el link para "
+                                        "ver sus distintos medios de contacto."):
+                                        xalign 0.5
+                                    add ("images/recursos/UPAV.jpg"):
+                                        xsize 504
+                                        ysize 705
+                                        xalign 0.55
+                                    textbutton ("Link contactos"): 
+                                        xalign 0.55
+                                        action OpenURL("https://drive.google.com/file/d/1KTwVzOrGXyeGsv7U-UVrBu5JD11Trvz8/view?usp=sharing")
+                elif persistent._file_page == "salud_mental":
+                    hbox:
+                        xfill True
+                        yfill True
+                        ysize .88
+                        ypos .18
+                        frame:
+                            style "fondo_recurso"
+                            xsize 1800
+                            align (0.5, 0.0)
+                            viewport:
+                                scrollbars "vertical"
+                                mousewheel True
+                                draggable True
+                                vbox:
+                                    spacing 50
+                                    text ("Agenda una cita con el servicio de "
+                                        "psicología y psiquiatría.\nUsa el link "
+                                        "para ir a su formulario y ver medios de "
+                                        "contacto."):
+                                        xalign 0.5
+                                    add ("images/recursos/salud_mental.png"):
+                                        xalign 0.6
+                                    textbutton ("Link formulario y contactos"): 
+                                        xalign 0.6
+                                        action OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSeZRf-R8d7us3QUrmejHFhpQntfcOlneIFXSXv0t_SeRFI50w/viewform")
+                elif persistent._file_page == "servicios_ext":
+                    hbox:
+                        xfill True
+                        yfill True
+                        ysize .88
+                        ypos .18
+                        frame:
+                            style "fondo_recurso"
+                            xsize 1100
+                            align (0.5, 0.0)
+                            viewport:
+                                scrollbars "vertical"
+                                mousewheel True
+                                draggable True
+                                vbox:
+                                    spacing 50
+                                    text "{b}Lunas{/b}"
+                                    text ("Encuentra asesoría y acompañamiento "
+                                        "psicológico y jurídico para mujeres.")
+                                    add ("images/recursos/lunas.png"):
+                                        xalign 0.6
+                                    textbutton ("Link de sus unidades en las 16 "
+                                        "alcaldías"):
+                                        xalign 0.6
+                                        action OpenURL("https://www.semujeres.cdmx.gob.mx/lunas")
+                        frame:
+                            style "fondo_recurso"
+                            xsize 1100
+                            align (0.5, 0.0)
+                            viewport:
+                                scrollbars "vertical"
+                                mousewheel True
+                                draggable True
+                                vbox:
+                                    spacing 50
+                                    text "{b}GENDES{/b}"
+                                    text("Tienen una línea de apoyo y talleres "
+                                        "para hombres.")
+                                    add ("images/recursos/gendes.png"):
+                                        xalign 0.7
+                                    textbutton "Link de su página":
+                                        xalign 0.75
+                                        action OpenURL("https://gendes.org.mx/")
 
-                if persistent._file_page == "upav":
-                    text ("Escanea el código o usa el link para ver sus distintos" 
-                        " medios de contacto.")
-                    null height (4 * gui.pref_spacing)
-                    add ("images/recursos/UPAV.jpg"):
-                        xsize 600
-                        ysize 840
-                        xalign 0.5
-                    textbutton ("Link contactos"): 
-                        xalign 0.5
-                        action OpenURL("https://drive.google.com/file/d/1KTwVzOrGXyeGsv7U-UVrBu5JD11Trvz8/view?usp=sharing")
+style fondo_recurso:
+    background Frame("planta_fondo")
+    xpadding 50
+    ypadding 50
 
 screen tutorial():
 
@@ -799,6 +890,9 @@ screen load():
 
 
 screen file_slots(title):
+
+    if len(persistent._file_page) > 5:
+        $ persistent._file_page = "1"
 
     use game_menu(title):
 
