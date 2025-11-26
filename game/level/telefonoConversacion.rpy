@@ -370,7 +370,27 @@ label retroalimentacion_estereotipo_telefono:
     $ forzarAutosave()
 
     call instrucciones_recursos
-    jump finalJuego
+    jump opcion_telefono_regresar_menu
+
+
+label opcion_telefono_regresar_menu:
+
+    scene black
+
+    menu:
+        
+        narrador "Haz atravesado la tercera capa de Latencia ¿Quieres continuar? 
+            La siguiente capa es la {atl=drop_text~#~ 2.5}última{/atl}."
+        "Si":
+
+            call instrucciones_cargar
+            jump telefono_amigue
+        "Más tarde":
+
+            narrador "¡Entendido! Espero que regreses pronto para atravesar más 
+                capas de Latencia."
+            call instrucciones_cargar
+            $ renpy.full_restart() 
 
 
 label telefono_humillar_vulnerabilidad:
