@@ -1,5 +1,248 @@
-2025-11-26 23:41:53 UTC
+2025-11-27 13:32:25 UTC
 Windows-11-10.0.26200-SP0
 Ren'Py 8.4.1.25072401
 
-Early init took 36 ms
+Early init took 34 ms
+Loading error handling took 25 ms
+Loading script took 1367 ms
+Loading save slot metadata took 21 ms
+Loading persistent took 0 ms
+Running init code took 67 ms
+Loading analysis data took 9 ms
+Analyze and compile ATL took 4 ms
+Reloading save slot metadata took 15 ms
+Backing up script files to 'C:\\Users\\puxka\\AppData\\Roaming/RenPy/backups\\version 1.0':
+Dump and make backups took 72 ms
+Cleaning cache took 0 ms
+Making clean stores took 0 ms
+Initial gc took 83 ms
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Creating interface object took 6 ms
+Init translation took 1 ms
+Cleaning stores took 1 ms
+Load screen analysis took 1 ms
+Analyze screens took 52 ms
+Save screen analysis took 18 ms
+Save pyanalysis took 0 ms
+Save bytecode took 26 ms
+Running _start took 0 ms
+Interface start took 328 ms
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'Intel'
+Renderer: 'Intel(R) Iris(R) Xe Graphics'
+Version: '4.6.0 - Build 32.0.101.7026'
+Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1200, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
+Screen sizes: virtual=(2560, 1600) physical=(750, 469) drawable=(750, 469)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1920, 1171) drawable=(1920, 1171)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(750, 469) drawable=(750, 469)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1920, 1171) drawable=(1920, 1171)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1920, 1171) drawable=(1920, 1171)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1920, 1171) drawable=(1920, 1171)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 14 ms
+Loading error handling took 19 ms
+Loading script took 204 ms
+Loading save slot metadata took 19 ms
+Loading persistent took 0 ms
+Running init code took 43 ms
+Loading analysis data took 8 ms
+Analyze and compile ATL took 2 ms
+Reloading save slot metadata took 10 ms
+Backing up script files to 'C:\\Users\\puxka\\AppData\\Roaming/RenPy/backups\\version 1.0':
+Dump and make backups took 35 ms
+Cleaning cache took 0 ms
+Making clean stores took 0 ms
+Initial gc took 77 ms
+DPI scale factor: 1.250000
+Creating interface object took 0 ms
+Init translation took 2 ms
+Cleaning stores took 0 ms
+Load screen analysis took 1 ms
+Analyze screens took 52 ms
+Save screen analysis took 49 ms
+Save pyanalysis took 0 ms
+Save bytecode took 0 ms
+Running _start took 1 ms
+Interface start took 315 ms
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'Intel'
+Renderer: 'Intel(R) Iris(R) Xe Graphics'
+Version: '4.6.0 - Build 32.0.101.7026'
+Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1200, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
+Screen sizes: virtual=(2560, 1600) physical=(1920, 1171) drawable=(1920, 1171)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1920, 1171) drawable=(1920, 1171)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1920, 1171) drawable=(1920, 1171)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 18 ms
+Loading error handling took 39 ms
+Loading script took 440 ms
+Loading save slot metadata took 32 ms
+Loading persistent took 0 ms
+Running init code took 82 ms
+Loading analysis data took 26 ms
+Analyze and compile ATL took 10 ms
+Reloading save slot metadata took 31 ms
+Backing up script files to 'C:\\Users\\puxka\\AppData\\Roaming/RenPy/backups\\version 1.0':
+Dump and make backups took 67 ms
+Cleaning cache took 0 ms
+Making clean stores took 1 ms
+Initial gc took 253 ms
+DPI scale factor: 1.250000
+Creating interface object took 1 ms
+Init translation took 1 ms
+Cleaning stores took 1 ms
+Load screen analysis took 1 ms
+Analyze screens took 59 ms
+Save screen analysis took 28 ms
+Save pyanalysis took 0 ms
+Save bytecode took 0 ms
+Running _start took 2 ms
+Interface start took 355 ms
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'Intel'
+Renderer: 'Intel(R) Iris(R) Xe Graphics'
+Version: '4.6.0 - Build 32.0.101.7026'
+Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1200, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
+Screen sizes: virtual=(2560, 1600) physical=(1872, 1170) drawable=(1872, 1170)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1920, 1171) drawable=(1920, 1171)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1872, 1170) drawable=(1872, 1170)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 9 ms
+Loading error handling took 25 ms
+Loading script took 244 ms
+Loading save slot metadata took 21 ms
+Loading persistent took 0 ms
+Running init code took 75 ms
+Loading analysis data took 10 ms
+Analyze and compile ATL took 2 ms
+Reloading save slot metadata took 10 ms
+Backing up script files to 'C:\\Users\\puxka\\AppData\\Roaming/RenPy/backups\\version 1.0':
+Dump and make backups took 43 ms
+Cleaning cache took 0 ms
+Making clean stores took 1 ms
+Initial gc took 90 ms
+DPI scale factor: 1.250000
+Creating interface object took 0 ms
+Init translation took 0 ms
+Cleaning stores took 1 ms
+Load screen analysis took 0 ms
+Analyze screens took 25 ms
+Save screen analysis took 17 ms
+Save pyanalysis took 0 ms
+Save bytecode took 0 ms
+Running _start took 1 ms
+Interface start took 334 ms
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'Intel'
+Renderer: 'Intel(R) Iris(R) Xe Graphics'
+Version: '4.6.0 - Build 32.0.101.7026'
+Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1200, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
+Screen sizes: virtual=(2560, 1600) physical=(1871, 1170) drawable=(1871, 1170)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 14 ms
+Loading error handling took 24 ms
+Loading script took 130 ms
+Loading save slot metadata took 15 ms
+Loading persistent took 0 ms
+Running init code took 45 ms
+Loading analysis data took 11 ms
+Analyze and compile ATL took 3 ms
+Reloading save slot metadata took 12 ms
+Dump and make backups took 35 ms
+Cleaning cache took 1 ms
+Making clean stores took 0 ms
+Initial gc took 121 ms
+DPI scale factor: 1.250000
+Creating interface object took 1 ms
+Init translation took 0 ms
+Cleaning stores took 0 ms
+Load screen analysis took 81 ms
+Analyze screens took 1 ms
+Save screen analysis took 0 ms
+Save pyanalysis took 0 ms
+Save bytecode took 0 ms
+Running _start took 0 ms
+Interface start took 310 ms
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'Intel'
+Renderer: 'Intel(R) Iris(R) Xe Graphics'
+Version: '4.6.0 - Build 32.0.101.7026'
+Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1200, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
+Screen sizes: virtual=(2560, 1600) physical=(1870, 1169) drawable=(1870, 1169)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1870, 938) drawable=(1870, 938)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(2560, 1600) physical=(1593, 938) drawable=(1593, 938)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 16 ms
+Loading error handling took 40 ms
+Loading script took 209 ms
+Loading save slot metadata took 12 ms
+Loading persistent took 0 ms
+Running init code took 40 ms
+Loading analysis data took 11 ms
+Analyze and compile ATL took 4 ms
+Reloading save slot metadata took 10 ms
+Backing up script files to 'C:\\Users\\puxka\\AppData\\Roaming/RenPy/backups\\version 1.0':
+Dump and make backups took 64 ms
+Cleaning cache took 0 ms
+Making clean stores took 0 ms
+Initial gc took 178 ms
+DPI scale factor: 1.250000
+Creating interface object took 0 ms
+Init translation took 1 ms
+Cleaning stores took 0 ms
+Load screen analysis took 0 ms
+Analyze screens took 23 ms
+Save screen analysis took 24 ms
+Save pyanalysis took 1 ms
+Save bytecode took 0 ms
+Running _start took 1 ms
+Interface start took 392 ms
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1200)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'Intel'
+Renderer: 'Intel(R) Iris(R) Xe Graphics'
+Version: '4.6.0 - Build 32.0.101.7026'
+Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1920, 'current_h': 1200, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
+Screen sizes: virtual=(2560, 1600) physical=(1500, 938) drawable=(1500, 938)
+Maximum texture size: 4096x4096

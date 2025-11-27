@@ -771,48 +771,65 @@ screen resources():
                                         xalign 0.6
                                         action OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSeZRf-R8d7us3QUrmejHFhpQntfcOlneIFXSXv0t_SeRFI50w/viewform")
                 elif persistent._file_page == "servicios_ext":
-                    hbox:
+
+                    vbox:
                         xfill True
                         yfill True
-                        ysize .88
+                        ysize .74
                         ypos .18
-                        frame:
-                            style "fondo_recurso"
-                            xsize 1100
-                            align (0.5, 0.0)
-                            viewport:
-                                scrollbars "vertical"
-                                mousewheel True
-                                draggable True
+                        spacing 50
+                        hbox:
+                            xfill True
+                            frame:
+                                style "fondo_recurso"
+                                xsize 1100
+                                align (0.5, 0.0)
+                                viewport:
+                                    scrollbars "vertical"
+                                    mousewheel True
+                                    draggable True
+                                    vbox:
+                                        spacing 50
+                                        text "{b}Lunas{/b}"
+                                        text ("Encuentra asesoría y acompañamiento "
+                                            "psicológico y jurídico para mujeres.")
+                                        add ("images/recursos/lunas.png"):
+                                            xalign 0.6
+                                        textbutton ("Link de sus unidades en las 16 "
+                                            "alcaldías"):
+                                            xalign 0.6
+                                            action OpenURL("https://www.semujeres.cdmx.gob.mx/lunas")
+                            frame:
+                                style "fondo_recurso"
+                                xsize 1100
+                                align (0.5, 0.0)
+                                viewport:
+                                    scrollbars "vertical"
+                                    mousewheel True
+                                    draggable True
+                                    vbox:
+                                        spacing 50
+                                        text "{b}GENDES{/b}"
+                                        text("Tienen una línea de apoyo y talleres "
+                                            "para hombres.")
+                                        add ("images/recursos/gendes.png"):
+                                            xalign 0.7
+                                        textbutton "Link de su página":
+                                            xalign 0.75
+                                            action OpenURL("https://gendes.org.mx/")
+                        hbox:
+                            xfill True
+                            frame:
+                                style "fondo_recurso"
+                                xsize 2350
+                                align (0.5, 0.0)
                                 vbox:
-                                    spacing 50
-                                    text "{b}Lunas{/b}"
-                                    text ("Encuentra asesoría y acompañamiento "
-                                        "psicológico y jurídico para mujeres.")
-                                    add ("images/recursos/lunas.png"):
-                                        xalign 0.6
-                                    textbutton ("Link de sus unidades en las 16 "
-                                        "alcaldías"):
-                                        xalign 0.6
-                                        action OpenURL("https://www.semujeres.cdmx.gob.mx/lunas")
-                        frame:
-                            style "fondo_recurso"
-                            xsize 1100
-                            align (0.5, 0.0)
-                            viewport:
-                                scrollbars "vertical"
-                                mousewheel True
-                                draggable True
-                                vbox:
-                                    spacing 50
-                                    text "{b}GENDES{/b}"
-                                    text("Tienen una línea de apoyo y talleres "
-                                        "para hombres.")
-                                    add ("images/recursos/gendes.png"):
-                                        xalign 0.7
-                                    textbutton "Link de su página":
-                                        xalign 0.75
-                                        action OpenURL("https://gendes.org.mx/")
+                                    textbutton ("¡Y estos no son los únicos! "
+                                        "Link de más recursos y contactos de "
+                                        "ayuda"):
+                                        xalign 0.5
+                                        action OpenURL("https://familiar-process-0ee.notion.site/1af3cf4c1dd7809198bafb2ca9caae67?v=1af3cf4c1dd780babf0f000cce173bc1")
+
 
 style fondo_recurso:
     background Frame("planta_fondo")

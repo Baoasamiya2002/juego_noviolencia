@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 693: '(' was never closed
-    if len(persistent._file_page == '1':
+File "game/screens.rpy", line 780: the xalign keyword argument was not given a value.
+    xalign
           ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Wed Nov 26 16:25:55 2025
+Thu Nov 27 07:15:18 2025
