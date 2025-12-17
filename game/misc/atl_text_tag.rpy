@@ -89,7 +89,7 @@ transform bounce_text(yoff):
     ease 0.5 ypos -yoff
     repeat
 transform rotate_text:
-    linear 1.5 yoffset 10 rotate 35 matrixcolor TintMatrix("#f6ff00")
+    linear 1.5 yoffset 10 rotate 15 matrixcolor TintMatrix("#f6ff00")
     linear 0.2 yoffset 0 rotate 0 matrixcolor TintMatrix("#d86062")
     linear 1.2 rotate 0 matrixcolor TintMatrix("#ffffff")
     repeat

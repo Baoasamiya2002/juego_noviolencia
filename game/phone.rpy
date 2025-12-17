@@ -294,7 +294,8 @@ init -1 python:
             narrator.add_history(kind="adv", who=sender, what=renpy.substitute(message_text))
         elif message_kind == 2:
             narrator.add_history(kind="adv", who=sender, what="Envió una foto")
-        renpy.checkpoint()
+        
+        #renpy.checkpoint()
         if do_pause and phone_config["pause"]["do_pause"]:
             if phone_config["pause"]["pause_time"]:
                 renpy.pause(phone_config["pause"]["pause_length"])

@@ -21,7 +21,7 @@ label telefono_amigue:
     $ listaPresion = []
     $ palabraGenero = ""
 
-    scene fondo_inicio at Transform(matrixcolor=TintMatrix("#161616"))
+    scene fondo_inicio at Transform(matrixcolor=TintMatrix("#505050"))
 
     $ reiniciar_celular()
     $ switch_channel_view("amigue_dm")
@@ -30,23 +30,35 @@ label telefono_amigue:
 
     if jugador.apodo == APODO_NOVIA:
 
-        $ send_phone_message(viejoAmigue.nombre, "Hola amigx! Le puedes dar like a la foto de mi hermanito? <emoji_rezando> Es para el concurso \"El futuro ingeniero\" de su kinder. Muchas gracias! <emoji_feliz> https://www.feizbook.com/share/17j8FUnxfu/", "amigue_dm", 3)
+        $ send_phone_message(viejoAmigue.nombre, "Hola amigx! Me ayudas con un like para mi hermanito? <emoji_rezando> Es para el concurso \"El futuro ingeniero\" de su kinder. Muchas gracias! <emoji_feliz> https://www.feizbook.com/share/17j8FUnxfu/", "amigue_dm", 3)
     else:
         
-        $ send_phone_message(viejoAmigue.nombre, "Hola amigx! Le puedes dar like a la foto de mi hermanita? <emoji_rezando> Es para el concurso \"La futura enfermera\" de su kinder. Muchas gracias! <emoji_feliz> https://www.feizbook.com/share/17j8FUnxfu/", "amigue_dm", 3)
+        $ send_phone_message(viejoAmigue.nombre, "Hola amigx! Me ayudas con un like para mi hermanita? <emoji_rezando> Es para el concurso \"La futura enfermera\" de su kinder. Muchas gracias! <emoji_feliz> https://www.feizbook.com/share/17j8FUnxfu/", "amigue_dm", 3)
     
     $ palabraGenero = "hermana" if jugador.nombre == novio.name else "hermano"
-    $ send_phone_message(phone_config["phone_player_name"], "Si, con gusto apoyo a tu [palabraGenero]. Aunque es un poco raro que el concurso sea de una carrera en específico no?<emoji_risa_nerviosa>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu [palabraGenero] <emoji_feliz>", "amigue_dm", 3)
+    
+    if jugador.apodo == APODO_NOVIA:
+
+        $ send_phone_message(phone_config["phone_player_name"], "Un poco raro lo de futuro ingeniero<emoji_risa_nerviosa>, no pudo ser de cualquier carrera?", "amigue_dm", 3)
+    else:
+
+        $ send_phone_message(phone_config["phone_player_name"], "Un poco raro lo de futura enfermera<emoji_risa_nerviosa>, no pudo ser de cualquier carrera?", "amigue_dm", 3)
+    
     $ palabraGenero = "la" if jugador.nombre == novio.name else "lo"
-    $ send_phone_message(phone_config["phone_player_name"], "Y ya creció un buen! Recuerdo cuando [palabraGenero] cargué... <emoji_grito>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Y ya creció un buen! <emoji_grito><emoji_grito> Recuerdo cuando [palabraGenero] cargué...", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "weeey! tiempo de no hablar. Sii ya está bien grande", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "cómo estás? antes te veía jugar básquet en las canchas, pero tiene tiempo que ya no", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Si, es que hubo unos problemitas entre [pareja.apodo] con alguien que jugaba conmigo... y se me quitaron las ganas de ir a jugar", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "no mames, pero si a ti te encantaba jugar! en la prepa casi todos los días jugabas", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Pues la gente cambia heh", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "cómo estás? ya tampoco te he visto jugar básquet en las canchas", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "<emoji_pensativo>", "amigue_dm", 3)
+    $ palabraGenero = "amiga" if jugador.nombre == novio.name else "amigo"
+    $ send_phone_message(phone_config["phone_player_name"], "Si... [pareja.apodo] tuvo problemitas con un [palabraGenero] que jugaba y pues ya no tengo ganas de básquet...", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "no mames, pero si a ti te encantaba jugar!<emoji_indiferente>", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "en la prepa casi todos los días jugabas", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Pues la gente cambia <emoji_risa_nerviosa>heh", "amigue_dm", 3)
     $ palabraGenero = "la" if jugador.nombre == novio.name else "el"
-    $ send_phone_message(viejoAmigue.nombre, "no pues si... y entonces sigues con [palabraGenero] [pareja.nombre]? tampoco se me ha aparecido en los pasillos", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Haha pues ni que fuera un fantasma! haha. Es que se fue de movilidad a...", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "no pues si... y entonces sigues con [palabraGenero] [pareja.nombre]?", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "tampoco se me ha aparecido en los pasillos<emoji_pensativo>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Haha ni que fuera un fantasma! haha. Es que se fue de movilidad a...", "amigue_dm", 3)
 
     $ send_phone_message("", "{color=#ffffff}¿Tu decisión?{/color}", "amigue_dm", 1, do_pause=False)
     $ present_phone_choices([
@@ -60,26 +72,30 @@ label telefono_amigue:
             "China",
             Call("movilidad_China"))], "amigue_dm")
     
-    $ send_phone_message(phone_config["phone_player_name"], "Pero ya mero regresa, estoy contando los días para darle su bienvenida<emoji_guinio><emoji_guinio>", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "uuy, no me tienes que contar los detalles jajaj. Y qué internacional salió, yo estaba viendo si hacerla en Xochi jaja", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "pero pues la distancia también está padre no?, así tienes más tiempo para salir con tus amigos y para tí", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "si fuera por mí, jalo a dar una vuelta, pero le ayudo a mi mamá en su trabajo y no tengo tiempo...", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "<emoji_risa>", "amigue_dm", 3)
+    $ palabraGenero = "listo" if jugador.nombre == novio.name else "lista"
+    $ send_phone_message(phone_config["phone_player_name"], "Pero ya mero regresa y estoy [palabraGenero] para su bienvenida<emoji_guinio><emoji_guinio>", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "uuy, no me des detalles jajaj<emoji_risa> Y qué chido que tiene varo para ir allá jaj", "amigue_dm", 3)
+    $ palabraGenero = "solo" if jugador.nombre == novio.name else "sola"
+    $ send_phone_message(viejoAmigue.nombre, "y en este tiempo de \"solteria\", hiciste algo [palabraGenero] o con tus compas?", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "a mí me gustaría, pero vivo bien lejos y le ayudo a mi mamá en su jale...<emoji_risa_nerviosa>", "amigue_dm", 3)
     $ palabraGenero = "ocupado" if jugador.nombre == novio.name else "ocupada"
     $ send_phone_message(phone_config["phone_player_name"], "Hay tu tranqui! si me acuerdo que estabas muy [palabraGenero], me saludas a tu mami!", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Y la verdad... no sabría a quién invitar a salir...<emoji_risa_nerviosa>", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "poooor?, si antes veía que en tu insta eras bien popular. Ahorita ya no lo uso así que no sé jej", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Pues mucho dizque like, pero ninguno aprobaba mi relación con mi [pareja.apodo]", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Y la verdad<emoji_risa_nerviosa> no sabría con quién salir...", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "poooor?<emoji_pensativo> si tienes un buen de seguidores en insta", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Mucho dizque like, pero ninguno aprobaba mi relación con mi [pareja.apodo]<emoji_voltea_ojos>", "amigue_dm", 3)
     
     if "telefono_eliminar_foto" in listaMito:
         
-        $ send_phone_message(phone_config["phone_player_name"], "Por ejemplo, cuando [pareja.apodo] me pidió que les dijera a mi familia y amigos que eliminaran sus fotos conmigo, ellos reaccionaron súper mal", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Cuando pedí que borraran fotos conmigo por consejo de [pareja.apodo], mi familia y amigos reaccionaron súper mal", "amigue_dm", 3)
     elif "telefono_pretexto" in listaMito:
 
-        $ send_phone_message(phone_config["phone_player_name"], "Me reprochaban que le decía mentirillas a [pareja.apodo] para que ellos pudieran tener fotos conmigo", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Me reprochaban mis mentirillas a [pareja.apodo] para que pudieran tener fotos conmigo", "amigue_dm", 3)
     
-    $ palabraGenero = "novia y así dejar de preocuparla" if jugador.nombre == novio.name else "novio y así dejar de preocuparlo"
-    $ send_phone_message(phone_config["phone_player_name"], "Así que tomé la iniciativa y dejé de subir fotos con otras personas que no fueran mi [palabraGenero]", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "No entendían que acciones como esa...", "amigue_dm", 3)
+    $ palabraGenero = "estresarla" if jugador.nombre == novio.name else "estresarlo"
+    $ send_phone_message(phone_config["phone_player_name"], "Así que decidí subir fotos solo con [pareja.apodo] para no [palabraGenero]", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "<emoji_grito>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Pues si, los demás no entendían que acciones como esa...", "amigue_dm", 3)
 
     $ send_phone_message("", "{color=#ffffff}¿Tu decisión?{/color}", "amigue_dm", 1, do_pause=False)
     $ present_phone_choices([
@@ -93,13 +109,22 @@ label telefono_amigue:
             "Son por amor",
             Call("amor_todo_puede_telefono"))], "amigue_dm")
     
-    $ send_phone_message(viejoAmigue.nombre, "hmm... entiendo que quieras hacer cosas por tu pareja... pero lo que dices suena a que justificas comportamientos tóxicos...", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Ah, tal vez no me expliqué bien y lo hice sonar mal, pero te juro que estamos bien", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "De hecho cuando podemos, tenemos nuestras escapadas, como ir al cine o a Chapu", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "ah si, recuerdo que de lo último que hablamos fue de una de tus salidas a Chapultepec, ya tiene un bueeen jaja", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Si verdad? haha, extrañaba hablar contigo", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Y ahora que recuerdo, hubo una salida donde me preocupé por tonterías y [pareja.apodo] estuvo para escucharme", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Aunque también ese mismo día me dijo que era absorbente y me gritó, pero fue porque...", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "hmm... entiendo que quieras hacer cosas por tu pareja...", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "<emoji_corazon_fuego>", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "pero lo que dices suena a que justificas comportamientos tóxicos...", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Ah <emoji_indiferente>, tal vez no me expliqué bien, pero te juro que estamos bien", "amigue_dm", 3)
+    
+    if jugador.apodo == APODO_NOVIA:
+
+        $ send_phone_message(phone_config["phone_player_name"], "De hecho cuando podemos, me invita al cine o a Chapu", "amigue_dm", 3)
+    else:
+        $ send_phone_message(phone_config["phone_player_name"], "De hecho cuando podemos, la invito al cine o a Chapu", "amigue_dm", 3)
+    
+    $ send_phone_message(viejoAmigue.nombre, "ah si, recuerdo que me contaste una vez, ya tiene un bueeen jaja", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Si verdad? haha, extrañaba hablar contigo<emoji_rogando>", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "<emoji_feliz><emoji_feliz>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Y recordando, una vez en Chapu estuvo escuchando mis tontas preocupaciones<emoji_corazon>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Aunque también ese mismo día me dijo absorbente y me gritó, pero fue porque..", "amigue_dm", 3)
 
     $ send_phone_message("", "{color=#ffffff}¿Tu decisión?{/color}", "amigue_dm", 1, do_pause=False)
     $ present_phone_choices([
@@ -113,20 +138,22 @@ label telefono_amigue:
             "Apenas entendía que somos uno",
             Call("media_naranja_chapultepec"))], "amigue_dm")
     
-    $ send_phone_message(viejoAmigue.nombre, "mmm...<emoji_medio_triste> creo que no lo notas, pero a mi parecer, hay un poco de noviazgo en tu relación violenta...<emoji_risa_nerviosa>", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "??? haha no entiendo. Si peleamos a veces, ni que fuéramos perfectos. Sólo son problemas pasajeros", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "si... pero por lo que entiendo, se les pasa y vuelve a ocurrir la violencia, verdad? Y probablemente cada vez ocurre más seguido y más fuerte...", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Pues... a veces", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "mmm...<emoji_medio_triste> me parece que hay un poco de noviazgo en tu relación violenta...<emoji_risa_nerviosa>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "??? haha no entiendo", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Sí peleamos a veces, ni que fuéramos perfectos, es pasajero", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "si... pero por lo que dices, tienen muchas peleas y tú lo ves como normal<emoji_pensativo>", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "Y probablemente sigan teniendo peleas y cada vez más fuertes...", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Pues... <emoji_medio_triste> a veces", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "la vdd creo que deben buscar un cambio", "amigue_dm", 3)
     $ palabraGenero = "experto" if jugador.nombre == novio.name else "experta"
     $ send_phone_message(phone_config["phone_player_name"], "Ay y cuándo te volviste [palabraGenero] en relaciones de pareja o qué?", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "yo?? nunca! si hasta me engañaron jaja. Pero ya en serio, me preocupo por tí", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "y he visto cómo las personas se acostumbran a una vida de maltratos, y de verdad discúlpame por no haberlo notado antes", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "cuando van de pasada por los pasillos, parecía todo bien, pero ahora creo que era lo que quería ver...", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "yo?? nunca! si hasta me engañaron jaja <emoji_risa_nerviosa>. Pero ya en serio, me preocupo por tí", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "y he visto cómo las personas se acostumbran a una vida de maltratos...", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "cuando van de pasada por los pasillos, parecía todo bien, pero no presté atención...", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Ay nono, tú tranqui, de verdad estamos bien...", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "mira, como dices, [palabraGenero] no soy, pero neta que deberías pensar en platicárselo a alguien", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "en la UAM está la UPAV, Salud mental o hasta puedes buscar por fuera", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "y gracias por tenerme la confianza, pero también deberías hablarlo con alguien de tu familia u otra persona de confianza", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "en la UAM hay atención psicológica o hasta puedes buscar por fuera", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "y gracias por la confianza <emoji_rezando>, pero también hablalo con otra persona de confianza va?", "amigue_dm", 3)
     $ palabraGenero = "seguro" if jugador.nombre == novio.name else "segura"
     $ send_phone_message(phone_config["phone_player_name"], "Este... gracias por preocuparte, sigo sin estar [palabraGenero] de que haya algo mal", "amigue_dm", 3)
     
@@ -164,7 +191,8 @@ label movilidad_China:
 
     $ send_phone_message(phone_config["phone_player_name"], "China China, se me estaba olvidando el nombre", "amigue_dm", 3)
     $ palabraGenero = "hecha" if jugador.nombre == novio.name else "hecho"
-    $ send_phone_message(phone_config["phone_player_name"], "Seguro fue a ver si no estaba [palabraGenero] allá haha. Con eso de que le gusta mucho el pollo a la naranja hah", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Seguro fue a ver si no estaba [palabraGenero] allá haha", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Con eso de que le gusta mucho el pollo a la naranja hah", "amigue_dm", 3)
     return
 
 
@@ -172,7 +200,7 @@ label media_naranja_telefono:
 
     $ send_phone_message(phone_config["phone_player_name"], "Muestran cómo nos importa la relación y estamos en sintonía", "amigue_dm", 3)
     $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
-    $ send_phone_message(phone_config["phone_player_name"], "Porque ni yo le pido que haga cosas ni [palabraGenero] me pide, ya sabémos lo que el otro necesita", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Porque ni yo ni [palabraGenero] me pide algo<emoji_feliz>, ya sabémos lo que el otro necesita", "amigue_dm", 3)
     
     if "telefono_eliminar_foto" in listaMito:
         $ send_phone_message(viejoAmigue.nombre, "lit te pidió que los demás eliminaran fotos contigo...", "amigue_dm", 3)
@@ -183,17 +211,17 @@ label media_naranja_telefono:
 label emparejamiento_telefono:
 
     $ send_phone_message(phone_config["phone_player_name"], "Son parte de cualquier relación! Es normal", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Además, varios que me criticaban ni tenían pareja! No saben de sacrificios para ser feliz", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Y varios criticones ni tenían pareja <emoji_groserias>, si no sabes no hables, verdad?", "amigue_dm", 3)
     return
 
 
 label amor_todo_puede_telefono:
 
-    $ send_phone_message(phone_config["phone_player_name"], "Son muestras de que nos amamos y hay que hacer lo necesario para seguir felices, no?", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Son muestras de que nos amamos<emoji_corazon>", "amigue_dm", 3)
     $ palabraGenero = "insegura" if jugador.nombre == novio.name else "inseguro"
-    $ send_phone_message(phone_config["phone_player_name"], "Tal vez [pareja.apodo] es un poco [palabraGenero], pero nos queremos tanto que lo superamos", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Tal vez [pareja.apodo] es un poco [palabraGenero], pero lo superamos", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "oh ok, supongo que lo superaron hablando al respecto no?", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Eso no fue necesario, lo demostramos con gestos románticos", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Eso no fue necesario, lo demostramos con gestos románticos<emoji_guinio><emoji_guinio>", "amigue_dm", 3)
     return
 
 
@@ -204,13 +232,13 @@ label amor_todo_puede_chapultepec:
     
     if "chapultepec_insistir_hablar" in listaMito:
         
-        $ send_phone_message(phone_config["phone_player_name"], "Sé que en el amor hay momentos difíciles, así que continúe con mi empatía como si nada", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Sé que en el amor hay momentos difíciles, así que continúe con mi empatía como si nada<emoji_corazon>", "amigue_dm", 3)
     elif "chapultepec_tomar_culpa" in listaMito:
         
-        $ send_phone_message(phone_config["phone_player_name"], "Cambié el tema y después seguimos como si nada. Cuando se quiere de verdad, es así de simple", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Cambié el tema y después seguimos como si nada. Cuando se quiere de verdad, es así de simple<emoji_corazon>", "amigue_dm", 3)
     elif "chapultepec_reclamar_salida" in listaMito:
         
-        $ send_phone_message(phone_config["phone_player_name"], "Así que [palabraGenero] ignoré y no caí en la provocación. Con el amor todo se supera fácilmente", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Así que [palabraGenero] ignoré y no caí en la provocación. Con el amor todo se supera fácilmente<emoji_corazon>", "amigue_dm", 3)
     
     return
 
@@ -240,14 +268,14 @@ label media_naranja_chapultepec:
     
     if "chapultepec_insistir_hablar" in listaMito:
         
-        $ send_phone_message(phone_config["phone_player_name"], "Y yo sólo estaba pendiente de que estuvieramos sintiendo lo mismo, debíamos de hacerlo", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Y yo sólo estaba pendiente de que estuvieramos sintiendo lo mismo, debíamos de hacerlo<emoji_feliz>", "amigue_dm", 3)
     elif "chapultepec_tomar_culpa" in listaMito:
         
-        $ send_phone_message(phone_config["phone_player_name"], "Pero le di por su lado y poco a poco entendió que estamos destinados", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Pero le di por su lado y poco a poco entendió que estamos destinados<emoji_feliz>", "amigue_dm", 3)
     elif "chapultepec_reclamar_salida" in listaMito:
         
         $ palabraGenero = "solita" if jugador.nombre == novio.name else "solito"
-        $ send_phone_message(phone_config["phone_player_name"], "Entonces no le hablé por un tiempo y [palabraGenero] vino a mi, sabía que me necesitaba", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Entonces no le hablé por un tiempo y [palabraGenero] vino a mi, sabía que me necesitaba<emoji_feliz>", "amigue_dm", 3)
     return
 
 
@@ -259,6 +287,7 @@ label tomar_atencion_en_pareja:
     $ send_phone_message(viejoAmigue.nombre, "ese es el espíritu! pruebenlo y cualquier cosa, me puedes enviar un mensaje o llamar", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "porfa ya no perdamos el contacto<emoji_corazon>", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Noo claro que no! Gracias. Bye", "amigue_dm", 3)
+    hide screen phone_ui
     jump final_tomar_atencion_en_pareja
     return
 
@@ -273,6 +302,7 @@ label tomar_atencion_individual:
     $ send_phone_message(viejoAmigue.nombre, "ese es el espíritu! intentalo y cualquier cosa, me puedes enviar un mensaje o llamar.", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "porfa ya no perdamos el contacto<emoji_corazon>", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Noo claro que no! Gracias. Bye", "amigue_dm", 3)
+    hide screen phone_ui
     jump final_tomar_atencion_individual
     return
 
@@ -288,6 +318,7 @@ label no_tomar_atencion:
     $ palabraGenero = "hermana" if jugador.nombre == novio.name else "hermana"
     $ send_phone_message(phone_config["phone_player_name"], "Así que... suerte a tu [palabraGenero] en su concurso. Bye", "amigue_dm", 3)
     narrador "Bloqueaste a [viejoAmigue.nombre]"
+    hide screen phone_ui
     jump final_no_tomar_atencion
     return
 
@@ -299,18 +330,13 @@ label final_tomar_atencion_en_pareja:
 
     if not persistent.final_primera_opcion:
 
-        $ final_random = random.randint(0, 2)
+        $ final_random = random.choice([1, 5])
         $ persistent.final_primera_opcion = LISTA_FINAL_PRIMERA_OPCION[final_random]
     else:
 
-        $ siguiente_final = LISTA_FINAL_PRIMERA_OPCION.index(persistent.final_primera_opcion) + 1
-        
-        if siguiente_final == len(LISTA_FINAL_PRIMERA_OPCION):
-            
-            $ persistent.final_primera_opcion = LISTA_FINAL_PRIMERA_OPCION[0]
-        else:
-
-            $ persistent.final_primera_opcion = LISTA_FINAL_PRIMERA_OPCION[siguiente_final]
+        $ idx = LISTA_FINAL_PRIMERA_OPCION.index(persistent.final_primera_opcion)
+        $ siguiente_final = (idx + 1) % len(LISTA_FINAL_PRIMERA_OPCION)
+        $ persistent.final_primera_opcion = LISTA_FINAL_PRIMERA_OPCION[siguiente_final]
 
     $ color_var = Color((0, 0, 0, 121))
     if persistent.final_primera_opcion[0]:
@@ -334,7 +360,7 @@ label final_tomar_atencion_en_pareja:
         
         "[pareja.nombre] aceptó ir."
         $ aclararColorFondo(2, valor_incremento)
-        "Los dos mejoraron su comunicación y buscaron resolver sus problemas 
+        "Los dos identificaron la violencia y buscaron resolver sus problemas 
             más allá de sus suposiciones del otro."
 
         $ aclararColorFondo(3, valor_incremento)
@@ -386,7 +412,7 @@ label final_tomar_atencion_en_pareja:
                     violencias que estaban ejerciendo e intentaron evitarlas."
                 $ aclararColorFondo(5, valor_incremento)
                 "[jugador.nombre] y [pareja.nombre] siguen siendo novios. Su 
-                    relación mejoró, pero todavía hay algo de violencia y a 
+                    relación mejoró, pero todavía hay violencia normalizada y a 
                     veces ha escalado."
                 $ aclararColorFondo(6, valor_incremento)
                 nvl clear       
@@ -410,7 +436,7 @@ label final_tomar_atencion_en_pareja:
                 if persistent.final_primera_opcion[3]:
 
                     "[jugador.nombre] y [pareja.nombre] siguen siendo novios. 
-                        Su relación mejoró, pero todavía hay algo de violencia 
+                        Su relación mejoró, pero todavía hay violencia normalizada 
                         y a veces ha escalado."
                     $ aclararColorFondo(6, valor_incremento)
                     nvl clear       
@@ -428,7 +454,8 @@ label final_tomar_atencion_en_pareja:
                 else:
 
                     "Su relación no pudo continuar con los nuevos límites que puso 
-                    [jugador.nombre] y terminó su relación."
+                        [jugador.nombre] y terminó su relación. [jugador.nombre] 
+                        sigue intentando superar las cicatrices de la relación."
                     $ aclararColorFondo(6, valor_incremento)
                     "Pero ahora ya no están dañando a sus plantas."
                     $ aclararColorFondo(7, valor_incremento)
@@ -449,7 +476,7 @@ label final_tomar_atencion_en_pareja:
 
             "[jugador.nombre] aceptó tomar atención psicológica."
             $ aclararColorFondo(3, valor_incremento)
-            "[jugador.nombre] mejoró su comunicación y buscó resolver sus 
+            "[jugador.nombre] identificó la violencia y buscó resolver sus 
                 problemas más allá de sus suposiciones del otro."
             
             $ aclararColorFondo(4, valor_incremento)
@@ -462,7 +489,7 @@ label final_tomar_atencion_en_pareja:
                 if persistent.final_primera_opcion[3]:
 
                     "[jugador.nombre] y [pareja.nombre] siguen siendo novios. 
-                        Su relación mejoró, pero todavía hay algo de violencia 
+                        Su relación mejoró, pero todavía hay violencia normalizada 
                         y a veces ha escalado."
                     $ aclararColorFondo(6, valor_incremento)
                     nvl clear       
@@ -480,7 +507,8 @@ label final_tomar_atencion_en_pareja:
                 else:
 
                     "Su relación no pudo continuar con los nuevos límites que puso 
-                    [jugador.nombre] y terminó su relación."
+                        [jugador.nombre] y terminó su relación. [jugador.nombre] 
+                        sigue intentando superar las cicatrices de la relación."
                     $ aclararColorFondo(6, valor_incremento)
                     "Pero ahora ya no están dañando a sus plantas."
                     $ aclararColorFondo(7, valor_incremento)
@@ -499,7 +527,8 @@ label final_tomar_atencion_en_pareja:
             else:
 
                 "Su relación no pudo continuar con los nuevos límites que puso 
-                    [jugador.nombre] y terminó su relación."
+                    [jugador.nombre] y terminó su relación. [jugador.nombre] 
+                    sigue intentando superar las cicatrices de la relación."
                 $ aclararColorFondo(5, valor_incremento)
                 "Pero ahora ya no están dañando a sus plantas."
                 $ aclararColorFondo(6, valor_incremento)
@@ -523,20 +552,10 @@ label final_tomar_atencion_individual:
 
     scene black
     nvl clear
-    if not persistent.final_segunda_opcion:
-
-        $ final_random = random.randint(0, 1)
-        $ persistent.final_segunda_opcion = LISTA_FINAL_SEGUNDA_OPCION[final_random]
-    else:
-
-        $ siguiente_final = LISTA_FINAL_SEGUNDA_OPCION.index(persistent.final_segunda_opcion) + 1
-        
-        if siguiente_final == len(LISTA_FINAL_SEGUNDA_OPCION):
-            
-            $ persistent.final_segunda_opcion = LISTA_FINAL_SEGUNDA_OPCION[0]
-        else:
-
-            $ persistent.final_segunda_opcion = LISTA_FINAL_SEGUNDA_OPCION[siguiente_final]
+    
+    $ idx = LISTA_FINAL_SEGUNDA_OPCION.index(persistent.final_segunda_opcion)
+    $ siguiente_final = (idx + 1) % len(LISTA_FINAL_SEGUNDA_OPCION)
+    $ persistent.final_segunda_opcion = LISTA_FINAL_SEGUNDA_OPCION[siguiente_final]
     
     $ color_var = Color((0, 0, 0, 121))
     if persistent.final_segunda_opcion[0]:
@@ -554,7 +573,7 @@ label final_tomar_atencion_individual:
     "[jugador.nombre] aceptó tomar atención psicológica."
     $ valor_incremento = 255 / tamanio_final
     $ aclararColorFondo(1, valor_incremento)
-    "[jugador.nombre] mejoró su comunicación y buscó resolver sus problemas 
+    "[jugador.nombre] identificó la violencia y buscó resolver sus problemas 
         más allá de sus suposiciones del otro."
 
     $ aclararColorFondo(2, valor_incremento)
@@ -566,7 +585,7 @@ label final_tomar_atencion_individual:
         if persistent.final_segunda_opcion[1]:
 
             "[jugador.nombre] y [pareja.nombre] siguen siendo novios. Su 
-                relación mejoró, pero todavía hay algo de violencia y a veces 
+                relación mejoró, pero todavía hay violencia normalizada y a veces 
                 ha escalado."
             $ aclararColorFondo(4, valor_incremento)
             nvl clear       
@@ -584,7 +603,8 @@ label final_tomar_atencion_individual:
         else:
 
             "Su relación no pudo continuar con los nuevos límites que puso 
-                [jugador.nombre] y terminó su relación."
+                [jugador.nombre] y terminó su relación. [jugador.nombre] sigue 
+                intentando superar las cicatrices de la relación."
             $ aclararColorFondo(4, valor_incremento)
             "Pero ahora ya no están dañando a sus plantas."
             $ aclararColorFondo(5, valor_incremento)
@@ -603,7 +623,8 @@ label final_tomar_atencion_individual:
     else:
 
         "Su relación no pudo continuar con los nuevos límites que puso 
-            [jugador.nombre] y terminó su relación."
+            [jugador.nombre] y terminó su relación. [jugador.nombre] sigue 
+            intentando superar las cicatrices de la relación."
         $ aclararColorFondo(3, valor_incremento)
         "Pero ahora ya no están dañando a sus plantas."
         $ aclararColorFondo(4, valor_incremento)
@@ -628,12 +649,7 @@ label final_no_tomar_atencion:
     scene black
     nvl clear
     
-    if persistent.final_tercera_opcion:
-
-        $ persistent.final_tercera_opcion = False
-    else:
-
-        $ persistent.final_tercera_opcion = True
+    $ persistent.final_tercera_opcion = not persistent.final_tercera_opcion
     
     $ color_var = Color((0, 0, 0, 121))
     $ tamanio_final = 2
@@ -671,7 +687,8 @@ label final_no_tomar_atencion:
         narrador "Sus plantas siguen marchitándose."
     else:
 
-        "Su relación no pudo continuar con los problemas y terminó su relación."
+        "Su relación no pudo continuar con los problemas y terminó su relación. 
+            [jugador.nombre] sigue intentando superar las cicatrices de la relación."
         $ aclararColorFondo(2, valor_incremento)    
         nvl clear    
         show white
@@ -699,6 +716,7 @@ label final_no_tomar_atencion:
 
 label palabras_finales:
     
+    hide screen phone_ui
     hide screen color_fondo_final
     scene fondo_inicio with fade 
     narrador "Y este fue uno de los finales de la historia de [jugador.nombre] y [pareja.nombre]"
@@ -707,7 +725,8 @@ label palabras_finales:
     narrador "No dejes que otros tomen el control de tí, puedes tomar la decisión y hacer un cambio en tu vida. Al igual que [viejoAmigue.nombre], tus redes de apoyo te podemos ayudar."
     call instrucciones_recursos
     narrador "Esta fue la última capa de Latencia. Gracias por jugar, sin tí este juego no sería posible."
-    show creditos with fade 
-    pause 6.0    
+    call evaluacion
+    show creditos_finales with fade 
+    pause 10.0    
     scene black with fade
     return

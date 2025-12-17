@@ -183,6 +183,9 @@ style say_dialogue:
 
     adjust_spacing False
 
+style block1_multiple2_say_window:
+    yalign 0.74
+
 style text_preview:
     xalign 0.5
     xfill True
@@ -385,6 +388,7 @@ screen navigation():
             hover "gui/button/menu_principal/ocultar_hover.png"
             alt "¡Ocultar!"
             action [forzarAutosave, 
+                    SetVariable("persistent.ocultar",True),
                     OpenURL("https://www.uam.mx/calendario/index.html"), 
                     Quit(confirm=False)]
 
@@ -615,7 +619,7 @@ style game_menu_outer_frame:
     left_padding 0
     xfill True    
     yfill True
-    background "#ffffffcf"#ffffffcf
+    background "#ffffffcf"
 
 style history_menu_frame:
     xfill True    
@@ -634,9 +638,6 @@ style game_menu_content_frame:
     right_margin 40
     top_margin 20
     ysize 1280
-
-style game_menu_viewport:
-    xsize 1840
 
 style game_menu_vscrollbar:
     unscrollable gui.unscrollable
@@ -676,15 +677,9 @@ screen more_info():
                 action ShowMenu("resources")
             imagebutton:
                 xalign 0.5
-                idle "gui/button/menu_mas_info/tutorial.png"
-                hover "gui/button/menu_mas_info/tutorial_hover.png"
-                alt "Tutorial"
-                action ShowMenu("tutorial")
-            imagebutton:
-                xalign 0.5
                 idle "gui/button/menu_mas_info/creditos.png"
                 hover "gui/button/menu_mas_info/creditos_hover.png"
-                alt "Creditos"
+                alt "Créditos"
                 action ShowMenu("about")
 
 
@@ -734,14 +729,17 @@ screen resources():
                                 draggable True
                                 vbox:
                                     spacing 50
+                                    text ("Aquí puedes recibir orientación si "
+                                        "tú o alguien que conoces vive una "
+                                        "situación de violencia.")
                                     text ("Escanea el código o usa el link para "
                                         "ver sus distintos medios de contacto."):
                                         xalign 0.5
                                     add ("images/recursos/UPAV.jpg"):
-                                        xsize 504
-                                        ysize 705
+                                        xsize 375
+                                        ysize 525
                                         xalign 0.55
-                                    textbutton ("Link contactos"): 
+                                    textbutton ("Link de contactos"): 
                                         xalign 0.55
                                         action OpenURL("https://drive.google.com/file/d/1KTwVzOrGXyeGsv7U-UVrBu5JD11Trvz8/view?usp=sharing")
                 elif persistent._file_page == "salud_mental":
@@ -760,14 +758,14 @@ screen resources():
                                 draggable True
                                 vbox:
                                     spacing 50
-                                    text ("Agenda una cita con el servicio de "
-                                        "psicología y psiquiatría.\nUsa el link "
-                                        "para ir a su formulario y ver medios de "
-                                        "contacto."):
-                                        xalign 0.5
+                                    text ("El servicio de psicología y "
+                                        "psiquiatría de la UAM-C está para "
+                                        "ayudarte.")
+                                    text ("Usa el link para agendar una cita "
+                                        "y consultar sus medios de contacto.")
                                     add ("images/recursos/salud_mental.png"):
                                         xalign 0.6
-                                    textbutton ("Link formulario y contactos"): 
+                                    textbutton ("Link de formulario y contactos"): 
                                         xalign 0.6
                                         action OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSeZRf-R8d7us3QUrmejHFhpQntfcOlneIFXSXv0t_SeRFI50w/viewform")
                 elif persistent._file_page == "servicios_ext":
@@ -836,13 +834,6 @@ style fondo_recurso:
     xpadding 50
     ypadding 50
 
-screen tutorial():
-
-    tag menu
-
-    use game_menu("Tutorial"):
-
-        label ("En construcción")
 
 ## Pantalla 'acerca de' ########################################################
 ##
@@ -863,16 +854,79 @@ screen about():
 
         style_prefix "about"
 
-        vbox:
+        hbox:
+            null width 22
+            vbox:
+                spacing 30
+                null height 10
+                hbox:    
+                    spacing 455
+                    add ("images/logos/uam.png"):
+                        xsize 226
+                        ysize 147
+                    add ("images/logos/dccd.png"):
+                        xsize 150
+                        ysize 147
+                    add ("images/logos/madic.png"):
+                        xsize 500
+                        ysize 147
+                    add ("images/logos/secihti.svg"):
+                        xsize 188
+                hbox:
+                    spacing 50
+                    frame:
+                        style "fondo_recurso"
+                        xsize 780
+                        yminimum 600
+                        vbox:
+                            spacing 50
+                            text "{b}Equipo:{/b}"
+                            text ("Puxka Acosta Domínguez")
+                            text ("Yira Hernández Gómez")
+                            text ("Daniela Nicte Garcia Peniche")
+                    frame:
+                        style "fondo_recurso"
+                        xsize 780
+                        yminimum 600
+                        vbox:
+                            spacing 50
+                            text "{b}Asesoras y asesor:{/b}"
+                            text ("Dra. Erika Cecilia Castañeda Arredondo")
+                            text ("Dra. Inés Cornejo Portugal")
+                            text ("Dr. Wulfrano Arturo Luna Ramírez")
+                    frame:
+                        style "fondo_recurso"
+                        xsize 780
+                        yminimum 600
+                        vbox:
+                            spacing 50
+                            text "{b}Lectoras:{/b}"
+                            text ("Dra. Blanca Estela López Pérez")
+                            text ("Dra. Irene Casique Rodríguez")
+                                    
+                hbox:
+                    spacing 50
+                    vbox:
+                        xsize 1610
+                        label "[config.name!t]"
+                        text ("Toma el control... o la mejor decisión.")
+                        text _("Versión [config.version!t]. Desarrollado en 2025.\n")
 
-            label "[config.name!t]"
-            text _("Versión [config.version!t]\n")
+                        ## 'gui.about' se ajusta habitualmente en 'options.rpy'.
+                        if gui.about:
+                            text "[gui.about!t]\n"
 
-            ## 'gui.about' se ajusta habitualmente en 'options.rpy'.
-            if gui.about:
-                text "[gui.about!t]\n"
+                        text _("Hecho con {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+                    frame:
+                        style "fondo_recurso"
+                        xsize 780
+                        vbox:
+                            spacing 50
+                            text ("Este videojuego fue resultado del proyecto {b}(NOvio)lencia{/b}")
+                            textbutton "{b}Link de la ICR del proyecto{/b} (proximamente)":
+                                action OpenURL("http://madic.cua.uam.mx/proyectos")
 
-            text _("Hecho con {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+
 
 
 style about_label is gui_label
@@ -927,17 +981,17 @@ screen file_slots(title):
 
                     spacing gui.page_spacing
 
-                    if config.has_autosave:
-                        textbutton _("Guardado automático") action FilePage("auto")
+                    if (config.has_autosave and title == "Cargar"):
+                        textbutton _("Guardado automático") action FilePage("auto")                        
+                        text "|"
 
                     if title == "Cargar":
-                        text "|"
                         textbutton "Capas" action FilePage("quick")
-
-                    ## range(1, 3) da los números del 1 al 2.
-                    for page in range(1, 3):
                         text "|"
-                        textbutton "Partida propia ([page])" action FilePage(page)
+
+                    textbutton "Partida propia (p. [1])" action FilePage(1)                        
+                    text "|"
+                    textbutton "Partida propia (p. [2])" action FilePage(2)
 
             grid gui.file_slot_cols gui.file_slot_rows:
                 style_prefix "slot"
@@ -1014,6 +1068,7 @@ style page_label_text:
     hover_color gui.hover_color
 
 style page_button:
+    activate_sound "audio/click_sound.mp3"
     properties gui.button_properties("page_button")
 
 style page_text:
@@ -1224,7 +1279,6 @@ screen preferences(view="Menu"):
                 vbox:
 
                     style_prefix "radio"
-                    #xsize 425
                     label _("Self-Voicing")
 
                     textbutton _("Off") action Preference(
@@ -1425,8 +1479,7 @@ screen history():
                                     
                             $ what = renpy.filter_text_tags(h.what, 
                             allow=gui.history_allow_tags)
-                            truncate_text what:
-                                substitute False
+                            text what
 
                     if not _history_list:
                         label _("No se ha iniciado el juego.")
@@ -1473,6 +1526,7 @@ style history_text:
     textalign gui.history_text_xalign
     layout ("subtitle" if gui.history_text_xalign else "tex")
     font gui.text_font
+    color "#000000"
 
 style history_label:
     xfill True
@@ -1902,7 +1956,6 @@ style nvl_window:
     xfill True
     yfill True
 
-    #background "gui/nvl.png"
     padding gui.nvl_borders.padding
 
 style nvl_entry:
@@ -2053,10 +2106,6 @@ style check_button:
     variant "small"
     foreground "gui/phone/button/check_[prefix_]foreground.png"
 
-style nvl_window:
-    variant "small"
-    background "gui/phone/nvl.png"
-
 style game_menu_outer_frame:
     variant "small"
     background "#ffffffcf"
@@ -2167,6 +2216,7 @@ screen boton_quitar():
             hover "gui/button/menu_principal/ocultar_hover.png"
             alt "¡Ocultar!"
             action [forzarAutosave, 
+                    SetScreenVariable("persistent.ocultar",True),
                     OpenURL("https://www.uam.mx/calendario/index.html"), 
                     Quit(confirm=False)]
 
@@ -2213,7 +2263,7 @@ screen desbloquear():
 
             text "¡Muchas gracias por querer jugar nuestro juego!"
             null height (4 * gui.pref_spacing)
-            text "¿Quieres desbloquear algo especial?"
+            text "¿Quieres desbloquear algo {b}especial{/b}?"
             null height (4 * gui.pref_spacing)
             text "¡Invita a alguien a jugar y compartan sus códigos!"
             null height (5 * gui.pref_spacing) 
@@ -2223,11 +2273,11 @@ screen desbloquear():
 
                 vbox:
 
-                    label (" Comparte este código")
+                    label (" Comparte tu código")
                     textbutton (persistent.codigo_usuario)
                 vbox:
 
-                    label (" Escribe aquí abajo el código compartido")
+                    label (" Escribe abajo el código compartido contigo")
                     textbutton ("") action SetScreenVariable("mostrarInput",True)
                     
                     if mostrarInput:
@@ -2241,32 +2291,36 @@ screen desbloquear():
                         
                         if len(codigoCompartido) == 6:
                             
+                            $ mensajeCodigoIncorrecto = ""
                             if codigoCompartido == persistent.codigo_usuario:
 
-                                text "Tiene que ser un código distinto al tuyo"
+                                $ mensajeCodigoIncorrecto = "Tiene que ser un código distinto al tuyo"
+                                text "[mensajeCodigoIncorrecto]"
+                            elif codigoCompartido[:-1] in persistent.codigos_maceta:
+                                    
+                                timer 0.1 action Hide("desbloquear")
+                                timer 0.1 action Show(
+                                    "confirm", 
+                                    message=(
+                                        "¡Desbloqueo exitoso!" + 
+                                        "\nJuega para verlo"), 
+                                    yes_action=Return())
+
+                                $ persistent.desbloqueo = True
                             else:
 
-                                if codigoCompartido[:-1] in persistent.codigos_maceta:
-                                    
-                                    timer 0.1 action Hide("desbloquear")
-                                    timer 0.1 action Show(
-                                        "confirm", 
-                                        message=(
-                                            "¡Desbloqueo exitoso!" + 
-                                            "\nJuega para verlo"), 
-                                        yes_action=Return())
-
-                                    $ persistent.desbloqueo = True
+                                $ mensajeCodigoIncorrecto = "El código es incorrecto, revíselo"
+                                text "[mensajeCodigoIncorrecto]"
 
             null height (4 * gui.pref_spacing)
-            text "Así, reciben un objeto sorpresa que podrán ver al jugar..."
+            text "Así, reciben un objeto {b}sorpresa{/b} que podrán ver al jugar..."
 
 style codigo_hbox:
     xalign 0.5
 
 style codigo_button:
-    xysize (924,305)
-    background "gui/button/codigo.png"
+    xysize (1004,305)
+    background Frame("gui/button/codigo.png")
 
 style codigo_button_text:
     size gui.interface_text_size + 50
@@ -2285,3 +2339,6 @@ screen color_fondo_final():
 style color_fondo_final:
     xfill True
     yfill True
+
+style image_button:
+    activate_sound "audio/click_sound.mp3"

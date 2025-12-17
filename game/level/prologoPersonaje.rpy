@@ -23,8 +23,8 @@ label prologo_personaje:
 
 label prologo_novia:
 
-    narrador "[jugador.nombre] está en Chapultepec... pero todavía no está en el 
-        punto de reunión con [pareja.nombre]."
+    narrador "[jugador.nombre] está en Chapultepec... pero todavía no está en 
+        el punto de reunión con [pareja.nombre]."
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "Otra vez me equivoqué de parada... hasta parezco nueva, 
         pero ahorita me apuro."
@@ -62,8 +62,8 @@ label prologo_novia:
 
             hide screen phone_ui
     
-    narrador "El día está soleado y [jugador.nombre] empieza a sentir el calor a 
-        comparación de cuando estaba en Cuajimalpa."
+    narrador "El día está soleado y [jugador.nombre] empieza a sentir el calor 
+        a comparación de cuando estaba en Cuajimalpa."
     jugador.personaje "Diablos... por andar organizando cosas con mi equipo ya 
         no chequé el clima acá en la ciudad..."
     scene expression "emocion_tristeza_[jugador.nombre]"
@@ -93,7 +93,7 @@ label prologo_novia:
 
 label prologo_novio:
 
-    narrador "Carlos llegó primero a Chapultepec."
+    narrador "Carlos llegó primero a Chapultepec."    
     scene expression "emocion_felicidad_[jugador.nombre]"
     jugador.personaje "Le voy a enviar un mensaje de que ya estoy aquí, espero 
         no tarde mucho."
@@ -101,7 +101,7 @@ label prologo_novio:
     menu:
 
         narrador "¿Tu decisión?"
-        "Mensaje juguetón":
+        "Mensaje humorístico":
 
             $ reiniciar_celular()
             show screen phone_ui
@@ -254,6 +254,13 @@ label instrucciones_recursos:
       
     $ info_descriptiva = ""  
 
+    show tutorial_recursos:
+        yalign .35
+        xalign .5
+    show marco_tutorial:
+        yalign .35
+        xalign .5
+
     if _preferences.self_voicing:
         
         $ info_descriptiva = "(tercer botón superior)"
@@ -261,4 +268,7 @@ label instrucciones_recursos:
     narrador "¿Te quedó alguna duda y no sabes con quién hablarlo? Checa 
         los contactos en el menú de 
         Recursos [info_descriptiva]{image=boton_recursos}."
+
+    hide tutorial_recursos
+    hide marco_tutorial
     return

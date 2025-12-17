@@ -13,8 +13,7 @@
 ##
 ## El _() que rodea la cadena de texto la señala como traducible.
 
-define config.name = _("""Latencia
-\nMe quiere o no me quiere, pero ¿cómo quiero?""")
+define config.name = _("Latencia")
 
 
 ## Determina si el título dado más arriba se muestra en el menú principal.
@@ -25,7 +24,7 @@ define gui.show_name = False
 
 ## Versión del juego.
 
-define config.version = "1.0.0-alpha"
+define config.version = "1.0.0"
 
 
 ## Texto situado en la pantalla 'Acerca de' del juego. Sitúa el texto entre

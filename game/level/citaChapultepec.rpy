@@ -123,7 +123,7 @@ label cita_chapultepec:
     menu:
 
         narrador "¿Tu decisión?"
-        "Culpabilizar inseguridades":
+        "Cuestionar relación":
 
             scene expression "emocion_tristeza_[jugador.nombre]"
             jugador.personaje "La verdad no quiero pelear amor, pero a veces te 
@@ -547,8 +547,8 @@ label chapultepec_ocultar_frustracion:
 
     scene expression "emocion_tristeza_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
-    narrador "[jugador.nombre] empieza a sentir la frustración en su rostro y cómo 
-        empiezan sus ganas de llorar. Sin embargo, antes de que lo invadan estos 
+    narrador "[jugador.nombre] empieza a sentir frustración y ganas de llorar. 
+        Sin embargo, antes de que lo invadan estos 
         sentimientos, se pellizca con fuerza."
     scene expression "emocion_enojo_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
@@ -687,7 +687,7 @@ label chapultepec_celar_amigues:
 
     if retroalimentacion:
 
-        narrador "Decidiste celar a {atl=rotate_text}celar {/atl} a 
+        narrador "Decidiste {atl=rotate_text}celar {/atl} a 
             [pareja.nombre] culpando a sus amistades, sin dejar que 
             [pareja.nombre] se explicara."
     else:
@@ -834,8 +834,8 @@ label chapultepec_culpa_imprudente:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {atl=rotate_text}culpabilizó{atl=rotate_text} de hacerla enojar y 
-            te insultó."
+        narrador "[pareja.nombre] te {atl=rotate_text}culpabilizó {/atl} de hacerla enojar y 
+            te {atl=rotate_text}insultó {/atl}."
     else:
 
         $ listaViolenciaPareja.append("chapultepec_culpa_imprudente")
@@ -901,12 +901,12 @@ label chapultepec_enviar_mensaje:
     
     scene expression "emocion_enojo_[pareja.nombre]" at Transform(
         matrixcolor=filtro())
-    pareja.personaje "Claaro, si yo soy la que te anda enviando mensajes..."
+    pareja.personaje "Ash pues espero, haber si con un mensaje arreglas esto ¿eh?"
 
     if retroalimentacion:
 
-        narrador "¿Será que casi no le envías mensajes, o ella cree
-            estar encargada de la comunicación?"
+        narrador "¿Pensará que tú debes solucionar las peleas? ¿Es tu deber 
+            siempre tomar la iniciativa?"
     else:
 
         $ listaEstereotipo.append("chapultepec_enviar_mensaje")

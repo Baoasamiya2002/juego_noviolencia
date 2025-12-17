@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 780: the xalign keyword argument was not given a value.
-    xalign
-          ^
+File "game/script.rpy", line 298: end of line expected.
+    hide black with fade layer backgrounds
+                         ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Thu Nov 27 07:15:18 2025
+Tue Dec 16 14:23:15 2025
