@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 298: end of line expected.
-    hide black with fade layer backgrounds
-                         ^
+File "game/script.rpy", line 344: Indentation mismatch.
+    else:
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Tue Dec 16 14:23:15 2025
+Fri Dec 26 12:10:51 2025

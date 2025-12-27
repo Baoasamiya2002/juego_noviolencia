@@ -196,8 +196,8 @@ label retroalimentacion_pareja_telefono:
     show fondo_inicio
     narrador "E, igual que la vez pasada, esta violencia afectó a tu planta."
     narrador "Parece un ciclo, ¿no lo crees?"
-    narrador "Las plantas, como los humanos, merecen cuidados. {b}Merecemos 
-        cuidados{/b}."
+    narrador "Las plantas, como los humanos, merecen cuidados. {size=+15}{u}Merecemos 
+        cuidados{/u}{/size}."
     jump retroalimentacion_jugador_telefono
 
 
@@ -328,7 +328,7 @@ label retroalimentacion_estereotipo_telefono:
         show fondo_inicio
         narrador "Las palabras pueden esconder más que su significado literal."
         narrador "¿Cuántas de estas y otras frases haz utilizado sin saber lo 
-            que {b}realmente{/b} significan?"
+            que {size=+15}{u}realmente{/u}{/size} significan?"
 
     $ forzarAutosave()
     if _preferences.self_voicing:
@@ -363,7 +363,7 @@ label telefono_humillar_vulnerabilidad:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}humillar{/b} a [pareja.nombre] por querer llorar, invalidándolo, ¿Los hombres no pueden llorar?"
+        narrador "Decidiste {size=+15}{u}humillar{/u}{/size} a [pareja.nombre] por querer llorar, invalidándolo, ¿Los hombres no pueden llorar?"
     else:
 
         $ listaViolenciaJugador.append("telefono_humillar_vulnerabilidad")
@@ -410,7 +410,7 @@ label telefono_ignorar_violencia:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}ignorar{/b} a [pareja.nombre] cuando se disculpó contigo. Aunque el tema te sea incómodo, ignorarlo puede hacer más daño."
+        narrador "Decidiste {size=+15}{u}ignorar{/u}{/size} a [pareja.nombre] cuando se disculpó contigo. Aunque el tema te sea incómodo, ignorarlo puede hacer más daño."
     else:
 
         $ listaViolenciaJugador.append("telefono_ignorar_violencia")
@@ -453,7 +453,7 @@ label telefono_celos_amigue:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}celó{/b} por estar en casa de una de sus amistades, siendo su primera reacción el enojo y reclamo."
+        narrador "[pareja.nombre] te {size=+15}{u}celó{/u}{/size} por estar en casa de una de sus amistades, siendo su primera reacción el enojo y reclamo."
     else:
 
         $ listaViolenciaPareja.append("telefono_celos_amigue")
@@ -472,7 +472,7 @@ label telefono_negar_ubicacion:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}humillar{/b} a [pareja.nombre], aunque estás en tu derecho de no compartir tu ubicación, puedes hacerlo sin violentar al otro."
+        narrador "Decidiste {size=+15}{u}humillar{/u}{/size} a [pareja.nombre], aunque estás en tu derecho de no compartir tu ubicación, puedes hacerlo sin violentar al otro."
     else:
 
         $ listaViolenciaJugador.append("telefono_negar_ubicacion")
@@ -486,7 +486,7 @@ label telefono_ignorar_reclamo:
 
     if retroalimentacion:
 
-        narrador "A partir de ahí [pareja.nombre] te {b}ignoró{/b} a causa de su enojo, cortando el diálogo sin mayor explicación."
+        narrador "A partir de ahí [pareja.nombre] te {size=+15}{u}ignoró{/u}{/size} a causa de su enojo, cortando el diálogo sin mayor explicación."
     else:
 
         $ listaViolenciaPareja.append("telefono_ignorar_reclamo")
@@ -500,7 +500,7 @@ label telefono_insinuar_mujeriego:
 
     if retroalimentacion:
 
-        narrador "{b}Celaste{/b} a Carlos, porque ¿cómo sabes eso?, ¿por una 
+        narrador "{size=+15}{u}Celaste{/u}{/size} a Carlos, porque ¿cómo sabes eso?, ¿por una 
             experiencia previa o porque crees que así son los hombres?"
     else:
 
@@ -518,7 +518,7 @@ label telefono_captura_instagram:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}stalkeó{/b}, porque si siguió a alguien que te acaba de seguir, es que está pendiente de tus seguidores."
+        narrador "[pareja.nombre] te {size=+15}{u}stalkeó{/u}{/size}, porque si siguió a alguien que te acaba de seguir, es que está pendiente de tus seguidores."
     else:
         
         $ listaViolenciaPareja.append("telefono_captura_instagram")
@@ -535,7 +535,7 @@ label telefono_celos_foto:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}celó{/b} por una foto familiar, por su inseguridad."
+        narrador "[pareja.nombre] te {size=+15}{u}celó{/u}{/size} por una foto familiar, por su inseguridad."
     else:
         
         $ listaViolenciaPareja.append("telefono_celos_foto")
@@ -596,7 +596,7 @@ label telefono_mentir_relacion:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}mentir{/b} para calmar sus inseguridades, pero como viste, eso puede empeorar las cosas"
+        narrador "Decidiste {size=+15}{u}mentir{/u}{/size} para calmar sus inseguridades, pero como viste, eso puede empeorar las cosas"
     else:
     
         $ listaViolenciaJugador.append("telefono_mentir_relacion")
@@ -621,7 +621,7 @@ label telefono_checar_chat:
     $ send_phone_message(pareja.nombre, "Yo ya sé que son [palabraGenero]!, si veo en tus mensajes que hablan seguido", "pareja_dm", 3)
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}stalkeó{/b}, porque de otra forma no conocería tus mensajes privados."
+        narrador "[pareja.nombre] te {size=+15}{u}stalkeó{/u}{/size}, porque de otra forma no conocería tus mensajes privados."
     else:
         
         $ listaViolenciaPareja.append("telefono_checar_chat")
@@ -649,7 +649,7 @@ label telefono_pretexto:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}engañar{/b} y {b}chantajear{/b} para terminar con el tema, pero ¿esa es la mejor solución?"
+        narrador "Decidiste {size=+15}{u}engañar{/u}{/size} y {size=+15}{u}chantajear{/u}{/size} para terminar con el tema, pero ¿esa es la mejor solución?"
     else:
         
         $ listaViolenciaJugador.append("telefono_pretexto")

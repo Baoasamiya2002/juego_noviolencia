@@ -43,53 +43,53 @@ Disculpa, esta cita todavía no está disponible.
 Da click o toca cualquier otra parte de la pantalla para poder volver a elegir
 Bueno... no creo que esa haya sido la cita que planearon, ¿verdad?
 Lamentablemente [pareja.nombre] dañó tu planta, veamos cuándo pasó:
-[pareja.nombre] te hizo {b}gaslighting{/b} y {b}culpabilizó{/b} por la discusión, cuando [palabraGenero] fue quien te dijo absorbente.
-Ahí te intentó {b}humillar{/b} por mostrar tus sentimientos.
-[pareja.nombre] se {b}burló{/b} de tu preocupación demeritandote y queriendo que te callaras.
-[pareja.nombre] te intentó {b}humillar{/b} por querer irte, en vez de platicarlo.
-[pareja.nombre] te {b}culpabilizó{/b} de crear peleas por expresar cómo te sentías y quitándose responsabilidad en la discusión.
-[pareja.nombre] te {b}culpabilizó{b} de hacerla enojar y te insultó.
+[pareja.nombre] te hizo {size=+15}{u}gaslighting{/u}{/size} y {size=+15}{u}culpabilizó{/u}{/size} por la discusión, cuando [palabraGenero] fue quien te dijo absorbente.
+Ahí te intentó {size=+15}{u}humillar{/u}{/size} por mostrar tus sentimientos.
+[pareja.nombre] se {size=+15}{u}burló{/u}{/size} de tu preocupación demeritandote y queriendo que te callaras.
+[pareja.nombre] te intentó {size=+15}{u}humillar{/u}{/size} por querer irte, en vez de platicarlo.
+[pareja.nombre] te {size=+15}{u}culpabilizó{/u}{/size} de crear peleas por expresar cómo te sentías y quitándose responsabilidad en la discusión.
+[pareja.nombre] te {size=+15}{u}culpabilizó{size=+15}{u} de hacerla enojar y te insultó.
 Además, cuando él te dijo:
-[pareja.nombre] te intentó {b}humillar{/b} por tus preguntas, descalificándolas.
-[pareja.nombre] te hizo {b}gaslighting{/b} y {b}culpabilizó{/b} de su reacción, justificando que decías mentiras cuando no hubo ninguna.
-[pareja.nombre] te {b}celó{/b} por tus amistades, justificando que peleaste para terminar la cita.
-[pareja.nombre] te {b}culpabilizó{/b} de la discusión y lo redujo a un "drama".
-[pareja.nombre] te intentó {b}chantajear{/b} para hacer pasar la violencia anterior, lo hizo con el regalo de su [palabraGenero] para tí.
-[pareja.nombre] te {b}humilló{/b} con su insulto y {b}destruyó{/b} el regalo de su [palabraGenero] por no caer en su chantaje.
+[pareja.nombre] te intentó {size=+15}{u}humillar{/u}{/size} por tus preguntas, descalificándolas.
+[pareja.nombre] te hizo {size=+15}{u}gaslighting{/u}{/size} y {size=+15}{u}culpabilizó{/u}{/size} de su reacción, justificando que decías mentiras cuando no hubo ninguna.
+[pareja.nombre] te {size=+15}{u}celó{/u}{/size} por tus amistades, justificando que peleaste para terminar la cita.
+[pareja.nombre] te {size=+15}{u}culpabilizó{/u}{/size} de la discusión y lo redujo a un "drama".
+[pareja.nombre] te intentó {size=+15}{u}chantajear{/u}{/size} para hacer pasar la violencia anterior, lo hizo con el regalo de su [palabraGenero] para tí.
+[pareja.nombre] te {size=+15}{u}humilló{/u}{/size} con su insulto y {size=+15}{u}destruyó{/u}{/size} el regalo de su [palabraGenero] por no caer en su chantaje.
 Y con toda esta violencia, acabó afectada tu planta.
-Pero recuerda, {b}no es tu culpa{/b}. [pareja.nombre] es responsable de los daños que causó, no tú.
+Pero recuerda, {size=+15}{u}no es tu culpa{/u}{/size}. [pareja.nombre] es responsable de los daños que causó, no tú.
 Ahora, veamos el estado de la planta de [pareja.nombre].
 ¡Oh! Con tus respuestas obtuviste un aspersor de agua sucia para tu planta.
 La planta de [pareja.nombre] se siente un poco enferma., veamos cuándo pasó:
-Decidiste {b}celar{/b} a [pareja.nombre] por alguien más, en vez de preguntarle por sus sentimientos.
-Decidiste {b}ignorar{/b} a [pareja.nombre] cuando se empezaba a abrir contigo y no darle importancia.
-Decidiste {b}culpabilizar{/b} a [pareja.nombre] y cortar la comunicación. Además de intentar {b}humillar{/b} por no aceptar tus preocupaciones.
+Decidiste {size=+15}{u}celar{/u}{/size} a [pareja.nombre] por alguien más, en vez de preguntarle por sus sentimientos.
+Decidiste {size=+15}{u}ignorar{/u}{/size} a [pareja.nombre] cuando se empezaba a abrir contigo y no darle importancia.
+Decidiste {size=+15}{u}culpabilizar{/u}{/size} a [pareja.nombre] y cortar la comunicación. Además de intentar {size=+15}{u}humillar{/u}{/size} por no aceptar tus preocupaciones.
 Y por esta violencia, acabó afectada la planta de [pareja.nombre].
 Es normal querer defenderse o terminar la discusión, pero la violencia nos puede alejar de lo que queremos decir.
 Con las emociones en lo alto podemos hacer cosas de las que nos arrepentimos después. Tomemos un respiro y con respeto se entiende la gente.
 ¡Felicidades! Con tus respuestas ganaste un aspersor con agua limpia.
 Tu planta ha comenzado a florecer.
 Pero hubo momentos en los que caíste en la presión de [pareja.nombre]:
-[pareja.nombre] te {b}humilló{/b} y decidiste seguirle la corriente.
+[pareja.nombre] te {size=+15}{u}humilló{/u}{/size} y decidiste seguirle la corriente.
 Buscaste cambiar el tema ante el enojo de [pareja.nombre] y poner su bienestar primero.
 Quisiste hacer pasar la violencia ocurrida para terminar el conflicto.
-¿Recuerdas esa tarjeta de Spotify? Era un regalo para tí, pero la aceptaste a través de un {b}chantaje{/b}.
-Cuidado, estas violencias pueden {b}continuar{/b} o {b}escalar{/b} si no se detienen y sólo las aceptas.
+¿Recuerdas esa tarjeta de Spotify? Era un regalo para tí, pero la aceptaste a través de un {size=+15}{u}chantaje{/u}{/size}.
+Cuidado, estas violencias pueden {size=+15}{u}continuar{/u}{/size} o {size=+15}{u}escalar{/u}{/size} si no se detienen y sólo las aceptas.
 Además, algunos de los diálogos de Carlos y Fernanda reproducen mitos sobre los roles de género, ¿Te diste cuenta?
 Por ejemplo:
 Está bien reconocer tus errores, pero ¿fue por un error o porque Fernanda cree estar encargada de hacer sentir bien a su pareja?
-Te intentó {b}humillar{b} por mostrar tus emociones, ¿Eso es algo de verguenza?
+Te intentó {size=+15}{u}humillar{size=+15}{u} por mostrar tus emociones, ¿Eso es algo de verguenza?
 ¿Será que quiere ser el tema de conversación, o cree que así debe ser en una relación?
 ¿Será que quiere ser el tema de conversación, o cree que así debe ser en una relación?
 ¿Será que quiere ser el tema de conversación, o cree que así debe ser en una relación?
 ¿Será que quiere ser el tema de conversación, o cree que así debe ser en una relación?
 Puede ser cierto, pero la respuesta fue a la defensiva, ¿puede ser que cree tener que ocultar sus emociones?
 Aunque Fernanda haya "empezado", si hay una agresión, ¿quién es el responsable?
-Además de la {b}humillación{/b}, ¿será que cree que en la relación debe de dar órdenes?
+Además de la {size=+15}{u}humillación{/u}{/size}, ¿será que cree que en la relación debe de dar órdenes?
 Puede que Fernanda se enoje facilmente, ¿pero por qué piensa que así son todas las mujeres?
 ¿Los regalos son una muestra de amor o cree que es una responsabilidad?
 Puede ser cierto, pero la respuesta fue a la defensiva, ¿puede ser que cree tener que ocultar sus emociones?
-Además de la {b}culpabilización{/b}, ¿la mejor solución será ser reservado?
+Además de la {size=+15}{u}culpabilización{/u}{/size}, ¿la mejor solución será ser reservado?
 Tal vez alguno de estos diálogos no los habías visto con este punto de vista.
 Por eso es bueno cuestionarnos si ¿es un gesto propio o lo hago porque "así debe ser"?
 Con tu respuesta reflejaste empatía. Obtuviste un aspersor de agua limpia para tu planta.
@@ -144,27 +144,27 @@ Da click o toca cualquier parte de la pantalla para minimizar este mensaje.
 ¡Muchas gracias por jugar esta primera versión del juego!
 Si tienes comentarios, por favor compartelos con nosotros y ayudanos a mejorar
 ¡Ya terminé el juego!
-Y analizándolo, creo que el {b}videojuego{/b}…
+Y analizándolo, creo que el {size=+15}{u}videojuego{/u}{/size}…
 Si, ¡se me hizo bueno!
 Si, estuvo ok.
 Si, ¡no estuvo bueno!
-Y en el caso de la {b}diversión{/b}, fue un juego… 
+Y en el caso de la {size=+15}{u}diversión{/u}{/size}, fue un juego… 
 La pasé bien jugándolo.
 Pudo ser más divertido.
 No pasó nada divertido...
-Además, la {b}dificultad{/b} del juego fue...
+Además, la {size=+15}{u}dificultad{/u}{/size} del juego fue...
 Fue un juego fácil.
 Fue un juego moderado.
 Fue un juego difícil.
-Donde su {b}interfaz{/b} como menús, ventanas y botones me parecieron...
+Donde su {size=+15}{u}interfaz{/u}{/size} como menús, ventanas y botones me parecieron...
 Le doy a su interfaz un 5 de 5 en claridad.
 Le doy a su interfaz un 3 de 5 en claridad.
 Le doy a su interfaz un 0 de 5 en claridad.
-¡Ah! Otra cosa que recuerdo es el {b}lenguaje{/b} usado. El tono, palabras usadas y diálogos se me hicieron...
+¡Ah! Otra cosa que recuerdo es el {size=+15}{u}lenguaje{/u}{/size} usado. El tono, palabras usadas y diálogos se me hicieron...
 Noté que el guión fue apropiado.
 Noté que el guión tuvo cosas por mejorar.
 Noté que el guión no era adecuado para mí.
-Además, honestamente, los {b}elementos visuales{/b} como ilustraciones y botones me parecieron...
+Además, honestamente, los {size=+15}{u}elementos visuales{/u}{/size} como ilustraciones y botones me parecieron...
 ¡Me gustó el estilo visual!
 Varios elementos pudieron ser mejores.
 No me gustaron...

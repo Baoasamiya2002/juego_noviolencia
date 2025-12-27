@@ -2,7 +2,14 @@ label prologo_personaje:
 
     $ save_name = _("Primera capa")
     show capa_1 with fade
-    pause
+    pause 8.0
+    if renpy.variant("mobile"):
+
+        $ instruccion = "Toca"
+    else:
+
+        $ instruccion = "Click"
+    narrador "[instruccion] para continuar"
 
     $ retroalimentacion = False
     $ listaEstereotipo = []
@@ -169,15 +176,17 @@ label prologo_novio:
 
 label retroalimentacion_estereotipo_prologo:
 
-    scene fondo_inicio
-    narrador "El amor no sólo debería ser hacia la pareja, ¿no lo crees?"    
+    scene fondo_inicio with fade
+    $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
+    narrador "Parece que tú y [pareja.nombre] están un poco alterados, 
+        ¿A [palabraGenero] también le atormentan sus pensamientos?"    
     $ retroalimentacion = True 
 
     if listaEstereotipo:
 
         menu:
 
-            narrador "Y algunos diálogos reproducen estereotipos sobre los roles 
+            narrador "Algunos diálogos reproducen estereotipos sobre los roles 
                 de género, ¿Lo notaste?"
         
             "Sí":
@@ -193,9 +202,10 @@ label retroalimentacion_estereotipo_prologo:
             $ i += 1
             
         scene chapultepec_fondo
-        narrador "Es distinto conocer los estereotipos a ver cómo dictan 
-            nuestras acciones."
-        narrador "Si estos límites nos hacen daño, ¿por qué los seguimos repitiendo?"
+        narrador "Es distinto conocer los estereotipos a ver cómo limitan 
+            nuestro actuar."
+        narrador "Y si nos dañan, ¿para qué continuar creyendo que todos 
+            debemos ser así?"
 
     $ forzarAutosave()
 

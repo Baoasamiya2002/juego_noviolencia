@@ -7,7 +7,14 @@ label telefono_conversacion:
 
     $ save_name = _("Tercera capa")
     show capa_3 with fade
-    pause
+    pause 8.0
+    if renpy.variant("mobile"):
+
+        $ instruccion = "Toca"
+    else:
+
+        $ instruccion = "Click"
+    narrador "[instruccion] para continuar"
     
     $ retroalimentacion = False
     $ listaEstereotipo = []
@@ -37,6 +44,19 @@ label telefono_conversacion:
     $ send_phone_message(phone_config["phone_player_name"], "Hablando contigo haha", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Y tú??", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "x2 zkxjaj<emoji_risa>", "pareja_dm", 3)
+
+    if jugador.nombre == novia.name:
+
+        $ send_phone_message(pareja.nombre, "Y te funciona bien el nuevo cel??", "pareja_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Sii todo perfecto amor <emoji_corazon>, gracias por el regalo", "pareja_dm", 3)
+        $ send_phone_message(pareja.nombre, "Eso espero <emoji_guinio>", "pareja_dm", 3)
+    else:
+
+        $ send_phone_message(pareja.nombre, "Haaay [pareja.apodo], otra vez Ceballos nos dejó un proyecto súper difícil", "pareja_dm", 3)
+        $ send_phone_message(pareja.nombre, "Y ya sabes que me cuesta mucho<emoji_rogando>, lo checas porfa?", "pareja_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], "Claro amor, tú tranquila<emoji_corazon><emoji_corazon>", "pareja_dm", 3)
+        $ send_phone_message(pareja.nombre, "Te juro que es la última vez<emoji_guinio>", "pareja_dm", 3)
+
     $ send_phone_message(pareja.nombre, "Oye", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Te extrañooo <emoji_rogando>", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Yo también amor <emoji_corazon><emoji_corazon>", "pareja_dm", 3)
@@ -171,7 +191,7 @@ label telefono_conversacion:
 label retroalimentacion_pareja_telefono:
     
     hide screen phone_ui
-    scene fondo_inicio at Transform(matrixcolor=TintMatrix("#505050"))
+    scene fondo_inicio with fade 
     show fondo_inicio
     narrador "Sí que ustedes \"escribieron\" rápido, aunque al hacerlo, 
         ¿dijeron cosas sin pensarlo?"
@@ -221,8 +241,8 @@ label retroalimentacion_pareja_telefono:
     show fondo_inicio
     narrador "Así que, igual que la vez pasada, esta violencia afectó a tu planta."
     narrador "Parece un ciclo, ¿no lo crees?"
-    narrador "Las plantas, como los humanos, merecen cuidados. {b}Merecemos 
-        cuidados{/b}."
+    narrador "Las plantas, como los humanos, merecen cuidados. {size=+15}{u}Merecemos 
+        cuidados{/u}{/size}."
     jump retroalimentacion_jugador_telefono
 
 
@@ -276,9 +296,8 @@ label retroalimentacion_jugador_telefono:
         show fondo_inicio
         narrador "Y por esta violencia, acabó afectada la planta de [pareja.nombre]."
         narrador "Aún con la mejor intención, nuestra respuesta no siempre es la 
-            mejor, pero mientras reconozcas tus errores y aprendas de ellos, 
-            {b}serás mejor contigo y los demás{/b}."
-        narrador "¿Quieres ser tu mejor versión en tus relaciones, {b}verdad{/b}?"
+            mejor. Prefiere comunicar con claridad, que \"regresándole\" la ofensa."
+        narrador "Y lo que quieres recibir, {size=+15}{u}¿También lo ofreces?{/u}{/size}"
     else:
 
         if pareja.estadoPlanta == "capullo":
@@ -327,7 +346,7 @@ label retroalimentacion_jugador_telefono:
             scene black
             show fondo_inicio
             narrador "Seguir sus deseos puede parecer la mejor opción, pero 
-                ¿dónde quedas tú?"
+                ¿dónde quedas tú en la relación?"
 
     jump retroalimentacion_estereotipo_telefono
 
@@ -364,8 +383,8 @@ label retroalimentacion_estereotipo_telefono:
         scene black
         show fondo_inicio
         narrador "Las palabras pueden esconder más que su significado literal."
-        narrador "¿Cuántas de estas y otras frases haz utilizado sin saber lo 
-            que {b}realmente{/b} significan?"
+        narrador "¿Cuántas de estas y otras frases haz dicho sin pensar lo 
+            que {size=+15}{u}realmente{/u}{/size} significan?"
 
     $ forzarAutosave()
 

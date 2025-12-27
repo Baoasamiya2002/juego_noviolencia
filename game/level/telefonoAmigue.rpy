@@ -12,7 +12,14 @@ label telefono_amigue:
 
     $ save_name = _("Cuarta capa")
     show capa_4 with fade
-    pause
+    pause 8.0
+    if renpy.variant("mobile"):
+
+        $ instruccion = "Toca"
+    else:
+
+        $ instruccion = "Click"
+    narrador "[instruccion] para continuar"
     
     $ retroalimentacion = False
     $ listaEstereotipo = []
@@ -148,10 +155,11 @@ label telefono_amigue:
     $ palabraGenero = "experto" if jugador.nombre == novio.name else "experta"
     $ send_phone_message(phone_config["phone_player_name"], "Ay y cuándo te volviste [palabraGenero] en relaciones de pareja o qué?", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "yo?? nunca! si hasta me engañaron jaja <emoji_risa_nerviosa>. Pero ya en serio, me preocupo por tí", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "y he visto cómo las personas se acostumbran a una vida de maltratos...", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "cuando van de pasada por los pasillos, parecía todo bien, pero no presté atención...", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "y he visto que luego se acostumbran a estar con gente bien mierda", "amigue_dm", 3)    
+    $ send_phone_message(phone_config["phone_player_name"], "<emoji_risa_nerviosa>", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "al chile no te quiero incomodar, pero cuando algo no me late, te lo tengo que decir", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Ay nono, tú tranqui, de verdad estamos bien...", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "mira, como dices, [palabraGenero] no soy, pero neta que deberías pensar en platicárselo a alguien", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "mira, como dices, [palabraGenero] no soy, pero neta que deberías pensar en platicárselo a alguien más", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "en la UAM hay atención psicológica o hasta puedes buscar por fuera", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "y gracias por la confianza <emoji_rezando>, pero también hablalo con otra persona de confianza va?", "amigue_dm", 3)
     $ palabraGenero = "seguro" if jugador.nombre == novio.name else "segura"
@@ -366,7 +374,8 @@ label final_tomar_atencion_en_pareja:
         $ aclararColorFondo(3, valor_incremento)
         if persistent.final_primera_opcion[1]:
 
-            "[jugador.nombre] y [pareja.nombre] siguen siendo novios."
+            "[jugador.nombre] y [pareja.nombre] siguen siendo novios. Todavía 
+                llegan a tener desacuerdos, pero buscan resolverlos con respeto."
         else:
 
             "Se dieron cuenta de que no eran la mejor persona para el otro 
@@ -721,10 +730,10 @@ label palabras_finales:
     scene fondo_inicio with fade 
     narrador "Y este fue uno de los finales de la historia de [jugador.nombre] y [pareja.nombre]"
     narrador "Pero estos cambian cada vez que lo juegas, ¡Descubre todos los finales y prueba las distintas decisiones!"
-    narrador "Por que aunque aquí tienes la oportunidad de volver a intentarlo, en la vida real no siempre se tiene esa oportunidad..."
+    narrador "Por que aunque aquí puedes intentarlo una y otra vez, en la vida real no siempre se tiene esa oportunidad..."
     narrador "No dejes que otros tomen el control de tí, puedes tomar la decisión y hacer un cambio en tu vida. Al igual que [viejoAmigue.nombre], tus redes de apoyo te podemos ayudar."
     call instrucciones_recursos
-    narrador "Esta fue la última capa de Latencia. Gracias por jugar, sin tí este juego no sería posible."
+    narrador "Esta fue la última capa de Latencia. ¡Muchas gracias por jugar!, sin tí este juego no sería posible."
     call evaluacion
     show creditos_finales with fade 
     pause 10.0    

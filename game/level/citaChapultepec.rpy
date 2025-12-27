@@ -10,7 +10,14 @@ label cita_chapultepec:
 
     $ save_name = _("Segunda capa")
     show capa_2 with fade
-    pause
+    pause 8.0
+    if renpy.variant("mobile"):
+
+        $ instruccion = "Toca"
+    else:
+
+        $ instruccion = "Click"
+    narrador "[instruccion] para continuar"
 
     $ retroalimentacion = False
     $ listaEstereotipo = []
@@ -73,7 +80,7 @@ label cita_chapultepec:
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "No, de verdad que no, sólo quiero saber..."
     scene expression "emocion_enojo_[pareja.nombre]"
-    pareja.personaje "¿La verdad? Pues yo... siento que eres muy absorbente, 
+    pareja.personaje "¿La verdad? Pues yo... siento que no sabes qué inventar, 
         hostigas."
 
     menu:
@@ -117,7 +124,10 @@ label cita_chapultepec:
     narrador "Su relación nunca ha sido perfecta, pero siguen intentando que lo 
         sea. Piensan que así es el amor."
     scene expression "emocion_tristeza_[jugador.nombre]"
-    jugador.personaje "Mejor ya vámonos [pareja.apodo]."
+    $ palabraGenero = (
+                "enojada" if jugador.nombre == novio.name else "enojado")
+    jugador.personaje "Mira, la verdad se nota que sigues [palabraGenero], 
+        ¿y si nos vamos?"
     call chapultepec_reclamar_toxicidad from _call_chapultepec_reclamar_toxicidad
 
     menu:
@@ -283,7 +293,7 @@ label cita_chapultepec:
 
 label retroalimentacion_pareja_chapultepec:
     
-    scene fondo_inicio
+    scene fondo_inicio with fade
     narrador "Bueno... no creo que esa haya sido la cita que planeaste, ¿verdad?"    
     $ jugador.estadoPlanta = LISTA_ESTADO_PLANTA[1]
     show planta_fondo:
@@ -313,7 +323,7 @@ label retroalimentacion_pareja_chapultepec:
         
     scene chapultepec_fondo
     narrador "Y con toda esta violencia, acabó afectada tu planta."
-    narrador "Pero recuerda, {b}no es tu culpa{/b}. [pareja.nombre] es 
+    narrador "Pero recuerda, {size=+15}{u}no es tu culpa{/u}{/size}. [pareja.nombre] es 
         responsable de los daños que causó, no tú."
     jump retroalimentacion_jugador_chapultepec
 
@@ -354,10 +364,9 @@ label retroalimentacion_jugador_chapultepec:
         scene chapultepec_fondo
         narrador "Y por esta violencia, acabó afectada la planta de [pareja.nombre]."
         narrador "Es normal que quieras defenderte o terminar la discusión, pero 
-            la violencia te aleja de lo que en verdad quieres decir."
-        narrador "Con las emociones en lo alto puedes hacer cosas de las que te 
-            arrepientes después. Toma un respiro y con respeto mutuo pueden 
-            llegar a algo."
+            ¿quieres una relación a base de violencia?"
+        narrador "Tomar responsabilidad y buscar un cambio te llevan más cerca 
+            a la relación que quieres, ¿no lo crees?"
     else:
 
         $ pareja.estadoPlanta = LISTA_ESTADO_PLANTA[2]
@@ -392,8 +401,8 @@ label retroalimentacion_jugador_chapultepec:
                 $ i += 1
                 
             scene chapultepec_fondo
-            narrador "Cuidado, estas violencias pueden {b}continuar{/b} o 
-                {b}escalar{/b} si no se detienen y sólo las aceptas."
+            narrador "{size=+15}{u}Cuidado{/u}{/size}, estas violencias pueden continuar o 
+                {size=+15}{u}escalar{/u}{/size} si no se detienen y sólo las aceptas."
 
     jump retroalimentacion_estereotipo_chapultepec
 
@@ -756,9 +765,9 @@ label chapultepec_reclamar_toxicidad:
     
     scene expression "emocion_enojo_[pareja.nombre]" at Transform(
         matrixcolor=filtro())
-    $ palabraGenero = "tóxico" if jugador.nombre == novio.name else "tóxica"
-    pareja.personaje "Pero si acabamos de llegar, ¿ves como eres bien 
-        [palabraGenero]?"
+    $ palabraGenero = "hostigoso" if jugador.nombre == novio.name else "hostigosa"
+    pareja.personaje "Acabamos de llegar y sigues chingando con lo mismo... 
+        ¡Por eso te digo [palabraGenero]!"
 
     if retroalimentacion:
 

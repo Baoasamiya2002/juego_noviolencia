@@ -386,7 +386,7 @@ label retroalimentacion_pareja_chapultepec:
         
     scene chapultepec_fondo
     narrador "Y con toda esta violencia, acabó afectada tu planta."
-    narrador "Pero recuerda, {b}no es tu culpa{/b}. [pareja.nombre] es 
+    narrador "Pero recuerda, {size=+15}{u}no es tu culpa{/u}{/size}. [pareja.nombre] es 
         responsable de los daños que causó, no tú."
     jump retroalimentacion_jugador_chapultepec
 
@@ -465,8 +465,8 @@ label retroalimentacion_jugador_chapultepec:
                 $ i += 1
                 
             scene chapultepec_fondo
-            narrador "Cuidado, estas violencias pueden {b}continuar{/b} o 
-                {b}escalar{/b} si no se detienen y sólo las aceptas."
+            narrador "Cuidado, estas violencias pueden {size=+15}{u}continuar{/u}{/size} o 
+                {size=+15}{u}escalar{/u}{/size} si no se detienen y sólo las aceptas."
 
     jump retroalimentacion_estereotipo_chapultepec
 
@@ -696,8 +696,8 @@ label chapultepec_culpar_otro:
     if retroalimentacion:
 
         $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
-        narrador "[pareja.nombre] te hizo {b}gaslighting{/b} y 
-            {b}culpabilizó{/b} por la discusión, cuando [palabraGenero] fue 
+        narrador "[pareja.nombre] te hizo {size=+15}{u}gaslighting{/u}{/size} y 
+            {size=+15}{u}culpabilizó{/u}{/size} por la discusión, cuando [palabraGenero] fue 
             quien te dijo absorbente."
     else:
 
@@ -734,7 +734,7 @@ label chapultepec_burlar_emociones:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te intentó {b}humillar{/b} por mostrar tus 
+        narrador "[pareja.nombre] te intentó {size=+15}{u}humillar{/u}{/size} por mostrar tus 
             sentimientos. ¿Eso es algo de verguenza?"
     else:
 
@@ -753,7 +753,7 @@ label chapultepec_celar_amigues:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}celar{/b} a [pareja.nombre] por alguien más, en 
+        narrador "Decidiste {size=+15}{u}celar{/u}{/size} a [pareja.nombre] por alguien más, en 
             vez de preguntarle por sus sentimientos."
     else:
 
@@ -790,7 +790,7 @@ label chapultepec_broma_diurex:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] se {b}burló{/b} de tu preocupación 
+        narrador "[pareja.nombre] se {size=+15}{u}burló{/u}{/size} de tu preocupación 
             demeritandote y queriendo que te callaras."
     else:
 
@@ -808,7 +808,7 @@ label chapultepec_aceptar_broma:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}humilló{/b} y decidiste seguirle la 
+        narrador "[pareja.nombre] te {size=+15}{u}humilló{/u}{/size} y decidiste seguirle la 
             corriente."
     else:
 
@@ -827,7 +827,7 @@ label chapultepec_reclamar_toxicidad:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te intentó {b}humillar{/b} por querer irte, 
+        narrador "[pareja.nombre] te intentó {size=+15}{u}humillar{/u}{/size} por querer irte, 
             en vez de platicarlo."
     else:
 
@@ -846,7 +846,7 @@ label chapultepec_culpar_drama:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}culpabilizó{/b} de crear peleas por 
+        narrador "[pareja.nombre] te {size=+15}{u}culpabilizó{/u}{/size} de crear peleas por 
             expresar cómo te sentías y quitándose responsabilidad en la discusión."
     else:
 
@@ -899,7 +899,7 @@ label chapultepec_culpa_imprudente:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}culpabilizó{b} de hacerla enojar y 
+        narrador "[pareja.nombre] te {size=+15}{u}culpabilizó{size=+15}{u} de hacerla enojar y 
             te insultó."
     else:
 
@@ -934,7 +934,7 @@ label chapultepec_reclamar_estupidez:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te intentó {b}humillar{/b} por tus preguntas, 
+        narrador "[pareja.nombre] te intentó {size=+15}{u}humillar{/u}{/size} por tus preguntas, 
             descalificándolas. ¿Será que cree que en la relación debe de dar 
             órdenes?"
     else:
@@ -986,7 +986,7 @@ label chapultepec_repetir_retirada:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}ignorar{/b} a [pareja.nombre] cuando se empezaba 
+        narrador "Decidiste {size=+15}{u}ignorar{/u}{/size} a [pareja.nombre] cuando se empezaba 
             a abrir contigo y no darle importancia."
     else:
 
@@ -1022,7 +1022,7 @@ label chapultepec_quitarse_culpa:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te hizo {b}gaslighting{/b} y {b}culpabilizó{/b} 
+        narrador "[pareja.nombre] te hizo {size=+15}{u}gaslighting{/u}{/size} y {size=+15}{u}culpabilizó{/u}{/size} 
             de su reacción, justificando que decías mentiras cuando no hubo ninguna."
     else:
 
@@ -1076,8 +1076,8 @@ label chapultepec_reclamar_salida:
 
     if retroalimentacion:
 
-        narrador "Decidiste {b}culpabilizar{/b} a [pareja.nombre] y cortar la 
-            comunicación. Además de intentar {b}humillar{/b} por no aceptar tus 
+        narrador "Decidiste {size=+15}{u}culpabilizar{/u}{/size} a [pareja.nombre] y cortar la 
+            comunicación. Además de intentar {size=+15}{u}humillar{/u}{/size} por no aceptar tus 
             preocupaciones."
     else:
 
@@ -1095,7 +1095,7 @@ label chapultepec_pretexto_amigues:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}celó{/b} por tus amistades, justificando 
+        narrador "[pareja.nombre] te {size=+15}{u}celó{/u}{/size} por tus amistades, justificando 
             que peleaste para terminar la cita."
     else:
 
@@ -1113,7 +1113,7 @@ label chapultepec_reclamar_drama:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te {b}culpabilizó{/b} de la discusión y lo 
+        narrador "[pareja.nombre] te {size=+15}{u}culpabilizó{/u}{/size} de la discusión y lo 
             redujo a un \"drama\". ¿La mejor solución era ser reservado?"
     else:
 
@@ -1131,7 +1131,7 @@ label chapultepec_condicionar_regalo:
     if retroalimentacion:
 
         $ palabraGenero = "hermano" if jugador.nombre == novio.name else "hermana"
-        narrador "[pareja.nombre] te intentó {b}chantajear{/b} para hacer pasar 
+        narrador "[pareja.nombre] te intentó {size=+15}{u}chantajear{/u}{/size} para hacer pasar 
             la violencia anterior, lo hizo con el regalo de su [palabraGenero] 
             para tí."
     else:
@@ -1155,8 +1155,8 @@ label chapultepec_romper_tarjeta:
         show tarjeta_spotify_rota:
                         yalign .4
                         xalign .5        
-        narrador "[pareja.nombre] te {b}humilló{/b} con su insulto y 
-            {b}destruyó{/b} el regalo de su [palabraGenero] por no caer en su 
+        narrador "[pareja.nombre] te {size=+15}{u}humilló{/u}{/size} con su insulto y 
+            {size=+15}{u}destruyó{/u}{/size} el regalo de su [palabraGenero] por no caer en su 
             chantaje."
         hide tarjeta_spotify_rota
     else:
@@ -1172,7 +1172,7 @@ label chapultepec_aceptar_chantaje:
         yalign .4
         xalign .5
     narrador "¿Y recuerdas esa tarjeta de Spotify? Era un regalo para tí, pero la 
-        aceptaste a través de un {b}chantaje{/b}."
+        aceptaste a través de un {size=+15}{u}chantaje{/u}{/size}."
     hide tarjeta_spotify_intacta
 
     return

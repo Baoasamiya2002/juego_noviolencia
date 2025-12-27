@@ -338,9 +338,16 @@ label start:
     narrador "(cantando) {bt=a2-s2.0-p3.0}Ella sabía que él sabía, que algún día 
         pasaría.{/bt}"    
 
+    if renpy.variant("mobile"):
+
+        $ instruccion = "Toca"
+    else:
+
+        $ instruccion = "Da click en"
+    
     menu:
 
-        narrador "¿Tu decisión?"
+        narrador "¿Tu decisión? ([instruccion] una opción)"
         "¿Flores cantando? ¿Qué p...":
             narrador "Tampoco es para tanto ¿eh?"
         "¡Me sé la canción! Me les uno.":
@@ -397,6 +404,8 @@ label start:
     narrador "En el menú de Progreso {image=boton_progreso} también puedes 
         volver a leer diálogos pasados (como el anterior que estuvo rapidísimo)
         . \n\n¡Te invitamos a probarlo!"
+    narrador "Y recuerda, no hay puntos extra por ser queda bien. 
+        Toma la decisión que realmente es tuya, va?"
     narrador "Bueno, suficiente de nosotras. [novia.name] y [novio.name] están 
         en el cine, vamos a conocerlos."
     jump conocerPersonaje
