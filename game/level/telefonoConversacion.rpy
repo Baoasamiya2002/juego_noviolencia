@@ -159,7 +159,7 @@ label telefono_conversacion:
 
     $ send_phone_message(pareja.nombre, "No lo hago, son muy [palabraGenero]?", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Pues maso, fue de la reunión familiar pasada, te acuerdas?", "pareja_dm", 3)
-    $ send_phone_message(pareja.nombre, "Aaa si, si me contaste, que se reunió un buen de tu familia", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, "Aaah sí, sí me contaste, que se reunió un buen de tu familia", "pareja_dm", 3)
     
     call telefono_celos_foto from _call_telefono_celos_foto
 
@@ -400,7 +400,7 @@ label opcion_telefono_regresar_menu:
         
         narrador "Haz atravesado la tercera capa de Latencia ¿Quieres continuar? 
             La siguiente capa es la {atl=drop_text~#~ 2.5}última{/atl}."
-        "Si":
+        "Sí":
 
             call instrucciones_cargar
             jump telefono_amigue

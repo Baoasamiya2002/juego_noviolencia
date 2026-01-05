@@ -62,7 +62,7 @@ label cita_chapultepec:
         pareja.personaje "No, nada amor, solo estoy un poco estresada por mi 
             trabajo en equipo."
         scene expression "emocion_seriedad_[jugador.nombre]"
-        jugador.personaje "¿Si? Pero te tocó con puro matadito… yo sí que debo 
+        jugador.personaje "¿Sí? Pero te tocó con puro matadito… yo sí que debo 
             preocuparme, apenas y le entiendo a la UEA."
     scene expression "emocion_enojo_[pareja.nombre]"
     pareja.personaje "Bueno, pero yo quiero preocuparme, ¿ok? Más bien tu andas 
@@ -448,7 +448,7 @@ label opcion_chapultepec_regresar_menu:
         
         narrador "Haz atravesado la segunda capa de Latencia ¿Quieres continuar? 
             La siguiente capa te {glitch=4.1}retará{/glitch}."
-        "Si":
+        "Sí":
 
             call instrucciones_cargar
             jump telefono_conversacion
@@ -469,7 +469,7 @@ label chapultepec_ocultar_incomodidad:
     scene expression "emocion_seriedad_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
     jugador.personaje "Todo sea en nombre de la moda... porque también estos mallones me 
-        aprietan un buen, pero combinan y obvio en la fotos me quiere ver bonita."
+        aprietan un buen, pero combinan y obvio en las fotos me quiere ver bonita."
 
     if retroalimentacion:
 
@@ -486,7 +486,7 @@ label chapultepec_miedo_estereotipo:
 
     scene expression "emocion_seriedad_[jugador.nombre]" at Transform(
         matrixcolor=filtro())
-    jugador.personaje "Aunque ¿yo darle una flor? Eso lo hacen más los chicos..."
+    jugador.personaje "Aunque, ¿yo darle una flor? Eso lo hacen más los chicos..."
 
     if retroalimentacion:
 

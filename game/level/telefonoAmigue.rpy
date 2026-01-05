@@ -87,7 +87,7 @@ label telefono_amigue:
     $ send_phone_message(viejoAmigue.nombre, "y en este tiempo de \"solteria\", hiciste algo [palabraGenero] o con tus compas?", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "a mí me gustaría, pero vivo bien lejos y le ayudo a mi mamá en su jale...<emoji_risa_nerviosa>", "amigue_dm", 3)
     $ palabraGenero = "ocupado" if jugador.nombre == novio.name else "ocupada"
-    $ send_phone_message(phone_config["phone_player_name"], "Hay tu tranqui! si me acuerdo que estabas muy [palabraGenero], me saludas a tu mami!", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Ay tu tranqui! si me acuerdo que estabas muy [palabraGenero], me saludas a tu mami!", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Y la verdad<emoji_risa_nerviosa> no sabría con quién salir...", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "poooor?<emoji_pensativo> si tienes un buen de seguidores en insta", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Mucho dizque like, pero ninguno aprobaba mi relación con mi [pareja.apodo]<emoji_voltea_ojos>", "amigue_dm", 3)
@@ -100,7 +100,7 @@ label telefono_amigue:
         $ send_phone_message(phone_config["phone_player_name"], "Me reprochaban mis mentirillas a [pareja.apodo] para que pudieran tener fotos conmigo", "amigue_dm", 3)
     
     $ palabraGenero = "estresarla" if jugador.nombre == novio.name else "estresarlo"
-    $ send_phone_message(phone_config["phone_player_name"], "Así que decidí subir fotos solo con [pareja.apodo] para no [palabraGenero]", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Así que decidí subir fotos sólo con [pareja.apodo] para no [palabraGenero]", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "<emoji_grito>", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Pues si, los demás no entendían que acciones como esa...", "amigue_dm", 3)
 
@@ -154,7 +154,7 @@ label telefono_amigue:
     $ send_phone_message(viejoAmigue.nombre, "la vdd creo que deben buscar un cambio", "amigue_dm", 3)
     $ palabraGenero = "experto" if jugador.nombre == novio.name else "experta"
     $ send_phone_message(phone_config["phone_player_name"], "Ay y cuándo te volviste [palabraGenero] en relaciones de pareja o qué?", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "yo?? nunca! si hasta me engañaron jaja <emoji_risa_nerviosa>. Pero ya en serio, me preocupo por tí", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, "yo?? nunca! si hasta me engañaron jaja <emoji_risa_nerviosa>. Pero ya en serio, me preocupo por ti", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "y he visto que luego se acostumbran a estar con gente bien mierda", "amigue_dm", 3)    
     $ send_phone_message(phone_config["phone_player_name"], "<emoji_risa_nerviosa>", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "al chile no te quiero incomodar, pero cuando algo no me late, te lo tengo que decir", "amigue_dm", 3)
@@ -728,13 +728,20 @@ label palabras_finales:
     hide screen phone_ui
     hide screen color_fondo_final
     scene fondo_inicio with fade 
-    narrador "Y este fue uno de los finales de la historia de [jugador.nombre] y [pareja.nombre]"
-    narrador "Pero estos cambian cada vez que lo juegas, ¡Descubre todos los finales y prueba las distintas decisiones!"
-    narrador "Por que aunque aquí puedes intentarlo una y otra vez, en la vida real no siempre se tiene esa oportunidad..."
+    
+    if persistent.contador_final_visto == 12:
+
+        narrador "¡Muchas gracias por ver todos los finales! Pensamos que nadie lo haría, pero {size=30}{b}tú{/b}{/size} nos demostraste lo contrario."
+    else: 
+    
+        narrador "Y este fue el final {b}[persistent.contador_final_visto]{/b} de 12 posibles finales de la historia de [jugador.nombre] y [pareja.nombre]"
+        $ persistent.contador_final_visto += 1
+    
+    narrador "Estos cambian cada vez que juegas, ¡Descubre todos los finales y prueba las distintas decisiones!"
+    narrador "Porque, aunque aquí puedes intentarlo una y otra vez, en la vida real no siempre se tiene esa oportunidad..."
     narrador "No dejes que otros tomen el control de tí, puedes tomar la decisión y hacer un cambio en tu vida. Al igual que [viejoAmigue.nombre], tus redes de apoyo te podemos ayudar."
     call instrucciones_recursos
     narrador "Esta fue la última capa de Latencia. ¡Muchas gracias por jugar!, sin tí este juego no sería posible."
-    call evaluacion
     show creditos_finales with fade 
     pause 10.0    
     scene black with fade

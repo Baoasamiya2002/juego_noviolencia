@@ -86,10 +86,10 @@ label prologo_novia:
     narrador "En el camino [jugador.nombre] ve que venden flores."
     jugador.personaje "Hmm unas flores... ¿y si le compro una a [pareja.apodo]?"
     call chapultepec_miedo_estereotipo from _call_chapultepec_miedo_estereotipo
-    jugador.personaje "Si mejor no, me van a ver raro."
+    jugador.personaje "Sí, mejor no, me van a ver raro."
     call chapultepec_merecer_enojo from _call_chapultepec_merecer_enojo
     scene expression "emocion_seriedad_[jugador.nombre]"
-    jugador.personaje "Ya debo de dejar de ser rara... sólo debo concentrarme en 
+    jugador.personaje "Ya debo dejar de ser rara... sólo debo concentrarme en 
         encontrarlo."
     jugador.personaje "Y... ¿ese es [pareja.nombre]? Se ve un poco preocupado..."
     narrador "[jugador.nombre] ve que [pareja.nombre] la saluda y ella empieza a 
@@ -223,7 +223,7 @@ label opcion_prologo_regresar_menu:
             La siguiente capa es la primera con 
             {gradient2=2-#93B2FD-#F792D5-20-#F792D5-#93B2FD-20}[pareja.nombre]
             {/gradient2}."
-        "Si":
+        "Sí":
             
             call instrucciones_cargar
             jump cita_chapultepec

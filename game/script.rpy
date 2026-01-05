@@ -114,6 +114,7 @@ default persistent.final_tercera_opcion = True
 default persistent.final_segunda_opcion = [True, False]
 default persistent.final_primera_opcion = False
 default persistent.ocultar = False
+default persistent.contador_final_visto = 1
 
 
 
@@ -382,7 +383,7 @@ label start:
 
     if persistent.desbloqueo:
         
-        narrador "Aunque ya veo que desbloqueaste la maceta {atl=bounce}dorada{/atl}. 
+        narrador "Y veo que desbloqueaste la maceta {atl=bounce}dorada{/atl}. 
             ¡En esa está tu planta! Y gracias por compartir nuestro juego."
             
     narrador "Y no, no estamos así de tapaditas por el frío de Cuajis, es que 
@@ -423,7 +424,7 @@ label tutorial_ocultar:
 
     menu:
         narrador "Selecciona una respuesta [instruccion] sobre ella."
-        "Si":
+        "Sí":
 
             if _preferences.self_voicing:
 
