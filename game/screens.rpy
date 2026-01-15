@@ -117,6 +117,15 @@ screen say(who, what):
 
     frame:
         
+        if who == jugador.nombre:
+
+            at message_appear(1)
+        elif who == pareja.nombre:
+
+            at message_appear(-1)
+        else:
+
+            at timestamp_appear()
         id "window"
         style_prefix "window"
 
