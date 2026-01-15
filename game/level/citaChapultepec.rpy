@@ -10,14 +10,9 @@ label cita_chapultepec:
 
     $ save_name = _("Segunda capa")
     show capa_2 with fade
-    pause 8.0
-    if renpy.variant("mobile"):
-
-        $ instruccion = "Toca"
-    else:
-
-        $ instruccion = "Click"
-    narrador "[instruccion] para continuar"
+    show screen accion_cronometrada
+    pause
+    hide screen accion_cronometrada
 
     $ retroalimentacion = False
     $ listaEstereotipo = []

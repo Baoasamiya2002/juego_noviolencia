@@ -1,8 +1,6 @@
-label prologo_personaje:
+label instruccion_continuar:
 
-    $ save_name = _("Primera capa")
-    show capa_1 with fade
-    pause 8.0
+    hide screen accion_cronometrada
     if renpy.variant("mobile"):
 
         $ instruccion = "Toca"
@@ -10,6 +8,16 @@ label prologo_personaje:
 
         $ instruccion = "Click"
     narrador "[instruccion] para continuar"
+    return
+
+
+label prologo_personaje:
+
+    $ save_name = _("Primera capa")
+    show capa_1 with fade
+    show screen accion_cronometrada
+    pause
+    hide screen accion_cronometrada
 
     $ retroalimentacion = False
     $ listaEstereotipo = []

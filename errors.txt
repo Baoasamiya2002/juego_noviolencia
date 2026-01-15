@@ -2,8 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 344: Indentation mismatch.
-    else:
+File "game/level/telefonoConversacion.rpy", line 28: expected 'image_name_component' not found.
+    hide
+        ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Fri Dec 26 12:10:51 2025
+Wed Jan 14 20:57:12 2026

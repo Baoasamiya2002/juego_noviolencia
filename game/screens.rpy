@@ -2342,3 +2342,6 @@ style color_fondo_final:
 
 style image_button:
     activate_sound "audio/click_sound.mp3"
+
+screen accion_cronometrada:
+    timer 8.0 action Call("instruccion_continuar")
