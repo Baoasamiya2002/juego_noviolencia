@@ -58,8 +58,6 @@ define novia = Character("Fernanda",
     window_background=Frame("gui/pareja_textbox_trans.png"))
 define novio = Character("Carlos", 
     window_background=Frame("gui/pareja_textbox_trans.png"))
-define oncahui = Character("Oncahui", 
-    window_background=Frame("gui/oncahui_textbox.png"))
 define narrator = nvl_narrator
 
 #constantes
@@ -170,11 +168,13 @@ image planta_levemente_marchita = Movie(
 image planta_levemente_florece = Movie(
     play="images/planta/levemente_florece.webm", loop = True)
 image planta_florece = Movie(play="images/planta/florece.webm", loop = True)
-image oncahui_zoomout = Movie(
-    size=(2560,1600), play="images/Caminata uamito.webm", loop = False, 
-    image="uamito.png")
-image oncahui_zoomin = Movie(
-    size=(2560,1600), play="images/Salida.webm", loop = False)
+image planta_capullo_dorado = Movie(play="images/planta/capullo_dorado.webm", loop = True)
+image planta_marchita_dorado = Movie(play="images/planta/marchita_dorado.webm", loop = True)
+image planta_levemente_marchita_dorado = Movie(
+    play="images/planta/levemente_marchita_dorado.webm", loop = True)
+image planta_levemente_florece_dorado = Movie(
+    play="images/planta/levemente_florece_dorado.webm", loop = True)
+image planta_florece_dorado = Movie(play="images/planta/florece_dorado.webm", loop = True)
 image creditos_iniciales = Movie(
     size=(2560,1600), play="images/creditos_iniciales.webm", loop = False)
 image creditos_finales = Movie(
@@ -219,8 +219,6 @@ image tarjeta_intacta = "images/coleccionables/tarjeta_intacta.png"
 image tarjeta_rota = "images/coleccionables/tarjeta_rota.png"
 image pantalla_bloqueo_Carlos = "images/phone/media/pantalla_bloqueo_Carlos.png"
 image pantalla_bloqueo_Fernanda = "images/phone/media/pantalla_bloqueo_Fernanda.png"
-image oncahui = "uamito.png"
-image maceta_dorado = "images/planta/maceta_dorado.png"
 image capa_1 = "images/cortinilla_capa/capa_1.png"
 image capa_2 = "images/cortinilla_capa/capa_2.png"
 image capa_3 = "images/cortinilla_capa/capa_3.png"
@@ -319,17 +317,16 @@ label start:
     show planta_fondo as fondo_pareja:
         yalign .4
         xalign .69
-    show planta_capullo:
+    
+    $ planta_jugador = (
+        "planta_capullo_dorado" if persistent.desbloqueo 
+        else "planta_capullo")
+
+    show expression planta_jugador:
         yalign .4
         xalign .27        
         xsize 950
         ysize 900
-    if persistent.desbloqueo:
-        show maceta_dorado:
-            yalign .4
-            xalign .27        
-            xsize 950
-            ysize 900
     show planta_capullo as planta_pareja:
         yalign .4
         xalign .69        
@@ -337,7 +334,7 @@ label start:
         ysize 900
     
     narrador "(cantando) {bt=a2-s2.0-p3.0}Ella sabía que él sabía, que algún día 
-        pasaría.{/bt}"    
+        pasaría.{/bt}"  
 
     if renpy.variant("mobile"):
 
@@ -565,86 +562,3 @@ label eleccionCapa4:
         call tutorial_ocultar
     call eleccionPersonaje    
     jump telefono_amigue
-
-label finalJuego:
-
-    scene fondo_inicio
-    narrador "¡Muchas gracias por jugar esta primera versión del juego!"
-    narrador "Si tienes comentarios, por favor compártelos con nosotros y 
-        ayúdanos a mejorar."
-    jump evaluacion
-
-
-label evaluacion:
-
-    scene black
-    show oncahui_zoomout with fade
-    oncahui "¡Ya terminé el juego!"
-
-    menu:
-        oncahui "Y analizándolo, creo que el {b}videojuego{/b}…"
-        "Me gustó":
-            oncahui "Si, ¡se me hizo bueno!"
-        "Me fue indiferente":
-            oncahui "Si, estuvo ok."
-        "No me gustó":
-            oncahui "Si, ¡no estuvo bueno!"
-    
-    menu:
-        oncahui "Y en el caso de la {b}diversión{/b}, fue un juego… "
-        "Entretenido":
-            oncahui "La pasé bien jugándolo."
-        "Regular":
-            oncahui "Pudo ser más divertido."
-        "Aburrido":
-            oncahui "No pasó nada divertido..."
-    
-    menu:
-        oncahui "Además, la {b}dificultad{/b} del juego fue..."
-        "Fácil":
-            oncahui "Fue un juego fácil."
-        "Moderado":
-            oncahui "Fue un juego moderado."
-        "Difícil":
-            oncahui "Fue un juego difícil."
-
-    menu:
-        oncahui "Donde su {b}interfaz{/b} como menús, ventanas y botones me 
-            parecieron..."
-        "Entendibles":
-            oncahui "Le doy a su interfaz un 5 de 5 en claridad."
-        "Aceptables":
-            oncahui "Le doy a su interfaz un 3 de 5 en claridad."
-        "Confusos":
-            oncahui "Le doy a su interfaz un 0 de 5 en claridad."
-
-    menu:
-        oncahui "¡Ah! Otra cosa que recuerdo es el {b}lenguaje{/b} usado. El 
-            tono, palabras usadas y diálogos se me hicieron..."
-        "Adecuados":
-            oncahui "Noté que el guión fue apropiado."
-        "Irregulares":
-            oncahui "Noté que el guión tuvo cosas por mejorar."
-        "Inadecuados":
-            oncahui "Noté que el guión no era adecuado para mí."
-
-    menu:
-        oncahui "Además, honestamente, los {b}elementos visuales{/b} como 
-            ilustraciones y botones me parecieron..."
-        "Atractivos":
-            oncahui "¡Me gustó el estilo visual!"
-        "Mixtos":
-            oncahui "Varios elementos pudieron ser mejores."
-        "Inadecuados":
-            oncahui "No me gustaron..."
-
-    oncahui "Bueno, voy a terminar de ver los créditos del juego y apreciar el 
-        esfuerzo de todos los involucrados."
-
-    hide oncahui_zoomout
-    show oncahui_zoomin
-    pause 9.0
-    hide oncahui_zoomin
-    show creditos_finales with fade
-    pause 10.0
-    return

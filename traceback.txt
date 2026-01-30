@@ -1,121 +1,173 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/level/telefonoConversacion.rpy", line 12, in script call
-    pause
-  File "game/level/prologoPersonaje.rpy", line 10, in script
-    narrador "[instruccion] para continuar"
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 118, in execute
-    frame:
-  File "game/screens.rpy", line 118, in keywords
-    frame:
-  File "game/screens.rpy", line 120, in <module>
-    at message_appear(1)
-       ^^^^^^^          
-NameError: name 'message' is not defined
+  File "renpy/style.pyx", line 808, in renpy.style.rebuild
+  File "game/screens.rpy", line 855, in prepare_screen
+    screen about():
+  File "game/screens.rpy", line 855, in prepare
+    screen about():
+  File "game/screens.rpy", line 862, in prepare
+    use game_menu(("Créditos"), scroll="viewport"):
+  File "game/screens.rpy", line 862, in prepare
+    use game_menu(("Créditos"), scroll="viewport"):
+  File "game/screens.rpy", line 866, in prepare
+    hbox:
+  File "game/screens.rpy", line 866, in prepare
+    hbox:
+  File "game/screens.rpy", line 868, in prepare
+    vbox:
+  File "game/screens.rpy", line 868, in prepare
+    vbox:
+  File "game/screens.rpy", line 916, in prepare
+    hbox:
+  File "game/screens.rpy", line 916, in prepare
+    hbox:
+  File "game/screens.rpy", line 918, in prepare
+    vbox:
+  File "game/screens.rpy", line 918, in prepare
+    vbox:
+  File "game/screens.rpy", line 929, in prepare
+    text ("Créditos adicionales sobre los recursos
+  File "game/screens.rpy", line 929
+    ("Créditos adicionales sobre los recursos 
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+SyntaxError: unterminated string literal (detected at line 1)
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 118, in execute
-    frame:
-  File "game/screens.rpy", line 118, in keywords
-    frame:
-  File "game/screens.rpy", line 120, in <module>
-    at message_appear(1)
-       ^^^^^^^          
-NameError: name 'message' is not defined
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 118, in execute
-    frame:
-  File "game/screens.rpy", line 118, in keywords
-    frame:
-  File "game/screens.rpy", line 120, in <module>
-    at message_appear(1)
-       ^^^^^^^          
-NameError: name 'message' is not defined
+  File "game/screens.rpy", line 855, in prepare_screen
+    screen about():
+  File "game/screens.rpy", line 855, in prepare
+    screen about():
+  File "game/screens.rpy", line 862, in prepare
+    use game_menu(("Créditos"), scroll="viewport"):
+  File "game/screens.rpy", line 862, in prepare
+    use game_menu(("Créditos"), scroll="viewport"):
+  File "game/screens.rpy", line 866, in prepare
+    hbox:
+  File "game/screens.rpy", line 866, in prepare
+    hbox:
+  File "game/screens.rpy", line 868, in prepare
+    vbox:
+  File "game/screens.rpy", line 868, in prepare
+    vbox:
+  File "game/screens.rpy", line 916, in prepare
+    hbox:
+  File "game/screens.rpy", line 916, in prepare
+    hbox:
+  File "game/screens.rpy", line 918, in prepare
+    vbox:
+  File "game/screens.rpy", line 918, in prepare
+    vbox:
+  File "game/screens.rpy", line 929, in prepare
+    text ("Créditos adicionales sobre los recursos
+  File "game/screens.rpy", line 929
+    ("Créditos adicionales sobre los recursos 
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+SyntaxError: unterminated string literal (detected at line 1)
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/level/telefonoConversacion.rpy", line 12, in script call
-    pause
-  File "game/level/prologoPersonaje.rpy", line 10, in script
-    narrador "[instruccion] para continuar"
-  File "renpy/ast.py", line 2915, in execute
-    Say.execute(self)
-    ~~~~~~~~~~~^^^^^^
-  File "renpy/ast.py", line 991, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/exports/sayexports.py", line 129, in say
-    who(what, *args, **kwargs)
-    ~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 1543, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
-    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 1198, in do_display
-    display_say(who, what, self.do_show, **display_args)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/character.py", line 820, in display_say
-    what_text = renpy.display.screen.get_widget(what_text[0], what_text[1], what_text[2])
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/screen.py", line 1565, in get_displayable
-    screen.update()
-    ~~~~~~~~~~~~~^^
-  File "renpy/display/screen.py", line 715, in update
-    self.screen.function(**self.scope)
-    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 118, in execute
-    frame:
-  File "game/screens.rpy", line 118, in keywords
-    frame:
-  File "renpy/python.py", line 1292, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1285, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 120, in <module>
-    at message_appear(1)
-       ^^^^^^^          
-NameError: name 'message' is not defined
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "renpy/common/00keymap.rpy", line 627, in script
-    python hide:
+  File "renpy/common/00start.rpy", line 201, in script
+    python:
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1260, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/common/00keymap.rpy", line 627, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 652, in _execute_python_hide
-    ui.interact(suppress_overlay=True, suppress_underlay=True)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/common/00start.rpy", line 202, in <module>
+    _init_language()
+    ~~~~~~~~~~~~~~^^
+  File "renpy/common/00start.rpy", line 83, in _init_language
+    renpy.change_language(language, force=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/translation/__init__.py", line 841, in change_language
+    renpy.style.rebuild()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "renpy/style.pyx", line 808, in renpy.style.rebuild
+  File "renpy/display/screen.py", line 1035, in prepare_screens
+    s.ast.prepare_screen()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "game/screens.rpy", line 855, in prepare_screen
+    screen about():
+  File "game/screens.rpy", line 855, in prepare
+    screen about():
+  File "game/screens.rpy", line 862, in prepare
+    use game_menu(("Créditos"), scroll="viewport"):
+  File "game/screens.rpy", line 862, in prepare
+    use game_menu(("Créditos"), scroll="viewport"):
+  File "game/screens.rpy", line 866, in prepare
+    hbox:
+  File "game/screens.rpy", line 866, in prepare
+    hbox:
+  File "game/screens.rpy", line 868, in prepare
+    vbox:
+  File "game/screens.rpy", line 868, in prepare
+    vbox:
+  File "game/screens.rpy", line 916, in prepare
+    hbox:
+  File "game/screens.rpy", line 916, in prepare
+    hbox:
+  File "game/screens.rpy", line 918, in prepare
+    vbox:
+  File "game/screens.rpy", line 918, in prepare
+    vbox:
+  File "game/screens.rpy", line 929, in prepare
+    text ("Créditos adicionales sobre los recursos
+  File "renpy/pyanalysis.py", line 913, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^   
+  File "renpy/pyanalysis.py", line 895, in ast_eval_literal
+    expr = py_compile(expr, "eval", ast_node=True)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1247, in py_compile
+    raise e
+  File "renpy/python.py", line 1177, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/screens.rpy", line 929
+    ("Créditos adicionales sobre los recursos 
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+SyntaxError: unterminated string literal (detected at line 1)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "renpy/bootstrap.py", line 376, in bootstrap
+    renpy.main.main()
+    ~~~~~~~~~~~~~~~^^
+  File "renpy/main.py", line 614, in main
+    run(restart)
+    ~~~^^^^^^^^^
+  File "renpy/main.py", line 137, in run
+    renpy.execution.run_context(True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "renpy/execution.py", line 1022, in run_context
+    context.run()
+    ~~~~~~~~~~~^^
+  File "renpy/common/00start.rpy", line 201, in script
+    python:
+  File "renpy/common/00start.rpy", line 201, in script
+    python:
+  File "renpy/display/error.py", line 135, in report_exception
+    renpy.game.invoke_in_new_context(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        call_exception_screen,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        ignore_action=ignore_action,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "renpy/game.py", line 301, in invoke_in_new_context
+    return callable(*args, **kwargs)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "renpy/display/error.py", line 44, in call_exception_screen
+    return renpy.ui.interact(mouse="screen", type="screen", suppress_overlay=True, suppress_underlay=True)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/ui.py", line 304, in interact
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -129,122 +181,55 @@ Traceback (most recent call last):
         ^^^^^^^^^
     )  # type: ignore
     ^                
-  File "renpy/display/core.py", line 2757, in interact_core
-    root_widget.visit_all(lambda d: d.per_interact())
-    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 432, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 432, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 432, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/screen.py", line 503, in visit_all
-    callback(self)
-    ~~~~~~~~^^^^^^
-  File "renpy/display/core.py", line 2757, in <lambda>
-    root_widget.visit_all(lambda d: d.per_interact())
-                                    ~~~~~~~~~~~~~~^^ 
-  File "renpy/display/screen.py", line 514, in per_interact
-    self.update()
-    ~~~~~~~~~~~^^
-  File "renpy/display/screen.py", line 715, in update
-    self.screen.function(**self.scope)
-    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 118, in execute
-    frame:
-  File "game/screens.rpy", line 118, in keywords
-    frame:
-  File "renpy/python.py", line 1292, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1285, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 120, in <module>
-    at message_appear(1)
-       ^^^^^^^          
-NameError: name 'message' is not defined
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "renpy/common/00keymap.rpy", line 627, in script
-    python hide:
-  File "renpy/ast.py", line 1187, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1260, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/common/00keymap.rpy", line 627, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 652, in _execute_python_hide
-    ui.interact(suppress_overlay=True, suppress_underlay=True)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/ui.py", line 304, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/core.py", line 2219, in interact
-    repeat, rv = self.interact_core(
-                 ~~~~~~~~~~~~~~~~~~^
-        preloads=preloads,
-        ^^^^^^^^^^^^^^^^^^
-    ...<4 lines>...
-        **kwargs,
-        ^^^^^^^^^
-    )  # type: ignore
-    ^                
-  File "renpy/display/core.py", line 2757, in interact_core
-    root_widget.visit_all(lambda d: d.per_interact())
-    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 432, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 432, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/displayable.py", line 432, in visit_all
-    d.visit_all(callback, seen)
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "renpy/display/screen.py", line 503, in visit_all
-    callback(self)
-    ~~~~~~~~^^^^^^
-  File "renpy/display/core.py", line 2757, in <lambda>
-    root_widget.visit_all(lambda d: d.per_interact())
-                                    ~~~~~~~~~~~~~~^^ 
-  File "renpy/display/screen.py", line 514, in per_interact
-    self.update()
-    ~~~~~~~~~~~^^
-  File "renpy/display/screen.py", line 715, in update
-    self.screen.function(**self.scope)
-    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 116, in execute
-    screen say(who, what):
-  File "game/screens.rpy", line 118, in execute
-    frame:
-  File "game/screens.rpy", line 118, in keywords
-    frame:
-  File "renpy/python.py", line 1292, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/python.py", line 1285, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/screens.rpy", line 120, in <module>
-    at message_appear(1)
-       ^^^^^^^          
-NameError: name 'message' is not defined
+  File "renpy/display/core.py", line 2450, in interact_core
+    renpy.display.screen.prepare_screens()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "renpy/display/screen.py", line 1035, in prepare_screens
+    s.ast.prepare_screen()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "game/screens.rpy", line 855, in prepare_screen
+    screen about():
+  File "game/screens.rpy", line 855, in prepare
+    screen about():
+  File "game/screens.rpy", line 862, in prepare
+    use game_menu(("Créditos"), scroll="viewport"):
+  File "game/screens.rpy", line 862, in prepare
+    use game_menu(("Créditos"), scroll="viewport"):
+  File "game/screens.rpy", line 866, in prepare
+    hbox:
+  File "game/screens.rpy", line 866, in prepare
+    hbox:
+  File "game/screens.rpy", line 868, in prepare
+    vbox:
+  File "game/screens.rpy", line 868, in prepare
+    vbox:
+  File "game/screens.rpy", line 916, in prepare
+    hbox:
+  File "game/screens.rpy", line 916, in prepare
+    hbox:
+  File "game/screens.rpy", line 918, in prepare
+    vbox:
+  File "game/screens.rpy", line 918, in prepare
+    vbox:
+  File "game/screens.rpy", line 929, in prepare
+    text ("Créditos adicionales sobre los recursos
+  File "renpy/pyanalysis.py", line 913, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^   
+  File "renpy/pyanalysis.py", line 895, in ast_eval_literal
+    expr = py_compile(expr, "eval", ast_node=True)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/python.py", line 1247, in py_compile
+    raise e
+  File "renpy/python.py", line 1177, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, True)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/screens.rpy", line 929
+    ("Créditos adicionales sobre los recursos 
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+SyntaxError: unterminated string literal (detected at line 1)
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia 1.0.0
-Wed Jan 14 21:15:26 2026
+Sun Jan 25 15:00:19 2026

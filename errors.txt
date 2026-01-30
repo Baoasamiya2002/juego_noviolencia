@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 128: the at keyword argument was not given a value.
-    at
-      ^
+File "game/screens.rpy", line 1423: end of line expected.
+    add DynamicImage(
+                                                                                                                                                                                                                   ^
 
 Ren'Py Version: Ren'Py 8.4.1.25072401
-Wed Jan 14 21:22:37 2026
+Thu Jan 29 18:26:20 2026

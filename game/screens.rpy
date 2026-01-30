@@ -925,7 +925,8 @@ screen about():
                         if gui.about:
                             text "[gui.about!t]\n"
 
-                        text _("Hecho con {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+                        text _("Hecho con {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]\n")
+                        text ("Créditos adicionales sobre los recursos utilizados en el videojuego se encuentran en la página de {a=https://baoasamiya2002.itch.io/nuestras-flores-amorillas-ver-0}itch.io{/a}")
                     frame:
                         style "fondo_recurso"
                         xsize 780
@@ -1419,7 +1420,11 @@ screen history():
                         label _("Planta de [jugador.nombre]") xsize 550
                         null height (4 * gui.pref_spacing)
                         align(0.5, 0.5)
-                        add DynamicImage("planta_[jugador.estadoPlanta]") ysize 450 xsize 400
+                        add DynamicImage(
+                            "planta_[jugador.estadoPlanta]_dorado" 
+                            if persistent.desbloqueo 
+                            else "planta_[jugador.estadoPlanta]"): 
+                                ysize 450 xsize 400
                     vbox:
 
                         label _("Planta de [pareja.nombre]") xsize 450

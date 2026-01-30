@@ -203,22 +203,20 @@ label retroalimentacion_pareja_telefono:
     show planta_fondo:
         yalign .4
         xalign .5
-    show expression "planta_[jugador.estadoPlanta]" as planta:
+
+    $ planta_jugador = (
+        "planta_[jugador.estadoPlanta]_dorado" if persistent.desbloqueo 
+        else "planta_[jugador.estadoPlanta]")
+
+    show expression planta_jugador as planta:
         yalign .4
         xalign .5
         xsize 950
         ysize 900
-    if persistent.desbloqueo:
-        show maceta_dorado:
-            yalign .4
-            xalign .5        
-            xsize 950
-            ysize 900
     narrador "Lamentablemente [pareja.nombre] volvió a dañar tu planta, veamos 
         cuándo pasó:"
     hide planta_fondo
     hide planta
-    hide maceta_dorado
     hide fondo_inicio
     scene fondo_inicio at Transform(matrixcolor=TintMatrix("#505050"))
 
@@ -236,7 +234,10 @@ label retroalimentacion_pareja_telefono:
     scene black
     show fondo_inicio
     narrador "Así que, igual que la vez pasada, esta violencia afectó a tu planta."
-    narrador "Parece un ciclo, ¿no lo crees?"
+    narrador "Por su inseguridad emocional, [pareja.nombre] busca aislarte y 
+        monitorearte. {size=+15}{u}desconfiando de ti{/u}{/size}."
+    narrador "Aunque al principio se había disculpado, sigue violentándote. 
+        Parece un ciclo, ¿no lo crees?"
     narrador "Las plantas, como los humanos, merecen cuidados. {size=+15}{u}Merecemos 
         cuidados{/u}{/size}."
     jump retroalimentacion_jugador_telefono
@@ -542,7 +543,7 @@ label telefono_ignorar_reclamo:
 
     if retroalimentacion:
 
-        narrador "A partir de ahí [pareja.nombre] te {atl=rotate_text}ignoró {/atl} a causa de su enojo, cortando el diálogo sin mayor explicación."
+        narrador "A partir de ahí [pareja.nombre] te {atl=rotate_text}ignoró {/atl} a causa de su enojo, cortando el diálogo sin dar explicación."
     else:
 
         $ listaViolenciaPareja.append("telefono_ignorar_reclamo")
@@ -588,7 +589,7 @@ label telefono_control_publicacion:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te quizo {atl=rotate_text}controlar {/atl} con quién puedes tener fotos."
+        narrador "[pareja.nombre] te quizo {atl=rotate_text}controlar {/atl} con quién puedes tener fotos y que no suban fotos contigo."
     else:
         
         $ listaViolenciaPareja.append("telefono_control_publicacion")

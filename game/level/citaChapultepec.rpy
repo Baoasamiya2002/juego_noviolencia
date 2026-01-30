@@ -294,21 +294,19 @@ label retroalimentacion_pareja_chapultepec:
     show planta_fondo:
         yalign .4
         xalign .5
-    show expression "planta_[jugador.estadoPlanta]" as planta:
+    
+    $ planta_jugador = (
+        "planta_[jugador.estadoPlanta]_dorado" if persistent.desbloqueo 
+        else "planta_[jugador.estadoPlanta]")
+
+    show expression planta_jugador as planta:
         yalign .4
         xalign .5
         xsize 950
         ysize 900
-    if persistent.desbloqueo:
-        show maceta_dorado:
-            yalign .4
-            xalign .5        
-            xsize 950
-            ysize 900
     narrador "Lamentablemente [pareja.nombre] dañó tu planta, veamos cuándo pasó:"
     hide planta_fondo
     hide planta
-    hide maceta_dorado
     $ retroalimentacion = True
 
     $ i = 0
@@ -317,6 +315,8 @@ label retroalimentacion_pareja_chapultepec:
         $ i += 1
         
     scene chapultepec_fondo
+    narrador "Para cambiar el rumbo de la conversación, [pareja.nombre] te 
+        culpabilizó y humilló sin querer tomar ninguna responsabilidad."
     narrador "Y con toda esta violencia, acabó afectada tu planta."
     narrador "Pero recuerda, {size=+15}{u}no es tu culpa{/u}{/size}. [pareja.nombre] es 
         responsable de los daños que causó, no tú."
@@ -632,11 +632,9 @@ label chapultepec_culpar_otro:
 
     if retroalimentacion:
 
-        $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
         narrador "[pareja.nombre] te hizo {atl=rotate_text}gaslighting {/atl} 
-            (manipular para sembrar la duda) y {atl=rotate_text}culpabilizó {/atl} 
-            por la discusión, cuando [palabraGenero] fue 
-            quien te dijo absorbente."
+            (hacer que dudes de ti para manipularte) y {atl=rotate_text}culpabilizó {/atl} 
+            por la discusión, ignorando que te dijo \"absorbente\"."
     else:
 
         $ listaViolenciaPareja.append("chapultepec_culpar_otro")
@@ -730,7 +728,7 @@ label chapultepec_broma_diurex:
     if retroalimentacion:
 
         narrador "[pareja.nombre] se {atl=rotate_text}burló {/atl} de tu preocupación 
-            demeritandote y queriendo que te callaras."
+            , disfrazando la orden de que te calles en una broma."
     else:
 
         $ listaViolenciaPareja.append("chapultepec_broma_diurex")
@@ -760,14 +758,13 @@ label chapultepec_reclamar_toxicidad:
     
     scene expression "emocion_enojo_[pareja.nombre]" at Transform(
         matrixcolor=filtro())
-    $ palabraGenero = "hostigoso" if jugador.nombre == novio.name else "hostigosa"
     pareja.personaje "Acabamos de llegar y sigues chingando con lo mismo... 
-        ¡Por eso te digo [palabraGenero]!"
+        ¡Por eso te digo absorbente!"
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te intentó {atl=rotate_text}humillar {/atl} por querer irte, 
-            en vez de platicarlo."
+        narrador "[pareja.nombre] te intentó {atl=rotate_text}humillar {/atl} 
+            por querer irte, haciendote sentir como la causa de los problemas."
     else:
 
         $ listaViolenciaPareja.append("chapultepec_reclamar_toxicidad")
@@ -963,7 +960,8 @@ label chapultepec_quitarse_culpa:
 
     if retroalimentacion:
 
-        narrador "[pareja.nombre] te hizo {atl=rotate_text}gaslighting {/atl} y {atl=rotate_text}culpabilizó {/atl} 
+        narrador "[pareja.nombre] te hizo {atl=rotate_text}gaslighting {/atl} (
+            hacer que dudes de ti para manipularte) y {atl=rotate_text}culpabilizó {/atl} 
             de su reacción, justificando que decías mentiras cuando no hubo ninguna."
     else:
 
@@ -1038,7 +1036,7 @@ label chapultepec_pretexto_amigues:
     if retroalimentacion:
 
         narrador "[pareja.nombre] te {atl=rotate_text}celó {/atl} por tus amistades, justificando 
-            que peleaste para terminar la cita."
+            sin razón que peleaste para terminar la cita."
     else:
 
         $ listaViolenciaPareja.append("chapultepec_pretexto_amigues")

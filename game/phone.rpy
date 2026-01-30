@@ -212,7 +212,7 @@ init -1 python:
         return re.sub(r"<([A-Za-z0-9_]+)>", sub, text)
 
     # creates a new phone channel
-    def create_phone_channel(channel_id, display_name, participants, icon_path, is_group=False):
+    def create_phone_channel(channel_id, display_name, participants, icon_path, base_path, is_group=False):
         """ Creates a new phone channel, like a DM or a group chat.
             This function sets up the basic information for a new chat conversation.
             Args:
@@ -227,6 +227,7 @@ init -1 python:
             phone_channel_data[channel_id] = {
                 "display_name": display_name,
                 "icon": icon_path,
+                "base": base_path,
                 "participants": participants,
                 "is_group": is_group
             }
@@ -336,9 +337,9 @@ init -1 python:
         _phone_global_message_counter = 0
         current_phone_view = "pareja_dm"
         # phone relevant! if you want to add initial chats that appear before anything (or remove the demo ones) do so here~
-        create_phone_channel("pareja_dm", "[pareja.apodo]<3", [pareja.nombre, jugador.nombre], "phone/icons/foto_perfil.png")
-        create_phone_channel("jugador_dm", "mis notass", [jugador.nombre], "phone/icons/foto_perfil.png")
-        create_phone_channel("amigue_dm", "[viejoAmigue.nombre] xD", [viejoAmigue.nombre, jugador.nombre], "phone/icons/foto_amigue.png")
+        create_phone_channel("pareja_dm", "[pareja.apodo]<3", [pareja.nombre, jugador.nombre], "phone/icons/foto_perfil.png", "phone/base_capa_3.png")
+        create_phone_channel("jugador_dm", "mis notass", [jugador.nombre], "phone/icons/foto_perfil.png", "phone/base_capa_1.png")
+        create_phone_channel("amigue_dm", "[viejoAmigue.nombre] xD", [viejoAmigue.nombre, jugador.nombre], "phone/icons/foto_amigue.png", "phone/base_capa_4_[jugador.nombre].png")
         # phone relevant! same as above, but with messages
         send_phone_message("", "{color=#ffffff}Hoy{/color}", "pareja_dm", 1, do_pause=False)        
         phone_config["phone_player_name"] = [jugador.nombre]
@@ -633,7 +634,7 @@ screen phone_ui():
         # screen goes first as base will cover up some of it
         #add get_phone_theme_value("screen_background_image")
         #add get_phone_theme_value("header_background_image")
-        add get_phone_theme_value("base_background_image")
+        add phone_channel_data[current_phone_view]["base"]
         vbox:
             id "phone_viewport"
             xsize 685

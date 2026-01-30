@@ -141,7 +141,7 @@ label telefono_amigue:
             Call("media_naranja_chapultepec"))], "amigue_dm")
     
     $ send_phone_message(viejoAmigue.nombre, "mmm...<emoji_medio_triste> me parece que hay un poco de noviazgo en tu relación violenta...<emoji_risa_nerviosa>", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "??? haha no entiendo", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "??? haha creo que exageras", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Sí peleamos a veces, ni que fuéramos perfectos, es pasajero", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "si... pero por lo que dices, tienen muchas peleas y tú lo ves como normal<emoji_pensativo>", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "Y probablemente sigan teniendo peleas y cada vez más fuertes...", "amigue_dm", 3)
@@ -386,7 +386,12 @@ label final_tomar_atencion_en_pareja:
         show planta_fondo as fondo_pareja:
             yalign .4
             xalign .69
-        show planta_florece:
+
+        $ planta_jugador = (
+            "planta_florece_dorado" if persistent.desbloqueo 
+            else "planta_florece")
+
+        show expression planta_jugador:
             yalign .4
             xalign .27        
             xsize 950
@@ -425,7 +430,12 @@ label final_tomar_atencion_en_pareja:
                 show planta_fondo:
                     yalign .4
                     xalign .5
-                show expression "planta_[jugador.estadoPlanta]":
+
+                $ planta_jugador = (
+                    "planta_[jugador.estadoPlanta]_dorado" if persistent.desbloqueo 
+                    else "planta_[jugador.estadoPlanta]")
+
+                show expression planta_jugador:
                     yalign .4
                     xalign .5        
                     xsize 950
@@ -449,7 +459,12 @@ label final_tomar_atencion_en_pareja:
                     show planta_fondo:
                         yalign .4
                         xalign .5
-                    show expression "planta_[jugador.estadoPlanta]":
+
+                    $ planta_jugador = (
+                        "planta_[jugador.estadoPlanta]_dorado" if persistent.desbloqueo 
+                        else "planta_[jugador.estadoPlanta]")
+
+                    show expression planta_jugador:
                         yalign .4
                         xalign .5        
                         xsize 950
@@ -469,7 +484,12 @@ label final_tomar_atencion_en_pareja:
                     show planta_fondo:
                         yalign .4
                         xalign .5
-                    show planta_florece:
+
+                    $ planta_jugador = (
+                        "planta_florece_dorado" if persistent.desbloqueo 
+                        else "planta_florece")
+
+                    show expression planta_jugador:
                         yalign .4
                         xalign .5        
                         xsize 950
@@ -502,7 +522,12 @@ label final_tomar_atencion_en_pareja:
                     show planta_fondo:
                         yalign .4
                         xalign .5
-                    show expression "planta_[jugador.estadoPlanta]":
+
+                    $ planta_jugador = (
+                        "planta_[jugador.estadoPlanta]_dorado" if persistent.desbloqueo 
+                        else "planta_[jugador.estadoPlanta]")
+                    
+                    show expression planta_jugador:
                         yalign .4
                         xalign .5        
                         xsize 950
@@ -522,7 +547,12 @@ label final_tomar_atencion_en_pareja:
                     show planta_fondo:
                         yalign .4
                         xalign .5
-                    show planta_florece:
+
+                    $ planta_jugador = (
+                        "planta_florece_dorado" if persistent.desbloqueo 
+                        else "planta_florece")
+
+                    show expression planta_jugador:
                         yalign .4
                         xalign .5        
                         xsize 950
@@ -542,7 +572,12 @@ label final_tomar_atencion_en_pareja:
                 show planta_fondo:
                     yalign .4
                     xalign .5
-                show planta_florece:
+
+                $ planta_jugador = (
+                    "planta_florece_dorado" if persistent.desbloqueo 
+                    else "planta_florece")
+
+                show expression planta_jugador:
                     yalign .4
                     xalign .5        
                     xsize 950
@@ -598,7 +633,12 @@ label final_tomar_atencion_individual:
             show planta_fondo:
                 yalign .4
                 xalign .5
-            show expression "planta_[jugador.estadoPlanta]":
+
+            $ planta_jugador = (
+                "planta_[jugador.estadoPlanta]_dorado" if persistent.desbloqueo 
+                else "planta_[jugador.estadoPlanta]")
+
+            show expression planta_jugador:
                 yalign .4
                 xalign .5        
                 xsize 950
@@ -618,7 +658,12 @@ label final_tomar_atencion_individual:
             show planta_fondo:
                 yalign .4
                 xalign .5
-            show planta_florece:
+
+            $ planta_jugador = (
+                "planta_florece_dorado" if persistent.desbloqueo 
+                else "planta_florece")
+
+            show expression planta_jugador:
                 yalign .4
                 xalign .5        
                 xsize 950
@@ -638,7 +683,12 @@ label final_tomar_atencion_individual:
         show planta_fondo:
             yalign .4
             xalign .5
-        show planta_florece:
+
+        $ planta_jugador = (
+            "planta_florece_dorado" if persistent.desbloqueo 
+            else "planta_florece")
+
+        show expression planta_jugador:
             yalign .4
             xalign .5        
             xsize 950
@@ -678,7 +728,12 @@ label final_no_tomar_atencion:
         show planta_fondo as fondo_pareja:
             yalign .4
             xalign .69
-        show planta_marchita:
+
+        $ planta_jugador = (
+            "planta_marchita_dorado" if persistent.desbloqueo 
+            else "planta_marchita")
+
+        show expression planta_jugador:
             yalign .4
             xalign .27        
             xsize 950
@@ -703,7 +758,12 @@ label final_no_tomar_atencion:
         show planta_fondo as fondo_pareja:
             yalign .4
             xalign .69
-        show expression "planta_[jugador.estadoPlanta]":
+
+        $ planta_jugador = (
+            "planta_[jugador.estadoPlanta]_dorado" if persistent.desbloqueo 
+            else "planta_[jugador.estadoPlanta]")
+
+        show expression planta_jugador:
             yalign .4
             xalign .27        
             xsize 950
@@ -734,7 +794,7 @@ label palabras_finales:
     
     narrador "Estos cambian cada vez que juegas, ¡Descubre todos los finales y prueba las distintas decisiones!"
     narrador "Porque, aunque aquí puedes intentarlo una y otra vez, en la vida real no siempre se tiene esa oportunidad..."
-    narrador "No dejes que otros tomen el control de tí, puedes tomar la decisión y hacer un cambio en tu vida. Al igual que [viejoAmigue.nombre], tus redes de apoyo te podemos ayudar."
+    narrador "No dejes que otros tomen el control de tí o de una amistad, puedes tomar la decisión y hacer un cambio. Al igual que [viejoAmigue.nombre], tus redes de apoyo te podemos ayudar."
     call instrucciones_recursos
     narrador "Esta fue la última capa de Latencia. ¡Muchas gracias por jugar!, sin tí este juego no sería posible."
     show creditos_finales with fade 
