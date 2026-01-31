@@ -2,6 +2,8 @@
 
     import time
     
+    renpy.music.register_channel("musica_ambiental", "music")
+
     def callbackJugador(ctc, **kwargs):
         if ctc == "begin":
             renpy.music.play("audio/phone/send.mp3", channel="sound")

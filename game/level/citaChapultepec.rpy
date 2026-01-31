@@ -9,6 +9,7 @@ init python:
 label cita_chapultepec:
 
     $ save_name = _("Segunda capa")
+    play musica_ambiental musica_capa_1_2 loop fadein 1.0 volume 1.0
     show capa_2 with fade
     show screen accion_cronometrada
     pause
@@ -437,6 +438,7 @@ label retroalimentacion_estereotipo_chapultepec:
 
 label opcion_chapultepec_regresar_menu:
 
+    stop musica_ambiental fadeout 1.0
     scene black
 
     menu:

@@ -7,6 +7,7 @@ init python:
 label telefono_conversacion:
 
     $ save_name = _("Tercera capa")
+    play musica_ambiental musica_capa_3 loop fadein 1.0 volume 1.0
     show capa_3 with fade
     show screen accion_cronometrada
     pause
@@ -391,6 +392,7 @@ label retroalimentacion_estereotipo_telefono:
 
 label opcion_telefono_regresar_menu:
 
+    stop musica_ambiental fadeout 1.0
     scene black
 
     menu:

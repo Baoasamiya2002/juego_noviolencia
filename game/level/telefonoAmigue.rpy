@@ -11,6 +11,7 @@ init python:
 label telefono_amigue:
 
     $ save_name = _("Cuarta capa")
+    play musica_ambiental musica_capa_4 loop fadein 1.0 volume 1.0
     show capa_4 with fade
     show screen accion_cronometrada
     pause
@@ -291,6 +292,8 @@ label tomar_atencion_en_pareja:
     $ send_phone_message(viejoAmigue.nombre, "porfa ya no perdamos el contacto<emoji_corazon>", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Noo claro que no! Gracias. Bye", "amigue_dm", 3)
     hide screen phone_ui
+    stop musica_ambiental fadeout 1.0
+    stop music fadeout 1.0
     jump final_tomar_atencion_en_pareja
     return
 
@@ -306,6 +309,8 @@ label tomar_atencion_individual:
     $ send_phone_message(viejoAmigue.nombre, "porfa ya no perdamos el contacto<emoji_corazon>", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Noo claro que no! Gracias. Bye", "amigue_dm", 3)
     hide screen phone_ui
+    stop musica_ambiental fadeout 1.0
+    stop music fadeout 1.0
     jump final_tomar_atencion_individual
     return
 
@@ -322,6 +327,8 @@ label no_tomar_atencion:
     $ send_phone_message(phone_config["phone_player_name"], "Así que... suerte a tu [palabraGenero] en su concurso. Bye", "amigue_dm", 3)
     narrador "Bloqueaste a [viejoAmigue.nombre]"
     hide screen phone_ui
+    stop musica_ambiental fadeout 1.0
+    stop music fadeout 1.0
     jump final_no_tomar_atencion
     return
 
@@ -782,6 +789,7 @@ label palabras_finales:
     
     hide screen phone_ui
     hide screen color_fondo_final
+    play music musica_fondo loop fadein 2.0 volume 1.0
     scene fondo_inicio with fade 
     
     if persistent.contador_final_visto == 12:
