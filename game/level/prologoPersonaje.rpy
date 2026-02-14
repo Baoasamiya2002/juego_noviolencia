@@ -80,11 +80,11 @@ label prologo_novia:
     
     narrador "El día está soleado y [jugador.nombre] empieza a sentir el calor 
         a comparación de cuando estaba en Cuajimalpa."
-    jugador.personaje "Diablos... por andar organizando cosas con mi equipo ya 
-        no chequé el clima acá en la ciudad..."
+    jugador.personaje "Ya me estoy cansando... esto del COVID sí que afectó mi 
+        rendimiento físico..."
     scene expression "emocion_tristeza_[jugador.nombre]"
-    jugador.personaje "Que con este solecito y las botitas que me traje, me van 
-        a quedar los pies bien sudados."
+    jugador.personaje "Y con este solecito y las botitas que me traje, me van a 
+        quedar los pies bien sudados."
     jugador.personaje "Ash ¿por qué no me traje mis tenis? Así ando más liviana."
     scene expression "emocion_seriedad_[jugador.nombre]"
     jugador.personaje "Aaah si cierto, que me las regaló mi [pareja.apodo] y 
@@ -159,7 +159,8 @@ label prologo_novio:
         lo lea.."
     jugador.personaje "Gastos y más gastos... ¿Y si le vuelvo a pedir prestado 
         a mi pa'?"
-    jugador.personaje "Pero todavía le debo del regalo pasado de [pareja.apodo]..."
+    jugador.personaje "Pero todavía le debo del regalo pasado de [pareja.apodo].
+        .. A veces extraño el confinamiento y no gastar en salidas..."
     hide screen phone_ui
     call chapultepec_ser_romantico from _call_chapultepec_ser_romantico
     scene expression "emocion_felicidad_[jugador.nombre]"
