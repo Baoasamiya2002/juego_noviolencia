@@ -31,8 +31,9 @@ label telefono_conversacion:
     $ switch_channel_view("pareja_dm")
 
     hide expression "pantalla_bloqueo_[jugador.nombre]"
-    show screen phone_ui
+    show screen phone_ui   
     
+    $ send_phone_message("", "{color=#ffffff}Hoy{/color}", "pareja_dm", 1, do_pause=False)
     $ send_phone_message(
         pareja.nombre, 
         (

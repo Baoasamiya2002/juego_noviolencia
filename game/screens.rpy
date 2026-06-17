@@ -1463,7 +1463,8 @@ screen history():
             
             vbox:
 
-                label _("Historial de diálogos")
+                label ("Historial de diálogos"):
+                    left_margin 30
                 
                 use game_menu(scroll=(
                     "vpgrid" if gui.history_height else "viewport"), yinitial=1.0, 

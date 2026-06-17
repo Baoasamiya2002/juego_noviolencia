@@ -69,9 +69,9 @@ init -1 python:
         "group_joined": "{participant} joined the group.",
         "group_left": "{participant} left the group.",
         # UI Configurations
-        "message_font_size": 51,
-        "choice_font_size": 51,
-        "timestamp_font_size": 45,
+        "message_font_size": 67.5,
+        "choice_font_size": 67.5,
+        "timestamp_font_size": 63.5,
         "auto_scroll": True,
         "show_sender_in_preview": True,
         "default_icon": "phone/icon.png",
@@ -594,7 +594,7 @@ init -1 python:
 ## -----------------------------------------------------
 # phone relevant! initial phone position and size 
 default phone_zoom = 1.0
-default phone_x = 0.42
+default phone_x = 0.44
 default phone_y = 0.57
 transform phone_position(p_zoom, p_x, p_y):
     anchor(0.5, 0.5) 
@@ -628,38 +628,20 @@ screen phone_ui():
     default was_channel_unread = False
     window:
         at phone_position(phone_zoom, phone_x, phone_y)
-        xalign 0.5
+        xalign 1.5
         yalign 0.5 
-        xsize 900
+        #xsize 2560
         # screen goes first as base will cover up some of it
         #add get_phone_theme_value("screen_background_image")
         #add get_phone_theme_value("header_background_image")
         add phone_channel_data[current_phone_view]["base"]
         vbox:
             id "phone_viewport"
-            xsize 685
-            ysize 1150
-            yalign 0.4
-            xalign -0.6
+            xsize 1485
+            #ysize 750
+            yalign 0.5
+            xanchor 0.5 xpos 1690
             vbox:
-                spacing 10
-                # display at the top of the screen the name of the current chat (or title for list)
-                if current_phone_view != "channel_list":
-                    null height 31
-                    hbox:
-                        add phone_channel_data[current_phone_view]["icon"]:
-                                ypos 0.6
-                                xpos 1.0
-                                xysize (75, 75)
-                        text phone_channel_data[current_phone_view]["display_name"]:
-                            style "phone_header_style"
-                            yalign 2.0
-                            xpos 1.25
-                else:
-                    null height 40
-                    text phone_config["channels_title"]:
-                        style "phone_header_style"
-                null height 47
                 # main content
                 if current_phone_view == "channel_list":
                     $ yadj = ui.adjustment()
@@ -722,7 +704,7 @@ screen phone_ui():
                     viewport:
                         id "message_viewport" 
                         xfill True
-                        ysize 979
+                        ysize 1200
                         yadjustment yadj
                         scrollbars "vertical"
                         mousewheel True
@@ -781,7 +763,7 @@ screen phone_ui():
                                         null height 15
                                         hbox:
                                             xalign 0.5
-                                            xmaximum 360
+                                            xmaximum 560
                                             if msg_id == latest_channel_id and not channel_seen_latest[current_phone_view]:
                                                 at timestamp_appear()
                                                 $ channel_seen_latest[current_phone_view] = True
@@ -806,7 +788,7 @@ screen phone_ui():
                                             else:
                                                 xpos msg_padding xanchor 0.0
                                                 padding (21, 10, 10, 10)
-                                            xmaximum 540
+                                            xmaximum 1140
                                             if msg_id == latest_channel_id and not channel_seen_latest[current_phone_view]:
                                                 at message_appear(anim_direction)
                                                 $ channel_seen_latest[current_phone_view] = True
@@ -827,7 +809,7 @@ screen phone_ui():
                                             else:
                                                 xpos msg_padding xanchor 0.0
                                                 padding (21, 10, 10, 10)
-                                            xmaximum 540
+                                            xmaximum 1140
                                             if msg_id == latest_channel_id and not channel_seen_latest[current_phone_view]:
                                                 at message_appear(anim_direction)
                                                 $ channel_seen_latest[current_phone_view] = True
@@ -836,7 +818,7 @@ screen phone_ui():
                                                     $ yadj.value = (yadj.range + 1000)
                                             hbox:
                                                 spacing 5
-                                                xmaximum 510
+                                                xmaximum 1110
 
                                                 if index != len(phone_channels[current_phone_view]) - 1:##FUNCIONA
                                                     $ message_text = "{noalt}" + message_text + "{/noalt}"

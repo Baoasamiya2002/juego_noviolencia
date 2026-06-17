@@ -31,6 +31,7 @@ label telefono_amigue:
 
     show screen phone_ui
 
+    $ send_phone_message("", "{color=#ffffff}Hoy{/color}", "pareja_dm", 1, do_pause=False)
     if jugador.apodo == APODO_NOVIA:
 
         $ send_phone_message(viejoAmigue.nombre, "Hola amigx! Me ayudas con un like para mi hermanito? <emoji_rezando> Es para el concurso \"El futuro ingeniero\" de su kinder. Muchas gracias! <emoji_feliz> https://www.feizbook.com/share/17j8FUnxfu/", "amigue_dm", 3)
@@ -39,7 +40,7 @@ label telefono_amigue:
         $ send_phone_message(viejoAmigue.nombre, "Hola amigx! Me ayudas con un like para mi hermanita? <emoji_rezando> Es para el concurso \"La futura enfermera\" de su kinder. Muchas gracias! <emoji_feliz> https://www.feizbook.com/share/17j8FUnxfu/", "amigue_dm", 3)
     
     $ palabraGenero = "hermana" if jugador.nombre == novio.name else "hermano"
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu [palabraGenero] <emoji_feliz>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
     
     if jugador.apodo == APODO_NOVIA:
 
@@ -49,17 +50,17 @@ label telefono_amigue:
         $ send_phone_message(phone_config["phone_player_name"], "Un poco raro lo de futura enfermera<emoji_risa_nerviosa>, no pudo ser de cualquier carrera?", "amigue_dm", 3)
     
     $ palabraGenero = "la" if jugador.nombre == novio.name else "lo"
-    $ send_phone_message(phone_config["phone_player_name"], "Y ya creció un buen! <emoji_grito><emoji_grito> Recuerdo cuando [palabraGenero] cargué...", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Y ya creció un buen! <emoji_grito><emoji_grito> Recuerdo cuando {palabraGenero} cargué...", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "weeey! tiempo de no hablar. Sii ya está bien grande", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "cómo estás? ya tampoco te he visto jugar básquet en las canchas", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "<emoji_pensativo>", "amigue_dm", 3)
     $ palabraGenero = "amiga" if jugador.nombre == novio.name else "amigo"
-    $ send_phone_message(phone_config["phone_player_name"], "Si... [pareja.apodo] tuvo problemitas con un [palabraGenero] que jugaba y pues ya no tengo ganas de básquet...", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Si... [pareja.apodo] tuvo problemitas con un {palabraGenero} que jugaba y pues ya no tengo ganas de básquet...", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "no mames, pero si a ti te encantaba jugar!<emoji_indiferente>", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "en la prepa casi todos los días jugabas", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Pues la gente cambia <emoji_risa_nerviosa>heh", "amigue_dm", 3)
     $ palabraGenero = "la" if jugador.nombre == novio.name else "el"
-    $ send_phone_message(viejoAmigue.nombre, "no pues si... y entonces sigues con [palabraGenero] [pareja.nombre]?", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, f"no pues si... y entonces sigues con {palabraGenero} [pareja.nombre]?", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "tampoco se me ha aparecido en los pasillos<emoji_pensativo>", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Haha ni que fuera un fantasma! haha. Es que se fue de movilidad a...", "amigue_dm", 3)
 
@@ -77,13 +78,13 @@ label telefono_amigue:
     
     $ send_phone_message(viejoAmigue.nombre, "<emoji_risa>", "amigue_dm", 3)
     $ palabraGenero = "listo" if jugador.nombre == novio.name else "lista"
-    $ send_phone_message(phone_config["phone_player_name"], "Pero ya mero regresa y estoy [palabraGenero] para su bienvenida<emoji_guinio><emoji_guinio>", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Pero ya mero regresa y estoy {palabraGenero} para su bienvenida<emoji_guinio><emoji_guinio>", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "uuy, no me des detalles jajaj<emoji_risa> Y qué chido que tiene varo para ir allá jaj", "amigue_dm", 3)
     $ palabraGenero = "solo" if jugador.nombre == novio.name else "sola"
-    $ send_phone_message(viejoAmigue.nombre, "y en este tiempo de \"solteria\", hiciste algo [palabraGenero] o con tus compas?", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, f"y en este tiempo de \"solteria\", hiciste algo {palabraGenero} o con tus compas?", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "a mí me gustaría, pero vivo bien lejos y le ayudo a mi mamá en su jale...<emoji_risa_nerviosa>", "amigue_dm", 3)
     $ palabraGenero = "ocupado" if jugador.nombre == novio.name else "ocupada"
-    $ send_phone_message(phone_config["phone_player_name"], "Ay tu tranqui! si me acuerdo que estabas muy [palabraGenero], me saludas a tu mami!", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Ay tu tranqui! si me acuerdo que estabas muy {palabraGenero}, me saludas a tu mami!", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Y la verdad<emoji_risa_nerviosa> no sabría con quién salir...", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "poooor?<emoji_pensativo> si tienes un buen de seguidores en insta", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Mucho dizque like, pero ninguno aprobaba mi relación con mi [pareja.apodo]<emoji_voltea_ojos>", "amigue_dm", 3)
@@ -96,7 +97,7 @@ label telefono_amigue:
         $ send_phone_message(phone_config["phone_player_name"], "Me reprochaban mis mentirillas a [pareja.apodo] para que pudieran tener fotos conmigo", "amigue_dm", 3)
     
     $ palabraGenero = "estresarla" if jugador.nombre == novio.name else "estresarlo"
-    $ send_phone_message(phone_config["phone_player_name"], "Así que decidí subir fotos sólo con [pareja.apodo] para no [palabraGenero]", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Así que decidí subir fotos sólo con [pareja.apodo] para no {palabraGenero}", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "<emoji_grito>", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Pues si, los demás no entendían que acciones como esa...", "amigue_dm", 3)
 
@@ -149,17 +150,17 @@ label telefono_amigue:
     $ send_phone_message(phone_config["phone_player_name"], "Pues... <emoji_medio_triste> a veces", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "la vdd creo que deben buscar un cambio", "amigue_dm", 3)
     $ palabraGenero = "experto" if jugador.nombre == novio.name else "experta"
-    $ send_phone_message(phone_config["phone_player_name"], "Ay y cuándo te volviste [palabraGenero] en relaciones de pareja o qué?", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Ay y cuándo te volviste {palabraGenero} en relaciones de pareja o qué?", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "yo?? nunca! si hasta me engañaron jaja <emoji_risa_nerviosa>. Pero ya en serio, me preocupo por ti", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "y he visto que luego se acostumbran a estar con gente bien mierda", "amigue_dm", 3)    
     $ send_phone_message(phone_config["phone_player_name"], "<emoji_risa_nerviosa>", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "al chile no te quiero incomodar, pero cuando algo no me late, te lo tengo que decir", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Ay nono, tú tranqui, de verdad estamos bien...", "amigue_dm", 3)
-    $ send_phone_message(viejoAmigue.nombre, "mira, como dices, [palabraGenero] no soy, pero neta que deberías pensar en platicárselo a alguien más", "amigue_dm", 3)
+    $ send_phone_message(viejoAmigue.nombre, f"mira, como dices, {palabraGenero} no soy, pero neta que deberías pensar en platicárselo a alguien más", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "en la UAM hay atención psicológica o hasta puedes buscar por fuera", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "y gracias por la confianza <emoji_rezando>, pero también hablalo con otra persona de confianza va?", "amigue_dm", 3)
     $ palabraGenero = "seguro" if jugador.nombre == novio.name else "segura"
-    $ send_phone_message(phone_config["phone_player_name"], "Este... gracias por preocuparte, sigo sin estar [palabraGenero] de que haya algo mal", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Este... gracias por preocuparte, sigo sin estar {palabraGenero} de que haya algo mal", "amigue_dm", 3)
     
     $ send_phone_message("", "{color=#ffffff}¿Tu decisión?{/color}", "amigue_dm", 1, do_pause=False)
     $ present_phone_choices([
@@ -195,7 +196,7 @@ label movilidad_China:
 
     $ send_phone_message(phone_config["phone_player_name"], "China China, se me estaba olvidando el nombre", "amigue_dm", 3)
     $ palabraGenero = "hecha" if jugador.nombre == novio.name else "hecho"
-    $ send_phone_message(phone_config["phone_player_name"], "Seguro fue a ver si no estaba [palabraGenero] allá haha", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Seguro fue a ver si no estaba {palabraGenero} allá haha", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Con eso de que le gusta mucho el pollo a la naranja hah", "amigue_dm", 3)
     return
 
@@ -204,7 +205,7 @@ label media_naranja_telefono:
 
     $ send_phone_message(phone_config["phone_player_name"], "Muestran cómo nos importa la relación y estamos en sintonía", "amigue_dm", 3)
     $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
-    $ send_phone_message(phone_config["phone_player_name"], "Porque ni yo ni [palabraGenero] me pide algo<emoji_feliz>, ya sabémos lo que el otro necesita", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Porque ni yo ni {palabraGenero} me pide algo<emoji_feliz>, ya sabémos lo que el otro necesita", "amigue_dm", 3)
     
     if "telefono_eliminar_foto" in listaMito:
         $ send_phone_message(viejoAmigue.nombre, "lit te pidió que los demás eliminaran fotos contigo...", "amigue_dm", 3)
@@ -223,7 +224,7 @@ label amor_todo_puede_telefono:
 
     $ send_phone_message(phone_config["phone_player_name"], "Son muestras de que nos amamos<emoji_corazon>", "amigue_dm", 3)
     $ palabraGenero = "insegura" if jugador.nombre == novio.name else "inseguro"
-    $ send_phone_message(phone_config["phone_player_name"], "Tal vez [pareja.apodo] es un poco [palabraGenero], pero lo superamos", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Tal vez [pareja.apodo] es un poco {palabraGenero}, pero lo superamos", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "oh ok, supongo que lo superaron hablando al respecto no?", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Eso no fue necesario, lo demostramos con gestos románticos<emoji_guinio><emoji_guinio>", "amigue_dm", 3)
     return
@@ -232,7 +233,7 @@ label amor_todo_puede_telefono:
 label amor_todo_puede_chapultepec:
 
     $ palabraGenero = "la" if jugador.nombre == novio.name else "lo"
-    $ send_phone_message(phone_config["phone_player_name"], "Era una prueba, quería ver si [palabraGenero] amaba de verdad", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Era una prueba, quería ver si {palabraGenero} amaba de verdad", "amigue_dm", 3)
     
     if "chapultepec_insistir_hablar" in listaMito:
         
@@ -242,7 +243,7 @@ label amor_todo_puede_chapultepec:
         $ send_phone_message(phone_config["phone_player_name"], "Cambié el tema y después seguimos como si nada. Cuando se quiere de verdad, es así de simple<emoji_corazon>", "amigue_dm", 3)
     elif "chapultepec_reclamar_salida" in listaMito:
         
-        $ send_phone_message(phone_config["phone_player_name"], "Así que [palabraGenero] ignoré y no caí en la provocación. Con el amor todo se supera fácilmente<emoji_corazon>", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], f"Así que {palabraGenero} ignoré y no caí en la provocación. Con el amor todo se supera fácilmente<emoji_corazon>", "amigue_dm", 3)
     
     return
 
@@ -250,7 +251,7 @@ label amor_todo_puede_chapultepec:
 label emparejamiento_chapultepec:
 
     $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
-    $ send_phone_message(phone_config["phone_player_name"], "El noviazgo era algo nuevo para [palabraGenero], pero con el tiempo entendió su papel", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"El noviazgo era algo nuevo para {palabraGenero}, pero con el tiempo entendió su papel", "amigue_dm", 3)
     
     if "chapultepec_insistir_hablar" in listaMito:
         
@@ -261,7 +262,7 @@ label emparejamiento_chapultepec:
     elif "chapultepec_reclamar_salida" in listaMito:
         
         $ palabraGenero = "sola" if jugador.nombre == novio.name else "solo"
-        $ send_phone_message(phone_config["phone_player_name"], "Le hice sentir lo que es estar [palabraGenero] otra vez y se arrepintió, era obvio", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], f"Le hice sentir lo que es estar {palabraGenero} otra vez y se arrepintió, era obvio", "amigue_dm", 3)
     
     return
 
@@ -279,7 +280,7 @@ label media_naranja_chapultepec:
     elif "chapultepec_reclamar_salida" in listaMito:
         
         $ palabraGenero = "solita" if jugador.nombre == novio.name else "solito"
-        $ send_phone_message(phone_config["phone_player_name"], "Entonces no le hablé por un tiempo y [palabraGenero] vino a mi, sabía que me necesitaba<emoji_feliz>", "amigue_dm", 3)
+        $ send_phone_message(phone_config["phone_player_name"], f"Entonces no le hablé por un tiempo y {palabraGenero} vino a mi, sabía que me necesitaba<emoji_feliz>", "amigue_dm", 3)
     return
 
 
@@ -301,10 +302,10 @@ label tomar_atencion_en_pareja:
 label tomar_atencion_individual:
 
     $ palabraGenero = "solo" if jugador.nombre == novio.name else "sola"
-    $ send_phone_message(phone_config["phone_player_name"], "Primero lo haré yo [palabraGenero]. No quiero presionar a [pareja.apodo] a cosas que ni yo entiendo", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Primero lo haré yo {palabraGenero}. No quiero presionar a [pareja.apodo] a cosas que ni yo entiendo", "amigue_dm", 3)
     $ palabraGenero = "ella" if jugador.nombre == novio.name else "él"
-    $ send_phone_message(phone_config["phone_player_name"], "Porque si, muchas veces las cosas no se sienten bien entre nosotros... pero [palabraGenero] ya es parte de mí", "amigue_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "Primero quiero entender qué está pasando y luego veo cómo se lo comento a [palabraGenero], va?", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Porque si, muchas veces las cosas no se sienten bien entre nosotros... pero {palabraGenero} ya es parte de mí", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Primero quiero entender qué está pasando y luego veo cómo se lo comento a {palabraGenero}, va?", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "ese es el espíritu! intentalo y cualquier cosa, me puedes enviar un mensaje o llamar.", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "porfa ya no perdamos el contacto<emoji_corazon>", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Noo claro que no! Gracias. Bye", "amigue_dm", 3)
@@ -320,11 +321,11 @@ label no_tomar_atencion:
     $ send_phone_message(phone_config["phone_player_name"], "Por el momento no necesitamos nada, pero gracias por tu preocupación!", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Ya me dí cuenta que tú y yo andamos en distintos lugares haha y no ves las cosas como yo", "amigue_dm", 3)
     $ palabraGenero = "el mismo" if jugador.nombre == novio.name else "la misma"
-    $ send_phone_message(phone_config["phone_player_name"], "Cuando [pareja.apodo] regrese, va a querer que sea [palabraGenero] de siempre. No quiero meter ruido en eso ok?", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Cuando [pareja.apodo] regrese, va a querer que sea {palabraGenero} de siempre. No quiero meter ruido en eso ok?", "amigue_dm", 3)
     $ send_phone_message(viejoAmigue.nombre, "disculpa, no te quería ofender ni nada, sólo que algo no me cuadra, mira, hablar con un experto no te hará daño", "amigue_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Tal vez no, pero ahorita no tengo tiempo y creo que me llegó un mensaje de [pareja.apodo]", "amigue_dm", 3)
     $ palabraGenero = "hermana" if jugador.nombre == novio.name else "hermana"
-    $ send_phone_message(phone_config["phone_player_name"], "Así que... suerte a tu [palabraGenero] en su concurso. Bye", "amigue_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Así que... suerte a tu {palabraGenero} en su concurso. Bye", "amigue_dm", 3)
     narrador "Bloqueaste a [viejoAmigue.nombre]"
     hide screen phone_ui
     stop musica_ambiental fadeout 1.0

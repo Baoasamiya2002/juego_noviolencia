@@ -61,6 +61,7 @@ label prologo_novia:
             show screen phone_ui
             $ switch_channel_view("pareja_dm")
             $ mensajeAleatorio = random.choice(LISTA_MENSAJE_ALEATORIO)
+            $ send_phone_message("", "{color=#ffffff}Hoy{/color}", "pareja_dm", 1, do_pause=False)
             $ send_phone_message(pareja.nombre, mensajeAleatorio, "pareja_dm", 3)
             
             if LISTA_MENSAJE_ALEATORIO.index(mensajeAleatorio) == 0:
