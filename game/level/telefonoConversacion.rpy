@@ -116,7 +116,7 @@ label telefono_conversacion:
     $ send_phone_message("", "{color=#ffffff}¿Tu decisión?{/color}", "pareja_dm", 1, do_pause=False)
     $ present_phone_choices([
         (
-            "Mando mi ubicación en casa de su [palabraGenero]...", 
+            f"Mando mi ubicación en casa de su {palabraGenero}...", 
             Call("telefono_aceptar_ubicacion")), 
         (
             "¿Mi ubicación? ¡Ni en pedo!", 
@@ -145,27 +145,27 @@ label telefono_conversacion:
 
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
-    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt="Captura de pantalla del instagram de [palabraGenero] de [jugador.nombre]")
+    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt="Captura de pantalla del instagram de {palabraGenero} de [jugador.nombre]")
 
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
-    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi [palabraGenero]", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
     
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
     $ palabraGenero = "cercanas" if pareja.nombre == novio.name else "cercanos"
 
-    $ send_phone_message(pareja.nombre, "No lo hago, son muy [palabraGenero]?", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, f"No lo hago, son muy {palabraGenero}?", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Pues maso, fue de la reunión familiar pasada, te acuerdas?", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Aaah sí, sí me contaste, que se reunió un buen de tu familia", "pareja_dm", 3)
     
     call telefono_celos_foto from _call_telefono_celos_foto
 
     $ palabraGenero = "otro" if pareja.nombre == novio.name else "otra"       
-    $ send_phone_message(phone_config["phone_player_name"], "Haha<emoji_risa> quien insinua es [palabraGenero], si sólo estamos hombro con hombro", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Haha<emoji_risa> quien insinua es {palabraGenero}, si sólo estamos hombro con hombro", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "No mira yo entiendo que tu familia sea muy cariñosa", "pareja_dm", 3)
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"       
-    $ send_phone_message(pareja.nombre, "Pero quien no conozca a tu [palabraGenero], puede pensar cosas...<emoji_pensativo>", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, f"Pero quien no conozca a tu {palabraGenero}, puede pensar cosas...<emoji_pensativo>", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Sobre todo tu amiga esa la chismosa...", "pareja_dm", 3)
 
     call telefono_control_publicacion
@@ -483,14 +483,14 @@ label telefono_perdonar_violencia:
 
     $ send_phone_message(phone_config["phone_player_name"], "Ayy pues equis, ni me acuerdo de lo que pasó y seguro no vuelve a pasar", "pareja_dm", 3)
     $ palabraGenero = "abierta" if pareja.nombre == novio.name else "abierto"       
-    $ send_phone_message(phone_config["phone_player_name"], "Pero si te hace sentir mejor, si, claro que te perdono amor<emoji_corazon>, y yo también estaré más [palabraGenero] va?", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Pero si te hace sentir mejor, si, claro que te perdono amor<emoji_corazon>, y yo también estaré más {palabraGenero} va?", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "sisisis", "pareja_dm", 3)
     return
 
 label telefono_aceptar_ubicacion:
 
     $ send_phone_message(phone_config["phone_player_name"], "Si.. me acuerdo", "pareja_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "images/phone/media/gps.png", "pareja_dm", 2, summary_alt="GPS de casa de [palabraGenero] [pareja.nombre]")
+    $ send_phone_message(phone_config["phone_player_name"], "images/phone/media/gps.png", "pareja_dm", 2, summary_alt=f"GPS de casa de {palabraGenero} [pareja.nombre]")
     $ send_phone_message(phone_config["phone_player_name"], "Pero no te", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "<emoji_groserias>", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Enojes...", "pareja_dm", 3)
@@ -500,7 +500,7 @@ label telefono_aceptar_ubicacion:
     $ send_phone_message(phone_config["phone_player_name"], "Es el cumple de su hermana, de mi clase, ella invitó al salón", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Claaro que si<emoji_voltea_ojos>", "pareja_dm", 3)
     $ palabraGenero = "al otro ni lo" if pareja.nombre == novio.name else "a la otra ni la"       
-    $ send_phone_message(phone_config["phone_player_name"], "Pues sí, es la fiesta de mi compañera, [palabraGenero] topo", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Pues sí, es la fiesta de mi compañera, {palabraGenero} topo", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Ok?", "pareja_dm", 3)
     return
 
@@ -508,7 +508,7 @@ label telefono_aceptar_ubicacion:
 label telefono_celos_amigue:
  
     $ palabraGenero = "Armando" if pareja.nombre == novio.name else "Sofia"       
-    $ send_phone_message(pareja.nombre, "Qué haces en la casa de [palabraGenero]??", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, f"Qué haces en la casa de {palabraGenero}??", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Eh????", "pareja_dm", 3)
 
     if retroalimentacion:
@@ -573,7 +573,7 @@ label telefono_celos_foto:
     
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
     
-    $ send_phone_message(pareja.nombre, "Pero como que tu [palabraGenero] está un poco encima de ti no?", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, f"Pero como que tu {palabraGenero} está un poco encima de ti no?", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "Parece que te le insinuas", "pareja_dm", 3)
 
     if retroalimentacion:
@@ -643,7 +643,7 @@ label telefono_eliminar_foto:
 
         $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
-        $ send_phone_message(phone_config["phone_player_name"], "Bueno amor, voy a hablar con mi [palabraGenero] y después seguimos si??, te amoo<emoji_corazon>", "pareja_dm", 3)#################
+        $ send_phone_message(phone_config["phone_player_name"], f"Bueno amor, voy a hablar con mi {palabraGenero} y después seguimos si??, te amoo<emoji_corazon>", "pareja_dm", 3)#################
 
     return
 
@@ -652,7 +652,7 @@ label telefono_mentir_relacion:
         
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
-    $ send_phone_message(phone_config["phone_player_name"], "Y la verdad, casi ni hablo con mi [palabraGenero], somos distantes", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Y la verdad, casi ni hablo con mi {palabraGenero}, somos distantes", "pareja_dm", 3)
 
     if retroalimentacion:
 
@@ -676,7 +676,7 @@ label telefono_mentir_relacion:
 label telefono_checar_chat:
     
     $ palabraGenero = "cercanas" if pareja.nombre == novio.name else "cercanos"       
-    $ send_phone_message(pareja.nombre, "Yo ya sé que son [palabraGenero]!, si veo en tus mensajes que hablan seguido", "pareja_dm", 3)
+    $ send_phone_message(pareja.nombre, f"Yo ya sé que son {palabraGenero}!, si veo en tus mensajes que hablan seguido", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "No puedo creer que me mentiste", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "<emoji_lagrima>", "pareja_dm", 3)
     
