@@ -34,10 +34,6 @@ label telefono_conversacion:
     scene fondo_inicio at Transform(matrixcolor=TintMatrix("#505050")) with fade
     show screen phone_ui   
     
-    $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
-
-    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt=f"Captura de pantalla del instagram de {palabraGenero} de [jugador.nombre]")
-
     $ send_phone_message(
         pareja.nombre, 
         (
@@ -54,7 +50,7 @@ label telefono_conversacion:
         $ send_phone_message(pareja.nombre, "Eso espero <emoji_guinio>", "pareja_dm", 3)
     else:
 
-        $ send_phone_message(pareja.nombre, "Haaay [pareja.apodo], otra vez Ceballos nos dejó un proyecto súper difícil", "pareja_dm", 3)
+        $ send_phone_message(pareja.nombre, "Haaay [jugador.apodo], otra vez Ceballos nos dejó un proyecto súper difícil", "pareja_dm", 3)
         $ send_phone_message(pareja.nombre, "Y ya sabes que me cuesta mucho<emoji_rogando>, lo checas porfa?", "pareja_dm", 3)
         $ send_phone_message(phone_config["phone_player_name"], "Claro amor, tú tranquila<emoji_corazon><emoji_corazon>", "pareja_dm", 3)
         $ send_phone_message(pareja.nombre, "Te juro que es la última vez<emoji_guinio>", "pareja_dm", 3)
