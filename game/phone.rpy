@@ -239,7 +239,7 @@ init -1 python:
             channel_latest_global_id[channel_id] = 0
 
     # add messages to a channel in the phone (kind 0 = normal message, kind 1 = timestamp, kind 2 = photo, kind 3 = has emojis)
-    def send_phone_message(sender, message_text, channel_name, message_kind=0, summary_alt="none", image_x=480, image_y=480, do_pause=True):
+    def send_phone_message(sender, message_text, channel_name, message_kind=0, summary_alt="none", image_x=780, image_y=780, do_pause=True):
         """ Sends a message to a specific phone channel and updates the UI.
             Args:
                 sender (str): The name of the character sending the message.
@@ -337,7 +337,7 @@ init -1 python:
         _phone_global_message_counter = 0
         current_phone_view = "pareja_dm"
         # phone relevant! if you want to add initial chats that appear before anything (or remove the demo ones) do so here~
-        create_phone_channel("pareja_dm", "[pareja.apodo]<3", [pareja.nombre, jugador.nombre], "phone/icons/foto_perfil.png", "phone/base_capa_3.png")
+        create_phone_channel("pareja_dm", "[pareja.apodo]<3", [pareja.nombre, jugador.nombre], "phone/icons/foto_perfil.png", "phone/base_capa_3_[pareja.apodo].png")
         create_phone_channel("jugador_dm", "mis notass", [jugador.nombre], "phone/icons/foto_perfil.png", "phone/base_capa_1.png")
         create_phone_channel("amigue_dm", "[viejoAmigue.nombre] xD", [viejoAmigue.nombre, jugador.nombre], "phone/icons/foto_amigue.png", "phone/base_capa_4_[jugador.nombre].png")
         # phone relevant! same as above, but with messages
@@ -788,13 +788,13 @@ screen phone_ui():
                                             else:
                                                 xpos msg_padding xanchor 0.0
                                                 padding (21, 10, 10, 10)
-                                            xmaximum 1140
+                                            xmaximum 1440
                                             if msg_id == latest_channel_id and not channel_seen_latest[current_phone_view]:
                                                 at message_appear(anim_direction)
                                                 $ channel_seen_latest[current_phone_view] = True
                                                 $ channel_notifs[current_phone_view] = False
                                                 if phone_config["auto_scroll"]:
-                                                    $ yadj.value = (yadj.range + 1000)
+                                                    $ yadj.value = (yadj.range + 1300)
                                             add message_text at scale_to_fit(image_x, image_y) 
                                             # text summary_alt:##LO LEE, PERO AFECTA COMO SE VE LA IMAGEN
                                             #     size 0

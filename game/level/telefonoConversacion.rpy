@@ -31,9 +31,13 @@ label telefono_conversacion:
     $ switch_channel_view("pareja_dm")
 
     hide expression "pantalla_bloqueo_[jugador.nombre]"
+    scene fondo_inicio at Transform(matrixcolor=TintMatrix("#505050")) with fade
     show screen phone_ui   
     
-    $ send_phone_message("", "{color=#ffffff}Hoy{/color}", "pareja_dm", 1, do_pause=False)
+    $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
+
+    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt=f"Captura de pantalla del instagram de {palabraGenero} de [jugador.nombre]")
+
     $ send_phone_message(
         pareja.nombre, 
         (
@@ -145,11 +149,11 @@ label telefono_conversacion:
 
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
-    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt="Captura de pantalla del instagram de {palabraGenero} de [jugador.nombre]")
+    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt=f"Captura de pantalla del instagram de {palabraGenero} de [jugador.nombre]")
 
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
-    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
+    $ send_phone_message(phone_config["phone_player_name"], f"Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
     
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 

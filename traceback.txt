@@ -1,11 +1,11 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While processing text tag {palabraGenero} in "While processing text tag {palabraGenero} in 'Si! con gusto apoyo a tu {palabraGenero} {image=emoji_feliz}'.:".:
-  File "game/level/telefonoAmigue.rpy", line 43, in script
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
-  File "game/level/telefonoAmigue.rpy", line 43, in <module>
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
-      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+While processing text tag {palabraGenero} in "While processing text tag {palabraGenero} in 'Hehe nos vemos bien{image=emoji_feliz}, no sabía que seguías a mi {palabraGenero}'.:".:
+  File "game/level/telefonoConversacion.rpy", line 153, in script
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
+  File "game/level/telefonoConversacion.rpy", line 153, in <module>
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
+      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "game/phone.rpy", line 304, in send_phone_message
     renpy.pause()
     ~~~~~~~~~~~^^
@@ -50,10 +50,10 @@ Exception: Unknown text tag 'palabraGenero'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "game/level/telefonoAmigue.rpy", line 43, in script
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
-  File "game/level/telefonoAmigue.rpy", line 43, in script
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
+  File "game/level/telefonoConversacion.rpy", line 153, in script
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
+  File "game/level/telefonoConversacion.rpy", line 153, in script
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
   File "renpy/display/render.pyx", line 487, in renpy.display.render.render_screen
   File "renpy/display/render.pyx", line 260, in renpy.display.render.render
   File "renpy/display/render.pyx", line 170, in renpy.display.render.render
@@ -81,17 +81,17 @@ Exception: Unknown text tag 'palabraGenero'
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "game/level/telefonoAmigue.rpy", line 43, in script
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
+  File "game/level/telefonoConversacion.rpy", line 153, in script
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
   File "renpy/ast.py", line 1187, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1260, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "game/level/telefonoAmigue.rpy", line 43, in <module>
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
-      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "game/level/telefonoConversacion.rpy", line 153, in <module>
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
+      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "game/phone.rpy", line 304, in send_phone_message
     renpy.pause()
     ~~~~~~~~~~~^^
@@ -237,10 +237,10 @@ Traceback (most recent call last):
   File "renpy/execution.py", line 1022, in run_context
     context.run()
     ~~~~~~~~~~~^^
-  File "game/level/telefonoAmigue.rpy", line 43, in script
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
-  File "game/level/telefonoAmigue.rpy", line 43, in script
-    $ send_phone_message(phone_config["phone_player_name"], "Si! con gusto apoyo a tu {palabraGenero} <emoji_feliz>", "amigue_dm", 3)
+  File "game/level/telefonoConversacion.rpy", line 153, in script
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
+  File "game/level/telefonoConversacion.rpy", line 153, in script
+    $ send_phone_message(phone_config["phone_player_name"], "Hehe nos vemos bien<emoji_feliz>, no sabía que seguías a mi {palabraGenero}", "pareja_dm", 3)
   File "renpy/display/error.py", line 135, in report_exception
     renpy.game.invoke_in_new_context(
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
@@ -355,4 +355,4 @@ Exception: Unknown text tag 'palabraGenero'
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.4.1.25072401
 Latencia 1.0.0
-Wed Jun 17 17:39:10 2026
+Wed Jun 17 18:24:00 2026
