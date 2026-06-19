@@ -280,6 +280,7 @@ image white = "images/white.png"
 #introducción
 label splashscreen:
 
+    $ quick_menu = False
     play music musica_fondo loop fadein 2.0 volume 1.0
     scene fondo_inicio
     
@@ -354,7 +355,7 @@ label splashscreen:
 
 
 label start:
-
+    $ quick_menu = True
     $ save_name = _("Introducción")
     scene black
 

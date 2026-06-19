@@ -1,11 +1,18 @@
 ﻿init python:
     import random
 
+    if renpy.emscripten:
+        import emscripten
+
     config.has_quicksave = False
     config.has_sync = False
 
     def forzarAutosave():
         renpy.force_autosave()
+    
+    def abrirCalendarioUAM():
+        emscripten.run_script("window.top.location.href = 'https://www.uam.mx/calendario/index.html';")
+        renpy.full_restart()
 
     #codigo aleatorio para compartir
     if not persistent.codigo_usuario:
@@ -13,6 +20,15 @@
             persistent.codigos_maceta = [line[:-1] for line in f]
             persistent.codigo_usuario = (
                 random.choice(persistent.codigos_maceta) + str(random.randint(0, 9)))
+
+default ocultar_actions = (
+    [forzarAutosave, SetVariable("persistent.ocultar", True)]
+    + (
+        [abrirCalendarioUAM] 
+        if renpy.variant("web") 
+        else [OpenURL("https://www.uam.mx/calendario/index.html"), Quit(confirm=False)]
+    )
+)
 
 ################################################################################
 ## Inicialización
@@ -331,10 +347,8 @@ screen quick_menu():
             imagebutton:
                 idle "gui/button/menu_quick/quitar.png"
                 hover "gui/button/menu_quick/quitar_hover.png"
-                alt "¡Quitar!"
-                action [forzarAutosave, 
-                        OpenURL("https://www.uam.mx/calendario/index.html"), 
-                        Quit(confirm=False)]
+                alt "¡Ocultar!"
+                action ocultar_actions
 
 
 ## Este código asegura que la pantalla 'quick_menu' se muestra en el juego,
@@ -343,8 +357,6 @@ init python:
     config.overlay_screens.append("quick_menu")
 
 default quick_menu = True
-
-#image testimg = Frame("gui/button/quick_idle_background.png")
 
 style quick_button is default
 style quick_button_text is button_text
@@ -396,10 +408,7 @@ screen navigation():
             idle "gui/button/menu_principal/ocultar.png"
             hover "gui/button/menu_principal/ocultar_hover.png"
             alt "¡Ocultar!"
-            action [forzarAutosave, 
-                    SetVariable("persistent.ocultar",True),
-                    OpenURL("https://www.uam.mx/calendario/index.html"), 
-                    Quit(confirm=False)]
+            action ocultar_actions
 
     if renpy.get_screen("main_menu"):
 
@@ -482,6 +491,10 @@ screen main_menu():
 
     ## Esto asegura que cualquier otra pantalla de menu es remplazada.
     tag menu
+
+    if persistent.ocultar:
+
+        timer 0.1 action Start("splashscreen")
 
     add gui.main_menu_background
 
@@ -926,7 +939,7 @@ screen about():
                             text "[gui.about!t]\n"
 
                         text _("Hecho con {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]\n")
-                        text ("Créditos adicionales sobre los recursos utilizados en el videojuego se encuentran en la página de {a=https://baoasamiya2002.itch.io/nuestras-flores-amorillas-ver-0}itch.io{/a}")
+                        text ("Créditos adicionales sobre los recursos utilizados en el videojuego se encuentran en la página de {a=https://noviolencia.itch.io/latencia}itch.io{/a}")
                     frame:
                         style "fondo_recurso"
                         xsize 780
@@ -1037,7 +1050,8 @@ screen file_slots(title):
 
                             key "save_delete" action FileDelete(slot)
                     else:
-
+                        
+                        $ quick_menu = True
                         $ nombreLabel = "eleccionCapa" + str(slot)
                         $ nombreImagen = "capa_" + str(slot)
 
@@ -2230,10 +2244,7 @@ screen boton_quitar():
             idle "gui/button/menu_principal/ocultar.png"
             hover "gui/button/menu_principal/ocultar_hover.png"
             alt "¡Ocultar!"
-            action [forzarAutosave, 
-                    SetScreenVariable("persistent.ocultar",True),
-                    OpenURL("https://www.uam.mx/calendario/index.html"), 
-                    Quit(confirm=False)]
+            action ocultar_actions
 
 screen boton_eleccion_personaje():
 

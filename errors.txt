@@ -2,7 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 138: keyword argument repeated: image
+File "game/screens.rpy", line 27: invalid syntax
+    if renpy.variant("web"):\
+    ^^
 
 Ren'Py Version: Ren'Py 8.5.3.26051504
-Thu Jun 18 21:49:21 2026
+Fri Jun 19 13:32:03 2026
