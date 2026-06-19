@@ -74,7 +74,6 @@ init -1 python:
         "timestamp_font_size": 63.5,
         "auto_scroll": True,
         "show_sender_in_preview": True,
-        "default_icon": "phone/icon.png",
         "user_colour": "#FFFFFF",
         "character_colour": "#000000",
         "timestamp_colour": "#000000",
@@ -98,8 +97,6 @@ init -1 python:
             "channel_button_hover_background": "#EFEFEF",
             "empty_channel_text_colour": "#000000",
             # images for light mode
-            "screen_background_image": "phone/screen.png",
-            "header_background_image": "phone/header.png",
             "base_background_image": "phone/base.png",
             "back_button_idle_image": "phone/back.png",
             "back_button_notif_image": "phone/back_notif.png",
@@ -121,8 +118,6 @@ init -1 python:
             "channel_button_hover_background": "#333333",
             "empty_channel_text_colour": "#FFFFFF",
             # dark mode images
-            "screen_background_image": "phone/skins/dark_mode/screen.png",
-            "header_background_image": "phone/skins/dark_mode/header.png",
             "base_background_image": "phone/skins/dark_mode/base.png",
             "back_button_idle_image": "phone/skins/dark_mode/back.png",
             "back_button_notif_image": "phone/skins/dark_mode/back_notif.png",

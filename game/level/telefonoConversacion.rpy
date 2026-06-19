@@ -145,7 +145,7 @@ label telefono_conversacion:
 
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
-    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].png", "pareja_dm", 2, summary_alt=f"Captura de pantalla del instagram de {palabraGenero} de [jugador.nombre]")
+    $ send_phone_message(pareja.nombre, "images/phone/media/instagram_[jugador.nombre].jpg", "pareja_dm", 2, summary_alt=f"Captura de pantalla del instagram de {palabraGenero} de [jugador.nombre]")
 
     $ palabraGenero = "prima" if pareja.nombre == novio.name else "primo"
 
@@ -490,7 +490,7 @@ label telefono_perdonar_violencia:
 label telefono_aceptar_ubicacion:
 
     $ send_phone_message(phone_config["phone_player_name"], "Si.. me acuerdo", "pareja_dm", 3)
-    $ send_phone_message(phone_config["phone_player_name"], "images/phone/media/gps.png", "pareja_dm", 2, summary_alt=f"GPS de casa de {palabraGenero} [pareja.nombre]")
+    $ send_phone_message(phone_config["phone_player_name"], "images/phone/media/gps.jpg", "pareja_dm", 2, summary_alt=f"GPS de casa de {palabraGenero} [pareja.nombre]")
     $ send_phone_message(phone_config["phone_player_name"], "Pero no te", "pareja_dm", 3)
     $ send_phone_message(pareja.nombre, "<emoji_groserias>", "pareja_dm", 3)
     $ send_phone_message(phone_config["phone_player_name"], "Enojes...", "pareja_dm", 3)

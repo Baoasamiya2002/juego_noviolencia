@@ -2,9 +2,7 @@
 errors listed below, and try again.
 
 
-File "game/level/citaChapultepec.rpy", line 67: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    play musica_ambiental musica_capa_1_2 loop fadein 1.0 volume 1.0
-    ^
+File "game/script.rpy", line 138: keyword argument repeated: image
 
-Ren'Py Version: Ren'Py 8.4.1.25072401
-Sat Jan 31 17:15:41 2026
+Ren'Py Version: Ren'Py 8.5.3.26051504
+Thu Jun 18 21:49:21 2026

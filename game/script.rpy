@@ -122,83 +122,132 @@ default persistent.contador_final_visto = 1
 image fondo_inicio = Movie(
     size=(2561,1600), play="images/fondo_inicio.webm", 
     start_image = "images/fondo_inicio_frame.jpg",
+    image = "images/fondo_inicio_frame.jpg",
     loop = True) 
 image seleccion_personaje = Movie(
     size=(2560,1600), play="images/seleccion_personaje.webm", loop = False, 
-    image="images/seleccion_personaje.png")
+    start_image="images/seleccion_personaje.jpg",
+    image="images/seleccion_personaje.jpg")
 image cine_fondo = Movie(
-    size=(2560,1600), play="images/cine fondo.webm", loop = True)
+    size=(2560,1600), play="images/cine fondo.webm", loop = True,
+    start_image="images/cine fondo.jpg",
+    image="images/cine fondo.jpg")
 image caminata_chapultepec = Movie(
     size=(2560,1600), play="images/caminata_chapultepec.webm", loop = False, 
-    image="images/caminata_chapultepec.png")
+    start_image="images/caminata_chapultepec.jpg",
+    image="images/caminata_chapultepec.jpg")
 image emocion_seriedad_Carlos = Movie(
     size=(2560,1600), play="images/emocion/Carlos/seriedad.webm",
     start_image = "images/emocion/Carlos/seriedad_frame.jpg",
+    image = "images/emocion/Carlos/seriedad_frame.jpg",
     loop = True)
 image emocion_enojo_Carlos = Movie(
     size=(2560,1600), play="images/emocion/Carlos/enojo.webm",
-    start_image = "images/emocion/Carlos/enojo_frame.jpg", 
+    start_image = "images/emocion/Carlos/enojo_frame.jpg",
+    image = "images/emocion/Carlos/enojo_frame.jpg", 
     loop = True)
 image emocion_felicidad_Carlos = Movie(
     size=(2560,1600), play="images/emocion/Carlos/felicidad.webm",
-    start_image = "images/emocion/Carlos/felicidad_frame.jpg", 
+    start_image = "images/emocion/Carlos/felicidad_frame.jpg",
+    image = "images/emocion/Carlos/felicidad_frame.jpg", 
     loop = True)
 image emocion_tristeza_Carlos = Movie(
     size=(2560,1600), play="images/emocion/Carlos/tristeza.webm",
-    start_image = "images/emocion/Carlos/tristeza_frame.jpg", 
+    start_image = "images/emocion/Carlos/tristeza_frame.jpg",
+    image = "images/emocion/Carlos/tristeza_frame.jpg", 
     loop = True)
 image emocion_seriedad_Fernanda = Movie(
     size=(2560,1600), play="images/emocion/Fernanda/seriedad.webm",
-    start_image = "images/emocion/Fernanda/seriedad_frame.jpg", 
+    start_image = "images/emocion/Fernanda/seriedad_frame.jpg",
+    image = "images/emocion/Fernanda/seriedad_frame.jpg", 
     loop = True)
 image emocion_enojo_Fernanda = Movie(
     size=(2560,1600), play="images/emocion/Fernanda/enojo.webm",
     start_image = "images/emocion/Fernanda/enojo_frame.jpg", 
+    image = "images/emocion/Fernanda/enojo_frame.jpg",
     loop = True)
 image emocion_felicidad_Fernanda = Movie(
     size=(2560,1600), play="images/emocion/Fernanda/felicidad.webm",
-    start_image = "images/emocion/Fernanda/felicidad_frame.jpg", 
+    start_image = "images/emocion/Fernanda/felicidad_frame.jpg",
+    image = "images/emocion/Fernanda/felicidad_frame.jpg", 
     loop = True)
 image emocion_tristeza_Fernanda = Movie(
     size=(2560,1600), play="images/emocion/Fernanda/tristeza.webm",
-    start_image = "images/emocion/Fernanda/tristeza_frame.jpg", 
+    start_image = "images/emocion/Fernanda/tristeza_frame.jpg",
+    image = "images/emocion/Fernanda/tristeza_frame.jpg", 
     loop = True)
-image planta_capullo = Movie(play="images/planta/capullo.webm", loop = True)
-image planta_marchita = Movie(play="images/planta/marchita.webm", loop = True)
+image planta_capullo = Movie(
+    play="images/planta/capullo.webm", loop = True,
+    start_image = "images/planta/capullo.jpg",
+    image = "images/planta/capullo.jpg")
+image planta_marchita = Movie(
+    play="images/planta/marchita.webm", loop = True,
+    start_image = "images/planta/marchita.jpg",
+    image = "images/planta/marchita.jpg")
 image planta_levemente_marchita = Movie(
-    play="images/planta/levemente_marchita.webm", loop = True)
+    play="images/planta/levemente_marchita.webm", loop = True,
+    start_image = "images/planta/levemente_marchita.jpg",
+    image = "images/planta/levemente_marchita.jpg")
 image planta_levemente_florece = Movie(
-    play="images/planta/levemente_florece.webm", loop = True)
-image planta_florece = Movie(play="images/planta/florece.webm", loop = True)
-image planta_capullo_dorado = Movie(play="images/planta/capullo_dorado.webm", loop = True)
-image planta_marchita_dorado = Movie(play="images/planta/marchita_dorado.webm", loop = True)
+    play="images/planta/levemente_florece.webm", loop = True,
+    start_image = "images/planta/levemente_florece.jpg",
+    image = "images/planta/levemente_florece.jpg")
+image planta_florece = Movie(
+    play="images/planta/florece.webm", loop = True,
+    start_image = "images/planta/florece.jpg",
+    image = "images/planta/florece.jpg")
+image planta_capullo_dorado = Movie(
+    play="images/planta/capullo_dorado.webm", loop = True,
+    start_image = "images/planta/capullo_dorado.jpg",
+    image = "images/planta/capullo_dorado.jpg")
+image planta_marchita_dorado = Movie(
+    play="images/planta/marchita_dorado.webm", loop = True,
+    start_image = "images/planta/marchita_dorado.jpg",
+    image = "images/planta/marchita_dorado.jpg")
 image planta_levemente_marchita_dorado = Movie(
-    play="images/planta/levemente_marchita_dorado.webm", loop = True)
+    play="images/planta/levemente_marchita_dorado.webm", loop = True,
+    start_image = "images/planta/levemente_marchita_dorado.jpg",
+    image = "images/planta/levemente_marchita_dorado.jpg")
 image planta_levemente_florece_dorado = Movie(
-    play="images/planta/levemente_florece_dorado.webm", loop = True)
-image planta_florece_dorado = Movie(play="images/planta/florece_dorado.webm", loop = True)
+    play="images/planta/levemente_florece_dorado.webm", loop = True,
+    start_image = "images/planta/levemente_florece_dorado.jpg",
+    image = "images/planta/levemente_florece_dorado.jpg")
+image planta_florece_dorado = Movie(
+    play="images/planta/florece_dorado.webm", loop = True,
+    start_image = "images/planta/florece_dorado.jpg",
+    image = "images/planta/florece_dorado.jpg")
 image creditos_iniciales = Movie(
-    size=(2560,1600), play="images/creditos_iniciales.webm", loop = False)
+    size=(2560,1600), play="images/creditos_iniciales.webm", loop = False,
+    start_image = "images/creditos_iniciales.jpg",
+    image = "images/creditos_iniciales.jpg")
 image creditos_finales = Movie(
-    size=(2560,1600), play="images/creditos_finales.webm", loop = False)
+    size=(2560,1600), play="images/creditos_finales.webm", loop = False,
+    start_image = "images/creditos_finales.jpg",
+    image = "images/creditos_finales.jpg")
 image tutorial_guardar = Movie(
     size=(1572,987), play="images/tutorial/guardar.webm", 
-    start_image = "images/tutorial/guardar_focus_1.png")
+    start_image = "images/tutorial/guardar_focus_1.png",
+    image = "images/tutorial/guardar_focus_1.png")
 image tutorial_cargar = Movie(
     size=(1572,987), play="images/tutorial/cargar.webm", 
-    start_image = "images/tutorial/cargar_focus_1.png")
+    start_image = "images/tutorial/cargar_focus_1.png",
+    image = "images/tutorial/cargar_focus_1.png")
 image tutorial_cargar_capa = Movie(
     size=(1572,987), play="images/tutorial/cargar_capa.webm", 
-    start_image = "images/tutorial/cargar_capa_1.png")
+    start_image = "images/tutorial/cargar_capa_1.png",
+    image = "images/tutorial/cargar_capa_1.png")
 image tutorial_guardar_auto = Movie(
     size=(1572,987), play="images/tutorial/guardar_auto.webm", 
-    start_image = "images/tutorial/guardar_auto_1.png")
+    start_image = "images/tutorial/guardar_auto_1.png",
+    image = "images/tutorial/guardar_auto_1.png")
 image tutorial_recursos = Movie(
     size=(1572,987), play="images/tutorial/recursos.webm", 
-    start_image = "images/tutorial/recursos_focus_1.png")
+    start_image = "images/tutorial/recursos_focus_1.png",
+    image = "images/tutorial/recursos_focus_1.png")
 image tutorial_configuracion = Movie(
     size=(1572,987), play="images/tutorial/configuracion.webm", 
-    start_image = "images/tutorial/configuracion_focus_1.png")
+    start_image = "images/tutorial/configuracion_focus_1.png",
+    image = "images/tutorial/configuracion_focus_1.png")
 
 #imagenes estaticas
 image boton_opciones = "gui/button/dialogo/opciones.png" 
@@ -211,10 +260,10 @@ image boton_opciones_quick = "gui/button/dialogo/opciones_quick.png"
 image boton_mas_info = "gui/button/dialogo/mas_info.png"
 image boton_tutorial = "gui/button/dialogo/tutorial.png"
 image boton_recursos = "gui/button/dialogo/recursos.png"
-image chapultepec_fondo = "images/chapus fondo.png"
+image chapultepec_fondo = "images/chapus fondo.jpg"
 image planta_conjunto = "images/planta/capullo_conjunto.png"
 image planta_fondo = "images/planta/fondo.png"
-image chapultepec_primer_plano = "images/chapus fondo primer plano.png"
+image chapultepec_primer_plano = "images/chapus fondo.jpg"
 image logro_aspersor = "images/coleccionables/logro_aspersor.png"
 image penalizacion_aspersor = "images/coleccionables/penalizacion_aspersor.png"
 image tarjeta_intacta = "images/coleccionables/tarjeta_intacta.png"
