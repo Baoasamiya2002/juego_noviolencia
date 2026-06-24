@@ -588,6 +588,7 @@ label eleccionPersonaje:
 
 label eleccionCapa1:
 
+    $ quick_menu = True
     if persistent.Config:
         call tutorial_ocultar
     call eleccionPersonaje    
@@ -596,6 +597,7 @@ label eleccionCapa1:
 
 label eleccionCapa2:
 
+    $ quick_menu = True
     if persistent.Config:
         call tutorial_ocultar
     call eleccionPersonaje    
@@ -603,6 +605,7 @@ label eleccionCapa2:
 
 label eleccionCapa3:
 
+    $ quick_menu = True
     if persistent.Config:
         call tutorial_ocultar
     call eleccionPersonaje    
@@ -610,6 +613,7 @@ label eleccionCapa3:
 
 label eleccionCapa4:
 
+    $ quick_menu = True
     if persistent.Config:
         call tutorial_ocultar
     call eleccionPersonaje    

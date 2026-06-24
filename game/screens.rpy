@@ -892,7 +892,7 @@ screen about():
                     add ("images/logos/madic.png"):
                         xsize 500
                         ysize 147
-                    add ("images/logos/secihti.svg"):
+                    add ("images/logos/secihti.png"):
                         xsize 188
                 hbox:
                     spacing 50
