@@ -3,7 +3,7 @@
 <img width="1282" height="799" alt="Pantalla de inicio del videojuego" src="https://github.com/user-attachments/assets/6139c992-1a5c-4ce4-85db-7e997476c6db" />
 
 
-[![Ren'Py](https://img.shields.io/badge/Ren'Py-FF7F7F?logo=Renpy&logoColor=fff)](#) [![Itch.io](https://img.shields.io/badge/itch.io-%23FF0B34.svg?logo=Itch.io&logoColor=white)](#)
+[![Ren'Py](https://img.shields.io/badge/Ren'Py-FF7F7F?logo=Renpy&logoColor=fff)](https://www.renpy.org/) [![Itch.io](https://img.shields.io/badge/itch.io-%23FF0B34.svg?logo=Itch.io&logoColor=white)](https://itch.io/)
 
 
 Este repositorio contiene el código fuente del videojuego "Lantencia" hecho en Ren'Py, producto de la ICR "(NOvio)lencia. Prevención de violencia en el noviazgo entre estudiantes de licenciatura de la UAM Cuajimalpa" de la MADIC en la UAM Unidad Cuajimalpa.
