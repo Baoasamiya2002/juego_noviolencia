@@ -1,9 +1,8 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/screens.rpy", line 359, in execute_default
-    default quick_menu = True
-Exception: store.quick_menu is being given a default a second time.
+  File "game/phone.rpy", line 591, in execute_default
+Exception: store.phone_zoom is being given a default a second time.
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -22,11 +21,10 @@ Traceback (most recent call last):
   File "renpy/exports/statementexports.py", line 368, in execute_default_statement
     i.execute_default(start)
     ~~~~~~~~~~~~~~~~~^^^^^^^
-  File "game/screens.rpy", line 359, in execute_default
-    default quick_menu = True
-Exception: store.quick_menu is being given a default a second time.
+  File "game/phone.rpy", line 591, in execute_default
+Exception: store.phone_zoom is being given a default a second time.
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.3.26051504
 Latencia 1.0.0
-Fri Jun 19 13:43:09 2026
+Wed Sep 30 13:35:25 2026
