@@ -16,7 +16,7 @@
 
     #codigo aleatorio para compartir
     if not persistent.codigo_usuario:
-        with renpy.file('misc/codigos_maceta.txt', encoding='utf8') as f:
+        with renpy.file('assets/codigos_maceta.txt', encoding='utf8') as f:
             persistent.codigos_maceta = [line[:-1] for line in f]
             persistent.codigo_usuario = (
                 random.choice(persistent.codigos_maceta) + str(random.randint(0, 9)))

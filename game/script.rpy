@@ -49,7 +49,7 @@
                     window_background=Frame("gui/jugador_textbox_trans.png")))
  
     #texto introductorio
-    with renpy.file('misc/intro.txt', encoding='utf8') as f:
+    with renpy.file('assets/intro.txt', encoding='utf8') as f:
         texto_intro = f.read()
 
 #personajes

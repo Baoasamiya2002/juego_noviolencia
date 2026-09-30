@@ -1,30 +1,38 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/phone.rpy", line 591, in execute_default
-Exception: store.phone_zoom is being given a default a second time.
+  File "game/screens.rpy", line 1, in script
+    init python:
+  File "game/screens.rpy", line 19, in <module>
+    with renpy.file('misc/codigos_maceta.txt', encoding='utf8') as f:
+         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      
+FileNotFoundError: Couldn't find file 'misc/codigos_maceta.txt'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Traceback (most recent call last):
-  File "renpy/common/00start.rpy", line 210, in script
-    python:
+  File "game/screens.rpy", line 1, in script
+    init python:
   File "renpy/ast.py", line 1193, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "renpy/python.py", line 1276, in py_exec_bytecode
     exec(bytecode, globals, locals)
     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "renpy/common/00start.rpy", line 211, in <module>
-    renpy.execute_default_statement(True)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "renpy/exports/statementexports.py", line 368, in execute_default_statement
-    i.execute_default(start)
-    ~~~~~~~~~~~~~~~~~^^^^^^^
-  File "game/phone.rpy", line 591, in execute_default
-Exception: store.phone_zoom is being given a default a second time.
+  File "game/screens.rpy", line 19, in <module>
+    with renpy.file('misc/codigos_maceta.txt', encoding='utf8') as f:
+         ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      
+  File "renpy/exports/loaderexports.py", line 120, in file
+    return open_file(fn, encoding=encoding)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/exports/loaderexports.py", line 99, in open_file
+    rv = renpy.loader.load(fn, directory=directory)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/loader.py", line 712, in load
+    raise FileNotFoundError("Couldn't find file '%s'." % name)
+FileNotFoundError: Couldn't find file 'misc/codigos_maceta.txt'.
 
 Windows-11-10.0.26200-SP0 AMD64
 Ren'Py 8.5.3.26051504
 Latencia 1.0.0
-Wed Sep 30 13:35:25 2026
+Wed Sep 30 13:40:36 2026
