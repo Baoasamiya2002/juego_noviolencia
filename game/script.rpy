@@ -342,9 +342,11 @@ label splashscreen:
         hide marco_tutorial
         $ persistent.ocultar = False
 
+    show black
     show creditos_iniciales
-    pause 4.0
+    pause 7.0
     hide creditos_iniciales
+    hide black
     show black onlayer master
     show screen intro with fade    
     hide black with {"master": fade}

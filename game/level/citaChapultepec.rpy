@@ -49,7 +49,7 @@ label cita_chapultepec:
         jugador.personaje "¿Te acuerdas de mi proyecto que tengo para mañana? 
             Pues al parecer yo no... casi no he hecho nada."
         pareja.personaje "Sí."
-        jugador.personaje "Y pues le puedo pedir cosas a IA ¿verdad?, 
+        jugador.personaje "Y pues le puedo pedir cosas a la IA ¿verdad?, 
             pero la otra vez, de ese mismo tema, me dió cosas que nada que ver..."
         pareja.personaje "Ajá..."
         scene expression "emocion_seriedad_[jugador.nombre]"
