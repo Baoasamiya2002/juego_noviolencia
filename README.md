@@ -1,4 +1,4 @@
-# Videojuego "Latencia. Toma el control... o la mejor decisión"
+# Videojuego "Latencia"
 [![Ren'Py](https://img.shields.io/badge/Ren'Py-FF7F7F?logo=Renpy&logoColor=fff)](https://www.renpy.org/) [![Itch.io](https://img.shields.io/badge/itch.io-%23FF0B34.svg?logo=Itch.io&logoColor=white)](https://itch.io/)
 
 <img width="1282" height="799" alt="Pantalla de inicio del videojuego" src="https://github.com/user-attachments/assets/6139c992-1a5c-4ce4-85db-7e997476c6db" />

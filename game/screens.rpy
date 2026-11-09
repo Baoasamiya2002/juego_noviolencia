@@ -510,7 +510,7 @@ screen main_menu():
         image "images/titulo.png":
             fit "contain" 
             xsize 1700 
-            alt "Latencia. Toma el control... o la decisión correcta"
+            alt "Latencia"
 
 
 style main_menu_vbox is vbox
@@ -931,7 +931,6 @@ screen about():
                     vbox:
                         xsize 1610
                         label "[config.name!t]"
-                        text ("Toma el control... o la mejor decisión.")
                         text _("Versión [config.version!t]. Desarrollado en 2025.\n")
 
                         ## 'gui.about' se ajusta habitualmente en 'options.rpy'.
